@@ -2793,10 +2793,12 @@
     var WAG_INTERVAL_MS = 350;
     var BARK_INTERVAL_MS = 160;
     var SETTLE_DELAY_MS = 500;
+    var BARK_MAX_MS = 900;
 
     var state = 'sitting';
     var frameIntervalId = null;
     var settleTimeoutId = null;
+    var barkSafetyTimeoutId = null;
     var wagFrame = 0;
     var barkFrame = 0;
     var hoverCount = 0;
@@ -2809,15 +2811,24 @@
       }
     }
 
+    function clearBarkSafety() {
+      if (barkSafetyTimeoutId) {
+        window.clearTimeout(barkSafetyTimeoutId);
+        barkSafetyTimeoutId = null;
+      }
+    }
+
     function goSitting() {
       state = 'sitting';
       clearFrameLoop();
+      clearBarkSafety();
       img.src = 'dog-sit.png';
     }
 
     function goStanding() {
       state = 'standing';
       clearFrameLoop();
+      clearBarkSafety();
       img.src = 'dog-stand-1.png';
       if (prefersReducedMotion) return;
       frameIntervalId = window.setInterval(function () {
@@ -2830,6 +2841,17 @@
       state = 'barking';
       clearFrameLoop();
       img.src = 'dog-bark.png';
+      // Safety net: mobile browsers fire a synthetic "mouseenter" on
+      // tap but rarely a matching "mouseleave" (no real hover state
+      // on touch), so without this the dog can get stuck barking
+      // forever after a tap. Force it back to standing if nothing
+      // else has moved it on within BARK_MAX_MS.
+      clearBarkSafety();
+      barkSafetyTimeoutId = window.setTimeout(function () {
+        hoverCount = 0;
+        goStanding();
+        scheduleSettle();
+      }, BARK_MAX_MS);
       if (prefersReducedMotion) return;
       frameIntervalId = window.setInterval(function () {
         barkFrame = barkFrame ? 0 : 1;
