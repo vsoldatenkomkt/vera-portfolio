@@ -1,0 +1,2889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vera Soldatenko — B2B Marketing Specialist</title>
+
+<style>
+  /* ============================================================
+     EASY-EDIT ZONE
+     Change colors, fonts, or spacing here and it updates everywhere.
+
+     --color-data-accent and --font-mono are the "tech/data" touches:
+     a muted teal reserved only for section numbers and the buyer-
+     persona spectrum dot, and a monospace font used only on small
+     uppercase labels (never on tags or body paragraphs).
+     ============================================================ */
+  :root {
+    --color-bg: #FAFAF8;
+    --color-surface: #FFFFFF;
+    --color-text: #22262B;
+    --color-text-muted: #5B6472;
+    --color-accent: #35506B;      /* headings, links, buttons */
+    --color-accent-soft: #E7EDF2; /* tag backgrounds */
+    --color-data-accent: #1B7A86; /* teal — section numbers, persona dot only */
+    --color-border: #E7E5E0;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --max-width: 720px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    /* Faint dot-grid texture — a subtle nod to dashboards/data tools.
+       Delete this background-image line to go back to a flat background. */
+    background-image: radial-gradient(circle, rgba(27, 122, 134, 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Used by the language switcher to show/hide EN or FR text.
+     Don't delete this rule. */
+  .hidden { display: none !important; }
+
+  /* ---------- Language switcher ---------- */
+  /* Shared fixed top-right wrapper — holds the dark-mode toggle and
+     the language switcher side by side. Add anything else that
+     belongs in that corner as another flex child here. */
+  .top-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 40; /* sits below the persona drawer/overlay, which should cover it when open */
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 2px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .lang-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .lang-btn.active {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  /* ---------- Dark mode toggle ----------
+     A sun/moon icon button next to the language switcher. Both icons
+     live in the DOM at all times; CSS just shows one or the other —
+     moon in light mode ("click to go dark"), sun in dark mode
+     ("click to go back to light"). */
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .theme-toggle-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .theme-toggle-btn .icon-sun {
+    display: none;
+  }
+
+  html.dark-mode .theme-toggle-btn .icon-sun {
+    display: block;
+  }
+
+  html.dark-mode .theme-toggle-btn .icon-moon {
+    display: none;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    padding: 96px 0 64px;
+    text-align: center;
+  }
+
+  .photo-placeholder {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  /* Photo: currently using PP.PNG from this folder. To swap in a
+     different photo later, replace the src="PP.PNG" attribute on
+     the <img class="photo-placeholder"> tag below with your new
+     file's name. */
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .tagline {
+    margin: 0 0 20px;
+    font-size: 17px;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .intro {
+    margin: 0 auto;
+    max-width: 480px;
+    color: var(--color-text-muted);
+    font-size: 16px;
+  }
+
+  .hero-links {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  /* ---------- Sections ---------- */
+  section {
+    padding: 48px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+    margin: 0 0 20px;
+  }
+
+  .h2-index {
+    color: var(--color-data-accent);
+    font-weight: 600;
+  }
+
+  /* ---------- Terminal prompt line (hero) ----------
+     A small, quiet nod to the coding tools she actually works in:
+     macOS-style window dots, a Python-style ">>>" prompt with an
+     "import" statement, and a JS-style "//" trailing comment. Purely
+     decorative — hidden from screen readers since the name/role
+     right below it already says the same thing properly. */
+  .terminal-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  .terminal-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .terminal-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .terminal-dots span:nth-child(1) { background: #e2726b; }
+  .terminal-dots span:nth-child(2) { background: #e3b869; }
+  .terminal-dots span:nth-child(3) { background: var(--color-data-accent); }
+
+  .terminal-comment {
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .terminal-cursor {
+    color: var(--color-data-accent);
+    animation: terminal-blink 1s steps(1) infinite;
+  }
+
+  @keyframes terminal-blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 420px) {
+    .terminal-line { font-size: 10.5px; gap: 8px; }
+  }
+
+  .about p {
+    margin: 0 0 16px;
+    font-size: 16px;
+  }
+
+  .section-intro {
+    margin: 0 0 20px;
+    font-size: 15px;
+    color: var(--color-text-muted);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .tags.no-margin { margin-top: 0; }
+
+  .tag {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-group { margin-bottom: 22px; }
+  .skill-group:last-child { margin-bottom: 0; }
+
+  .skill-group-title {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  /* ---------- Selected work ---------- */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .work-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .work-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .work-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: var(--color-text);
+  }
+
+  .work-card p {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .work-tools {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .work-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .work-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------- Degrees & certifications ---------- */
+  .degree-block { margin-bottom: 24px; }
+  .degree-block:last-child { margin-bottom: 0; }
+
+  .degree-block h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: var(--color-text);
+  }
+
+  .degree-org {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .degree-courses {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .contact-list li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 15px;
+  }
+
+  .contact-label {
+    min-width: 90px;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .contact-list a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .contact-list a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    padding: 32px 0 64px;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 420px) {
+    .top-controls { top: 12px; right: 12px; gap: 6px; }
+  }
+
+  /* ---------- Ideal Buyer Persona drawer ---------- */
+  .persona-trigger-btn {
+    margin-top: 20px;
+    font-family: var(--font-body);
+    cursor: pointer;
+  }
+
+  /* A visually distinct sub-block within the Industries section,
+     set apart from the J.Lanfranco industrial content above it. */
+  .industries-subsection {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .industries-subsection .skill-group-title {
+    margin-bottom: 10px;
+  }
+
+  .persona-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 24, 28, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 62; /* above .top-controls so the backdrop covers it too */
+  }
+
+  .persona-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .persona-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(480px, 100%);
+    background: var(--color-bg);
+    box-shadow: -8px 0 32px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 63; /* above .top-controls so the drawer visually covers the lang/theme controls */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .persona-drawer.open {
+    transform: translateX(0);
+  }
+
+  .persona-drawer-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+  }
+
+  .persona-drawer-header h3 {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+  }
+
+  .persona-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+
+  .persona-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 16px 24px 0;
+  }
+
+  .persona-tab {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .persona-tab.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .persona-panel-content {
+    padding: 24px;
+  }
+
+  .persona-card { display: none; }
+  .persona-card.active { display: block; }
+
+  /* Sub-toggle inside a single persona-card, for tabs that cover
+     more than one buyer (e.g. SaaS: an admin/compliance buyer vs.
+     a maintenance-ops buyer). Same idea as .persona-tabs, styled in
+     the data-accent teal so it reads as nested, not another
+     top-level tab. */
+  .persona-subtabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .persona-subtab {
+    flex: 1;
+    padding: 8px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .persona-subtab.active {
+    background: var(--color-data-accent);
+    color: #fff;
+    border-color: var(--color-data-accent);
+  }
+
+  .persona-subcard { display: none; }
+  .persona-subcard.active { display: block; }
+
+  .persona-top {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .persona-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .persona-name {
+    margin: 0;
+    font-size: 18px;
+    color: var(--color-text);
+  }
+
+  .persona-role {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .persona-badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+
+  .persona-facts {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 14px 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+
+  .persona-facts li { font-size: 13px; color: var(--color-text); }
+
+  .persona-facts .fact-label {
+    display: block;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .persona-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .persona-col h4 {
+    margin: 0 0 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+  }
+
+  .persona-col ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    color: var(--color-text);
+  }
+
+  .persona-col li { margin-bottom: 6px; }
+
+  .persona-block { margin-bottom: 24px; }
+  .persona-block:last-child { margin-bottom: 0; }
+
+  .persona-block h4 {
+    margin: 0 0 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+  }
+
+  .persona-block p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .persona-block ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .persona-block li { margin-bottom: 6px; }
+
+  .decision-row { margin-bottom: 16px; }
+  .decision-row:last-child { margin-bottom: 0; }
+
+  .decision-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+  }
+
+  .decision-track {
+    position: relative;
+    height: 6px;
+    background: var(--color-accent-soft);
+    border-radius: 999px;
+  }
+
+  .decision-dot {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-data-accent);
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 420px) {
+    .persona-facts { grid-template-columns: 1fr; }
+    .persona-columns { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     DARK MODE — toggled by the sun/moon button next to the language
+     switcher. Adding "dark-mode" to <html> re-points every color
+     token below to a dark palette; everything else on the page
+     already reads those same variables, so it re-themes on its own.
+     ============================================================ */
+  html.dark-mode {
+    --color-bg: #14171c;
+    --color-surface: #1b1f26;
+    --color-text: #e8eaed;
+    --color-text-muted: #97a1ad;
+    --color-accent: #6fa8d8;
+    --color-accent-soft: #1b2a38;
+    --color-data-accent: #45d6c2;
+    --color-border: #262b33;
+  }
+
+  /* Same fix as before for the handful of components that hard-code
+     white text on top of --color-accent — in dark mode the accent
+     is a light blue, so that text needs to flip dark instead. */
+  html.dark-mode .lang-btn.active,
+  html.dark-mode .btn-primary,
+  html.dark-mode .persona-tab.active,
+  html.dark-mode .persona-subtab.active,
+  html.dark-mode .persona-badge {
+    color: #0d1720;
+  }
+
+  /* Smooth cross-fade between light and dark, skipped for visitors
+     who've asked their OS for reduced motion. */
+  body, .wrap, .work-card, .persona-drawer, .persona-facts,
+  .lang-switcher, .theme-toggle-btn, .btn, .tag, h2 {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Same dot-grid texture, recolored so it stays visible on a dark
+     background instead of disappearing. */
+  html.dark-mode body {
+    background-image: radial-gradient(circle, rgba(69, 214, 194, 0.06) 1px, transparent 1px);
+  }
+
+  /* ---------- Dog mascot (top-left) ----------
+     Stays visible for the whole page, the entire time you scroll —
+     it's a fixed companion, not just a hero flourish. It sits while
+     idle, stands and wags its tail while you're actively scrolling,
+     and "barks" (mouth animation only, no sound) when you hover any
+     button. A plain sprite, no background/circle. Sits below the
+     persona drawer/overlay in the stacking order, so the drawer
+     naturally covers it when open. */
+  .dog-mascot {
+    position: fixed;
+    top: 16px;
+    left: 20px;
+    width: 46px;
+    height: 28px;
+    z-index: 40;
+    pointer-events: none;
+  }
+
+  .dog-mascot img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  @media (max-width: 420px) {
+    .dog-mascot { top: 10px; left: 12px; width: 36px; height: 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body, .wrap, .work-card, .persona-drawer, .persona-facts,
+    .lang-switcher, .theme-toggle-btn, .btn, .tag, h2 {
+      transition: none;
+    }
+    .terminal-cursor {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     DOG MASCOT — top-left corner, visible the whole time you're on
+     the page. Sits while idle, stands up and wags its tail while
+     you're actively scrolling (sits back down a moment after you
+     stop, wherever that is on the page), and "barks" — just a mouth
+     animation, no sound — while hovering any button (see the JS at
+     the bottom of the page). Four pixel-art frames: dog-sit.png,
+     dog-stand-1.png / dog-stand-2.png (alternate for the tail wag),
+     and dog-bark.png (alternates with dog-stand-1.png for the bark).
+     They all share the same canvas size so pose changes don't jump
+     around — swap any of the four files to change the look.
+     ============================================================ -->
+<div class="dog-mascot" aria-hidden="true">
+  <img id="dog-mascot-img" src="dog-sit.png" alt="">
+</div>
+
+<!-- ============================================================
+     TOP-RIGHT CONTROLS — dark-mode toggle and language switcher,
+     side by side, always visible. This is where people expect to
+     find both. To add a fourth language later, duplicate a
+     lang-en / lang-fr / lang-ru trio (see comments below) for every
+     new language, and add a matching button in the switcher below
+     with a new data-lang-btn value.
+     ============================================================ -->
+<div class="top-controls">
+  <button type="button" class="theme-toggle-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <line x1="12" y1="2" x2="12" y2="4"></line>
+      <line x1="12" y1="20" x2="12" y2="22"></line>
+      <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
+      <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
+      <line x1="2" y1="12" x2="4" y2="12"></line>
+      <line x1="20" y1="12" x2="22" y2="12"></line>
+      <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
+      <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line>
+    </svg>
+  </button>
+  <div class="lang-switcher" role="group" aria-label="Language selector">
+    <button type="button" class="lang-btn active" data-lang-btn="en">EN</button>
+    <button type="button" class="lang-btn" data-lang-btn="fr">FR</button>
+    <button type="button" class="lang-btn" data-lang-btn="ru">RU</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============================================================
+       HERO — name, photo, one-line tagline
+       Wherever you see a "lang-en" block and matching "lang-fr" /
+       "lang-ru" blocks right below it, edit each in its own
+       language — nothing else needs to change.
+       ============================================================ -->
+  <header class="hero">
+
+    <p class="terminal-line" aria-hidden="true">
+      <span class="terminal-dots"><span></span><span></span><span></span></span>
+      <span class="terminal-code">&gt;&gt;&gt; import vera<span class="terminal-comment">  // b2b marketing ops</span></span><span class="terminal-cursor">_</span>
+    </p>
+
+    <img class="photo-placeholder" src="PP.PNG" alt="Vera Soldatenko" style="object-fit:cover;">
+
+    <h1>Vera Soldatenko</h1>
+
+    <p class="tagline lang-en">B2B Marketing Ops Specialist — CRM &amp; Marketing Automation</p>
+    <p class="tagline lang-fr hidden">Spécialiste Marketing Ops B2B — CRM et Automatisation Marketing</p>
+    <p class="tagline lang-ru hidden">Специалист по маркетинговым операциям B2B — CRM и автоматизация маркетинга</p>
+
+    <p class="intro lang-en">
+      I help B2B industrial companies turn complex products into clear stories, and
+      CRM chaos into marketing systems that run themselves.
+    </p>
+    <p class="intro lang-fr hidden">
+      J'aide les entreprises B2B industrielles à transformer des produits complexes
+      en histoires claires, et le chaos CRM en systèmes marketing autonomes.
+    </p>
+    <p class="intro lang-ru hidden">
+      Я помогаю промышленным B2B-компаниям превращать сложные продукты в понятные
+      истории, а хаос в CRM — в маркетинговые системы, которые работают сами.
+    </p>
+
+    <div class="hero-links">
+      <a class="btn btn-primary lang-en" href="mailto:vsoldate@icloud.com">Email Me</a>
+      <a class="btn btn-primary lang-fr hidden" href="mailto:vsoldate@icloud.com">M'écrire</a>
+      <a class="btn btn-primary lang-ru hidden" href="mailto:vsoldate@icloud.com">Написать мне</a>
+      <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-secondary lang-en" href="job-match.html">Check My Fit &rarr;</a>
+      <a class="btn btn-secondary lang-fr hidden" href="job-match.html">Vérifier mon Adéquation &rarr;</a>
+      <a class="btn btn-secondary lang-ru hidden" href="job-match.html">Проверить моё соответствие &rarr;</a>
+    </div>
+
+  </header>
+
+  <!-- ============================================================
+       ABOUT ME — edit the English block and the French block
+       separately. The tag pills near the bottom are grouped the
+       same way, one row per language.
+       ============================================================ -->
+  <section class="about" id="about">
+    <h2 class="lang-en"><span class="h2-index">// 01</span>About Me</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 01</span>À propos de moi</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 01</span>Обо мне</h2>
+
+    <div class="lang-en">
+      <p>
+        I'm a B2B marketing specialist working at the intersection of CRM, data, and
+        commercial strategy. Over five years in industrial sectors — rail, energy,
+        mining, aerospace — I've led CRM migrations, built email and content
+        automations, written and designed branded case studies, and grown organic
+        channels from the ground up, all while keeping a close eye on the data behind
+        every decision.
+      </p>
+
+      <p>
+        I care about doing more with less: automating the busywork so there's more
+        room for the parts of marketing that actually need a human — judgment,
+        creativity, and understanding what customers really need.
+      </p>
+
+      <p>
+        That approach is backed by a Master's in Marketing Management from POLIMI
+        Graduate School of Management, a Bachelor's in European &amp; Russian Studies
+        from Carleton University, hands-on projects using Python and AI tools, and
+        working fluency in French, English, and Russian.
+      </p>
+
+      <div class="tags">
+        <span class="tag">CRM &amp; Automation</span>
+        <span class="tag">Content Strategy</span>
+        <span class="tag">Data &amp; Analytics</span>
+        <span class="tag">B2B Industrial Marketing</span>
+      </div>
+    </div>
+
+    <div class="lang-fr hidden">
+      <p>
+        Je suis une spécialiste marketing B2B qui travaille à l'interface entre le
+        CRM, les données et la stratégie commerciale. En cinq ans dans des secteurs
+        industriels — ferroviaire, énergie, mines, aérospatiale — j'ai piloté des
+        migrations CRM, développé des automatisations d'e-mailing et de contenu,
+        rédigé et conçu des études de cas à l'identité de marque, et fait croître des
+        canaux organiques à partir de zéro, tout en gardant un œil attentif sur les
+        données derrière chaque décision.
+      </p>
+
+      <p>
+        Je crois qu'il faut faire plus avec moins : automatiser les tâches répétitives
+        pour laisser plus de place à ce qui, dans le marketing, a vraiment besoin d'un
+        humain — le jugement, la créativité, et la compréhension des besoins réels des
+        clients.
+      </p>
+
+      <p>
+        Cette approche s'appuie sur un Master en Marketing Management de la POLIMI
+        Graduate School of Management, un Bachelor en Études Européennes et Russes de
+        la Carleton University, des projets pratiques utilisant Python et l'IA, ainsi
+        qu'une maîtrise professionnelle du français, de l'anglais et du russe.
+      </p>
+
+      <div class="tags">
+        <span class="tag">CRM et Automatisation</span>
+        <span class="tag">Stratégie de Contenu</span>
+        <span class="tag">Données et Analytique</span>
+        <span class="tag">Marketing B2B Industriel</span>
+      </div>
+    </div>
+
+    <div class="lang-ru hidden">
+      <p>
+        Я специалист по B2B-маркетингу, работающая на стыке CRM, данных и
+        коммерческой стратегии. За пять лет в промышленных отраслях —
+        железнодорожной, энергетической, горнодобывающей, аэрокосмической — я
+        руководила миграциями CRM, создавала автоматизации для email- и
+        контент-маркетинга, писала и разрабатывала брендированные кейсы, а также
+        развивала органические каналы с нуля, постоянно ориентируясь на данные при
+        принятии решений.
+      </p>
+
+      <p>
+        Мне важно делать больше меньшими средствами: автоматизировать рутину, чтобы
+        оставалось больше времени на то, что в маркетинге действительно требует
+        человека — суждение, креативность и понимание реальных потребностей
+        клиентов.
+      </p>
+
+      <p>
+        Этот подход подкреплён степенью магистра в области управления маркетингом
+        от POLIMI Graduate School of Management, степенью бакалавра по европейским
+        и российским исследованиям от Carleton University, практическими проектами
+        с использованием Python и инструментов ИИ, а также свободным владением
+        французским, английским и русским языками.
+      </p>
+
+      <div class="tags">
+        <span class="tag">CRM и автоматизация</span>
+        <span class="tag">Контент-стратегия</span>
+        <span class="tag">Данные и аналитика</span>
+        <span class="tag">Промышленный B2B-маркетинг</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS & EXPERTISE — grouped by category. To add a skill,
+       copy a <span class="tag">...</span> inside the matching
+       group (in all three lang-en / lang-fr / lang-ru versions).
+       To add a whole new category, copy a full .skill-group block.
+       ============================================================ -->
+  <section id="skills">
+    <h2 class="lang-en"><span class="h2-index">// 02</span>Skills &amp; Expertise</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Compétences et Expertise</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Навыки и экспертиза</h2>
+
+    <div class="lang-en">
+      <div class="skill-group">
+        <p class="skill-group-title">Marketing &amp; Content</p>
+        <div class="tags no-margin">
+          <span class="tag">Content Strategy</span>
+          <span class="tag">Social Media Marketing</span>
+          <span class="tag">Technical Copywriting</span>
+          <span class="tag">Paid Campaigns</span>
+          <span class="tag">Email Marketing</span>
+          <span class="tag">SEO</span>
+          <span class="tag">SEM</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">CRM &amp; Automation</p>
+        <div class="tags no-margin">
+          <span class="tag">HubSpot</span>
+          <span class="tag">Pipedrive</span>
+          <span class="tag">Zoho</span>
+          <span class="tag">Marketing Campaigns</span>
+          <span class="tag">n8n</span>
+          <span class="tag">APIs</span>
+          <span class="tag">Make</span>
+          <span class="tag">Customer Data Segmentation</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Visualisation &amp; Reporting</p>
+        <div class="tags no-margin">
+          <span class="tag">Power BI (DAX, Power Query)</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Looker Studio</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Data &amp; Analytics</p>
+        <div class="tags no-margin">
+          <span class="tag">GA4</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Python (AI-assisted)</span>
+          <span class="tag">Claude</span>
+          <span class="tag">Competitive Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Strategy &amp; Leadership</p>
+        <div class="tags no-margin">
+          <span class="tag">Project Management</span>
+          <span class="tag">Cross-functional Team Coordination</span>
+          <span class="tag">Marketing ROI &amp; Audits</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Design</p>
+        <div class="tags no-margin">
+          <span class="tag">Adobe Illustrator</span>
+          <span class="tag">Adobe InDesign</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Languages</p>
+        <div class="tags no-margin">
+          <span class="tag">French (DUEF C1)</span>
+          <span class="tag">English (Native)</span>
+          <span class="tag">Russian (Native)</span>
+          <span class="tag">German (A1)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-fr hidden">
+      <div class="skill-group">
+        <p class="skill-group-title">Marketing et Contenu</p>
+        <div class="tags no-margin">
+          <span class="tag">Stratégie de Contenu</span>
+          <span class="tag">Marketing des Réseaux Sociaux</span>
+          <span class="tag">Rédaction Technique</span>
+          <span class="tag">Campagnes Payantes</span>
+          <span class="tag">E-mailing</span>
+          <span class="tag">SEO</span>
+          <span class="tag">SEM</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">CRM et Automatisation</p>
+        <div class="tags no-margin">
+          <span class="tag">HubSpot</span>
+          <span class="tag">Pipedrive</span>
+          <span class="tag">Zoho</span>
+          <span class="tag">Campagnes Marketing</span>
+          <span class="tag">n8n</span>
+          <span class="tag">APIs</span>
+          <span class="tag">Make</span>
+          <span class="tag">Segmentation de Données Clients</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Visualisation et Reporting</p>
+        <div class="tags no-margin">
+          <span class="tag">Power BI (DAX, Power Query)</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Looker Studio</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Données et Analytique</p>
+        <div class="tags no-margin">
+          <span class="tag">GA4</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Python (assisté par l'IA)</span>
+          <span class="tag">Claude</span>
+          <span class="tag">Analyse Concurrentielle</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Stratégie et Leadership</p>
+        <div class="tags no-margin">
+          <span class="tag">Gestion de Projet</span>
+          <span class="tag">Coordination d'Équipes Pluridisciplinaires</span>
+          <span class="tag">ROI Marketing et Audits</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Design</p>
+        <div class="tags no-margin">
+          <span class="tag">Adobe Illustrator</span>
+          <span class="tag">Adobe InDesign</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Langues</p>
+        <div class="tags no-margin">
+          <span class="tag">Français (DUEF C1)</span>
+          <span class="tag">Anglais (Natif)</span>
+          <span class="tag">Russe (Natif)</span>
+          <span class="tag">Allemand (A1)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-ru hidden">
+      <div class="skill-group">
+        <p class="skill-group-title">Маркетинг и контент</p>
+        <div class="tags no-margin">
+          <span class="tag">Контент-стратегия</span>
+          <span class="tag">Маркетинг в соцсетях</span>
+          <span class="tag">Технический копирайтинг</span>
+          <span class="tag">Платные кампании</span>
+          <span class="tag">Email-маркетинг</span>
+          <span class="tag">SEO</span>
+          <span class="tag">SEM</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">CRM и автоматизация</p>
+        <div class="tags no-margin">
+          <span class="tag">HubSpot</span>
+          <span class="tag">Pipedrive</span>
+          <span class="tag">Zoho</span>
+          <span class="tag">Маркетинговые кампании</span>
+          <span class="tag">n8n</span>
+          <span class="tag">API</span>
+          <span class="tag">Make</span>
+          <span class="tag">Сегментация клиентских данных</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Визуализация и отчётность</p>
+        <div class="tags no-margin">
+          <span class="tag">Power BI (DAX, Power Query)</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Looker Studio</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Данные и аналитика</p>
+        <div class="tags no-margin">
+          <span class="tag">GA4</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Python (с помощью ИИ)</span>
+          <span class="tag">Claude</span>
+          <span class="tag">Конкурентный анализ</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Стратегия и лидерство</p>
+        <div class="tags no-margin">
+          <span class="tag">Управление проектами</span>
+          <span class="tag">Координация кросс-функциональных команд</span>
+          <span class="tag">ROI маркетинга и аудит</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Дизайн</p>
+        <div class="tags no-margin">
+          <span class="tag">Adobe Illustrator</span>
+          <span class="tag">Adobe InDesign</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-title">Языки</p>
+        <div class="tags no-margin">
+          <span class="tag">Французский (DUEF C1)</span>
+          <span class="tag">Английский (родной)</span>
+          <span class="tag">Русский (родной)</span>
+          <span class="tag">Немецкий (A1)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INDUSTRIES — sectors served at J.Lanfranco. Add or remove
+       a <span class="tag">...</span> in both language blocks to
+       update the list.
+       ============================================================ -->
+  <section id="industries">
+    <h2 class="lang-en"><span class="h2-index">// 03</span>Industries</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Secteurs d'Activité</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Отрасли</h2>
+
+    <div class="lang-en">
+      <p class="section-intro">
+        Over five years at J.Lanfranco Fastener Systems, I marketed locknuts and
+        fastening solutions to clients across:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Aerospace &amp; Defense</span>
+        <span class="tag">Transportation &amp; Rail</span>
+        <span class="tag">Mining</span>
+        <span class="tag">Oil &amp; Gas</span>
+        <span class="tag">Wind Energy</span>
+        <span class="tag">Industrial Manufacturing</span>
+        <span class="tag">Construction &amp; Infrastructure</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">View Ideal Buyer Personas</button>
+    </div>
+
+    <div class="lang-fr hidden">
+      <p class="section-intro">
+        Pendant mes cinq années chez J.Lanfranco Fastener Systems, j'ai fait la
+        promotion d'écrous de blocage et de solutions de fixation auprès de clients
+        dans les secteurs suivants :
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Aérospatiale et Défense</span>
+        <span class="tag">Transport et Ferroviaire</span>
+        <span class="tag">Mines</span>
+        <span class="tag">Pétrole et Gaz</span>
+        <span class="tag">Énergie Éolienne</span>
+        <span class="tag">Fabrication Industrielle</span>
+        <span class="tag">Construction et Infrastructure</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Voir les Profils d'Acheteurs Idéaux</button>
+    </div>
+
+    <div class="lang-ru hidden">
+      <p class="section-intro">
+        За пять лет работы в J.Lanfranco Fastener Systems я продвигала стопорные
+        гайки и крепёжные решения для клиентов в следующих отраслях:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Аэрокосмическая отрасль и оборона</span>
+        <span class="tag">Транспорт и железные дороги</span>
+        <span class="tag">Горнодобывающая промышленность</span>
+        <span class="tag">Нефть и газ</span>
+        <span class="tag">Ветроэнергетика</span>
+        <span class="tag">Промышленное производство</span>
+        <span class="tag">Строительство и инфраструктура</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Посмотреть портреты идеальных клиентов</button>
+    </div>
+
+    <!-- ============================================================
+         SaaS sub-section — a separate example, distinct from the
+         J.Lanfranco industrial content above, formatted the same way
+         (intro + tag pills + button) for visual consistency. Only
+         "Fleet Management" has a full persona behind it right now;
+         the rest are context tags, same as most Industries tags
+         above don't have a dedicated persona either. To give another
+         SaaS type its own persona later, add a new .persona-tab /
+         .persona-card pair (see the drawer comment further down)
+         and point a new button's data-persona-open at its id.
+         ============================================================ -->
+    <div class="lang-en industries-subsection">
+      <p class="skill-group-title">B2B SaaS</p>
+      <p class="section-intro">
+        Alongside industrial fasteners, I've applied this same ICP and
+        buyer-persona approach across B2B SaaS categories, including:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Fleet Management</span>
+        <span class="tag">HR Tech</span>
+        <span class="tag">FinTech</span>
+        <span class="tag">MarTech</span>
+        <span class="tag">Vertical SaaS</span>
+        <span class="tag">Workflow Automation</span>
+        <span class="tag">CRM &amp; Sales Tech</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">View SaaS Buyer Persona</button>
+    </div>
+
+    <div class="lang-fr hidden industries-subsection">
+      <p class="skill-group-title">SaaS B2B</p>
+      <p class="section-intro">
+        En dehors des fixations industrielles, j'ai appliqué cette même approche
+        ICP et profils d'acheteurs à différentes catégories de SaaS B2B,
+        notamment :
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Gestion de Flotte</span>
+        <span class="tag">RH Tech</span>
+        <span class="tag">FinTech</span>
+        <span class="tag">MarTech</span>
+        <span class="tag">SaaS Vertical</span>
+        <span class="tag">Automatisation des Processus</span>
+        <span class="tag">CRM et Tech de Vente</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">Voir le Profil d'Acheteur SaaS</button>
+    </div>
+
+    <div class="lang-ru hidden industries-subsection">
+      <p class="skill-group-title">B2B SaaS</p>
+      <p class="section-intro">
+        Помимо промышленного крепежа, я применяла тот же подход к ICP и портретам
+        покупателей в разных категориях B2B SaaS, включая:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Управление автопарком</span>
+        <span class="tag">HR-тех</span>
+        <span class="tag">FinTech</span>
+        <span class="tag">MarTech</span>
+        <span class="tag">Отраслевой SaaS</span>
+        <span class="tag">Автоматизация процессов</span>
+        <span class="tag">CRM и технологии продаж</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">Посмотреть портрет покупателя SaaS</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SELECTED WORK — personal projects and career highlights.
+       To add a project, copy one .work-card block (in both
+       language versions) and edit the title, description, and
+       tools line.
+       ============================================================ -->
+  <section id="work">
+    <h2 class="lang-en"><span class="h2-index">// 04</span>Selected Work</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 04</span>Réalisations</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 04</span>Избранные работы</h2>
+
+    <div class="lang-en">
+      <div class="work-grid">
+        <div class="work-card">
+          <h3>Content Manager Agent — Personal Project</h3>
+          <p>
+            Designed an AI-assisted automation system that analyzes a recurring
+            marketing workflow from first principles — mapping dependencies,
+            decision points, and failure modes — then automates it end-to-end.
+            Human input is only needed for judgment calls or output verification.
+          </p>
+          <p class="work-tools">Tools: Claude, n8n, Google, Slack</p>
+        </div>
+
+        <div class="work-card">
+          <h3>CRM Migration &amp; Enablement</h3>
+          <p>
+            Learned Pipedrive from scratch, then led a branch-wide CRM migration —
+            training the sales team and supporting them through the transition.
+            Result: faster follow-ups, fewer lost quotes, full daily adoption.
+          </p>
+          <p class="work-tools">Tools: Pipedrive</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Organic LinkedIn Growth</h3>
+          <p>
+            Built a LinkedIn content strategy from the ground up — dashboards,
+            analytics tracking, and short-form content translating technical
+            product info into infographics. Followers grew 85% in 5 months,
+            organic only.
+          </p>
+          <p class="work-tools">Tools: LinkedIn, Analytics Dashboards</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Resource Hub &amp; SEO</h3>
+          <p>
+            Conceived and managed a resource page housing case studies, company
+            news, and product catalogues. Product-specific keyword searches grew
+            43%, with sales teams reporting better-informed customers.
+          </p>
+          <p class="work-tools">Tools: SEO, Content Management</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Diamond Crossing Case Study — J.Lanfranco Fastener Systems</h3>
+          <p>
+            Wrote and designed a branded case study showing how J.Lanfranco's THU
+            self-locking nuts eliminated daily maintenance inspections at a major
+            North American Class 1 railroad's diamond crossing — clamping force
+            stayed constant even six months after installation. Also designed the
+            branded template later reused for all subsequent case studies and
+            marketing materials.
+          </p>
+          <p class="work-tools">Tools: Adobe InDesign, Adobe Illustrator, Copywriting</p>
+          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">View Case Study (PDF, French) &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-fr hidden">
+      <div class="work-grid">
+        <div class="work-card">
+          <h3>Content Manager Agent — Projet Personnel</h3>
+          <p>
+            Conception d'un système d'automatisation assisté par IA qui analyse
+            un flux de travail marketing récurrent à partir de zéro — en
+            cartographiant les dépendances, points de décision et modes de
+            défaillance — puis l'automatise de bout en bout. Une intervention
+            humaine n'est nécessaire que pour les décisions ou la vérification
+            des résultats.
+          </p>
+          <p class="work-tools">Outils : Claude, n8n, Google, Slack</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Migration CRM et Accompagnement</h3>
+          <p>
+            Après avoir appris Pipedrive de A à Z, pilotage d'une migration CRM
+            à l'échelle de la succursale — formation de l'équipe commerciale et
+            accompagnement tout au long de la transition. Résultat : délais de
+            suivi plus rapides, moins de devis perdus, adoption complète.
+          </p>
+          <p class="work-tools">Outils : Pipedrive</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Croissance Organique LinkedIn</h3>
+          <p>
+            Élaboration d'une stratégie de contenu LinkedIn à partir de zéro —
+            tableaux de bord, suivi analytique et contenus courts traduisant des
+            informations techniques en infographies. Croissance des abonnés de
+            85 % en 5 mois, uniquement en organique.
+          </p>
+          <p class="work-tools">Outils : LinkedIn, Tableaux de Bord</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Page Ressources et SEO</h3>
+          <p>
+            Conception et gestion d'une page ressources regroupant études de cas,
+            actualités et catalogues produits. Les recherches par mots-clés
+            spécifiques ont augmenté de 43 %, avec des clients mieux informés.
+          </p>
+          <p class="work-tools">Outils : SEO, Gestion de Contenu</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Étude de Cas Diamond Crossing — J.Lanfranco Fastener Systems</h3>
+          <p>
+            Rédaction et conception d'une étude de cas illustrant comment les
+            écrous autofreinés THU de J.Lanfranco ont permis d'éliminer les
+            inspections de maintenance quotidiennes sur un croisement ferroviaire
+            (diamond) d'un grand réseau Class 1 nord-américain — la force de
+            serrage est restée constante même six mois après l'installation. J'ai
+            également conçu le gabarit de mise en page ensuite réutilisé pour
+            toutes les études de cas et supports marketing suivants.
+          </p>
+          <p class="work-tools">Outils : Adobe InDesign, Adobe Illustrator, Rédaction</p>
+          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">Voir l'Étude de Cas (PDF) &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-ru hidden">
+      <div class="work-grid">
+        <div class="work-card">
+          <h3>Content Manager Agent — личный проект</h3>
+          <p>
+            Разработала систему автоматизации с ИИ, которая анализирует
+            повторяющийся маркетинговый процесс с нуля — выявляя зависимости,
+            точки принятия решений и возможные сбои — а затем полностью
+            автоматизирует его. Участие человека требуется только для принятия
+            решений или проверки результата.
+          </p>
+          <p class="work-tools">Инструменты: Claude, n8n, Google, Slack</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Миграция CRM и внедрение</h3>
+          <p>
+            Изучила Pipedrive с нуля, а затем провела миграцию CRM в масштабах
+            филиала — обучая отдел продаж и сопровождая переход. Результат: более
+            быстрые последующие контакты, меньше потерянных предложений, полное
+            внедрение в ежедневную работу.
+          </p>
+          <p class="work-tools">Инструменты: Pipedrive</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Органический рост LinkedIn</h3>
+          <p>
+            Построила стратегию контента для LinkedIn с нуля — дашборды,
+            отслеживание аналитики и короткий контент, переводящий техническую
+            информацию о продукте в инфографику. Количество подписчиков выросло
+            на 85% за 5 месяцев, исключительно органически.
+          </p>
+          <p class="work-tools">Инструменты: LinkedIn, аналитические дашборды</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Ресурсный центр и SEO</h3>
+          <p>
+            Разработала и вела ресурсную страницу с кейсами, новостями компании и
+            каталогами продукции. Количество запросов по ключевым словам,
+            связанным с продуктами, выросло на 43%, а отдел продаж отмечал более
+            осведомлённых клиентов.
+          </p>
+          <p class="work-tools">Инструменты: SEO, управление контентом</p>
+        </div>
+
+        <div class="work-card">
+          <h3>Кейс Diamond Crossing — J.Lanfranco Fastener Systems</h3>
+          <p>
+            Написала и оформила брендированный кейс, показывающий, как
+            самоконтрящиеся гайки THU от J.Lanfranco позволили отказаться от
+            ежедневных проверок на пересечении путей (diamond) крупной
+            североамериканской железной дороги класса 1 — усилие затяжки
+            оставалось стабильным даже спустя шесть месяцев после установки.
+            Также разработала фирменный шаблон, впоследствии использованный для
+            всех последующих кейсов и маркетинговых материалов.
+          </p>
+          <p class="work-tools">Инструменты: Adobe InDesign, Adobe Illustrator, копирайтинг</p>
+          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">Посмотреть кейс (PDF, на французском) &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DEGREES & CERTIFICATIONS — copy a .degree-block (in both
+       language versions) to add a new entry.
+       ============================================================ -->
+  <section id="education">
+    <h2 class="lang-en"><span class="h2-index">// 05</span>Degrees &amp; Certifications</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Diplômes et Certifications</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Образование и сертификаты</h2>
+
+    <div class="lang-en">
+      <div class="degree-block">
+        <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
+        <p class="degree-org">POLIMI Graduate School of Management — Milan, Italy</p>
+        <p class="degree-courses">
+          Key courses: Artificial Intelligence (built and interpreted Python
+          regression models to support data-driven marketing recommendations),
+          Digital Transformation, CRM Lab, MROI, Marketing Strategy.
+        </p>
+      </div>
+
+      <div class="degree-block">
+        <h3>Honours Bachelor of Arts, European &amp; Russian Studies</h3>
+        <p class="degree-org">Carleton University — Ottawa, Canada &middot; 2022</p>
+      </div>
+      <!-- Add more certifications here later, e.g.:
+      <div class="degree-block">
+        <h3>Certification Name</h3>
+        <p class="degree-org">Issuing Organization — Year</p>
+      </div>
+      -->
+    </div>
+
+    <div class="lang-fr hidden">
+      <div class="degree-block">
+        <h3>Master en Marketing Management, Omnichannel and Consumer Analytics</h3>
+        <p class="degree-org">POLIMI Graduate School of Management — Milan, Italie</p>
+        <p class="degree-courses">
+          Matières clés : Intelligence Artificielle (construction et
+          interprétation de modèles de régression Python pour appuyer des
+          recommandations marketing fondées sur les données), Transformation
+          Digitale, CRM Lab, MROI, Stratégie Marketing.
+        </p>
+      </div>
+
+      <div class="degree-block">
+        <h3>Honours Bachelor of Arts, Études Européennes et Russes</h3>
+        <p class="degree-org">Carleton University — Ottawa, Canada &middot; 2022</p>
+      </div>
+    </div>
+
+    <div class="lang-ru hidden">
+      <div class="degree-block">
+        <h3>Магистр в области управления маркетингом, омниканальности и потребительской аналитики</h3>
+        <p class="degree-org">POLIMI Graduate School of Management — Милан, Италия</p>
+        <p class="degree-courses">
+          Ключевые курсы: искусственный интеллект (построение и интерпретация
+          регрессионных моделей на Python для data-driven маркетинговых
+          рекомендаций), цифровая трансформация, CRM Lab, MROI, маркетинговая
+          стратегия.
+        </p>
+      </div>
+
+      <div class="degree-block">
+        <h3>Бакалавр с отличием, европейские и российские исследования</h3>
+        <p class="degree-org">Carleton University — Оттава, Канада &middot; 2022</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESUME / CV DOWNLOAD
+       Each language links to its own PDF file, so you can update
+       them independently.
+
+       FRENCH — already active, pointing to CV_SOLDATENKO.pdf.
+       To replace it later, drop a new file in this folder and
+       update the href="..." and download="..." attributes below.
+
+       ENGLISH and RUSSIAN — no PDFs yet, so they currently show
+       "coming soon" notes instead of buttons. Once a translated CV
+       is ready:
+       1. Save it as CV_SOLDATENKO_EN.pdf (or _RU.pdf) in this folder.
+       2. Delete that language's "coming soon" paragraph, then delete
+          the comment markers wrapping the button beneath it so the
+          button itself shows up.
+       ============================================================ -->
+  <section id="resume">
+    <h2 class="lang-en"><span class="h2-index">// 06</span>Resume</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 06</span>CV</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 06</span>Резюме</h2>
+
+    <div class="lang-en">
+      <p class="section-intro" style="font-style: italic;">English version coming soon.</p>
+      <!--
+      <a class="btn btn-primary" href="CV_SOLDATENKO_EN.pdf" download="CV_SOLDATENKO_EN.pdf">Download CV (PDF)</a>
+      -->
+    </div>
+
+    <div class="lang-fr hidden">
+      <p class="section-intro">Vous préférez tout voir en un seul document ?</p>
+      <a class="btn btn-primary" href="CV_SOLDATENKO.pdf" download="CV_SOLDATENKO.pdf">Télécharger le CV (PDF)</a>
+    </div>
+
+    <div class="lang-ru hidden">
+      <p class="section-intro" style="font-style: italic;">Русская версия скоро появится.</p>
+      <!--
+      <a class="btn btn-primary" href="CV_SOLDATENKO_RU.pdf" download="CV_SOLDATENKO_RU.pdf">Скачать резюме (PDF)</a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT — only the labels (Email, Phone, etc.) are
+       translated; edit the actual details (address, number, links)
+       once and they'll show in both languages.
+       ============================================================ -->
+  <section id="contact">
+    <h2 class="lang-en"><span class="h2-index">// 07</span>Contact</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 07</span>Contact</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 07</span>Контакты</h2>
+
+    <ul class="contact-list">
+      <li>
+        <span class="contact-label lang-en">Email</span>
+        <span class="contact-label lang-fr hidden">E-mail</span>
+        <span class="contact-label lang-ru hidden">Email</span>
+        <a href="mailto:vsoldate@icloud.com">vsoldate@icloud.com</a>
+      </li>
+      <li>
+        <span class="contact-label lang-en">Phone</span>
+        <span class="contact-label lang-fr hidden">Téléphone</span>
+        <span class="contact-label lang-ru hidden">Телефон</span>
+        <a href="tel:+33680438703">+33 6 80 43 87 03</a>
+      </li>
+      <li>
+        <span class="contact-label lang-en">Location</span>
+        <span class="contact-label lang-fr hidden">Localisation</span>
+        <span class="contact-label lang-ru hidden">Местоположение</span>
+        <span class="lang-en">Poitiers, France</span>
+        <span class="lang-fr hidden">Poitiers, France</span>
+        <span class="lang-ru hidden">Пуатье, Франция</span>
+      </li>
+      <li>
+        <span class="contact-label lang-en">LinkedIn</span>
+        <span class="contact-label lang-fr hidden">LinkedIn</span>
+        <span class="contact-label lang-ru hidden">LinkedIn</span>
+        <a href="#" target="_blank" rel="noopener">linkedin.com/in/your-profile</a>
+      </li>
+      <li>
+        <span class="contact-label lang-en">Portfolio</span>
+        <span class="contact-label lang-fr hidden">Portfolio</span>
+        <span class="contact-label lang-ru hidden">Портфолио</span>
+        <a href="#" target="_blank" rel="noopener">your-portfolio-link.com</a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 Vera Soldatenko
+  </footer>
+
+</div>
+
+<!-- ============================================================
+     IDEAL BUYER PERSONAS — slide-in drawer, currently holding three
+     personas (Rail, Mining, SaaS), opened from the trigger buttons
+     in the Industries section. Each trigger button has a
+     data-persona-open="rail|mining|saas" value so it opens straight
+     to the right tab instead of whatever was last active.
+     To add another persona:
+     1. Copy one .persona-tab button below and give it a new
+        data-persona-tab="your-id" value.
+     2. Copy one .persona-card block below it and give it a
+        matching data-persona="your-id" — don't add "active" to
+        it, only one card should start active.
+     3. If you want a dedicated trigger button elsewhere on the page,
+        give it data-persona-open="your-id".
+     Each card has its own lang-en / lang-fr / lang-ru trio, same
+     pattern as everywhere else on the page.
+     ============================================================ -->
+<div class="persona-overlay" data-persona-overlay></div>
+<div class="persona-drawer" data-persona-drawer role="dialog" aria-modal="true" aria-label="Ideal Buyer Personas">
+  <div class="persona-drawer-header">
+    <button type="button" class="persona-close-btn" data-persona-close aria-label="Close">&times;</button>
+    <h3>
+      <span class="lang-en">Ideal Buyer Personas</span>
+      <span class="lang-fr hidden">Profils d'Acheteurs Idéaux</span>
+      <span class="lang-ru hidden">Портреты идеальных покупателей</span>
+    </h3>
+  </div>
+
+  <div class="persona-tabs">
+    <button type="button" class="persona-tab active" data-persona-tab="rail">
+      <span class="lang-en">Rail &amp; Transportation</span>
+      <span class="lang-fr hidden">Rail et Transport</span>
+      <span class="lang-ru hidden">Железные дороги</span>
+    </button>
+    <button type="button" class="persona-tab" data-persona-tab="mining">
+      <span class="lang-en">Mining</span>
+      <span class="lang-fr hidden">Mines</span>
+      <span class="lang-ru hidden">Горнодобыча</span>
+    </button>
+    <button type="button" class="persona-tab" data-persona-tab="saas">
+      <span class="lang-en">SaaS</span>
+      <span class="lang-fr hidden">SaaS</span>
+      <span class="lang-ru hidden">SaaS</span>
+    </button>
+  </div>
+
+  <div class="persona-panel-content">
+
+    <!-- RAIL & TRANSPORTATION PERSONA -->
+    <div class="persona-card active" data-persona="rail">
+      <div class="lang-en">
+        <span class="persona-badge">Ideal Buyer Persona</span>
+        <div class="persona-top">
+          <div class="persona-avatar">MD</div>
+          <div>
+            <p class="persona-name">Marc Dubois</p>
+            <p class="persona-role">Rolling Stock Maintenance Engineer</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Industry</span>Rail &amp; Transportation</li>
+          <li><span class="fact-label">Company Type</span>Rail Operator / Rolling Stock Manufacturer</li>
+          <li><span class="fact-label">Team Size</span>50–200 maintenance staff</li>
+          <li><span class="fact-label">Buying Role</span>Technical Specifier</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Needs</h4>
+            <ul>
+              <li>Fasteners certified to rail vibration &amp; safety standards</li>
+              <li>Reliable, traceable supply for scheduled maintenance</li>
+              <li>Fast technical support when specifying replacements</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Suppliers unfamiliar with rail certifications &amp; lead times</li>
+              <li>Inconsistent lot quality failing incoming inspection</li>
+              <li>Separate vendors for new-build vs. MRO volumes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Decision Style</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Data-Driven</span><span>Relationship-Driven</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Risk-Averse</span><span>Risk-Tolerant</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Detail-Oriented</span><span>Big-Picture</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Goals</h4>
+          <ul>
+            <li>Reduce unplanned downtime from component failures</li>
+            <li>Consolidate suppliers without compromising certification</li>
+            <li>Pass safety and compliance audits without last-minute scrambles</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Marc has spent over a decade keeping rolling stock compliant and running. He trusts suppliers who show up with documentation ready, not promises — and he remembers the vendor who got it wrong on a safety-critical order.</p>
+        </div>
+      </div>
+
+      <div class="lang-fr hidden">
+        <span class="persona-badge">Profil d'Acheteur Idéal</span>
+        <div class="persona-top">
+          <div class="persona-avatar">MD</div>
+          <div>
+            <p class="persona-name">Marc Dubois</p>
+            <p class="persona-role">Ingénieur Maintenance Matériel Roulant</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Secteur</span>Rail et Transport</li>
+          <li><span class="fact-label">Type d'Entreprise</span>Exploitant Ferroviaire / Fabricant de Matériel Roulant</li>
+          <li><span class="fact-label">Taille d'Équipe</span>50 à 200 techniciens de maintenance</li>
+          <li><span class="fact-label">Rôle d'Achat</span>Spécificateur Technique</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Besoins</h4>
+            <ul>
+              <li>Fixations certifiées selon les normes ferroviaires de vibration et de sécurité</li>
+              <li>Approvisionnement fiable et traçable pour la maintenance planifiée</li>
+              <li>Support technique rapide lors de la spécification de pièces</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Fournisseurs peu familiers avec les certifications et délais ferroviaires</li>
+              <li>Qualité de lot inconstante échouant à l'inspection</li>
+              <li>Fournisseurs séparés pour le neuf et la maintenance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Style de Décision</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Axé Données</span><span>Axé Relation</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Prudent</span><span>Preneur de Risque</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Orienté Détail</span><span>Vue d'Ensemble</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Objectifs</h4>
+          <ul>
+            <li>Réduire les arrêts non planifiés dus aux défaillances</li>
+            <li>Consolider les fournisseurs sans compromettre les certifications</li>
+            <li>Réussir les audits de sécurité sans précipitation de dernière minute</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Marc passe depuis plus de dix ans à garder le matériel roulant conforme et opérationnel. Il fait confiance aux fournisseurs qui arrivent avec la documentation prête, pas avec des promesses — et il se souvient du fournisseur qui s'est trompé sur une commande critique pour la sécurité.</p>
+        </div>
+      </div>
+
+      <div class="lang-ru hidden">
+        <span class="persona-badge">Портрет идеального покупателя</span>
+        <div class="persona-top">
+          <div class="persona-avatar">MD</div>
+          <div>
+            <p class="persona-name">Marc Dubois</p>
+            <p class="persona-role">Инженер по обслуживанию подвижного состава</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Отрасль</span>Железные дороги и транспорт</li>
+          <li><span class="fact-label">Тип компании</span>Оператор железной дороги / производитель подвижного состава</li>
+          <li><span class="fact-label">Размер команды</span>50–200 сотрудников техобслуживания</li>
+          <li><span class="fact-label">Роль в закупке</span>Технический специалист по спецификациям</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Потребности</h4>
+            <ul>
+              <li>Крепёж, сертифицированный по стандартам вибрации и безопасности для ж/д</li>
+              <li>Надёжные, отслеживаемые поставки для планового обслуживания</li>
+              <li>Быстрая техническая поддержка при подборе замены</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Проблемы</h4>
+            <ul>
+              <li>Поставщики, не знакомые с ж/д сертификацией и сроками поставки</li>
+              <li>Непостоянное качество партий, не проходящее входной контроль</li>
+              <li>Разные поставщики для нового строительства и объёмов MRO</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Стиль принятия решений</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>На основе данных</span><span>На основе отношений</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Избегающий риска</span><span>Толерантный к риску</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Ориентирован на детали</span><span>Ориентирован на картину в целом</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Цели</h4>
+          <ul>
+            <li>Снизить незапланированные простои из-за отказов компонентов</li>
+            <li>Консолидировать поставщиков без ущерба для сертификации</li>
+            <li>Проходить аудиты безопасности и соответствия без спешки в последний момент</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Био</h4>
+          <p>Марк уже больше десяти лет следит за тем, чтобы подвижной состав соответствовал нормам и оставался в рабочем состоянии. Он доверяет поставщикам, которые приходят с готовой документацией, а не обещаниями — и хорошо помнит поставщика, который ошибся в критически важном для безопасности заказе.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MINING PERSONA -->
+    <div class="persona-card" data-persona="mining">
+      <div class="lang-en">
+        <span class="persona-badge">Ideal Buyer Persona</span>
+        <div class="persona-top">
+          <div class="persona-avatar">SW</div>
+          <div>
+            <p class="persona-name">Sarah Whitfield</p>
+            <p class="persona-role">Reliability &amp; Maintenance Manager</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Industry</span>Mining</li>
+          <li><span class="fact-label">Company Type</span>Surface &amp; Underground Mining Operations</li>
+          <li><span class="fact-label">Team Size</span>100+ site personnel</li>
+          <li><span class="fact-label">Buying Role</span>Budget Owner &amp; Technical Approver</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Needs</h4>
+            <ul>
+              <li>Heavy-duty locknuts rated for high-vibration, abrasive conditions</li>
+              <li>Dependable bulk logistics to remote sites</li>
+              <li>Proven track record reducing unplanned stops</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Stockouts are costly hours from the nearest supplier</li>
+              <li>Past parts failing prematurely under load or dust</li>
+              <li>Needing hands-on support, not just a catalogue</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Decision Style</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Data-Driven</span><span>Relationship-Driven</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:65%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Risk-Averse</span><span>Risk-Tolerant</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Detail-Oriented</span><span>Big-Picture</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:50%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Goals</h4>
+          <ul>
+            <li>Extend maintenance intervals, cut failure-related downtime</li>
+            <li>Improve safety outcomes tied to equipment reliability</li>
+            <li>Build a long-term relationship with a supplier who understands site conditions</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Sarah manages reliability across multiple mine sites and has little patience for suppliers who don't understand what "remote" really means. She values a rep who picks up the phone and a product that survives conditions most fasteners weren't built for.</p>
+        </div>
+      </div>
+
+      <div class="lang-fr hidden">
+        <span class="persona-badge">Profil d'Acheteur Idéal</span>
+        <div class="persona-top">
+          <div class="persona-avatar">SW</div>
+          <div>
+            <p class="persona-name">Sarah Whitfield</p>
+            <p class="persona-role">Responsable Fiabilité et Maintenance</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Secteur</span>Mines</li>
+          <li><span class="fact-label">Type d'Entreprise</span>Exploitations Minières en Surface et Souterraines</li>
+          <li><span class="fact-label">Taille d'Équipe</span>100+ employés sur site</li>
+          <li><span class="fact-label">Rôle d'Achat</span>Responsable Budgétaire et Approbatrice Technique</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Besoins</h4>
+            <ul>
+              <li>Écrous de blocage robustes pour environnements à forte vibration et abrasifs</li>
+              <li>Logistique de gros volumes fiable vers des sites éloignés</li>
+              <li>Historique éprouvé de réduction des arrêts imprévus</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Ruptures de stock coûteuses à des heures du fournisseur le plus proche</li>
+              <li>Pièces antérieures ayant échoué sous forte charge ou poussière</li>
+              <li>Besoin d'un support technique pratique, pas seulement d'un catalogue</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Style de Décision</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Axé Données</span><span>Axé Relation</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:65%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Prudent</span><span>Preneur de Risque</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Orienté Détail</span><span>Vue d'Ensemble</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:50%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Objectifs</h4>
+          <ul>
+            <li>Prolonger les intervalles de maintenance, réduire les temps d'arrêt</li>
+            <li>Améliorer les résultats de sécurité liés à la fiabilité</li>
+            <li>Construire une relation à long terme avec un fournisseur qui comprend le site</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Sarah gère la fiabilité sur plusieurs sites miniers et a peu de patience pour les fournisseurs qui ne comprennent pas ce que « éloigné » signifie vraiment. Elle apprécie un représentant qui répond au téléphone et un produit qui survit à des conditions que la plupart des fixations n'ont pas été conçues pour supporter.</p>
+        </div>
+      </div>
+
+      <div class="lang-ru hidden">
+        <span class="persona-badge">Портрет идеального покупателя</span>
+        <div class="persona-top">
+          <div class="persona-avatar">SW</div>
+          <div>
+            <p class="persona-name">Sarah Whitfield</p>
+            <p class="persona-role">Менеджер по надёжности и техобслуживанию</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Отрасль</span>Горнодобывающая промышленность</li>
+          <li><span class="fact-label">Тип компании</span>Открытые и подземные горные работы</li>
+          <li><span class="fact-label">Размер команды</span>100+ сотрудников на объекте</li>
+          <li><span class="fact-label">Роль в закупке</span>Владелец бюджета и технический утверждающий</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Потребности</h4>
+            <ul>
+              <li>Прочные стопорные гайки, рассчитанные на сильную вибрацию и абразивные условия</li>
+              <li>Надёжная логистика крупных партий на удалённые объекты</li>
+              <li>Подтверждённый опыт снижения незапланированных остановок</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Проблемы</h4>
+            <ul>
+              <li>Дефицит запасов дорого обходится, когда до ближайшего поставщика — часы пути</li>
+              <li>Прошлые детали преждевременно выходили из строя из-за нагрузки или пыли</li>
+              <li>Нужна практическая поддержка, а не просто каталог</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Стиль принятия решений</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>На основе данных</span><span>На основе отношений</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:65%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Избегающий риска</span><span>Толерантный к риску</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Ориентирован на детали</span><span>Ориентирован на картину в целом</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:50%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Цели</h4>
+          <ul>
+            <li>Увеличить интервалы обслуживания, сократить простои из-за отказов</li>
+            <li>Улучшить показатели безопасности, связанные с надёжностью оборудования</li>
+            <li>Выстроить долгосрочные отношения с поставщиком, который понимает условия объекта</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Био</h4>
+          <p>Сара отвечает за надёжность на нескольких горнодобывающих объектах и не терпит поставщиков, которые не понимают, что на самом деле значит «удалённый». Она ценит представителя, который берёт трубку, и продукт, способный выдержать условия, для которых большинство крепежа не рассчитано.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAAS PERSONA — fleet management platform. Two buyers in one
+         tab: the admin/compliance buyer (Julien) and the maintenance-
+         ops buyer (Nicolas), switched via the teal sub-toggle below
+         rather than a whole extra top-level tab. -->
+    <div class="persona-card" data-persona="saas">
+
+      <div class="persona-subtabs">
+        <button type="button" class="persona-subtab active lang-en" data-persona-subtab="ops">Fleet Ops</button>
+        <button type="button" class="persona-subtab active lang-fr hidden" data-persona-subtab="ops">Exploitation</button>
+        <button type="button" class="persona-subtab active lang-ru hidden" data-persona-subtab="ops">Управление</button>
+        <button type="button" class="persona-subtab lang-en" data-persona-subtab="maintenance">Fleet Maintenance</button>
+        <button type="button" class="persona-subtab lang-fr hidden" data-persona-subtab="maintenance">Maintenance</button>
+        <button type="button" class="persona-subtab lang-ru hidden" data-persona-subtab="maintenance">Обслуживание</button>
+      </div>
+
+      <div class="persona-subcard active" data-persona-sub="ops">
+      <div class="lang-en">
+        <span class="persona-badge">Ideal Buyer Persona</span>
+        <div class="persona-top">
+          <div class="persona-avatar">JM</div>
+          <div>
+            <p class="persona-name">Julien Marchand</p>
+            <p class="persona-role">Fleet &amp; Mobility Manager</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Industry</span>Fleet &amp; Mobility Management</li>
+          <li><span class="fact-label">Company Type</span>Mid-size company running a 50+ vehicle fleet</li>
+          <li><span class="fact-label">Team Size</span>2–5 person fleet/ops team</li>
+          <li><span class="fact-label">Buying Role</span>Economic Buyer &amp; Champion</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Needs</h4>
+            <ul>
+              <li>One platform for vehicles, drivers, documents, and suppliers instead of scattered spreadsheets</li>
+              <li>Automated tracking of invoices, taxation, and fuel card spend</li>
+              <li>Clear visibility into fleet cost and compliance at a glance</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Fleet data scattered across spreadsheets, emails, and paper files</li>
+              <li>Manually chasing documents before they expire</li>
+              <li>No real cost picture until month-end reconciliation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Decision Style</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Data-Driven</span><span>Relationship-Driven</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:30%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Risk-Averse</span><span>Risk-Tolerant</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:35%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Detail-Oriented</span><span>Big-Picture</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Goals</h4>
+          <ul>
+            <li>Replace spreadsheets with one system of record for the whole fleet</li>
+            <li>Cut time spent chasing documents, invoices, and fuel card reconciliation</li>
+            <li>Stay ahead of compliance and fiscal deadlines without manual tracking</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Julien manages a growing vehicle fleet spread across multiple sites and has outgrown what a spreadsheet can handle. He's less interested in a flashy dashboard than in software that quietly keeps every document, invoice, and deadline in one place — so nothing slips through the cracks.</p>
+        </div>
+      </div>
+
+      <div class="lang-fr hidden">
+        <span class="persona-badge">Profil d'Acheteur Idéal</span>
+        <div class="persona-top">
+          <div class="persona-avatar">JM</div>
+          <div>
+            <p class="persona-name">Julien Marchand</p>
+            <p class="persona-role">Responsable Parc Automobile et Mobilité</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Secteur</span>Gestion de Parc Automobile et Mobilité</li>
+          <li><span class="fact-label">Type d'Entreprise</span>Entreprise de taille moyenne avec une flotte de 50+ véhicules</li>
+          <li><span class="fact-label">Taille d'Équipe</span>Équipe parc/exploitation de 2 à 5 personnes</li>
+          <li><span class="fact-label">Rôle d'Achat</span>Décideur Économique et Sponsor Interne</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Besoins</h4>
+            <ul>
+              <li>Une plateforme unique pour véhicules, conducteurs, documents et fournisseurs au lieu de fichiers épars</li>
+              <li>Un suivi automatisé des factures, de la fiscalité et des dépenses de cartes carburant</li>
+              <li>Une visibilité claire sur les coûts et la conformité de la flotte en un coup d'œil</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Données de flotte dispersées entre tableurs, e-mails et documents papier</li>
+              <li>Relance manuelle des documents avant leur expiration</li>
+              <li>Aucune vue réelle des coûts avant le rapprochement de fin de mois</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Style de Décision</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Axé Données</span><span>Axé Relation</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:30%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Prudent</span><span>Preneur de Risque</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:35%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Orienté Détail</span><span>Vue d'Ensemble</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Objectifs</h4>
+          <ul>
+            <li>Remplacer les tableurs par un système de référence unique pour toute la flotte</li>
+            <li>Réduire le temps passé à relancer documents, factures et rapprochements de cartes carburant</li>
+            <li>Anticiper les échéances de conformité et fiscales sans suivi manuel</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Julien gère une flotte de véhicules en croissance répartie sur plusieurs sites, et il a dépassé ce qu'un tableur peut gérer. Il s'intéresse moins à un tableau de bord tape-à-l'œil qu'à un logiciel qui garde discrètement chaque document, facture et échéance au même endroit — pour que rien ne passe entre les mailles du filet.</p>
+        </div>
+      </div>
+
+      <div class="lang-ru hidden">
+        <span class="persona-badge">Портрет идеального покупателя</span>
+        <div class="persona-top">
+          <div class="persona-avatar">JM</div>
+          <div>
+            <p class="persona-name">Julien Marchand</p>
+            <p class="persona-role">Менеджер по автопарку и мобильности</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Отрасль</span>Управление автопарком и мобильностью</li>
+          <li><span class="fact-label">Тип компании</span>Компания среднего размера с автопарком 50+ автомобилей</li>
+          <li><span class="fact-label">Размер команды</span>Команда автопарка/операций из 2–5 человек</li>
+          <li><span class="fact-label">Роль в закупке</span>Экономический покупатель и внутренний сторонник</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Потребности</h4>
+            <ul>
+              <li>Единая платформа для автомобилей, водителей, документов и поставщиков вместо разрозненных таблиц</li>
+              <li>Автоматическое отслеживание счетов, налогов и расходов по топливным картам</li>
+              <li>Понятная картина затрат на автопарк и соответствия требованиям с первого взгляда</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Проблемы</h4>
+            <ul>
+              <li>Данные об автопарке разбросаны по таблицам, письмам и бумажным файлам</li>
+              <li>Ручной контроль за истекающими документами</li>
+              <li>Реальная картина затрат появляется только при сверке в конце месяца</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Стиль принятия решений</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>На основе данных</span><span>На основе отношений</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:30%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Избегающий риска</span><span>Толерантный к риску</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:35%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Ориентирован на детали</span><span>Ориентирован на картину в целом</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Цели</h4>
+          <ul>
+            <li>Заменить таблицы единой системой учёта для всего автопарка</li>
+            <li>Сократить время на контроль документов, счетов и сверку топливных карт</li>
+            <li>Опережать сроки соответствия и налоговые дедлайны без ручного контроля</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Био</h4>
+          <p>Жюльен управляет растущим автопарком, распределённым по нескольким площадкам, и уже перерос возможности таблиц. Его меньше интересует эффектная панель управления, чем программа, которая незаметно держит все документы, счета и сроки в одном месте — чтобы ничего не потерялось.</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="persona-subcard" data-persona-sub="maintenance">
+      <div class="lang-en">
+        <span class="persona-badge">Ideal Buyer Persona</span>
+        <div class="persona-top">
+          <div class="persona-avatar">NR</div>
+          <div>
+            <p class="persona-name">Nicolas Roy</p>
+            <p class="persona-role">Fleet Maintenance Manager</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Industry</span>Fleet Maintenance Operations</li>
+          <li><span class="fact-label">Company Type</span>Logistics / field-service company, mixed fleet of 100+ vehicles</li>
+          <li><span class="fact-label">Team Size</span>8–20 maintenance technicians</li>
+          <li><span class="fact-label">Buying Role</span>Technical Champion &amp; Day-to-Day User</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Needs</h4>
+            <ul>
+              <li>Maintenance schedules linked directly to parts availability, so jobs aren't blocked waiting on stock</li>
+              <li>A clear view of which technician is assigned to which vehicle, and when</li>
+              <li>Real-time fleet location so maintenance windows can be planned around where vehicles actually are</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Maintenance plans built separately from parts inventory, stalling jobs on parts that should've already been ordered</li>
+              <li>Technician assignments tracked over phone calls and texts instead of a shared system</li>
+              <li>No visibility into where a vehicle actually is when a maintenance slot needs scheduling</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Decision Style</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Data-Driven</span><span>Relationship-Driven</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Risk-Averse</span><span>Risk-Tolerant</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Detail-Oriented</span><span>Big-Picture</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:10%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Goals</h4>
+          <ul>
+            <li>Cut vehicle downtime by tightly linking scheduling, parts ordering, and technician assignment</li>
+            <li>Standardize maintenance workflows across every depot and site</li>
+            <li>Always know where every vehicle is and who's working on what, today</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Nicolas runs maintenance operations across a multi-site fleet, and he's the first to feel it when a part is missing or a technician is double-booked. He cares less about a polished dashboard than about whether today's maintenance plan will actually happen as scheduled.</p>
+        </div>
+      </div>
+
+      <div class="lang-fr hidden">
+        <span class="persona-badge">Profil d'Acheteur Idéal</span>
+        <div class="persona-top">
+          <div class="persona-avatar">NR</div>
+          <div>
+            <p class="persona-name">Nicolas Roy</p>
+            <p class="persona-role">Responsable Maintenance de Flotte</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Secteur</span>Gestion de la Maintenance de Flotte</li>
+          <li><span class="fact-label">Type d'Entreprise</span>Entreprise de logistique / services terrain, flotte mixte de 100+ véhicules</li>
+          <li><span class="fact-label">Taille d'Équipe</span>8 à 20 techniciens de maintenance</li>
+          <li><span class="fact-label">Rôle d'Achat</span>Sponsor Technique et Utilisateur Quotidien</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Besoins</h4>
+            <ul>
+              <li>Des plannings de maintenance directement liés à la disponibilité des pièces, pour que les interventions ne soient pas bloquées par une rupture de stock</li>
+              <li>Une vue claire de quel technicien est affecté à quel véhicule, et quand</li>
+              <li>La localisation en temps réel de la flotte pour planifier les créneaux de maintenance selon la position réelle des véhicules</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Des plans de maintenance construits séparément de l'inventaire des pièces, bloquant les interventions en attendant des pièces qui auraient dû être commandées</li>
+              <li>Des affectations de techniciens suivies par téléphone et SMS plutôt que par un système partagé</li>
+              <li>Aucune visibilité sur la position réelle d'un véhicule au moment de planifier un créneau de maintenance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Style de Décision</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Axé Données</span><span>Axé Relation</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Prudent</span><span>Preneur de Risque</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Orienté Détail</span><span>Vue d'Ensemble</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:10%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Objectifs</h4>
+          <ul>
+            <li>Réduire les temps d'immobilisation des véhicules en reliant étroitement planning, commande de pièces et affectation des techniciens</li>
+            <li>Standardiser les processus de maintenance sur tous les dépôts et sites</li>
+            <li>Toujours savoir où se trouve chaque véhicule et qui travaille sur quoi, au quotidien</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Nicolas pilote les opérations de maintenance sur une flotte multi-sites, et il est le premier à en subir les conséquences quand une pièce manque ou qu'un technicien est affecté deux fois. Il s'intéresse moins à un tableau de bord soigné qu'à la question de savoir si le plan de maintenance du jour se déroulera vraiment comme prévu.</p>
+        </div>
+      </div>
+
+      <div class="lang-ru hidden">
+        <span class="persona-badge">Портрет идеального покупателя</span>
+        <div class="persona-top">
+          <div class="persona-avatar">NR</div>
+          <div>
+            <p class="persona-name">Николя Руа</p>
+            <p class="persona-role">Менеджер по обслуживанию автопарка</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Отрасль</span>Управление техобслуживанием автопарка</li>
+          <li><span class="fact-label">Тип компании</span>Логистическая компания / компания выездного обслуживания, смешанный автопарк 100+ машин</li>
+          <li><span class="fact-label">Размер команды</span>8–20 техников по обслуживанию</li>
+          <li><span class="fact-label">Роль в закупке</span>Технический сторонник и ежедневный пользователь</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Потребности</h4>
+            <ul>
+              <li>Графики обслуживания, напрямую связанные с наличием запчастей, чтобы работы не откладывались из-за нехватки деталей</li>
+              <li>Чёткое понимание, какой техник назначен на какой автомобиль и когда</li>
+              <li>Отслеживание местоположения автопарка в реальном времени для планирования техобслуживания</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Проблемы</h4>
+            <ul>
+              <li>Планы обслуживания составляются отдельно от учёта запчастей, из-за чего работы простаивают в ожидании деталей, которые нужно было заказать заранее</li>
+              <li>Назначение техников отслеживается по телефону и сообщениям, а не через единую систему</li>
+              <li>Нет информации о реальном местоположении автомобиля при планировании техобслуживания</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Стиль принятия решений</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>На основе данных</span><span>На основе отношений</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Избегающий риска</span><span>Толерантный к риску</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:15%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Ориентирован на детали</span><span>Ориентирован на картину в целом</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:10%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Цели</h4>
+          <ul>
+            <li>Сократить простои автомобилей за счёт тесной связи планирования, заказа запчастей и назначения техников</li>
+            <li>Стандартизировать процессы обслуживания на всех площадках</li>
+            <li>Всегда знать, где находится каждый автомобиль и кто чем занимается сегодня</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Био</h4>
+          <p>Николя руководит операциями по обслуживанию автопарка на нескольких площадках и первым сталкивается с последствиями нехватки деталей или двойного назначения техника. Его меньше волнует красивая панель управления, а больше — реально ли выполнится сегодняшний план обслуживания.</p>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Language switcher: shows/hides the ".lang-en" / ".lang-fr" / ".lang-ru"
+  // blocks above. Remembers the visitor's choice for their next visit.
+  (function () {
+    var STORAGE_KEY = 'site-lang';
+    var LANGS = ['en', 'fr', 'ru'];
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+
+    function setLang(lang) {
+      LANGS.forEach(function (code) {
+        document.querySelectorAll('.lang-' + code).forEach(function (el) {
+          el.classList.toggle('hidden', lang !== code);
+        });
+      });
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setLang(btn.getAttribute('data-lang-btn'));
+      });
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    setLang(LANGS.indexOf(saved) !== -1 ? saved : 'en');
+  })();
+
+  // Dark mode toggle: adds/removes "dark-mode" on <html> (see the
+  // CSS custom properties under html.dark-mode). Defaults to the
+  // visitor's OS-level preference on first visit, then remembers
+  // whatever they pick after that.
+  (function () {
+    var STORAGE_KEY = 'site-theme';
+    var toggleBtn = document.querySelector('[data-theme-toggle]');
+    if (!toggleBtn) return;
+
+    function setDarkMode(on) {
+      document.documentElement.classList.toggle('dark-mode', on);
+      try { localStorage.setItem(STORAGE_KEY, on ? 'dark' : 'light'); } catch (e) {}
+    }
+
+    toggleBtn.addEventListener('click', function () {
+      setDarkMode(!document.documentElement.classList.contains('dark-mode'));
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (saved === 'dark' || saved === 'light') {
+      setDarkMode(saved === 'dark');
+    } else {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
+  })();
+
+  // Ideal Buyer Persona drawer: opens from any "View ... Persona(s)"
+  // button, closes via the × button, overlay click, or Escape. Each
+  // open button carries a data-persona-open="<id>" value so it can
+  // jump straight to the right tab (e.g. the SaaS section's button
+  // opens directly on the "saas" tab, not whichever was last active).
+  (function () {
+    var openBtns = document.querySelectorAll('[data-persona-open]');
+    var overlay = document.querySelector('[data-persona-overlay]');
+    var drawer = document.querySelector('[data-persona-drawer]');
+    var closeBtn = document.querySelector('[data-persona-close]');
+    var tabs = document.querySelectorAll('[data-persona-tab]');
+    var cards = document.querySelectorAll('.persona-card');
+    if (!drawer) return;
+
+    function activatePersona(id) {
+      if (!id) return;
+      tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-persona-tab') === id); });
+      cards.forEach(function (c) { c.classList.toggle('active', c.getAttribute('data-persona') === id); });
+    }
+
+    function openDrawer() {
+      overlay.classList.add('open');
+      drawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      overlay.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        activatePersona(btn.getAttribute('data-persona-open'));
+        openDrawer();
+      });
+    });
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        activatePersona(tab.getAttribute('data-persona-tab'));
+      });
+    });
+
+    // Sub-toggle inside a single persona-card (currently just the
+    // SaaS tab: Fleet Ops vs. Fleet Maintenance). Each sub-tab id
+    // appears on 3 buttons, one per language — a click syncs all of
+    // them by id, so the right one stays active if the visitor
+    // switches language afterward.
+    var subtabs = document.querySelectorAll('[data-persona-subtab]');
+    var subcards = document.querySelectorAll('.persona-subcard');
+    subtabs.forEach(function (subtab) {
+      subtab.addEventListener('click', function () {
+        var sub = subtab.getAttribute('data-persona-subtab');
+        subtabs.forEach(function (s) { s.classList.toggle('active', s.getAttribute('data-persona-subtab') === sub); });
+        subcards.forEach(function (c) { c.classList.toggle('active', c.getAttribute('data-persona-sub') === sub); });
+      });
+    });
+  })();
+
+  // Dog mascot: a little state machine with three states.
+  //   sitting  — idle, default
+  //   standing — tail wagging (two frames on a timer), while the
+  //              page is actively being scrolled
+  //   barking  — mouth open/closed on a faster timer, while a
+  //              button is hovered (visual only, no sound/text)
+  // Scrolling always wins over sitting-back-down: every scroll event
+  // restarts a short "settle" timer, so the dog only sits once
+  // scrolling has actually stopped for a beat, at whatever position
+  // that happens to be — not tied to being near the top of the page.
+  (function () {
+    var img = document.getElementById('dog-mascot-img');
+    if (!img) return;
+
+    var WAG_INTERVAL_MS = 350;
+    var BARK_INTERVAL_MS = 160;
+    var SETTLE_DELAY_MS = 500;
+
+    var state = 'sitting';
+    var frameIntervalId = null;
+    var settleTimeoutId = null;
+    var wagFrame = 0;
+    var barkFrame = 0;
+    var hoverCount = 0;
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function clearFrameLoop() {
+      if (frameIntervalId) {
+        window.clearInterval(frameIntervalId);
+        frameIntervalId = null;
+      }
+    }
+
+    function goSitting() {
+      state = 'sitting';
+      clearFrameLoop();
+      img.src = 'dog-sit.png';
+    }
+
+    function goStanding() {
+      state = 'standing';
+      clearFrameLoop();
+      img.src = 'dog-stand-1.png';
+      if (prefersReducedMotion) return;
+      frameIntervalId = window.setInterval(function () {
+        wagFrame = wagFrame ? 0 : 1;
+        img.src = wagFrame ? 'dog-stand-2.png' : 'dog-stand-1.png';
+      }, WAG_INTERVAL_MS);
+    }
+
+    function goBarking() {
+      state = 'barking';
+      clearFrameLoop();
+      img.src = 'dog-bark.png';
+      if (prefersReducedMotion) return;
+      frameIntervalId = window.setInterval(function () {
+        barkFrame = barkFrame ? 0 : 1;
+        img.src = barkFrame ? 'dog-bark.png' : 'dog-stand-1.png';
+      }, BARK_INTERVAL_MS);
+    }
+
+    function scheduleSettle() {
+      if (settleTimeoutId) window.clearTimeout(settleTimeoutId);
+      settleTimeoutId = window.setTimeout(function () {
+        if (state !== 'barking') goSitting();
+      }, SETTLE_DELAY_MS);
+    }
+
+    window.addEventListener('scroll', function () {
+      // Only (re)start the wag loop on the sitting -> standing
+      // transition. Scroll events fire continuously while scrolling,
+      // and calling goStanding() on every single one would keep
+      // resetting the wag interval before it ever completes a full
+      // cycle, so the dog would just sit frozen on frame 1.
+      if (state !== 'barking' && state !== 'standing') goStanding();
+      scheduleSettle();
+    }, { passive: true });
+
+    // Any button on the page: stand up and bark while hovered.
+    var hoverTargets = document.querySelectorAll('button, a.btn');
+    hoverTargets.forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        hoverCount++;
+        if (settleTimeoutId) window.clearTimeout(settleTimeoutId);
+        goBarking();
+      });
+      el.addEventListener('mouseleave', function () {
+        hoverCount = Math.max(0, hoverCount - 1);
+        if (hoverCount === 0) {
+          goStanding();
+          scheduleSettle();
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

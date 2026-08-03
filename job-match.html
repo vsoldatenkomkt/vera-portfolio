@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Fit Check — Vera Soldatenko</title>
+
+<style>
+  /* ============================================================
+     EASY-EDIT ZONE
+     Same color/font tokens as index.html, kept in sync by hand.
+     If you change the palette on the main site, copy the same
+     :root block over here so both pages keep matching.
+     ============================================================ */
+  :root {
+    --color-bg: #FAFAF8;
+    --color-surface: #FFFFFF;
+    --color-text: #22262B;
+    --color-text-muted: #5B6472;
+    --color-accent: #35506B;
+    --color-accent-soft: #E7EDF2;
+    --color-data-accent: #1B7A86;
+    --color-border: #E7E5E0;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --max-width: 640px;
+  }
+
+  html.dark-mode {
+    --color-bg: #14171c;
+    --color-surface: #1b1f26;
+    --color-text: #e8eaed;
+    --color-text-muted: #97a1ad;
+    --color-accent: #6fa8d8;
+    --color-accent-soft: #1b2a38;
+    --color-data-accent: #45d6c2;
+    --color-border: #262b33;
+  }
+
+  html.dark-mode .lang-btn.active,
+  html.dark-mode .btn-primary {
+    color: #0d1720;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    background-image: radial-gradient(circle, rgba(27, 122, 134, 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.dark-mode body {
+    background-image: radial-gradient(circle, rgba(69, 214, 194, 0.06) 1px, transparent 1px);
+  }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hidden { display: none !important; }
+
+  /* ---------- Top controls (same as index.html) ---------- */
+  .top-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 40; /* sits below the results drawer/overlay, which should cover it when open */
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 2px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .lang-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .lang-btn.active {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .theme-toggle-btn svg { width: 17px; height: 17px; }
+  .theme-toggle-btn .icon-sun { display: none; }
+  html.dark-mode .theme-toggle-btn .icon-sun { display: block; }
+  html.dark-mode .theme-toggle-btn .icon-moon { display: none; }
+
+  @media (max-width: 420px) {
+    .top-controls { top: 12px; right: 12px; gap: 6px; }
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    z-index: 40; /* sits below the results drawer/overlay, which should cover it when open */
+  }
+
+  .back-link:hover { color: var(--color-accent); }
+
+  @media (max-width: 420px) {
+    .back-link { top: 14px; left: 12px; font-size: 12px; }
+  }
+
+  /* ---------- Main content ---------- */
+  .page-header {
+    padding: 110px 0 32px;
+    text-align: center;
+  }
+
+  .h2-index { color: var(--color-data-accent); font-weight: 600; }
+
+  .eyebrow {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+    margin: 0 0 16px;
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .page-intro {
+    margin: 0 auto;
+    max-width: 480px;
+    color: var(--color-text-muted);
+    font-size: 15px;
+  }
+
+  .match-form {
+    padding-bottom: 64px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 220px;
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  .form-actions {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .form-hint {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Results drawer (same slide-in pattern as the
+     persona drawer on the main site) ---------- */
+  .results-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 24, 28, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 62; /* above .top-controls/.back-link so the backdrop covers them too */
+  }
+
+  .results-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .results-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(480px, 100%);
+    background: var(--color-bg);
+    box-shadow: -8px 0 32px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 63; /* above .top-controls/.back-link so the drawer visually covers them */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .results-drawer.open { transform: translateX(0); }
+
+  .results-drawer-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+  }
+
+  .results-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+
+  .results-drawer-header h3 {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+  }
+
+  .results-content { padding: 24px; }
+
+  .results-summary {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0 0 24px;
+    padding: 14px 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+  }
+
+  .results-block { margin-bottom: 28px; }
+  .results-block:last-of-type { margin-bottom: 0; }
+
+  .results-block h4 {
+    margin: 0 0 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .work-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .work-item:last-child { margin-bottom: 0; }
+
+  .work-item h5 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .work-item p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .results-disclaimer {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .results-cta {
+    margin-top: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body, .results-drawer, .btn, .lang-switcher, .theme-toggle-btn {
+      transition: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link lang-en" href="index.html">&larr; Back to site</a>
+<a class="back-link lang-fr hidden" href="index.html">&larr; Retour au site</a>
+<a class="back-link lang-ru hidden" href="index.html">&larr; Вернуться на сайт</a>
+
+<div class="top-controls">
+  <button type="button" class="theme-toggle-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <line x1="12" y1="2" x2="12" y2="4"></line>
+      <line x1="12" y1="20" x2="12" y2="22"></line>
+      <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
+      <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
+      <line x1="2" y1="12" x2="4" y2="12"></line>
+      <line x1="20" y1="12" x2="22" y2="12"></line>
+      <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
+      <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line>
+    </svg>
+  </button>
+  <div class="lang-switcher" role="group" aria-label="Language selector">
+    <button type="button" class="lang-btn active" data-lang-btn="en">EN</button>
+    <button type="button" class="lang-btn" data-lang-btn="fr">FR</button>
+    <button type="button" class="lang-btn" data-lang-btn="ru">RU</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <p class="eyebrow lang-en"><span class="h2-index">//</span>Job Fit Check</p>
+    <p class="eyebrow lang-fr hidden"><span class="h2-index">//</span>Vérification d'Adéquation</p>
+    <p class="eyebrow lang-ru hidden"><span class="h2-index">//</span>Проверка соответствия</p>
+
+    <h1 class="lang-en">How Do I Fit Your Role?</h1>
+    <h1 class="lang-fr hidden">Est-ce que je corresponds à votre poste ?</h1>
+    <h1 class="lang-ru hidden">Подхожу ли я на вашу вакансию?</h1>
+
+    <p class="page-intro lang-en">
+      Paste the job description below and I'll pull out the skills, projects, and
+      experience from my background that line up with it.
+    </p>
+    <p class="page-intro lang-fr hidden">
+      Collez l'offre d'emploi ci-dessous et j'en extrairai les compétences, projets
+      et expériences de mon parcours qui y correspondent.
+    </p>
+    <p class="page-intro lang-ru hidden">
+      Вставьте описание вакансии ниже, и я покажу навыки, проекты и опыт из моего
+      профиля, которые ей соответствуют.
+    </p>
+  </header>
+
+  <div class="match-form">
+    <textarea id="jd-input" class="lang-en" placeholder="Paste the job description here…"></textarea>
+    <textarea id="jd-input-fr" class="lang-fr hidden" placeholder="Collez l'offre d'emploi ici…"></textarea>
+    <textarea id="jd-input-ru" class="lang-ru hidden" placeholder="Вставьте описание вакансии сюда…"></textarea>
+
+    <div class="form-actions">
+      <button type="button" id="match-btn" class="btn btn-primary">
+        <span class="lang-en">Show My Fit</span>
+        <span class="lang-fr hidden">Voir mon Adéquation</span>
+        <span class="lang-ru hidden">Показать моё соответствие</span>
+      </button>
+      <span class="form-hint lang-en">Nothing is sent anywhere — this runs entirely in your browser.</span>
+      <span class="form-hint lang-fr hidden">Rien n'est envoyé nulle part — tout se passe dans votre navigateur.</span>
+      <span class="form-hint lang-ru hidden">Ничего никуда не отправляется — всё выполняется прямо в браузере.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="results-overlay" data-results-overlay></div>
+<div class="results-drawer" data-results-drawer role="dialog" aria-modal="true" aria-label="Job fit results">
+  <div class="results-drawer-header">
+    <button type="button" class="results-close-btn" data-results-close aria-label="Close">&times;</button>
+    <h3>
+      <span class="lang-en">How I Fit This Role</span>
+      <span class="lang-fr hidden">Comment Je Corresponds à ce Poste</span>
+      <span class="lang-ru hidden">Как я подхожу для этой роли</span>
+    </h3>
+  </div>
+  <div class="results-content" id="results-content">
+    <!-- Filled in by JS on submit -->
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // Language switcher + dark mode — identical mechanism to
+  // index.html, sharing the same localStorage keys so a visitor's
+  // choice carries over between the two pages.
+  // ============================================================
+  (function () {
+    var STORAGE_KEY = 'site-lang';
+    var LANGS = ['en', 'fr', 'ru'];
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+
+    function setLang(lang) {
+      LANGS.forEach(function (code) {
+        document.querySelectorAll('.lang-' + code).forEach(function (el) {
+          el.classList.toggle('hidden', lang !== code);
+        });
+      });
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      if (window.onSiteLangChange) window.onSiteLangChange();
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setLang(btn.getAttribute('data-lang-btn'));
+      });
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    setLang(LANGS.indexOf(saved) !== -1 ? saved : 'en');
+  })();
+
+  (function () {
+    var STORAGE_KEY = 'site-theme';
+    var toggleBtn = document.querySelector('[data-theme-toggle]');
+    if (!toggleBtn) return;
+
+    function setDarkMode(on) {
+      document.documentElement.classList.toggle('dark-mode', on);
+      try { localStorage.setItem(STORAGE_KEY, on ? 'dark' : 'light'); } catch (e) {}
+    }
+
+    toggleBtn.addEventListener('click', function () {
+      setDarkMode(!document.documentElement.classList.contains('dark-mode'));
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (saved === 'dark' || saved === 'light') {
+      setDarkMode(saved === 'dark');
+    } else {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
+  })();
+
+  // ============================================================
+  // PROFILE DATA — everything used for matching. To add a skill,
+  // project, or industry later, copy one object below and fill in
+  // its keywords (lowercase, English + French both help) and its
+  // three-language label/detail. "type" controls which results
+  // block it shows up in: 'skill', 'industry', or 'work'.
+  // ============================================================
+  var PROFILE_DATA = [
+    // ---- Skills: Marketing & Content ----
+    { type: 'skill', keywords: ['content strategy','content marketing','stratégie de contenu'], label: { en: 'Content Strategy', fr: 'Stratégie de Contenu', ru: 'Контент-стратегия' } },
+    { type: 'skill', keywords: ['social media','smm','community management','linkedin','réseaux sociaux'], label: { en: 'Social Media Marketing', fr: 'Marketing des Réseaux Sociaux', ru: 'Маркетинг в соцсетях' } },
+    { type: 'skill', keywords: ['copywriting','technical writing','rédaction technique'], label: { en: 'Technical Copywriting', fr: 'Rédaction Technique', ru: 'Технический копирайтинг' } },
+    { type: 'skill', keywords: ['paid campaigns','paid media','advertising','ppc','ads','campagnes payantes'], label: { en: 'Paid Campaigns', fr: 'Campagnes Payantes', ru: 'Платные кампании' } },
+    { type: 'skill', keywords: ['email marketing','e-mailing','newsletter','email campaigns'], label: { en: 'Email Marketing', fr: 'E-mailing', ru: 'Email-маркетинг' } },
+    { type: 'skill', keywords: ['seo','search engine optimization','référencement naturel'], label: { en: 'SEO', fr: 'SEO', ru: 'SEO' } },
+    { type: 'skill', keywords: ['sem','search engine marketing','google ads','paid search'], label: { en: 'SEM', fr: 'SEM', ru: 'SEM' } },
+
+    // ---- Skills: CRM & Automation ----
+    { type: 'skill', keywords: ['hubspot'], label: { en: 'HubSpot', fr: 'HubSpot', ru: 'HubSpot' } },
+    { type: 'skill', keywords: ['pipedrive'], label: { en: 'Pipedrive', fr: 'Pipedrive', ru: 'Pipedrive' } },
+    { type: 'skill', keywords: ['zoho'], label: { en: 'Zoho', fr: 'Zoho', ru: 'Zoho' } },
+    { type: 'skill', keywords: ['marketing campaigns','campaign management','campagnes marketing'], label: { en: 'Marketing Campaigns', fr: 'Campagnes Marketing', ru: 'Маркетинговые кампании' } },
+    { type: 'skill', keywords: ['n8n','workflow automation','process automation','automatisation'], label: { en: 'n8n', fr: 'n8n', ru: 'n8n' } },
+    { type: 'skill', keywords: ['api','apis','integration','integrations'], label: { en: 'APIs', fr: 'APIs', ru: 'API' } },
+    { type: 'skill', keywords: ['make.com','make automation','integromat'], label: { en: 'Make', fr: 'Make', ru: 'Make' } },
+    { type: 'skill', keywords: ['segmentation','customer data','crm data','données clients'], label: { en: 'Customer Data Segmentation', fr: 'Segmentation de Données Clients', ru: 'Сегментация клиентских данных' } },
+
+    // ---- Skills: Visualisation & Reporting ----
+    { type: 'skill', keywords: ['power bi','dax','power query','business intelligence',' bi '], label: { en: 'Power BI (DAX, Power Query)', fr: 'Power BI (DAX, Power Query)', ru: 'Power BI (DAX, Power Query)' } },
+    { type: 'skill', keywords: ['excel','spreadsheets'], label: { en: 'Excel', fr: 'Excel', ru: 'Excel' } },
+    { type: 'skill', keywords: ['looker studio','google data studio','looker'], label: { en: 'Looker Studio', fr: 'Looker Studio', ru: 'Looker Studio' } },
+
+    // ---- Skills: Data & Analytics ----
+    { type: 'skill', keywords: ['ga4','google analytics','web analytics'], label: { en: 'GA4', fr: 'GA4', ru: 'GA4' } },
+    { type: 'skill', keywords: ['sql','database','querying'], label: { en: 'SQL', fr: 'SQL', ru: 'SQL' } },
+    { type: 'skill', keywords: ['python','scripting'], label: { en: 'Python (AI-assisted)', fr: "Python (assisté par l'IA)", ru: 'Python (с помощью ИИ)' } },
+    { type: 'skill', keywords: ['claude','artificial intelligence',' ai ','llm','generative ai','chatgpt','intelligence artificielle'], label: { en: 'Claude / AI Tools', fr: "Claude / Outils d'IA", ru: 'Claude / ИИ-инструменты' } },
+    { type: 'skill', keywords: ['competitive analysis','market research','competitor','analyse concurrentielle'], label: { en: 'Competitive Analysis', fr: 'Analyse Concurrentielle', ru: 'Конкурентный анализ' } },
+
+    // ---- Skills: Strategy & Leadership ----
+    { type: 'skill', keywords: ['project management','program management','gestion de projet'], label: { en: 'Project Management', fr: 'Gestion de Projet', ru: 'Управление проектами' } },
+    { type: 'skill', keywords: ['team coordination','cross-functional','stakeholder management','leadership','management d\'équipe'], label: { en: 'Cross-functional Team Coordination', fr: "Coordination d'Équipes Pluridisciplinaires", ru: 'Координация кросс-функциональных команд' } },
+    { type: 'skill', keywords: ['roi','marketing roi','audit','performance analysis'], label: { en: 'Marketing ROI & Audits', fr: 'ROI Marketing et Audits', ru: 'ROI маркетинга и аудит' } },
+
+    // ---- Skills: Design ----
+    { type: 'skill', keywords: ['illustrator','adobe illustrator'], label: { en: 'Adobe Illustrator', fr: 'Adobe Illustrator', ru: 'Adobe Illustrator' } },
+    { type: 'skill', keywords: ['indesign','adobe indesign'], label: { en: 'Adobe InDesign', fr: 'Adobe InDesign', ru: 'Adobe InDesign' } },
+    { type: 'skill', keywords: ['canva'], label: { en: 'Canva', fr: 'Canva', ru: 'Canva' } },
+    { type: 'skill', keywords: ['figma'], label: { en: 'Figma', fr: 'Figma', ru: 'Figma' } },
+
+    // ---- Skills: Languages ----
+    { type: 'skill', keywords: ['bilingual','trilingual','multilingual','french','français','russian','russe','german'], label: { en: 'Trilingual — French, English, Russian', fr: 'Trilingue — Français, Anglais, Russe', ru: 'Три языка — французский, английский, русский' } },
+
+    // ---- Industries ----
+    { type: 'industry', keywords: ['aerospace','defense','defence','aviation','aircraft','aérospatiale'], label: { en: 'Aerospace & Defense', fr: 'Aérospatiale et Défense', ru: 'Аэрокосмическая отрасль и оборона' } },
+    { type: 'industry', keywords: ['rail','railway','railroad','transportation','transit','train','ferroviaire'], label: { en: 'Transportation & Rail', fr: 'Transport et Ferroviaire', ru: 'Транспорт и железные дороги' } },
+    { type: 'industry', keywords: ['mining','mine','extraction','minerals','minier'], label: { en: 'Mining', fr: 'Mines', ru: 'Горнодобывающая промышленность' } },
+    { type: 'industry', keywords: ['oil and gas','oil & gas',' oil ',' gas ','petroleum','pétrole'], label: { en: 'Oil & Gas', fr: 'Pétrole et Gaz', ru: 'Нефть и газ' } },
+    { type: 'industry', keywords: ['wind energy','renewable energy','wind turbine','clean energy','éolienne'], label: { en: 'Wind Energy', fr: 'Énergie Éolienne', ru: 'Ветроэнергетика' } },
+    { type: 'industry', keywords: ['manufacturing','industrial','factory','production','fabrication'], label: { en: 'Industrial Manufacturing', fr: 'Fabrication Industrielle', ru: 'Промышленное производство' } },
+    { type: 'industry', keywords: ['construction','infrastructure','building','bâtiment'], label: { en: 'Construction & Infrastructure', fr: 'Construction et Infrastructure', ru: 'Строительство и инфраструктура' } },
+    { type: 'industry', keywords: ['fleet management','fleet',' vehicles ','parc automobile'], label: { en: 'Fleet Management', fr: 'Gestion de Flotte', ru: 'Управление автопарком' } },
+    { type: 'industry', keywords: ['hr tech','human resources','hris','ressources humaines'], label: { en: 'HR Tech', fr: 'HR Tech', ru: 'HR-тех' } },
+    { type: 'industry', keywords: ['fintech','financial technology'], label: { en: 'FinTech', fr: 'FinTech', ru: 'FinTech' } },
+    { type: 'industry', keywords: ['martech','marketing technology'], label: { en: 'MarTech', fr: 'MarTech', ru: 'MarTech' } },
+    { type: 'industry', keywords: ['saas','software as a service','b2b software'], label: { en: 'B2B SaaS', fr: 'SaaS B2B', ru: 'B2B SaaS' } },
+
+    // ---- Selected work / experience highlights ----
+    { type: 'work', keywords: ['ai agent','ai automation','automation','workflow automation','n8n','claude','process automation','generative ai'],
+      label: { en: 'AI Marketing Automation', fr: 'Automatisation Marketing par IA', ru: 'Автоматизация маркетинга с ИИ' },
+      detail: {
+        en: 'Designed an AI-assisted automation system that analyzes a recurring marketing workflow end-to-end, reducing manual intervention to judgment calls and output checks only.',
+        fr: "Conçu un système d'automatisation assisté par IA analysant de bout en bout un flux de travail marketing récurrent, réduisant l'intervention manuelle aux seules décisions et vérifications.",
+        ru: 'Разработала систему автоматизации с ИИ, анализирующую маркетинговый процесс от начала до конца, сводя участие человека только к принятию решений и проверке результатов.'
+      } },
+    { type: 'work', keywords: ['crm migration','pipedrive','sales enablement','training','change management','crm implementation','migration crm'],
+      label: { en: 'CRM Migration & Enablement', fr: 'Migration CRM et Accompagnement', ru: 'Миграция CRM и внедрение' },
+      detail: {
+        en: 'Led a branch-wide CRM migration to Pipedrive from scratch — training the sales team and driving full daily adoption, with faster follow-ups and fewer lost quotes.',
+        fr: "Piloté une migration CRM vers Pipedrive à l'échelle d'une succursale — formation de l'équipe commerciale et adoption complète au quotidien.",
+        ru: 'Провела миграцию CRM на Pipedrive в масштабах филиала — обучила отдел продаж и добилась полного ежедневного внедрения.'
+      } },
+    { type: 'work', keywords: ['linkedin','organic growth','social media','content','analytics','dashboards','followers','croissance organique'],
+      label: { en: 'Organic LinkedIn Growth', fr: 'Croissance Organique LinkedIn', ru: 'Органический рост LinkedIn' },
+      detail: {
+        en: 'Built a LinkedIn content strategy from scratch — dashboards, analytics tracking, and short-form content — growing followers 85% in 5 months, organic only.',
+        fr: "Construit une stratégie de contenu LinkedIn à partir de zéro — tableaux de bord et suivi analytique — avec une croissance de 85 % des abonnés en 5 mois, uniquement organique.",
+        ru: 'Построила стратегию контента для LinkedIn с нуля — дашборды и аналитика — рост подписчиков на 85% за 5 месяцев, только органически.'
+      } },
+    { type: 'work', keywords: ['seo','content hub','resource page','keyword','case studies','ressources'],
+      label: { en: 'Resource Hub & SEO', fr: 'Page Ressources et SEO', ru: 'Ресурсный центр и SEO' },
+      detail: {
+        en: 'Conceived and managed an SEO resource hub of case studies and product content, growing product-specific keyword traffic 43%.',
+        fr: "Conçu et géré une page ressources SEO regroupant études de cas et contenus produit, avec une hausse de 43 % du trafic sur les mots-clés spécifiques.",
+        ru: 'Разработала и вела SEO-ресурсный центр с кейсами и контентом о продукте, увеличив трафик по ключевым словам на 43%.'
+      } },
+    { type: 'work', keywords: ['case study','design','indesign','illustrator','branded content','technical writing','content design','étude de cas'],
+      label: { en: 'Branded Case Study Design', fr: "Conception d'Étude de Cas", ru: 'Дизайн брендированного кейса' },
+      detail: {
+        en: 'Wrote and designed a branded technical case study — and the reusable template behind it — for a B2B industrial product launch.',
+        fr: "Rédigé et conçu une étude de cas technique de marque — ainsi que le gabarit réutilisable associé — pour un lancement produit B2B industriel.",
+        ru: 'Написала и оформила брендированный технический кейс — а также многоразовый шаблон для него — для запуска промышленного B2B-продукта.'
+      } },
+    { type: 'work', keywords: ['zoho','trade show','landing pages','qr code','event marketing','lead generation','salon professionnel'],
+      label: { en: 'Trade Show Campaigns & Marketing Automation', fr: 'Campagnes Salons et Automatisation Marketing', ru: 'Выставочные кампании и автоматизация маркетинга' },
+      detail: {
+        en: 'Built Zoho-based email automations and QR-code-driven trade show landing pages for a B2B industrial audience.',
+        fr: "Développé des automatisations e-mail sous Zoho et des pages d'atterrissage pour salons professionnels, accessibles via QR code.",
+        ru: 'Создала автоматизации email на базе Zoho и целевые страницы для выставок с доступом по QR-коду.'
+      } },
+    { type: 'work', keywords: ['icp','buyer persona','saas','fleet management','b2b saas','positioning','ideal customer profile'],
+      label: { en: 'B2B SaaS ICP & Buyer Persona Work', fr: 'ICP et Profils Acheteurs SaaS B2B', ru: 'ICP и портреты покупателей для B2B SaaS' },
+      detail: {
+        en: 'Built a full ICP and buyer persona for a B2B SaaS fleet management platform, applying the same approach used across industrial sectors.',
+        fr: "Construit un ICP complet et un profil d'acheteur pour une plateforme SaaS B2B de gestion de flotte, avec la même approche que pour les secteurs industriels.",
+        ru: 'Разработала полный ICP и портрет покупателя для B2B SaaS платформы управления автопарком, применив тот же подход, что и в промышленных отраслях.'
+      } },
+
+    // ---- Education ----
+    { type: 'skill', keywords: ["master's degree",'mba','marketing degree','master in marketing','master en marketing'], label: { en: "Master's in Marketing Management", fr: 'Master en Marketing Management', ru: 'Магистр в области маркетинга' } }
+  ];
+
+  // A short curated fallback shown when nothing in the pasted text
+  // matches — so the drawer never comes back empty.
+  var FALLBACK_SKILL_KEYWORDS_SAMPLE_SIZE = 8;
+
+  var lastMatchResult = null;
+  window.onSiteLangChange = function () {
+    if (lastMatchResult) {
+      renderResults(lastMatchResult.skills, lastMatchResult.work, lastMatchResult.industries, lastMatchResult.isFallback);
+    }
+  };
+
+  function currentLang() {
+    return document.documentElement.getAttribute('lang') || 'en';
+  }
+
+  function t(obj) {
+    var lang = currentLang();
+    return obj[lang] || obj.en;
+  }
+
+  function normalize(str) {
+    return ' ' + str.toLowerCase() + ' ';
+  }
+
+  function scoreItem(item, jdLower) {
+    var count = 0;
+    item.keywords.forEach(function (kw) {
+      if (jdLower.indexOf(kw.toLowerCase()) !== -1) count++;
+    });
+    return count;
+  }
+
+  function runMatch(jdText) {
+    var jdLower = normalize(jdText || '');
+    var scored = PROFILE_DATA.map(function (item) {
+      return { item: item, score: scoreItem(item, jdLower) };
+    });
+    var matched = scored.filter(function (s) { return s.score > 0; })
+      .sort(function (a, b) { return b.score - a.score; });
+
+    var skills = matched.filter(function (s) { return s.item.type === 'skill'; }).slice(0, 10);
+    var work = matched.filter(function (s) { return s.item.type === 'work'; }).slice(0, 4);
+    var industries = matched.filter(function (s) { return s.item.type === 'industry'; }).slice(0, 6);
+
+    var isFallback = (skills.length + work.length + industries.length) === 0;
+    if (isFallback) {
+      skills = PROFILE_DATA.filter(function (item) { return item.type === 'skill'; })
+        .slice(0, FALLBACK_SKILL_KEYWORDS_SAMPLE_SIZE)
+        .map(function (item) { return { item: item, score: 0 }; });
+      work = PROFILE_DATA.filter(function (item) { return item.type === 'work'; })
+        .slice(0, 2)
+        .map(function (item) { return { item: item, score: 0 }; });
+    }
+
+    lastMatchResult = { skills: skills, work: work, industries: industries, isFallback: isFallback };
+    renderResults(skills, work, industries, isFallback);
+    openDrawer();
+  }
+
+  function el(tag, className, text) {
+    var e = document.createElement(tag);
+    if (className) e.className = className;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function renderResults(skills, work, industries, isFallback) {
+    var container = document.getElementById('results-content');
+    container.innerHTML = '';
+
+    var summary = el('p', 'results-summary');
+    if (isFallback) {
+      summary.textContent = t({
+        en: "I didn't find obvious keyword overlaps with this specific posting — here's a snapshot of my core skills instead.",
+        fr: "Je n'ai pas trouvé de correspondances évidentes avec cette offre — voici un aperçu de mes compétences principales à la place.",
+        ru: 'Явных совпадений по ключевым словам с этой вакансией не найдено — вот основные навыки.'
+      });
+    } else {
+      var count = skills.length + work.length + industries.length;
+      summary.textContent = t({
+        en: count + ' matches found across skills, projects, and industries from my background.',
+        fr: count + ' correspondances trouvées parmi mes compétences, projets et secteurs.',
+        ru: 'Найдено совпадений: ' + count + ' — среди навыков, проектов и отраслей.'
+      });
+    }
+    container.appendChild(summary);
+
+    if (industries.length) {
+      var industriesBlock = el('div', 'results-block');
+      industriesBlock.appendChild(el('h4', null, t({ en: 'Relevant Industries', fr: 'Secteurs Pertinents', ru: 'Релевантные отрасли' })));
+      var industriesTags = el('div', 'tags');
+      industries.forEach(function (s) {
+        industriesTags.appendChild(el('span', 'tag', t(s.item.label)));
+      });
+      industriesBlock.appendChild(industriesTags);
+      container.appendChild(industriesBlock);
+    }
+
+    if (skills.length) {
+      var skillsBlock = el('div', 'results-block');
+      skillsBlock.appendChild(el('h4', null, t({ en: 'Matched Skills', fr: 'Compétences Correspondantes', ru: 'Соответствующие навыки' })));
+      var skillTags = el('div', 'tags');
+      skills.forEach(function (s) {
+        skillTags.appendChild(el('span', 'tag', t(s.item.label)));
+      });
+      skillsBlock.appendChild(skillTags);
+      container.appendChild(skillsBlock);
+    }
+
+    if (work.length) {
+      var workBlock = el('div', 'results-block');
+      workBlock.appendChild(el('h4', null, t({ en: 'Relevant Experience', fr: 'Expérience Pertinente', ru: 'Релевантный опыт' })));
+      work.forEach(function (s) {
+        var card = el('div', 'work-item');
+        card.appendChild(el('h5', null, t(s.item.label)));
+        if (s.item.detail) card.appendChild(el('p', null, t(s.item.detail)));
+        workBlock.appendChild(card);
+      });
+      container.appendChild(workBlock);
+    }
+
+    var disclaimer = el('p', 'results-disclaimer', t({
+      en: 'This is a lightweight keyword match, not a substitute for reading my full profile.',
+      fr: "Il s'agit d'une correspondance simple par mots-clés, pas d'un substitut à la lecture de mon profil complet.",
+      ru: 'Это простое сопоставление по ключевым словам, а не замена полного профиля.'
+    }));
+    container.appendChild(disclaimer);
+
+    var cta = el('div', 'results-cta');
+    var backBtn = el('a', 'btn btn-primary', t({ en: 'See Full Profile', fr: 'Voir le Profil Complet', ru: 'Смотреть полный профиль' }));
+    backBtn.href = 'index.html';
+    var emailBtn = el('a', 'btn btn-secondary', t({ en: 'Email Me', fr: "M'écrire", ru: 'Написать мне' }));
+    emailBtn.href = 'mailto:vsoldate@icloud.com';
+    cta.appendChild(backBtn);
+    cta.appendChild(emailBtn);
+    container.appendChild(cta);
+  }
+
+  // ---------- Drawer open/close ----------
+  var overlay = document.querySelector('[data-results-overlay]');
+  var drawer = document.querySelector('[data-results-drawer]');
+  var closeBtn = document.querySelector('[data-results-close]');
+
+  function openDrawer() {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  // ---------- Form submit ----------
+  document.getElementById('match-btn').addEventListener('click', function () {
+    var lang = currentLang();
+    var fieldId = lang === 'fr' ? 'jd-input-fr' : lang === 'ru' ? 'jd-input-ru' : 'jd-input';
+    var text = document.getElementById(fieldId).value;
+    runMatch(text);
+  });
+</script>
+
+</body>
+</html>
