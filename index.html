@@ -376,6 +376,64 @@
     text-decoration: underline;
   }
 
+  /* ---------- Content samples (LinkedIn posts) ----------
+     These are real social posts in mixed native shapes (square,
+     tall portrait, PDF-page), so a uniform crop is needed for the
+     row to look consistent. Cropped to the top of each image — that's
+     where the headline/branding sits — with a "View Full ..." link
+     in each card for anyone who wants the whole thing uncropped. */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .content-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .content-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .content-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .content-card-body {
+    padding: 16px 20px 20px;
+  }
+
+  .content-type {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-data-accent);
+  }
+
+  .content-card h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: var(--color-text);
+  }
+
+  .content-card p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
   /* ---------- Degrees & certifications ---------- */
   .degree-block { margin-bottom: 24px; }
   .degree-block:last-child { margin-bottom: 0; }
@@ -1526,20 +1584,6 @@
           </p>
           <p class="work-tools">Tools: SEO, Content Management</p>
         </div>
-
-        <div class="work-card">
-          <h3>Diamond Crossing Case Study — J.Lanfranco Fastener Systems</h3>
-          <p>
-            Wrote and designed a branded case study showing how J.Lanfranco's THU
-            self-locking nuts eliminated daily maintenance inspections at a major
-            North American Class 1 railroad's diamond crossing — clamping force
-            stayed constant even six months after installation. Also designed the
-            branded template later reused for all subsequent case studies and
-            marketing materials.
-          </p>
-          <p class="work-tools">Tools: Adobe InDesign, Adobe Illustrator, Copywriting</p>
-          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">View Case Study (PDF, French) &rarr;</a>
-        </div>
       </div>
     </div>
 
@@ -1588,21 +1632,6 @@
             spécifiques ont augmenté de 43 %, avec des clients mieux informés.
           </p>
           <p class="work-tools">Outils : SEO, Gestion de Contenu</p>
-        </div>
-
-        <div class="work-card">
-          <h3>Étude de Cas Diamond Crossing — J.Lanfranco Fastener Systems</h3>
-          <p>
-            Rédaction et conception d'une étude de cas illustrant comment les
-            écrous autofreinés THU de J.Lanfranco ont permis d'éliminer les
-            inspections de maintenance quotidiennes sur un croisement ferroviaire
-            (diamond) d'un grand réseau Class 1 nord-américain — la force de
-            serrage est restée constante même six mois après l'installation. J'ai
-            également conçu le gabarit de mise en page ensuite réutilisé pour
-            toutes les études de cas et supports marketing suivants.
-          </p>
-          <p class="work-tools">Outils : Adobe InDesign, Adobe Illustrator, Rédaction</p>
-          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">Voir l'Étude de Cas (PDF) &rarr;</a>
         </div>
       </div>
     </div>
@@ -1653,23 +1682,45 @@
           </p>
           <p class="work-tools">Инструменты: SEO, управление контентом</p>
         </div>
-
-        <div class="work-card">
-          <h3>Кейс Diamond Crossing — J.Lanfranco Fastener Systems</h3>
-          <p>
-            Написала и оформила брендированный кейс, показывающий, как
-            самоконтрящиеся гайки THU от J.Lanfranco позволили отказаться от
-            ежедневных проверок на пересечении путей (diamond) крупной
-            североамериканской железной дороги класса 1 — усилие затяжки
-            оставалось стабильным даже спустя шесть месяцев после установки.
-            Также разработала фирменный шаблон, впоследствии использованный для
-            всех последующих кейсов и маркетинговых материалов.
-          </p>
-          <p class="work-tools">Инструменты: Adobe InDesign, Adobe Illustrator, копирайтинг</p>
-          <a class="work-link" href="FR_Diamond%20Case%20Study.pdf" target="_blank" rel="noopener">Посмотреть кейс (PDF, на французском) &rarr;</a>
-        </div>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================
+       CONTENT SAMPLES — real LinkedIn posts created for J.Lanfranco.
+       Deliberately mixed formats (two JPEGs, one PDF) and content
+       types (case study promo, educational infographic, product
+       guide) to show range. To add a new sample: drop the image (or
+       a rendered thumbnail, for a PDF) in this folder, then copy one
+       .content-card block below in all three language versions.
+       ============================================================ -->
+  <section id="content-samples">
+    <h2 class="lang-en"><span class="h2-index">// 05</span>Content Samples</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Exemples de Contenu</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Примеры контента</h2>
+
+    <p class="section-intro lang-en">
+      A selection of marketing content in different formats and types — real LinkedIn
+      posts created for J.Lanfranco Fastener Systems, plus original examples
+      demonstrating specific skills.
+    </p>
+    <p class="section-intro lang-fr hidden">
+      Une sélection de contenus marketing dans différents formats et types — de
+      vraies publications LinkedIn créées pour J.Lanfranco Fastener Systems, ainsi
+      que des exemples originaux illustrant des compétences spécifiques.
+    </p>
+    <p class="section-intro lang-ru hidden">
+      Подборка маркетинговых материалов в разных форматах и типах — реальные посты
+      для LinkedIn, созданные для J.Lanfranco Fastener Systems, а также оригинальные
+      примеры, демонстрирующие конкретные навыки.
+    </p>
+
+    <!-- Populated by renderContentSamples() from content-data.js — see
+         that file to add, remove, or edit a post. Nothing here needs
+         hand-editing. -->
+    <div class="lang-en"><div class="content-grid" data-content-grid="en"></div></div>
+    <div class="lang-fr hidden"><div class="content-grid" data-content-grid="fr"></div></div>
+    <div class="lang-ru hidden"><div class="content-grid" data-content-grid="ru"></div></div>
   </section>
 
   <!-- ============================================================
@@ -1677,9 +1728,9 @@
        language versions) to add a new entry.
        ============================================================ -->
   <section id="education">
-    <h2 class="lang-en"><span class="h2-index">// 05</span>Degrees &amp; Certifications</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Diplômes et Certifications</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Образование и сертификаты</h2>
+    <h2 class="lang-en"><span class="h2-index">// 06</span>Degrees &amp; Certifications</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 06</span>Diplômes et Certifications</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 06</span>Образование и сертификаты</h2>
 
     <div class="lang-en">
       <div class="degree-block">
@@ -1759,9 +1810,9 @@
           button itself shows up.
        ============================================================ -->
   <section id="resume">
-    <h2 class="lang-en"><span class="h2-index">// 06</span>Resume</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 06</span>CV</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 06</span>Резюме</h2>
+    <h2 class="lang-en"><span class="h2-index">// 07</span>Resume</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 07</span>CV</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 07</span>Резюме</h2>
 
     <div class="lang-en">
       <p class="section-intro" style="font-style: italic;">English version coming soon.</p>
@@ -1789,9 +1840,9 @@
        once and they'll show in both languages.
        ============================================================ -->
   <section id="contact">
-    <h2 class="lang-en"><span class="h2-index">// 07</span>Contact</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 07</span>Contact</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 07</span>Контакты</h2>
+    <h2 class="lang-en"><span class="h2-index">// 08</span>Contact</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 08</span>Contact</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 08</span>Контакты</h2>
 
     <ul class="contact-list">
       <li>
@@ -2705,7 +2756,42 @@
   </div>
 </div>
 
+<!-- Content Samples data lives in content-data.js, loaded as a plain
+     script (not fetched as JSON) so it also works when this page is
+     opened directly as a file, with no local server. -->
+<script src="content-data.js"></script>
+
 <script>
+  // Builds the "// 05 Content Samples" cards from CONTENT_SAMPLES
+  // (content-data.js) — one render per language, dropped straight
+  // into that language's .content-grid. To add/edit a post, only
+  // content-data.js needs to change; this never has to be touched.
+  (function () {
+    if (typeof CONTENT_SAMPLES === 'undefined') return;
+    var LANGS = ['en', 'fr', 'ru'];
+
+    LANGS.forEach(function (lang) {
+      var grid = document.querySelector('[data-content-grid="' + lang + '"]');
+      if (!grid) return;
+
+      grid.innerHTML = CONTENT_SAMPLES.map(function (item) {
+        var img = encodeURI(item.image);
+        var link = encodeURI(item.viewLink);
+        return (
+          '<div class="content-card">' +
+            '<img src="' + img + '" alt="' + item.title[lang] + '" loading="lazy">' +
+            '<div class="content-card-body">' +
+              '<span class="content-type">' + item.type[lang] + '</span>' +
+              '<h3>' + item.title[lang] + '</h3>' +
+              '<p>' + item.caption[lang] + '</p>' +
+              '<a class="work-link" href="' + link + '" target="_blank" rel="noopener">' + item.linkText[lang] + ' &rarr;</a>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    });
+  })();
+
   // Language switcher: shows/hides the ".lang-en" / ".lang-fr" / ".lang-ru"
   // blocks above. Remembers the visitor's choice for their next visit.
   (function () {
