@@ -145,5 +145,29 @@ var CONTENT_SAMPLES = [
       fr: 'Voir le Schéma Complet',
       ru: 'Смотреть полную схему'
     }
+  },
+  {
+    image: 'geo-framework.svg',
+    viewLink: 'geo-framework.svg',
+    type: {
+      en: 'Framework Example',
+      fr: 'Exemple de Framework',
+      ru: 'Пример фреймворка'
+    },
+    title: {
+      en: 'Getting Cited by AI Search (GEO)',
+      fr: 'Être Cité par les Moteurs IA (GEO)',
+      ru: 'Цитирование в ИИ-поиске (GEO)'
+    },
+    caption: {
+      en: 'An original framework for improving visibility in AI answer engines like ChatGPT and Perplexity — the emerging complement to traditional SEO for B2B buyers researching vendors.',
+      fr: 'Un framework original pour améliorer la visibilité dans les moteurs de réponse IA comme ChatGPT et Perplexity — le complément émergent du SEO traditionnel pour les acheteurs B2B en phase de recherche de fournisseurs.',
+      ru: 'Оригинальный фреймворк для повышения видимости в ИИ-поисковиках вроде ChatGPT и Perplexity — новая дисциплина, дополняющая традиционное SEO для B2B-покупателей, изучающих поставщиков.'
+    },
+    linkText: {
+      en: 'View Full Framework',
+      fr: 'Voir le Framework Complet',
+      ru: 'Смотреть полный фреймворк'
+    }
   }
 ];

@@ -16,14 +16,17 @@
      uppercase labels (never on tags or body paragraphs).
      ============================================================ */
   :root {
-    --color-bg: #FAFAF8;
+    /* Sapphire set in white gold: a deep jewel-tone blue against
+       cool platinum/silver neutrals, rather than a warm gold accent.
+       Dark mode further down. */
+    --color-bg: #F7F8FA;
     --color-surface: #FFFFFF;
-    --color-text: #22262B;
-    --color-text-muted: #5B6472;
-    --color-accent: #35506B;      /* headings, links, buttons */
-    --color-accent-soft: #E7EDF2; /* tag backgrounds */
-    --color-data-accent: #1B7A86; /* teal — section numbers, persona dot only */
-    --color-border: #E7E5E0;
+    --color-text: #16202E;
+    --color-text-muted: #5B6572;
+    --color-accent: #1B3A6B;      /* headings, links, buttons */
+    --color-accent-soft: #E6ECF5; /* tag backgrounds */
+    --color-data-accent: #6B7684; /* white-gold/platinum — section numbers, persona dot only */
+    --color-border: #E1E5EA;
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --max-width: 720px;
@@ -36,7 +39,7 @@
     background-color: var(--color-bg);
     /* Faint dot-grid texture — a subtle nod to dashboards/data tools.
        Delete this background-image line to go back to a flat background. */
-    background-image: radial-gradient(circle, rgba(27, 122, 134, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(27, 58, 107, 0.06) 1px, transparent 1px);
     background-size: 22px 22px;
     color: var(--color-text);
     font-family: var(--font-body);
@@ -162,8 +165,9 @@
 
   h1 {
     margin: 0 0 8px;
-    font-size: 34px;
-    font-weight: 700;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 40px;
+    font-weight: 400;
     color: var(--color-text);
   }
 
@@ -220,12 +224,15 @@
     display: flex;
     align-items: baseline;
     gap: 10px;
+    width: fit-content;
     font-family: var(--font-mono);
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--color-text-muted);
-    margin: 0 0 20px;
+    margin: 0 0 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-data-accent);
   }
 
   .h2-index {
@@ -863,25 +870,24 @@
      already reads those same variables, so it re-themes on its own.
      ============================================================ */
   html.dark-mode {
-    --color-bg: #14171c;
-    --color-surface: #1b1f26;
-    --color-text: #e8eaed;
-    --color-text-muted: #97a1ad;
-    --color-accent: #6fa8d8;
-    --color-accent-soft: #1b2a38;
-    --color-data-accent: #45d6c2;
-    --color-border: #262b33;
+    /* Same sapphire/white-gold direction, deepened for a dark
+       background: near-black navy, a brighter sapphire accent so it
+       still pops, platinum lightened just enough to stay legible. */
+    --color-bg: #12161F;
+    --color-surface: #1A2030;
+    --color-text: #E8ECF2;
+    --color-text-muted: #8B95A3;
+    --color-accent: #3A66A8;
+    --color-accent-soft: #1E2C42;
+    --color-data-accent: #9BA5B3;
+    --color-border: #262C38;
   }
 
-  /* Same fix as before for the handful of components that hard-code
-     white text on top of --color-accent — in dark mode the accent
-     is a light blue, so that text needs to flip dark instead. */
-  html.dark-mode .lang-btn.active,
-  html.dark-mode .btn-primary,
-  html.dark-mode .persona-tab.active,
-  html.dark-mode .persona-subtab.active,
-  html.dark-mode .persona-badge {
-    color: #0d1720;
+  /* Only the platinum data-accent is light enough to still need dark
+     text on top of it in dark mode — the sapphire accent is
+     dark/saturated enough that white button/badge text stays readable. */
+  html.dark-mode .persona-subtab.active {
+    color: #12161F;
   }
 
   /* Smooth cross-fade between light and dark, skipped for visitors
@@ -894,7 +900,7 @@
   /* Same dot-grid texture, recolored so it stays visible on a dark
      background instead of disappearing. */
   html.dark-mode body {
-    background-image: radial-gradient(circle, rgba(69, 214, 194, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(155, 165, 179, 0.08) 1px, transparent 1px);
   }
 
   /* ---------- Dog mascot (top-left) ----------
@@ -1011,7 +1017,9 @@
 
     <img class="photo-placeholder" src="PP.PNG" alt="Vera Soldatenko" style="object-fit:cover;">
 
-    <h1>Vera Soldatenko</h1>
+    <h1 class="lang-en">Vera Soldatenko</h1>
+    <h1 class="lang-fr hidden">Vera Soldatenko</h1>
+    <h1 class="lang-ru hidden">Вера Солдатенко</h1>
 
     <p class="tagline lang-en">B2B Marketing Specialist — Content, Strategy &amp; Brand</p>
     <p class="tagline lang-fr hidden">Spécialiste Marketing B2B — Contenu, Stratégie et Marque</p>
