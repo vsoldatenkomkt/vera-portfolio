@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 1040" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="1040" fill="#F7F8FA"/>
+
+  <!-- Header -->
+  <text x="60" y="70" font-size="13" font-weight="700" letter-spacing="2" fill="#6B7684">EXEMPLE DE FRAMEWORK</text>
+  <text x="60" y="112" font-size="32" font-weight="700" fill="#16202E">Être Cité par les Moteurs IA</text>
+  <text x="60" y="146" font-size="16" fill="#5B6572">Une approche pratique de la visibilité dans ChatGPT, Perplexity, Gemini et Claude</text>
+
+  <line x1="60" y1="172" x2="840" y2="172" stroke="#E1E5EA" stroke-width="1.5"/>
+
+  <!-- Pillar 1 -->
+  <circle cx="88" cy="230" r="20" fill="#1B3A6B"/>
+  <text x="88" y="237" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="126" y="224" font-size="19" font-weight="700" fill="#16202E">Répondez dès la première phrase</text>
+  <text x="126" y="248" font-size="14" fill="#5B6572">Les moteurs IA reprennent des réponses directes et autonomes —</text>
+  <text x="126" y="267" font-size="14" fill="#5B6572">commencez par la conclusion, puis expliquez, sans faire monter en tension.</text>
+
+  <!-- Pillar 2 -->
+  <circle cx="88" cy="330" r="20" fill="#1B3A6B"/>
+  <text x="88" y="337" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="126" y="324" font-size="19" font-weight="700" fill="#16202E">Rendez vos affirmations précises et citables</text>
+  <text x="126" y="348" font-size="14" fill="#5B6572">Chiffres exacts, sources nommées et dates sont cités ; les</text>
+  <text x="126" y="367" font-size="14" fill="#5B6572">affirmations vagues comme « de nombreux clients » sont filtrées.</text>
+
+  <!-- Pillar 3 -->
+  <circle cx="88" cy="430" r="20" fill="#1B3A6B"/>
+  <text x="88" y="437" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="126" y="424" font-size="19" font-weight="700" fill="#16202E">Structurez les pages pour l'extraction</text>
+  <text x="126" y="448" font-size="14" fill="#5B6572">Vraies questions en H2/H3, balisage FAQ et tableaux comparatifs —</text>
+  <text x="126" y="467" font-size="14" fill="#5B6572">la même structure qu'une personne et qu'un robot analysent facilement.</text>
+
+  <!-- Pillar 4 -->
+  <circle cx="88" cy="530" r="20" fill="#1B3A6B"/>
+  <text x="88" y="537" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="126" y="524" font-size="19" font-weight="700" fill="#16202E">Gardez les informations cohérentes partout</text>
+  <text x="126" y="548" font-size="14" fill="#5B6572">Mêmes tarifs, positionnement et informations produit sur le site, LinkedIn,</text>
+  <text x="126" y="567" font-size="14" fill="#5B6572">les annuaires et la presse — des informations contradictoires érodent</text>
+  <text x="126" y="586" font-size="14" fill="#5B6572">la confiance que les moteurs IA utilisent pour décider quoi citer.</text>
+
+  <!-- Pillar 5 -->
+  <circle cx="88" cy="646" r="20" fill="#1B3A6B"/>
+  <text x="88" y="653" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="126" y="640" font-size="19" font-weight="700" fill="#16202E">Suivez ce qui est cité, pas seulement le classement</text>
+  <text x="126" y="664" font-size="14" fill="#5B6572">Testez chaque mois les questions que posent réellement vos prospects</text>
+  <text x="126" y="683" font-size="14" fill="#5B6572">dans ChatGPT, Perplexity et Gemini — notez si vous êtes cité,</text>
+  <text x="126" y="702" font-size="14" fill="#5B6572">et retravaillez les pages qui ne le sont pas.</text>
+
+  <line x1="60" y1="750" x2="840" y2="750" stroke="#E1E5EA" stroke-width="1.5"/>
+
+  <!-- Why this matters box -->
+  <rect x="60" y="778" width="780" height="158" rx="8" fill="#E6ECF5"/>
+  <text x="86" y="812" font-size="14" font-weight="700" fill="#1B3A6B">POURQUOI C'EST IMPORTANT POUR LE B2B SAAS</text>
+  <text x="86" y="840" font-size="14" fill="#16202E">Les acheteurs demandent de plus en plus aux outils IA de présélectionner ou</text>
+  <text x="86" y="862" font-size="14" fill="#16202E">comparer des fournisseurs avant même de visiter un site. Le SEO traditionnel</text>
+  <text x="86" y="884" font-size="14" fill="#16202E">vous rend visible sur Google — voici la discipline parallèle pour être</text>
+  <text x="86" y="906" font-size="14" fill="#16202E">recommandé directement dans la conversation, avant même qu'un clic ait lieu.</text>
+
+  <text x="450" y="1000" text-anchor="middle" font-size="13" fill="#5B6572">Framework original — pas les résultats d'un client spécifique</text>
+</svg>

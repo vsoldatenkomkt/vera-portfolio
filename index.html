@@ -2772,13 +2772,22 @@
     if (typeof CONTENT_SAMPLES === 'undefined') return;
     var LANGS = ['en', 'fr', 'ru'];
 
+    // image/viewLink can be a plain filename (same asset for every
+    // language) or an { en, fr, ru } object for pieces that have a
+    // localized graphic — falls back to the English version for any
+    // language that doesn't have its own (e.g. Russian, for now).
+    function localizedAsset(value, lang) {
+      if (typeof value === 'string') return value;
+      return value[lang] || value.en;
+    }
+
     LANGS.forEach(function (lang) {
       var grid = document.querySelector('[data-content-grid="' + lang + '"]');
       if (!grid) return;
 
       grid.innerHTML = CONTENT_SAMPLES.map(function (item) {
-        var img = encodeURI(item.image);
-        var link = encodeURI(item.viewLink);
+        var img = encodeURI(localizedAsset(item.image, lang));
+        var link = encodeURI(localizedAsset(item.viewLink, lang));
         return (
           '<div class="content-card">' +
             '<img src="' + img + '" alt="' + item.title[lang] + '" loading="lazy">' +

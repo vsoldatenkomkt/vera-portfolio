@@ -11,10 +11,16 @@
 //   3. Save. No other file needs to change.
 //
 // Field reference:
-//   image      — filename of the thumbnail shown in the card
+//   image      — filename of the thumbnail shown in the card. Usually
+//                one filename (same image for every language). If the
+//                graphic itself has text that's been translated (like
+//                an original diagram), use { en: '...', fr: '...' }
+//                instead — any language left out just falls back to
+//                the English file, so it's fine to add fr without ru.
 //   viewLink   — filename the "View Full ..." link opens (often the
 //                same as `image`, but point this at the original PDF
-//                if `image` is just a rendered thumbnail of it)
+//                if `image` is just a rendered thumbnail of it) —
+//                also accepts the { en, fr, ru } form above.
 //   type       — small label above the title, e.g. "Case Study Promo"
 //   title      — card heading
 //   caption    — one or two sentences under the title
@@ -123,8 +129,8 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    image: 'hubspot-workflow.svg',
-    viewLink: 'hubspot-workflow.svg',
+    image: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
+    viewLink: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
     type: {
       en: 'Automation Example',
       fr: "Exemple d'Automatisation",
@@ -147,8 +153,8 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    image: 'geo-framework.svg',
-    viewLink: 'geo-framework.svg',
+    image: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
+    viewLink: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
     type: {
       en: 'Framework Example',
       fr: 'Exemple de Framework',
