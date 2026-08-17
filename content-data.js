@@ -175,5 +175,29 @@ var CONTENT_SAMPLES = [
       fr: "Voir l'Infographie Complète",
       ru: 'Смотреть полную инфографику'
     }
+  },
+  {
+    image: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
+    viewLink: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
+    type: {
+      en: 'Sales Battlecard',
+      fr: 'Argumentaire de Vente',
+      ru: 'Карточка продаж'
+    },
+    title: {
+      en: 'Fasteners That Survive Rail Vibration',
+      fr: 'Des Fixations Qui Résistent aux Vibrations',
+      ru: 'Крепёж, устойчивый к вибрации на транспорте'
+    },
+    caption: {
+      en: 'An original quick-reference battlecard for rail & transportation fastener buyers — positioning, a feature comparison, objection handling, and when-to-engage guidance, generic company.',
+      fr: "Un argumentaire de vente original pour les acheteurs de fixations ferroviaires — positionnement, comparatif produit, gestion des objections et critères d'engagement, entreprise générique.",
+      ru: 'Оригинальная карточка продаж для покупателей крепежа в железнодорожной и транспортной отрасли — позиционирование, сравнение продукта, работа с возражениями, универсальная компания.'
+    },
+    linkText: {
+      en: 'View Full Battlecard',
+      fr: "Voir l'Argumentaire Complet",
+      ru: 'Смотреть полную карточку'
+    }
   }
 ];
