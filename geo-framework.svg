@@ -1,58 +1,115 @@
-<svg viewBox="0 0 900 1000" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect x="0" y="0" width="900" height="1000" fill="#F7F8FA"/>
+<svg viewBox="0 0 900 1360" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="1360" fill="#F7F8FA"/>
 
   <!-- Header -->
-  <text x="60" y="70" font-size="13" font-weight="700" letter-spacing="2" fill="#6B7684">FRAMEWORK EXAMPLE</text>
-  <text x="60" y="112" font-size="32" font-weight="700" fill="#16202E">Getting Cited by AI Search</text>
-  <text x="60" y="146" font-size="16" fill="#5B6572">A practical approach to visibility in ChatGPT, Perplexity, Gemini &amp; Claude</text>
+  <text x="60" y="64" font-size="13" font-weight="700" letter-spacing="2" fill="#6B7684">STRATEGY INFOGRAPHIC</text>
+  <text x="60" y="106" font-size="30" font-weight="700" fill="#16202E">Getting Cited by AI Search (GEO)</text>
+  <text x="60" y="136" font-size="15" fill="#5B6572">How B2B brands earn citations inside ChatGPT, Perplexity,</text>
+  <text x="60" y="158" font-size="15" fill="#5B6572">Gemini &amp; Google AI Overviews</text>
 
-  <line x1="60" y1="172" x2="840" y2="172" stroke="#E1E5EA" stroke-width="1.5"/>
+  <line x1="60" y1="182" x2="840" y2="182" stroke="#E1E5EA" stroke-width="1.5"/>
 
-  <!-- Pillar 1 -->
-  <circle cx="88" cy="230" r="20" fill="#1B3A6B"/>
-  <text x="88" y="237" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">1</text>
-  <text x="126" y="224" font-size="19" font-weight="700" fill="#16202E">Answer the question in the first sentence</text>
-  <text x="126" y="248" font-size="14" fill="#5B6572">AI engines lift direct, self-contained answers — lead with the</text>
-  <text x="126" y="267" font-size="14" fill="#5B6572">conclusion, then explain, instead of building up to it.</text>
+  <!-- Hero stat card -->
+  <rect x="62" y="203" width="778" height="8" rx="4" fill="#D7DEEA" opacity="0.5"/>
+  <rect x="60" y="200" width="780" height="132" rx="14" fill="#E6ECF5"/>
+  <text x="100" y="290" font-size="62" font-weight="800" fill="#1B3A6B">73%</text>
+  <text x="284" y="248" font-size="16" font-weight="700" fill="#16202E">of B2B buyers now use AI tools like ChatGPT and</text>
+  <text x="284" y="270" font-size="16" font-weight="700" fill="#16202E">Perplexity to research vendors — often before they</text>
+  <text x="284" y="292" font-size="16" font-weight="700" fill="#16202E">ever visit a website.</text>
+  <text x="284" y="315" font-size="11.5" font-style="italic" fill="#5B6572">Source: Averi — B2B SaaS AI Citation Benchmarks, 2026</text>
 
-  <!-- Pillar 2 -->
-  <circle cx="88" cy="330" r="20" fill="#1B3A6B"/>
-  <text x="88" y="337" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">2</text>
-  <text x="126" y="324" font-size="19" font-weight="700" fill="#16202E">Make claims specific and citable</text>
-  <text x="126" y="348" font-size="14" fill="#5B6572">Exact numbers, named sources, and dates get quoted; vague</text>
-  <text x="126" y="367" font-size="14" fill="#5B6572">claims like "many customers" get filtered out.</text>
+  <!-- Gap stat card -->
+  <rect x="62" y="360" width="778" height="8" rx="4" fill="#EAD9B8" opacity="0.4"/>
+  <rect x="60" y="357" width="780" height="108" rx="14" fill="#FBF1DF"/>
+  <circle cx="102" cy="411" r="22" fill="#C77F1A"/>
+  <line x1="102" y1="400" x2="102" y2="412" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="102" cy="420" r="1.8" fill="#FFFFFF"/>
+  <text x="146" y="401" font-size="17" font-weight="700" fill="#16202E">51% of B2B tech brands are cited nowhere</text>
+  <text x="146" y="424" font-size="14" fill="#5B6572">across ChatGPT, Perplexity, or Gemini — most competitors</text>
+  <text x="146" y="444" font-size="14" fill="#5B6572">are simply invisible inside the AI answers buyers trust.</text>
+  <text x="700" y="453" font-size="11" font-style="italic" fill="#5B6572" text-anchor="end">Source: Averi, 2026</text>
 
-  <!-- Pillar 3 -->
-  <circle cx="88" cy="430" r="20" fill="#1B3A6B"/>
-  <text x="88" y="437" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">3</text>
-  <text x="126" y="424" font-size="19" font-weight="700" fill="#16202E">Structure pages for extraction, not just reading</text>
-  <text x="126" y="448" font-size="14" fill="#5B6572">Real questions as H2/H3s, FAQ schema, and comparison tables —</text>
-  <text x="126" y="467" font-size="14" fill="#5B6572">the same structure a person and a crawler both parse easily.</text>
+  <!-- Strategy section label -->
+  <text x="60" y="512" font-size="13" font-weight="700" letter-spacing="1.5" fill="#6B7684">// 5-STEP CITATION STRATEGY</text>
+  <line x1="60" y1="528" x2="840" y2="528" stroke="#E1E5EA" stroke-width="1.5"/>
 
-  <!-- Pillar 4 -->
-  <circle cx="88" cy="530" r="20" fill="#1B3A6B"/>
-  <text x="88" y="537" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">4</text>
-  <text x="126" y="524" font-size="19" font-weight="700" fill="#16202E">Keep facts consistent everywhere</text>
-  <text x="126" y="548" font-size="14" fill="#5B6572">Same pricing, positioning, and product facts on the site, LinkedIn,</text>
-  <text x="126" y="567" font-size="14" fill="#5B6572">directories, and press mentions — conflicting facts erode trust</text>
-  <text x="126" y="586" font-size="14" fill="#5B6572">signals AI engines use to decide what to cite.</text>
+  <!-- Card 1: Answer first (target icon) -->
+  <rect x="61" y="549" width="778" height="4" rx="2" fill="#000000" opacity="0.03"/>
+  <rect x="60" y="546" width="780" height="104" rx="12" fill="#FFFFFF" stroke="#E1E5EA" stroke-width="1"/>
+  <circle cx="102" cy="598" r="22" fill="#1B3A6B"/>
+  <circle cx="102" cy="598" r="13" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="102" cy="598" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="102" cy="598" r="2.5" fill="#FFFFFF"/>
+  <text x="146" y="588" font-size="17" font-weight="700" fill="#16202E">Lead with the direct answer</text>
+  <text x="146" y="611" font-size="13.5" fill="#5B6572">State the conclusion in the first two sentences, then explain —</text>
+  <text x="146" y="630" font-size="13.5" fill="#5B6572">AI engines extract short, self-contained answers, not ones buried in paragraph three.</text>
 
-  <!-- Pillar 5 -->
-  <circle cx="88" cy="646" r="20" fill="#1B3A6B"/>
-  <text x="88" y="653" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">5</text>
-  <text x="126" y="640" font-size="19" font-weight="700" fill="#16202E">Track what gets cited, not just what ranks</text>
-  <text x="126" y="664" font-size="14" fill="#5B6572">Run the questions prospects actually ask through ChatGPT,</text>
-  <text x="126" y="683" font-size="14" fill="#5B6572">Perplexity, and Gemini monthly — note whether you're cited,</text>
-  <text x="126" y="702" font-size="14" fill="#5B6572">and rewrite the pages that aren't.</text>
+  <!-- Card 2: Specific & sourced (percent icon) -->
+  <rect x="61" y="663" width="778" height="4" rx="2" fill="#000000" opacity="0.03"/>
+  <rect x="60" y="660" width="780" height="104" rx="12" fill="#FFFFFF" stroke="#E1E5EA" stroke-width="1"/>
+  <circle cx="102" cy="712" r="22" fill="#1B3A6B"/>
+  <text x="102" y="719" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">%</text>
+  <text x="146" y="702" font-size="17" font-weight="700" fill="#16202E">Make every claim specific and sourced</text>
+  <text x="146" y="725" font-size="13.5" fill="#5B6572">Exact numbers, named studies, and dates get quoted. Vague lines like</text>
+  <text x="146" y="744" font-size="13.5" fill="#5B6572">"many customers report..." get filtered out before citation.</text>
 
-  <line x1="60" y1="750" x2="840" y2="750" stroke="#E1E5EA" stroke-width="1.5"/>
+  <!-- Card 3: Structure for extraction (document/lines icon) -->
+  <rect x="61" y="777" width="778" height="4" rx="2" fill="#000000" opacity="0.03"/>
+  <rect x="60" y="774" width="780" height="104" rx="12" fill="#FFFFFF" stroke="#E1E5EA" stroke-width="1"/>
+  <circle cx="102" cy="826" r="22" fill="#1B3A6B"/>
+  <line x1="93" y1="818" x2="111" y2="818" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="93" y1="826" x2="107" y2="826" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="93" y1="834" x2="111" y2="834" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="146" y="816" font-size="17" font-weight="700" fill="#16202E">Structure pages for extraction, not just reading</text>
+  <text x="146" y="839" font-size="13.5" fill="#5B6572">Real questions as H2s, FAQ schema, comparison tables — in a Sept. 2025</text>
+  <text x="146" y="858" font-size="13.5" fill="#5B6572">Search Engine Land test, schema alone decided which page got cited.</text>
 
-  <!-- Why this matters box -->
-  <rect x="60" y="778" width="780" height="140" rx="8" fill="#E6ECF5"/>
-  <text x="86" y="812" font-size="14" font-weight="700" fill="#1B3A6B">WHY IT MATTERS FOR B2B SAAS</text>
-  <text x="86" y="840" font-size="14" fill="#16202E">Buyers increasingly ask AI tools to shortlist or compare vendors before they ever visit a site.</text>
-  <text x="86" y="862" font-size="14" fill="#16202E">Traditional SEO gets you found on Google — this is the parallel discipline for getting</text>
-  <text x="86" y="884" font-size="14" fill="#16202E">recommended inside the conversation itself, before a click ever happens.</text>
+  <!-- Card 4: Consistency (network nodes icon) -->
+  <rect x="61" y="891" width="778" height="4" rx="2" fill="#000000" opacity="0.03"/>
+  <rect x="60" y="888" width="780" height="104" rx="12" fill="#FFFFFF" stroke="#E1E5EA" stroke-width="1"/>
+  <circle cx="102" cy="940" r="22" fill="#1B3A6B"/>
+  <line x1="94" y1="945" x2="102" y2="931" stroke="#FFFFFF" stroke-width="1.6"/>
+  <line x1="110" y1="945" x2="102" y2="931" stroke="#FFFFFF" stroke-width="1.6"/>
+  <line x1="94" y1="945" x2="110" y2="945" stroke="#FFFFFF" stroke-width="1.6"/>
+  <circle cx="102" cy="931" r="3" fill="#FFFFFF"/>
+  <circle cx="94" cy="945" r="3" fill="#FFFFFF"/>
+  <circle cx="110" cy="945" r="3" fill="#FFFFFF"/>
+  <text x="146" y="930" font-size="17" font-weight="700" fill="#16202E">Keep facts identical across every channel</text>
+  <text x="146" y="953" font-size="13.5" fill="#5B6572">Same positioning, numbers, and claims on the site, LinkedIn, directories,</text>
+  <text x="146" y="972" font-size="13.5" fill="#5B6572">and press — AI engines cross-check entities before deciding what to trust.</text>
 
-  <text x="450" y="960" text-anchor="middle" font-size="13" fill="#5B6572">Original framework — not a specific client's results</text>
+  <!-- Card 5: Third-party authority (external link icon) -->
+  <rect x="61" y="1005" width="778" height="4" rx="2" fill="#000000" opacity="0.03"/>
+  <rect x="60" y="1002" width="780" height="104" rx="12" fill="#FFFFFF" stroke="#E1E5EA" stroke-width="1"/>
+  <circle cx="102" cy="1054" r="22" fill="#1B3A6B"/>
+  <rect x="93" y="1049" width="12" height="12" rx="1.5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M 101 1045 L 111 1045 L 111 1055" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="111" y1="1045" x2="101" y2="1055" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="146" y="1044" font-size="17" font-weight="700" fill="#16202E">Earn citations you don't control</text>
+  <text x="146" y="1067" font-size="13.5" fill="#5B6572">Digital PR, analyst mentions, and credible third-party coverage build the</text>
+  <text x="146" y="1086" font-size="13.5" fill="#5B6572">outside authority signals GEO rewards more than on-page keyword density.</text>
+
+  <!-- Bottom stat strip -->
+  <rect x="60" y="1132" width="240" height="120" rx="12" fill="#E6ECF5"/>
+  <text x="180" y="1180" text-anchor="middle" font-size="32" font-weight="800" fill="#1B3A6B">4–5×</text>
+  <text x="180" y="1202" text-anchor="middle" font-size="12.5" fill="#16202E">AI-referred visitors convert</text>
+  <text x="180" y="1218" text-anchor="middle" font-size="12.5" fill="#16202E">vs. Google organic search</text>
+  <text x="180" y="1240" text-anchor="middle" font-size="10" font-style="italic" fill="#5B6572">First-Stop Study, 2026</text>
+
+  <rect x="330" y="1132" width="240" height="120" rx="12" fill="#E6ECF5"/>
+  <text x="450" y="1180" text-anchor="middle" font-size="32" font-weight="800" fill="#1B3A6B">83%</text>
+  <text x="450" y="1202" text-anchor="middle" font-size="12.5" fill="#16202E">feel more confident in vendor</text>
+  <text x="450" y="1218" text-anchor="middle" font-size="12.5" fill="#16202E">choice when AI was involved</text>
+  <text x="450" y="1240" text-anchor="middle" font-size="10" font-style="italic" fill="#5B6572">First-Stop Study, 2026</text>
+
+  <rect x="600" y="1132" width="240" height="120" rx="12" fill="#E6ECF5"/>
+  <text x="720" y="1180" text-anchor="middle" font-size="32" font-weight="800" fill="#1B3A6B">+35%</text>
+  <text x="720" y="1202" text-anchor="middle" font-size="12.5" fill="#16202E">more organic clicks when cited</text>
+  <text x="720" y="1218" text-anchor="middle" font-size="12.5" fill="#16202E">in Google AI Overviews</text>
+  <text x="720" y="1240" text-anchor="middle" font-size="10" font-style="italic" fill="#5B6572">Averi, 2026</text>
+
+  <line x1="60" y1="1276" x2="840" y2="1276" stroke="#E1E5EA" stroke-width="1.5"/>
+  <text x="60" y="1298" font-size="12.5" font-weight="700" fill="#16202E">Track it monthly — re-run real buyer questions through ChatGPT, Perplexity &amp; AI Overviews.</text>
+  <text x="60" y="1320" font-size="11" fill="#5B6572">Sources: 5W PR — The First-Stop Study (2026) &#183; Averi — B2B SaaS AI Citation Benchmarks (2026)</text>
+  <text x="60" y="1338" font-size="11" fill="#5B6572">Search Engine Land (Sept. 2025). Original strategy infographic — not a specific client's results.</text>
 </svg>

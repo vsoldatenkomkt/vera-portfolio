@@ -156,9 +156,9 @@ var CONTENT_SAMPLES = [
     image: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
     viewLink: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
     type: {
-      en: 'Framework Example',
-      fr: 'Exemple de Framework',
-      ru: 'Пример фреймворка'
+      en: 'Strategy Infographic',
+      fr: 'Infographie Stratégique',
+      ru: 'Стратегическая инфографика'
     },
     title: {
       en: 'Getting Cited by AI Search (GEO)',
@@ -166,14 +166,14 @@ var CONTENT_SAMPLES = [
       ru: 'Цитирование в ИИ-поиске (GEO)'
     },
     caption: {
-      en: 'An original framework for improving visibility in AI answer engines like ChatGPT and Perplexity — the emerging complement to traditional SEO for B2B buyers researching vendors.',
-      fr: 'Un framework original pour améliorer la visibilité dans les moteurs de réponse IA comme ChatGPT et Perplexity — le complément émergent du SEO traditionnel pour les acheteurs B2B en phase de recherche de fournisseurs.',
-      ru: 'Оригинальный фреймворк для повышения видимости в ИИ-поисковиках вроде ChatGPT и Perplexity — новая дисциплина, дополняющая традиционное SEO для B2B-покупателей, изучающих поставщиков.'
+      en: 'An original data-backed strategy for earning citations in AI answer engines like ChatGPT and Perplexity — built from 2026 research on B2B buyer behavior, since 73% of buyers now use AI tools to research vendors.',
+      fr: "Une stratégie originale, fondée sur des données, pour obtenir des citations dans les moteurs de réponse IA comme ChatGPT et Perplexity — construite à partir d'études 2026 sur le comportement des acheteurs B2B, puisque 73 % d'entre eux utilisent désormais l'IA pour évaluer des fournisseurs.",
+      ru: 'Оригинальная стратегия на основе данных для получения цитирований в ИИ-поисковиках вроде ChatGPT и Perplexity — построена на исследованиях 2026 года о поведении B2B-покупателей, 73% которых уже используют ИИ для оценки поставщиков.'
     },
     linkText: {
-      en: 'View Full Framework',
-      fr: 'Voir le Framework Complet',
-      ru: 'Смотреть полный фреймворк'
+      en: 'View Full Infographic',
+      fr: "Voir l'Infographie Complète",
+      ru: 'Смотреть полную инфографику'
     }
   }
 ];
