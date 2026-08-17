@@ -329,39 +329,53 @@
     border-radius: 999px;
   }
 
-  /* ---------- AssessFirst DRIVE badge (About Me) ----------
-     A verification-style badge linking to the actual DRIVE.pdf
-     report, plus her real hashtag results below it — left in
-     French even on the EN/RU site, since they're the literal tags
-     from the certified report (a recruiter checking against the
-     PDF should see an exact match, not a translation). */
-  .assessfirst-block {
-    margin-top: 28px;
-  }
-
-  .assessfirst-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: var(--color-accent-soft);
-    color: var(--color-accent);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    font-size: 12.5px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: box-shadow 0.15s ease;
-  }
-
-  .assessfirst-badge:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  .assessfirst-caption {
-    margin: 10px 0 0;
-    font-size: 13.5px;
+  /* ---------- Hero assessment credentials ----------
+     Deliberately understated: just the evaluator names as quiet
+     links to the real PDFs (DRIVE.pdf, AKSIS_Marketing_Assessment.pdf)
+     — no score callouts, no explanation of what they are. Recruiters
+     who use these platforms will recognize the names; nobody else
+     needs it explained. */
+  .hero-credentials {
+    margin: 18px 0 0;
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
     color: var(--color-text-muted);
+  }
+
+  .hero-credentials a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-border);
+    padding-bottom: 1px;
+  }
+
+  .hero-credentials a:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  /* Real hashtags from the AssessFirst DRIVE report — kept in French
+     across all site languages since they're literal tags from the
+     certified PDF. Deliberately muted (not the bold sapphire .tag
+     style used elsewhere) so this stays a quiet detail, not a
+     headline feature. */
+  .hero-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 10px auto 0;
+    max-width: 460px;
+  }
+
+  .hero-hashtag {
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
   }
 
   /* ---------- Skills ---------- */
@@ -1138,9 +1152,22 @@
       <a class="btn btn-secondary lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">Download CV</a>
       <a class="btn btn-secondary lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf">Télécharger le CV</a>
       <a class="btn btn-secondary lang-ru hidden" href="CV_Soldatenko_RU.pdf" download="CV_Soldatenko_RU.pdf">Скачать резюме</a>
-      <a class="btn btn-secondary lang-en" href="job-match.html">Check My Fit &rarr;</a>
-      <a class="btn btn-secondary lang-fr hidden" href="job-match.html">Vérifier mon Adéquation &rarr;</a>
-      <a class="btn btn-secondary lang-ru hidden" href="job-match.html">Проверить моё соответствие &rarr;</a>
+    </div>
+
+    <p class="hero-credentials lang-en">Assessed by <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a> &middot; <a href="AKSIS_Marketing_Assessment.pdf" target="_blank" rel="noopener">AKSIS</a></p>
+    <p class="hero-credentials lang-fr hidden">Évaluée par <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a> &middot; <a href="AKSIS_Marketing_Assessment.pdf" target="_blank" rel="noopener">AKSIS</a></p>
+    <p class="hero-credentials lang-ru hidden">Оценено <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a> &middot; <a href="AKSIS_Marketing_Assessment.pdf" target="_blank" rel="noopener">AKSIS</a></p>
+
+    <div class="hero-hashtags">
+      <span class="hero-hashtag">#décontractée</span>
+      <span class="hero-hashtag">#respect</span>
+      <span class="hero-hashtag">#amicale</span>
+      <span class="hero-hashtag">#process</span>
+      <span class="hero-hashtag">#accueillante</span>
+      <span class="hero-hashtag">#méthode</span>
+      <span class="hero-hashtag">#proximité</span>
+      <span class="hero-hashtag">#principe</span>
+      <span class="hero-hashtag">#bienveillante</span>
     </div>
 
   </header>
@@ -1186,21 +1213,6 @@
         <span class="tag">B2B Industrial Marketing</span>
       </div>
 
-      <div class="assessfirst-block">
-        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Certified by AssessFirst</a>
-        <p class="assessfirst-caption">A work-style assessment widely used by French recruiters — my real DRIVE results:</p>
-        <div class="tags no-margin">
-          <span class="tag">#décontractée</span>
-          <span class="tag">#respect</span>
-          <span class="tag">#amicale</span>
-          <span class="tag">#process</span>
-          <span class="tag">#accueillante</span>
-          <span class="tag">#méthode</span>
-          <span class="tag">#proximité</span>
-          <span class="tag">#principe</span>
-          <span class="tag">#bienveillante</span>
-        </div>
-      </div>
     </div>
 
     <div class="lang-fr hidden">
@@ -1236,21 +1248,6 @@
         <span class="tag">Marketing B2B Industriel</span>
       </div>
 
-      <div class="assessfirst-block">
-        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Certifiée par AssessFirst</a>
-        <p class="assessfirst-caption">Une évaluation largement utilisée par les recruteurs français — mes vrais résultats DRIVE :</p>
-        <div class="tags no-margin">
-          <span class="tag">#décontractée</span>
-          <span class="tag">#respect</span>
-          <span class="tag">#amicale</span>
-          <span class="tag">#process</span>
-          <span class="tag">#accueillante</span>
-          <span class="tag">#méthode</span>
-          <span class="tag">#proximité</span>
-          <span class="tag">#principe</span>
-          <span class="tag">#bienveillante</span>
-        </div>
-      </div>
     </div>
 
     <div class="lang-ru hidden">
@@ -1286,21 +1283,6 @@
         <span class="tag">Промышленный B2B-маркетинг</span>
       </div>
 
-      <div class="assessfirst-block">
-        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Сертифицировано AssessFirst</a>
-        <p class="assessfirst-caption">Оценка, широко используемая французскими рекрутёрами — мои реальные результаты DRIVE:</p>
-        <div class="tags no-margin">
-          <span class="tag">#décontractée</span>
-          <span class="tag">#respect</span>
-          <span class="tag">#amicale</span>
-          <span class="tag">#process</span>
-          <span class="tag">#accueillante</span>
-          <span class="tag">#méthode</span>
-          <span class="tag">#proximité</span>
-          <span class="tag">#principe</span>
-          <span class="tag">#bienveillante</span>
-        </div>
-      </div>
     </div>
   </section>
 
