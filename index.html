@@ -237,57 +237,51 @@
     font-weight: 600;
   }
 
-  /* ---------- Terminal prompt line (hero) ----------
-     A small, quiet nod to the coding tools she actually works in:
-     macOS-style window dots, a Python-style ">>>" prompt with an
-     "import" statement, and a JS-style "//" trailing comment. Purely
-     decorative — hidden from screen readers since the name/role
-     right below it already says the same thing properly. */
-  .terminal-line {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 0 24px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-text-muted);
-    opacity: 0.7;
-  }
-
-  .terminal-dots {
+  /* ---------- Hero status badge ----------
+     A small SaaS-landing-page-style pill above the name — a live
+     status indicator (pulsing dot + short text) rather than the old
+     terminal-prompt flourish. Ties into the "Check My Fit" CTA below
+     by signaling she's actively open to roles. */
+  .hero-badge {
     display: inline-flex;
-    gap: 4px;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 24px;
+    padding: 6px 16px 6px 12px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
   }
 
-  .terminal-dots span {
-    width: 6px;
-    height: 6px;
+  .badge-dot {
+    position: relative;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    display: inline-block;
+    background: #2FAE6A;
+    flex-shrink: 0;
   }
 
-  .terminal-dots span:nth-child(1) { background: #e2726b; }
-  .terminal-dots span:nth-child(2) { background: #e3b869; }
-  .terminal-dots span:nth-child(3) { background: var(--color-data-accent); }
-
-  .terminal-comment {
-    font-style: italic;
-    opacity: 0.8;
+  .badge-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: #2FAE6A;
+    opacity: 0.35;
+    animation: badge-pulse 2s ease-out infinite;
   }
 
-  .terminal-cursor {
-    color: var(--color-data-accent);
-    animation: terminal-blink 1s steps(1) infinite;
-  }
-
-  @keyframes terminal-blink {
-    0%, 50% { opacity: 1; }
-    50.01%, 100% { opacity: 0; }
+  @keyframes badge-pulse {
+    0% { transform: scale(0.6); opacity: 0.35; }
+    100% { transform: scale(1.8); opacity: 0; }
   }
 
   @media (max-width: 480px) {
-    .terminal-line { font-size: 10.5px; gap: 8px; }
+    .hero-badge { font-size: 12px; padding: 5px 14px 5px 11px; }
   }
 
   .about p {
@@ -932,8 +926,9 @@
     .lang-switcher, .theme-toggle-btn, .btn, .tag, h2 {
       transition: none;
     }
-    .terminal-cursor {
+    .badge-dot::after {
       animation: none;
+      opacity: 0;
     }
   }
 </style>
@@ -1007,10 +1002,9 @@
        ============================================================ -->
   <header class="hero">
 
-    <p class="terminal-line" aria-hidden="true">
-      <span class="terminal-dots"><span></span><span></span><span></span></span>
-      <span class="terminal-code">&gt;&gt;&gt; import vera<span class="terminal-comment">  // b2b marketing &amp; acquisition</span></span><span class="terminal-cursor">_</span>
-    </p>
+    <p class="hero-badge lang-en"><span class="badge-dot"></span>Open to B2B Marketing opportunities</p>
+    <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
+    <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
 
     <img class="photo-placeholder" src="PP.PNG" alt="Vera Soldatenko" style="object-fit:cover;">
 
