@@ -329,6 +329,41 @@
     border-radius: 999px;
   }
 
+  /* ---------- AssessFirst DRIVE badge (About Me) ----------
+     A verification-style badge linking to the actual DRIVE.pdf
+     report, plus her real hashtag results below it — left in
+     French even on the EN/RU site, since they're the literal tags
+     from the certified report (a recruiter checking against the
+     PDF should see an exact match, not a translation). */
+  .assessfirst-block {
+    margin-top: 28px;
+  }
+
+  .assessfirst-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .assessfirst-badge:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .assessfirst-caption {
+    margin: 10px 0 0;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
   /* ---------- Skills ---------- */
   .skill-group { margin-bottom: 22px; }
   .skill-group:last-child { margin-bottom: 0; }
@@ -1150,6 +1185,22 @@
         <span class="tag">CRM &amp; Automation</span>
         <span class="tag">B2B Industrial Marketing</span>
       </div>
+
+      <div class="assessfirst-block">
+        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Certified by AssessFirst</a>
+        <p class="assessfirst-caption">A work-style assessment widely used by French recruiters — my real DRIVE results:</p>
+        <div class="tags no-margin">
+          <span class="tag">#décontractée</span>
+          <span class="tag">#respect</span>
+          <span class="tag">#amicale</span>
+          <span class="tag">#process</span>
+          <span class="tag">#accueillante</span>
+          <span class="tag">#méthode</span>
+          <span class="tag">#proximité</span>
+          <span class="tag">#principe</span>
+          <span class="tag">#bienveillante</span>
+        </div>
+      </div>
     </div>
 
     <div class="lang-fr hidden">
@@ -1184,6 +1235,22 @@
         <span class="tag">CRM et Automatisation</span>
         <span class="tag">Marketing B2B Industriel</span>
       </div>
+
+      <div class="assessfirst-block">
+        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Certifiée par AssessFirst</a>
+        <p class="assessfirst-caption">Une évaluation largement utilisée par les recruteurs français — mes vrais résultats DRIVE :</p>
+        <div class="tags no-margin">
+          <span class="tag">#décontractée</span>
+          <span class="tag">#respect</span>
+          <span class="tag">#amicale</span>
+          <span class="tag">#process</span>
+          <span class="tag">#accueillante</span>
+          <span class="tag">#méthode</span>
+          <span class="tag">#proximité</span>
+          <span class="tag">#principe</span>
+          <span class="tag">#bienveillante</span>
+        </div>
+      </div>
     </div>
 
     <div class="lang-ru hidden">
@@ -1217,6 +1284,22 @@
         <span class="tag">Бренд и креатив</span>
         <span class="tag">CRM и автоматизация</span>
         <span class="tag">Промышленный B2B-маркетинг</span>
+      </div>
+
+      <div class="assessfirst-block">
+        <a class="assessfirst-badge" href="DRIVE.pdf" target="_blank" rel="noopener">&#10003; Сертифицировано AssessFirst</a>
+        <p class="assessfirst-caption">Оценка, широко используемая французскими рекрутёрами — мои реальные результаты DRIVE:</p>
+        <div class="tags no-margin">
+          <span class="tag">#décontractée</span>
+          <span class="tag">#respect</span>
+          <span class="tag">#amicale</span>
+          <span class="tag">#process</span>
+          <span class="tag">#accueillante</span>
+          <span class="tag">#méthode</span>
+          <span class="tag">#proximité</span>
+          <span class="tag">#principe</span>
+          <span class="tag">#bienveillante</span>
+        </div>
       </div>
     </div>
   </section>
