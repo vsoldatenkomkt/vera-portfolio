@@ -190,14 +190,14 @@ var CONTENT_SAMPLES = [
       ru: 'Крепёж, устойчивый к вибрации на транспорте'
     },
     caption: {
-      en: 'An original quick-reference battlecard for rail & transportation fastener buyers — positioning, a feature comparison, objection handling, and when-to-engage guidance, generic company.',
-      fr: "Un argumentaire de vente original pour les acheteurs de fixations ferroviaires — positionnement, comparatif produit, gestion des objections et critères d'engagement, entreprise générique.",
-      ru: 'Оригинальная карточка продаж для покупателей крепежа в железнодорожной и транспортной отрасли — позиционирование, сравнение продукта, работа с возражениями, универсальная компания.'
+      en: 'A quick-reference sales battlecard for rail & transportation fastener buyers, currently being designed in my own visual style — check back soon.',
+      fr: "Un argumentaire de vente pour les acheteurs de fixations ferroviaires, en cours de création dans mon propre style visuel — disponible prochainement.",
+      ru: 'Карточка продаж для покупателей крепежа в железнодорожной и транспортной отрасли — сейчас в разработке в моём собственном визуальном стиле.'
     },
     linkText: {
-      en: 'View Full Battlecard',
-      fr: "Voir l'Argumentaire Complet",
-      ru: 'Смотреть полную карточку'
+      en: 'Coming Soon',
+      fr: 'Bientôt Disponible',
+      ru: 'Скоро'
     }
   }
 ];
