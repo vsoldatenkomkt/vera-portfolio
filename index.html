@@ -2867,10 +2867,9 @@
   })();
 
   // Dark mode toggle: adds/removes "dark-mode" on <html> (see the
-  // CSS custom properties under html.dark-mode). Defaults to light
-  // on first visit (same policy as the language switcher defaulting
-  // to French — ignore OS/browser preference, pick one deliberate
-  // default), then remembers whatever the visitor picks after that.
+  // CSS custom properties under html.dark-mode). Defaults to the
+  // visitor's OS-level preference on first visit, then remembers
+  // whatever they pick after that.
   (function () {
     var STORAGE_KEY = 'site-theme';
     var toggleBtn = document.querySelector('[data-theme-toggle]');
@@ -2887,7 +2886,12 @@
 
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-    setDarkMode(saved === 'dark');
+    if (saved === 'dark' || saved === 'light') {
+      setDarkMode(saved === 'dark');
+    } else {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
   })();
 
   // Ideal Buyer Persona drawer: opens from any "View ... Persona(s)"
