@@ -244,7 +244,7 @@
      <section> is shown below. */
   .section-tabs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 8px;
     margin-top: 16px;
   }
@@ -357,7 +357,7 @@
   }
 
   @media (max-width: 640px) {
-    .section-tabs { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 4px; }
+    .section-tabs { grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 4px; }
     .section-tab { font-size: 11px; }
     .section-tab-icon { width: 40px; height: 32px; }
     .section-panels { padding: 4px 16px 8px; }
@@ -1302,7 +1302,18 @@
     <p class="hero-credentials lang-fr hidden">Évaluée par <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a></p>
     <p class="hero-credentials lang-ru hidden">Оценено <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a></p>
 
-    <div class="hero-hashtags">
+    <div class="hero-hashtags lang-en">
+      <span class="hero-hashtag">#easygoing</span>
+      <span class="hero-hashtag">#respect</span>
+      <span class="hero-hashtag">#friendly</span>
+      <span class="hero-hashtag">#process-driven</span>
+      <span class="hero-hashtag">#welcoming</span>
+      <span class="hero-hashtag">#methodical</span>
+      <span class="hero-hashtag">#approachable</span>
+      <span class="hero-hashtag">#principled</span>
+      <span class="hero-hashtag">#caring</span>
+    </div>
+    <div class="hero-hashtags lang-fr hidden">
       <span class="hero-hashtag">#décontractée</span>
       <span class="hero-hashtag">#respect</span>
       <span class="hero-hashtag">#amicale</span>
@@ -1312,6 +1323,17 @@
       <span class="hero-hashtag">#proximité</span>
       <span class="hero-hashtag">#principe</span>
       <span class="hero-hashtag">#bienveillante</span>
+    </div>
+    <div class="hero-hashtags lang-ru hidden">
+      <span class="hero-hashtag">#непринуждённая</span>
+      <span class="hero-hashtag">#уважение</span>
+      <span class="hero-hashtag">#дружелюбная</span>
+      <span class="hero-hashtag">#процесс</span>
+      <span class="hero-hashtag">#гостеприимная</span>
+      <span class="hero-hashtag">#метод</span>
+      <span class="hero-hashtag">#близость</span>
+      <span class="hero-hashtag">#принцип</span>
+      <span class="hero-hashtag">#заботливая</span>
     </div>
 
   </header>
