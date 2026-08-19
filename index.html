@@ -322,6 +322,40 @@
     display: block;
   }
 
+  /* Back-to-top control at the bottom of each tab-panel — only
+     useful once a panel is long enough to need scrolling, but shown
+     on all of them for consistency (harmless on short ones). */
+  .back-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 40px auto 0;
+    padding: 8px 18px;
+    width: fit-content;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .back-to-top:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+  }
+
+  .back-to-top-arrow {
+    font-size: 13px;
+    line-height: 1;
+  }
+
   @media (max-width: 640px) {
     .section-tabs { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 4px; }
     .section-tab { font-size: 11px; }
@@ -1441,6 +1475,13 @@
       </div>
 
     </div>
+
+    <button type="button" class="back-to-top" data-scroll-top>
+      <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
+      <span class="lang-en">Back to top</span>
+      <span class="lang-fr hidden">Retour en haut</span>
+      <span class="lang-ru hidden">Наверх</span>
+    </button>
   </section>
 
   <!-- ============================================================
@@ -1778,6 +1819,12 @@
          a methodology demonstration — see data-persona-open="saas". -->
   </section>
 
+  <button type="button" class="back-to-top" data-scroll-top>
+    <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
+    <span class="lang-en">Back to top</span>
+    <span class="lang-fr hidden">Retour en haut</span>
+    <span class="lang-ru hidden">Наверх</span>
+  </button>
   </div>
 
   <!-- ============================================================
@@ -2147,6 +2194,12 @@
     </div>
   </section>
 
+  <button type="button" class="back-to-top" data-scroll-top>
+    <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
+    <span class="lang-en">Back to top</span>
+    <span class="lang-fr hidden">Retour en haut</span>
+    <span class="lang-ru hidden">Наверх</span>
+  </button>
   </div>
 
   <!-- ============================================================
@@ -2246,6 +2299,13 @@
         </div>
       </div>
     </div>
+
+    <button type="button" class="back-to-top" data-scroll-top>
+      <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
+      <span class="lang-en">Back to top</span>
+      <span class="lang-fr hidden">Retour en haut</span>
+      <span class="lang-ru hidden">Наверх</span>
+    </button>
   </section>
 
   <!-- ============================================================
@@ -2280,6 +2340,13 @@
         <a href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">linkedin.com/in/verasoldatenko</a>
       </li>
     </ul>
+
+    <button type="button" class="back-to-top" data-scroll-top>
+      <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
+      <span class="lang-en">Back to top</span>
+      <span class="lang-fr hidden">Retour en haut</span>
+      <span class="lang-ru hidden">Наверх</span>
+    </button>
   </section>
 
   </div>
@@ -3058,6 +3125,16 @@
     var ids = Array.prototype.map.call(panels, function (p) { return p.id; });
     var hash = window.location.hash.replace('#', '');
     activateSection(ids.indexOf(hash) !== -1 ? hash : ids[0]);
+  })();
+
+  // Back-to-top buttons at the bottom of each tab-panel.
+  (function () {
+    var btns = document.querySelectorAll('[data-scroll-top]');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   })();
 
   // Dark mode toggle: adds/removes "dark-mode" on <html> (see the
