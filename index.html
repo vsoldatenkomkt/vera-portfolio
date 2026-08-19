@@ -3127,12 +3127,18 @@
     activateSection(ids.indexOf(hash) !== -1 ? hash : ids[0]);
   })();
 
-  // Back-to-top buttons at the bottom of each tab-panel.
+  // Back-to-top buttons at the bottom of each tab-panel — scroll to the
+  // folder tabs so the user can pick another section right away.
   (function () {
     var btns = document.querySelectorAll('[data-scroll-top]');
+    var tabs = document.querySelector('.section-tabs');
     btns.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (tabs) {
+          tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     });
   })();
