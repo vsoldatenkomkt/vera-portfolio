@@ -359,7 +359,7 @@
   @media (max-width: 640px) {
     .section-tabs { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 4px; }
     .section-tab { font-size: 11px; }
-    .section-tab-icon { width: 34px; height: 27px; }
+    .section-tab-icon { width: 40px; height: 32px; }
     .section-panels { padding: 4px 16px 8px; }
   }
 
@@ -3128,14 +3128,19 @@
   })();
 
   // Back-to-top buttons at the bottom of each tab-panel — scroll to the
-  // folder tabs so the user can pick another section right away.
+  // folder tabs so the user can pick another section right away. The
+  // target lands the tabs low in the viewport (not flush at the top)
+  // so they end up close to where the cursor/thumb already is instead
+  // of forcing a jump all the way up.
   (function () {
     var btns = document.querySelectorAll('[data-scroll-top]');
     var tabs = document.querySelector('.section-tabs');
     btns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (tabs) {
-          tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var tabsTop = tabs.getBoundingClientRect().top + window.scrollY;
+          var target = Math.max(0, tabsTop - window.innerHeight * 0.75);
+          window.scrollTo({ top: target, behavior: 'smooth' });
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
