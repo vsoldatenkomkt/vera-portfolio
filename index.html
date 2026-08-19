@@ -236,75 +236,111 @@
     border-top: 1px solid var(--color-border);
   }
 
-  /* ---------- Section tabs (folder-tab navigation) ----------
+  /* ---------- Section tabs (folder-icon navigation) ----------
      The hero stays fixed above; everything below (About Me through
-     Contact) becomes one tab per section — shaped like real folder
-     tabs (angled notch top-left, like a hanging-file tab) rather
-     than flat browser-tab rectangles. Only the active tab's
-     <section> is shown. The active tab sits taller and forward
-     (higher z-index) than its neighbors, like the folder currently
-     pulled to the front of a stack. */
+     Contact) becomes one folder-icon tile per section, in a
+     responsive grid — auto-fill wraps cleanly into aligned rows at
+     any width instead of a ragged tab strip. Only the active tile's
+     <section> is shown below. */
   .section-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 3px;
-    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    margin-top: 16px;
   }
 
   .section-tab {
     appearance: none;
-    border: 1px solid var(--color-border);
-    border-bottom: none;
-    background: var(--color-bg);
+    border: none;
+    background: transparent;
     color: var(--color-text-muted);
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 20px 9px 26px;
+    padding: 6px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
-    position: relative;
-    clip-path: polygon(18px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 18px);
-    transition: color 0.15s ease, padding 0.15s ease;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* Two-tone folder glyph — a back panel (with the tab notch) and an
+     overlapping front panel, same accent hue at two opacities so it
+     reads as a real folder icon rather than a flat pictogram. Both
+     start muted; only the active tab's folder is fully colored. */
+  .section-tab-icon {
+    width: 40px;
+    height: 32px;
+  }
+
+  .section-tab-icon .folder-back {
+    fill: var(--color-text-muted);
+    opacity: 0.35;
+  }
+
+  .section-tab-icon .folder-front {
+    fill: var(--color-text-muted);
+    opacity: 0.55;
   }
 
   .section-tab:hover {
     color: var(--color-text);
   }
 
+  .section-tab:hover .section-tab-icon .folder-back,
+  .section-tab:hover .section-tab-icon .folder-front {
+    fill: var(--color-data-accent);
+    opacity: 0.85;
+  }
+
   .section-tab.active {
-    background: var(--color-surface);
     color: var(--color-accent);
-    padding-top: 13px;
-    padding-bottom: 10px;
-    margin-bottom: -1px;
-    z-index: 2;
-    box-shadow: 0 -3px 0 var(--color-accent) inset;
+  }
+
+  .section-tab.active .section-tab-icon .folder-back {
+    fill: var(--color-accent);
+    opacity: 0.75;
+  }
+
+  .section-tab.active .section-tab-icon .folder-front {
+    fill: var(--color-accent);
+    opacity: 1;
   }
 
   .section-panels {
-    position: relative;
-    z-index: 1;
     border: 1px solid var(--color-border);
-    border-radius: 0 10px 10px 10px;
+    border-radius: 10px;
     background: var(--color-surface);
+    margin-top: 16px;
     padding: 4px 24px 8px;
   }
 
-  .section-panels section.tab-panel {
+  .section-panels > .tab-panel {
     display: none;
     padding: 36px 0;
     border-top: none;
   }
 
-  .section-panels section.tab-panel.active {
+  /* Sub-sections nested inside a merged tab-panel (Expertise, Portfolio)
+     keep a divider between the two topics they combine. */
+  .section-panels > .tab-panel .subsection {
+    border-top: 1px solid var(--color-border);
+    padding-top: 36px;
+    margin-top: 36px;
+  }
+
+  .section-panels > .tab-panel.active {
     display: block;
   }
 
   @media (max-width: 640px) {
+    .section-tabs { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 4px; }
+    .section-tab { font-size: 11px; }
+    .section-tab-icon { width: 34px; height: 27px; }
     .section-panels { padding: 4px 16px 8px; }
-    .section-tab { padding: 9px 14px 8px 18px; clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12px); font-size: 12.5px; }
-    .section-tab.active { padding-top: 11px; padding-bottom: 9px; }
   }
 
   h2 {
@@ -322,6 +358,17 @@
   .h2-index {
     color: var(--color-data-accent);
     font-weight: 600;
+  }
+
+  /* Sub-heading for a topic folded into a merged tab (e.g. "Skills &
+     Expertise" and "Industries" both live inside the Expertise tab).
+     Deliberately not an <h2> / .h2-index — those are reserved for the
+     tab's own top-level heading. */
+  .subsection-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 20px;
   }
 
   /* ---------- Hero status badge ----------
@@ -1258,36 +1305,51 @@
        ============================================================ -->
   <div class="section-tabs" role="tablist">
     <button type="button" class="section-tab active" data-section-tab="about">
+      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
+        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
+        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
+        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
+      </svg>
       <span class="lang-en">About Me</span>
       <span class="lang-fr hidden">À propos de moi</span>
       <span class="lang-ru hidden">Обо мне</span>
     </button>
-    <button type="button" class="section-tab" data-section-tab="skills">
-      <span class="lang-en">Skills &amp; Expertise</span>
-      <span class="lang-fr hidden">Compétences et Expertise</span>
-      <span class="lang-ru hidden">Навыки и экспертиза</span>
+    <button type="button" class="section-tab" data-section-tab="expertise">
+      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
+        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
+        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
+        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
+      </svg>
+      <span class="lang-en">Expertise</span>
+      <span class="lang-fr hidden">Expertise</span>
+      <span class="lang-ru hidden">Экспертиза</span>
     </button>
-    <button type="button" class="section-tab" data-section-tab="industries">
-      <span class="lang-en">Industries</span>
-      <span class="lang-fr hidden">Secteurs d'Activité</span>
-      <span class="lang-ru hidden">Отрасли</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="work">
-      <span class="lang-en">Selected Work</span>
-      <span class="lang-fr hidden">Réalisations</span>
-      <span class="lang-ru hidden">Избранные работы</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="content-samples">
-      <span class="lang-en">Content Samples</span>
-      <span class="lang-fr hidden">Exemples de Contenu</span>
-      <span class="lang-ru hidden">Примеры контента</span>
+    <button type="button" class="section-tab" data-section-tab="portfolio">
+      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
+        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
+        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
+        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
+      </svg>
+      <span class="lang-en">Portfolio</span>
+      <span class="lang-fr hidden">Portfolio</span>
+      <span class="lang-ru hidden">Портфолио</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="education">
-      <span class="lang-en">Degrees &amp; Certifications</span>
-      <span class="lang-fr hidden">Diplômes et Certifications</span>
-      <span class="lang-ru hidden">Образование и сертификаты</span>
+      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
+        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
+        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
+        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
+      </svg>
+      <span class="lang-en">Credentials</span>
+      <span class="lang-fr hidden">Diplômes</span>
+      <span class="lang-ru hidden">Дипломы</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="contact">
+      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
+        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
+        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
+        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
+      </svg>
       <span class="lang-en">Contact</span>
       <span class="lang-fr hidden">Contact</span>
       <span class="lang-ru hidden">Контакты</span>
@@ -1416,15 +1478,23 @@
   </section>
 
   <!-- ============================================================
-       SKILLS & EXPERTISE — grouped by category. To add a skill,
-       copy a <span class="tag">...</span> inside the matching
-       group (in all three lang-en / lang-fr / lang-ru versions).
-       To add a whole new category, copy a full .skill-group block.
+       EXPERTISE TAB — merges Skills & Expertise and Industries under
+       one tab. Each keeps its own .subsection-title; only the outer
+       div carries the tab's real // 02 heading.
        ============================================================ -->
-  <section id="skills" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 02</span>Skills &amp; Expertise</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Compétences et Expertise</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Навыки и экспертиза</h2>
+  <div class="tab-panel" id="expertise">
+    <h2 class="lang-en"><span class="h2-index">// 02</span>Expertise</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Expertise</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Экспертиза</h2>
+
+  <!-- SKILLS & EXPERTISE — grouped by category. To add a skill, copy
+       a <span class="tag">...</span> inside the matching group (in
+       all three lang-en / lang-fr / lang-ru versions). To add a whole
+       new category, copy a full .skill-group block. -->
+  <section id="skills">
+    <h3 class="subsection-title lang-en">Skills &amp; Expertise</h3>
+    <h3 class="subsection-title lang-fr hidden">Compétences et Expertise</h3>
+    <h3 class="subsection-title lang-ru hidden">Навыки и экспертиза</h3>
 
     <div class="lang-en">
       <div class="skill-group">
@@ -1676,15 +1746,13 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       INDUSTRIES — sectors served at J.Lanfranco. Add or remove
-       a <span class="tag">...</span> in both language blocks to
-       update the list.
-       ============================================================ -->
-  <section id="industries" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 03</span>Industries</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Secteurs d'Activité</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Отрасли</h2>
+  <!-- INDUSTRIES — sectors served at J.Lanfranco. Add or remove a
+       <span class="tag">...</span> in both language blocks to update
+       the list. -->
+  <section id="industries" class="subsection">
+    <h3 class="subsection-title lang-en">Industries</h3>
+    <h3 class="subsection-title lang-fr hidden">Secteurs d'Activité</h3>
+    <h3 class="subsection-title lang-ru hidden">Отрасли</h3>
 
     <div class="lang-en">
       <p class="section-intro">
@@ -1744,16 +1812,24 @@
          a methodology demonstration — see data-persona-open="saas". -->
   </section>
 
+  </div>
+
   <!-- ============================================================
-       SELECTED WORK — personal projects and career highlights.
-       To add a project, copy one .work-card block (in both
-       language versions) and edit the title, description, and
-       tools line.
+       PORTFOLIO TAB — merges Selected Work and Content Samples under
+       one tab, same pattern as the Expertise tab above.
        ============================================================ -->
-  <section id="work" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 04</span>Selected Work</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 04</span>Réalisations</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 04</span>Избранные работы</h2>
+  <div class="tab-panel" id="portfolio">
+    <h2 class="lang-en"><span class="h2-index">// 03</span>Portfolio</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Portfolio</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Портфолио</h2>
+
+  <!-- SELECTED WORK — personal projects and career highlights. To add
+       a project, copy one .work-card block (in both language
+       versions) and edit the title, description, and tools line. -->
+  <section id="work">
+    <h3 class="subsection-title lang-en">Selected Work</h3>
+    <h3 class="subsection-title lang-fr hidden">Réalisations</h3>
+    <h3 class="subsection-title lang-ru hidden">Избранные работы</h3>
 
     <div class="lang-en">
       <div class="work-grid">
@@ -2008,18 +2084,16 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       CONTENT SAMPLES — real LinkedIn posts created for J.Lanfranco.
+  <!-- CONTENT SAMPLES — real LinkedIn posts created for J.Lanfranco.
        Deliberately mixed formats (two JPEGs, one PDF) and content
        types (case study promo, educational infographic, product
        guide) to show range. To add a new sample: drop the image (or
        a rendered thumbnail, for a PDF) in this folder, then copy one
-       .content-card block below in all three language versions.
-       ============================================================ -->
-  <section id="content-samples" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 05</span>Content Samples</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Exemples de Contenu</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Примеры контента</h2>
+       .content-card block below in all three language versions. -->
+  <section id="content-samples" class="subsection">
+    <h3 class="subsection-title lang-en">Content Samples</h3>
+    <h3 class="subsection-title lang-fr hidden">Exemples de Contenu</h3>
+    <h3 class="subsection-title lang-ru hidden">Примеры контента</h3>
 
     <p class="section-intro lang-en">
       A selection of marketing content in different formats and types — real LinkedIn
@@ -2107,14 +2181,16 @@
     </div>
   </section>
 
+  </div>
+
   <!-- ============================================================
        DEGREES & CERTIFICATIONS — copy a .degree-block (in both
        language versions) to add a new entry.
        ============================================================ -->
   <section id="education" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 06</span>Degrees &amp; Certifications</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 06</span>Diplômes et Certifications</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 06</span>Образование и сертификаты</h2>
+    <h2 class="lang-en"><span class="h2-index">// 04</span>Degrees &amp; Certifications</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 04</span>Diplômes et Certifications</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 04</span>Образование и сертификаты</h2>
 
     <div class="lang-en">
       <div class="degree-block">
@@ -2212,9 +2288,9 @@
        once and they'll show in both languages.
        ============================================================ -->
   <section id="contact" class="tab-panel">
-    <h2 class="lang-en"><span class="h2-index">// 07</span>Contact</h2>
-    <h2 class="lang-fr hidden"><span class="h2-index">// 07</span>Contact</h2>
-    <h2 class="lang-ru hidden"><span class="h2-index">// 07</span>Контакты</h2>
+    <h2 class="lang-en"><span class="h2-index">// 05</span>Contact</h2>
+    <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Contact</h2>
+    <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Контакты</h2>
 
     <ul class="contact-list">
       <li>
@@ -2990,14 +3066,16 @@
     setLang(LANGS.indexOf(saved) !== -1 ? saved : 'fr');
   })();
 
-  // Section tabs: shows exactly one <section class="tab-panel"> at a
-  // time, hero stays fixed above. data-section-tab on each button
-  // matches the id="..." of the section it opens. Supports opening
-  // directly to a section via URL hash (e.g. a link ending in
-  // "#contact"), defaulting to the first tab otherwise.
+  // Section tabs: shows exactly one .tab-panel at a time (a <section>
+  // for single-topic tabs, a <div> wrapping two merged <section>s for
+  // grouped tabs like Expertise/Portfolio), hero stays fixed above.
+  // data-section-tab on each button matches the id="..." of the
+  // panel it opens. Supports opening directly to a section via URL
+  // hash (e.g. a link ending in "#contact"), defaulting to the first
+  // tab otherwise.
   (function () {
     var tabs = document.querySelectorAll('[data-section-tab]');
-    var panels = document.querySelectorAll('.section-panels > section.tab-panel');
+    var panels = document.querySelectorAll('.section-panels > .tab-panel');
     if (!tabs.length || !panels.length) return;
 
     function activateSection(id) {
