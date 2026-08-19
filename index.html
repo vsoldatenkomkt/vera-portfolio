@@ -236,6 +236,77 @@
     border-top: 1px solid var(--color-border);
   }
 
+  /* ---------- Section tabs (folder-tab navigation) ----------
+     The hero stays fixed above; everything below (About Me through
+     Contact) becomes one tab per section — shaped like real folder
+     tabs (angled notch top-left, like a hanging-file tab) rather
+     than flat browser-tab rectangles. Only the active tab's
+     <section> is shown. The active tab sits taller and forward
+     (higher z-index) than its neighbors, like the folder currently
+     pulled to the front of a stack. */
+  .section-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 3px;
+    margin-top: 14px;
+  }
+
+  .section-tab {
+    appearance: none;
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px 9px 26px;
+    cursor: pointer;
+    position: relative;
+    clip-path: polygon(18px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 18px);
+    transition: color 0.15s ease, padding 0.15s ease;
+  }
+
+  .section-tab:hover {
+    color: var(--color-text);
+  }
+
+  .section-tab.active {
+    background: var(--color-surface);
+    color: var(--color-accent);
+    padding-top: 13px;
+    padding-bottom: 10px;
+    margin-bottom: -1px;
+    z-index: 2;
+    box-shadow: 0 -3px 0 var(--color-accent) inset;
+  }
+
+  .section-panels {
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--color-border);
+    border-radius: 0 10px 10px 10px;
+    background: var(--color-surface);
+    padding: 4px 24px 8px;
+  }
+
+  .section-panels section.tab-panel {
+    display: none;
+    padding: 36px 0;
+    border-top: none;
+  }
+
+  .section-panels section.tab-panel.active {
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .section-panels { padding: 4px 16px 8px; }
+    .section-tab { padding: 9px 14px 8px 18px; clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12px); font-size: 12.5px; }
+    .section-tab.active { padding-top: 11px; padding-bottom: 9px; }
+  }
+
   h2 {
     display: flex;
     align-items: baseline;
@@ -1179,11 +1250,58 @@
   </header>
 
   <!-- ============================================================
+       SECTION TABS — one tab per section below. data-section-tab
+       must match the id="..." of the <section> it opens. To add a
+       new tabbed section: copy one .section-tab button (all 3
+       languages), copy one <section class="tab-panel"> block, and
+       give both the same new id/data-section-tab value.
+       ============================================================ -->
+  <div class="section-tabs" role="tablist">
+    <button type="button" class="section-tab active" data-section-tab="about">
+      <span class="lang-en">About Me</span>
+      <span class="lang-fr hidden">À propos de moi</span>
+      <span class="lang-ru hidden">Обо мне</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="skills">
+      <span class="lang-en">Skills &amp; Expertise</span>
+      <span class="lang-fr hidden">Compétences et Expertise</span>
+      <span class="lang-ru hidden">Навыки и экспертиза</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="industries">
+      <span class="lang-en">Industries</span>
+      <span class="lang-fr hidden">Secteurs d'Activité</span>
+      <span class="lang-ru hidden">Отрасли</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="work">
+      <span class="lang-en">Selected Work</span>
+      <span class="lang-fr hidden">Réalisations</span>
+      <span class="lang-ru hidden">Избранные работы</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="content-samples">
+      <span class="lang-en">Content Samples</span>
+      <span class="lang-fr hidden">Exemples de Contenu</span>
+      <span class="lang-ru hidden">Примеры контента</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="education">
+      <span class="lang-en">Degrees &amp; Certifications</span>
+      <span class="lang-fr hidden">Diplômes et Certifications</span>
+      <span class="lang-ru hidden">Образование и сертификаты</span>
+    </button>
+    <button type="button" class="section-tab" data-section-tab="contact">
+      <span class="lang-en">Contact</span>
+      <span class="lang-fr hidden">Contact</span>
+      <span class="lang-ru hidden">Контакты</span>
+    </button>
+  </div>
+
+  <div class="section-panels">
+
+  <!-- ============================================================
        ABOUT ME — edit the English block and the French block
        separately. The tag pills near the bottom are grouped the
        same way, one row per language.
        ============================================================ -->
-  <section class="about" id="about">
+  <section class="about tab-panel active" id="about">
     <h2 class="lang-en"><span class="h2-index">// 01</span>About Me</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 01</span>À propos de moi</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 01</span>Обо мне</h2>
@@ -1303,7 +1421,7 @@
        group (in all three lang-en / lang-fr / lang-ru versions).
        To add a whole new category, copy a full .skill-group block.
        ============================================================ -->
-  <section id="skills">
+  <section id="skills" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 02</span>Skills &amp; Expertise</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Compétences et Expertise</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Навыки и экспертиза</h2>
@@ -1563,7 +1681,7 @@
        a <span class="tag">...</span> in both language blocks to
        update the list.
        ============================================================ -->
-  <section id="industries">
+  <section id="industries" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 03</span>Industries</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Secteurs d'Activité</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Отрасли</h2>
@@ -1632,7 +1750,7 @@
        language versions) and edit the title, description, and
        tools line.
        ============================================================ -->
-  <section id="work">
+  <section id="work" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 04</span>Selected Work</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 04</span>Réalisations</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 04</span>Избранные работы</h2>
@@ -1898,7 +2016,7 @@
        a rendered thumbnail, for a PDF) in this folder, then copy one
        .content-card block below in all three language versions.
        ============================================================ -->
-  <section id="content-samples">
+  <section id="content-samples" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 05</span>Content Samples</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Exemples de Contenu</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Примеры контента</h2>
@@ -1993,7 +2111,7 @@
        DEGREES & CERTIFICATIONS — copy a .degree-block (in both
        language versions) to add a new entry.
        ============================================================ -->
-  <section id="education">
+  <section id="education" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 06</span>Degrees &amp; Certifications</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 06</span>Diplômes et Certifications</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 06</span>Образование и сертификаты</h2>
@@ -2093,7 +2211,7 @@
        translated; edit the actual details (address, number, links)
        once and they'll show in both languages.
        ============================================================ -->
-  <section id="contact">
+  <section id="contact" class="tab-panel">
     <h2 class="lang-en"><span class="h2-index">// 07</span>Contact</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 07</span>Contact</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 07</span>Контакты</h2>
@@ -2121,6 +2239,8 @@
       </li>
     </ul>
   </section>
+
+  </div>
 
   <footer>
     &copy; 2026 Vera Soldatenko
@@ -2868,6 +2988,32 @@
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
     setLang(LANGS.indexOf(saved) !== -1 ? saved : 'fr');
+  })();
+
+  // Section tabs: shows exactly one <section class="tab-panel"> at a
+  // time, hero stays fixed above. data-section-tab on each button
+  // matches the id="..." of the section it opens. Supports opening
+  // directly to a section via URL hash (e.g. a link ending in
+  // "#contact"), defaulting to the first tab otherwise.
+  (function () {
+    var tabs = document.querySelectorAll('[data-section-tab]');
+    var panels = document.querySelectorAll('.section-panels > section.tab-panel');
+    if (!tabs.length || !panels.length) return;
+
+    function activateSection(id) {
+      tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-section-tab') === id); });
+      panels.forEach(function (p) { p.classList.toggle('active', p.id === id); });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        activateSection(tab.getAttribute('data-section-tab'));
+      });
+    });
+
+    var ids = Array.prototype.map.call(panels, function (p) { return p.id; });
+    var hash = window.location.hash.replace('#', '');
+    activateSection(ids.indexOf(hash) !== -1 ? hash : ids[0]);
   })();
 
   // Dark mode toggle: adds/removes "dark-mode" on <html> (see the
