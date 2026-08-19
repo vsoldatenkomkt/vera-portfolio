@@ -153,30 +153,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    image: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
-    viewLink: { en: 'geo-framework.svg', fr: 'geo-framework-fr.svg' },
-    type: {
-      en: 'Strategy Infographic',
-      fr: 'Infographie Stratégique',
-      ru: 'Стратегическая инфографика'
-    },
-    title: {
-      en: 'Getting Cited by AI Search (GEO)',
-      fr: 'Être Cité par les Moteurs IA (GEO)',
-      ru: 'Цитирование в ИИ-поиске (GEO)'
-    },
-    caption: {
-      en: 'An original data-backed strategy for earning citations in AI answer engines like ChatGPT and Perplexity — built from 2026 research on B2B buyer behavior, since 73% of buyers now use AI tools to research vendors.',
-      fr: "Une stratégie originale, fondée sur des données, pour obtenir des citations dans les moteurs de réponse IA comme ChatGPT et Perplexity — construite à partir d'études 2026 sur le comportement des acheteurs B2B, puisque 73 % d'entre eux utilisent désormais l'IA pour évaluer des fournisseurs.",
-      ru: 'Оригинальная стратегия на основе данных для получения цитирований в ИИ-поисковиках вроде ChatGPT и Perplexity — построена на исследованиях 2026 года о поведении B2B-покупателей, 73% которых уже используют ИИ для оценки поставщиков.'
-    },
-    linkText: {
-      en: 'View Full Infographic',
-      fr: "Voir l'Infographie Complète",
-      ru: 'Смотреть полную инфографику'
-    }
-  },
-  {
     image: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     viewLink: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     type: {
