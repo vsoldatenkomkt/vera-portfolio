@@ -267,47 +267,33 @@
     line-height: 1.25;
   }
 
-  /* Two-tone folder glyph — a back panel (with the tab notch) and an
-     overlapping front panel, same accent hue at two opacities so it
-     reads as a real folder icon rather than a flat pictogram. Both
-     start muted; only the active tab's folder is fully colored. */
+  /* Real folder icon graphic (folder-icon.png — background removed
+     and edge-decontaminated from the uploaded folder.png, so it sits
+     cleanly on both light and dark backgrounds with no white fringe).
+     Inactive tabs are dimmed/desaturated via filter; the active tab
+     shows the icon at full, true color. */
   .section-tab-icon {
     width: 40px;
     height: 32px;
-  }
-
-  .section-tab-icon .folder-back {
-    fill: var(--color-text-muted);
-    opacity: 0.35;
-  }
-
-  .section-tab-icon .folder-front {
-    fill: var(--color-text-muted);
-    opacity: 0.55;
+    object-fit: contain;
+    filter: grayscale(0.85) opacity(0.45);
+    transition: filter 0.15s ease;
   }
 
   .section-tab:hover {
     color: var(--color-text);
   }
 
-  .section-tab:hover .section-tab-icon .folder-back,
-  .section-tab:hover .section-tab-icon .folder-front {
-    fill: var(--color-data-accent);
-    opacity: 0.85;
+  .section-tab:hover .section-tab-icon {
+    filter: grayscale(0.25) opacity(0.8);
   }
 
   .section-tab.active {
     color: var(--color-accent);
   }
 
-  .section-tab.active .section-tab-icon .folder-back {
-    fill: var(--color-accent);
-    opacity: 0.75;
-  }
-
-  .section-tab.active .section-tab-icon .folder-front {
-    fill: var(--color-accent);
-    opacity: 1;
+  .section-tab.active .section-tab-icon {
+    filter: none;
   }
 
   .section-panels {
@@ -1305,51 +1291,31 @@
        ============================================================ -->
   <div class="section-tabs" role="tablist">
     <button type="button" class="section-tab active" data-section-tab="about">
-      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
-        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
-        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
-        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
-      </svg>
+      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
       <span class="lang-en">About Me</span>
       <span class="lang-fr hidden">À propos de moi</span>
       <span class="lang-ru hidden">Обо мне</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="expertise">
-      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
-        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
-        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
-        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
-      </svg>
+      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
       <span class="lang-en">Expertise</span>
       <span class="lang-fr hidden">Expertise</span>
       <span class="lang-ru hidden">Экспертиза</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="portfolio">
-      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
-        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
-        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
-        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
-      </svg>
+      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
       <span class="lang-en">Portfolio</span>
       <span class="lang-fr hidden">Portfolio</span>
       <span class="lang-ru hidden">Портфолио</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="education">
-      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
-        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
-        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
-        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
-      </svg>
+      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
       <span class="lang-en">Credentials</span>
       <span class="lang-fr hidden">Diplômes</span>
       <span class="lang-ru hidden">Дипломы</span>
     </button>
     <button type="button" class="section-tab" data-section-tab="contact">
-      <svg class="section-tab-icon" viewBox="0 0 48 38" aria-hidden="true">
-        <rect class="folder-back" x="4" y="5" width="16" height="8" rx="3"/>
-        <rect class="folder-back" x="4" y="10" width="40" height="24" rx="4"/>
-        <rect class="folder-front" x="2" y="16" width="44" height="19" rx="4"/>
-      </svg>
+      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
       <span class="lang-en">Contact</span>
       <span class="lang-fr hidden">Contact</span>
       <span class="lang-ru hidden">Контакты</span>
