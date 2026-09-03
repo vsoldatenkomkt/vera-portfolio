@@ -96,23 +96,32 @@
     margin: 0;
   }
 
-  /* Email/LinkedIn/CV, as small minimal icon+label pills fixed to
-     the left margin. Sits level with the section-tabs ("folders")
-     row on load, then follows the user down the page once they
-     scroll past that point (see [data-side-actions] in the JS
-     further down) - it never sits any higher than the folders, so
-     it can't cover the hero photos above them.
+  /* Email/LinkedIn/CV, as small minimal icon+label pills sitting in
+     the true left margin, level with the section-tabs ("folders")
+     row. Plain normal-flow positioning (not fixed): the track below
+     breaks out to full viewport width the same way the hero does,
+     and the pills are positioned absolutely within it, so they
+     scroll away with the page exactly like the folders row does
+     rather than staying pinned to the viewport.
      Mobile positioning is a known rough edge (it can overlap the
      hero photos on narrow screens) - left as-is for now, revisit
      once the main desktop layout is settled. */
+  .side-actions-track {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    margin-left: -50vw;
+    height: 0;
+  }
+
   .side-actions {
-    position: fixed;
+    position: absolute;
+    top: 4px;
     left: 20px;
-    top: 0; /* set per-frame by JS; this is just a safe fallback before it runs */
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 39;
+    z-index: 5;
   }
 
   .icon-btn {
@@ -1268,17 +1277,18 @@
      already reads those same variables, so it re-themes on its own.
      ============================================================ */
   html.dark-mode {
-    /* Same sapphire/white-gold direction, deepened for a dark
-       background: near-black navy, a brighter sapphire accent so it
-       still pops, platinum lightened just enough to stay legible. */
-    --color-bg: #12161F;
-    --color-surface: #1A2030;
+    /* Same sapphire/white-gold direction, dimmed rather than
+       blacked-out: a soft charcoal-navy background instead of
+       near-black, a brighter sapphire accent so it still pops,
+       platinum lightened just enough to stay legible. */
+    --color-bg: #1B212C;
+    --color-surface: #232A38;
     --color-text: #E8ECF2;
-    --color-text-muted: #8B95A3;
-    --color-accent: #3A66A8;
-    --color-accent-soft: #1E2C42;
-    --color-data-accent: #9BA5B3;
-    --color-border: #262C38;
+    --color-text-muted: #9AA3B2;
+    --color-accent: #4A78BC;
+    --color-accent-soft: #263251;
+    --color-data-accent: #A6AFBD;
+    --color-border: #333D50;
   }
 
   /* Card/button elevation shadows are tinted for a light background:      on dark they'd be invisible, so dark mode swaps them for plain
@@ -1442,35 +1452,6 @@
   <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
 </div>
 
-<!-- ============================================================
-     SIDE ACTIONS: Email/LinkedIn/CV, as small icon-only buttons
-     fixed to the left margin, vertically centered, following the
-     user down the page. Minimal on purpose: icon + native tooltip
-     (title/aria-label) rather than another set of full buttons.
-     ============================================================ -->
-<div class="side-actions" data-side-actions>
-  <a class="icon-btn lang-en" href="mailto:vsoldate@icloud.com" title="Email Me" aria-label="Email Me">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
-  </a>
-  <a class="icon-btn lang-fr hidden" href="mailto:vsoldate@icloud.com" title="M'écrire" aria-label="M'écrire">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
-  </a>
-  <a class="icon-btn lang-ru hidden" href="mailto:vsoldate@icloud.com" title="Написать мне" aria-label="Написать мне">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
-  </a>
-
-  <a class="icon-btn" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M21 3l-9 9"></path><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"></path></svg></span>LinkedIn
-  </a>
-
-  <a class="icon-btn lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf" title="Download CV" aria-label="Download CV">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
-  </a>
-  <a class="icon-btn lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf" title="Télécharger le CV" aria-label="Télécharger le CV">
-    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
-  </a>
-</div>
-
 <div class="wrap">
 
   <!-- ============================================================
@@ -1508,9 +1489,9 @@
       </a>
     </div>
     <div class="hero-cascade lang-fr hidden">
-      <a class="hero-cascade-photo" href="FR_Cover Board Case Study 2021.pdf" target="_blank" rel="noopener">
-        <img src="cover-board-thumb-fr.jpg" alt="Étude de Cas Cover Board">
-        <span class="hero-cascade-caption">Étude de Cas Rail</span>
+      <a class="hero-cascade-photo" href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
+        <img src="diamond-thumb.jpg" alt="Étude de Cas Diamond Crossing">
+        <span class="hero-cascade-caption">Étude de Cas Diamond</span>
       </a>
       <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener">
         <img src="Torque.jpeg" alt="Le Rôle du Couple de Serrage">
@@ -1574,6 +1555,42 @@
 
    </div>
   </header>
+
+  <!-- ============================================================
+       SIDE ACTIONS: Email/LinkedIn/CV, as small icon-only buttons
+       sitting in the true left margin (full-bleed track, same
+       breakout trick as the hero) right at the level of the section
+       tabs below. Plain normal-flow / position:absolute inside that
+       track, not fixed: it scrolls up and away with the rest of the
+       page exactly like the section tabs do, rather than staying
+       pinned to the viewport. Minimal on purpose: icon + native
+       tooltip (title/aria-label) rather than another set of full
+       buttons.
+       ============================================================ -->
+  <div class="side-actions-track">
+    <div class="side-actions">
+      <a class="icon-btn lang-en" href="mailto:vsoldate@icloud.com" title="Email Me" aria-label="Email Me">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+      </a>
+      <a class="icon-btn lang-fr hidden" href="mailto:vsoldate@icloud.com" title="M'écrire" aria-label="M'écrire">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+      </a>
+      <a class="icon-btn lang-ru hidden" href="mailto:vsoldate@icloud.com" title="Написать мне" aria-label="Написать мне">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+      </a>
+
+      <a class="icon-btn" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M21 3l-9 9"></path><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"></path></svg></span>LinkedIn
+      </a>
+
+      <a class="icon-btn lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf" title="Download CV" aria-label="Download CV">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
+      </a>
+      <a class="icon-btn lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf" title="Télécharger le CV" aria-label="Télécharger le CV">
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
+      </a>
+    </div>
+  </div>
 
   <!-- ============================================================
        SECTION TABS: one tab per section below. data-section-tab
@@ -3951,42 +3968,6 @@
           scheduleSettle();
         }
       });
-    });
-  })();
-</script>
-
-<script>
-  // SIDE ACTIONS (Email/LinkedIn/CV): sits level with the
-  // section-tabs ("folders") row on load, then sticks near the top
-  // of the viewport once the user has scrolled past that point,
-  // like `position: sticky` but for a fixed element living outside
-  // the narrow .wrap column. Re-emulated with a scroll listener
-  // (rather than plain CSS sticky) because the true page margin
-  // isn't inside a single tall ancestor a sticky child could anchor
-  // to.
-  (function () {
-    var el = document.querySelector('[data-side-actions]');
-    var folders = document.querySelector('.section-tabs');
-    if (!el || !folders) return;
-
-    var MIN_TOP = 24;
-    var naturalDocTop = 0;
-
-    function measure() {
-      naturalDocTop = folders.getBoundingClientRect().top + window.scrollY;
-    }
-
-    function update() {
-      var top = Math.max(MIN_TOP, naturalDocTop - window.scrollY);
-      el.style.top = top + 'px';
-    }
-
-    measure();
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', function () {
-      measure();
-      update();
     });
   })();
 </script>
