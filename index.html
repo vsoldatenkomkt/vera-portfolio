@@ -78,6 +78,38 @@
     z-index: 40; /* sits below the persona drawer/overlay, which should cover it when open */
   }
 
+  /* Email/LinkedIn/CV buttons, temporarily parked top-center instead
+     of inside the hero card. Fixed + centered on wider screens;
+     drops into normal flow (a plain centered row right under the
+     mobile topbar) below 480px so it doesn't fight the fixed
+     top-controls/dog-mascot bar for space. */
+  .top-actions {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 39;
+  }
+
+  .top-actions .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    .top-actions {
+      position: static;
+      left: auto;
+      transform: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 68px 0 0;
+      padding: 0 16px;
+    }
+  }
+
   .lang-switcher {
     display: flex;
     gap: 2px;
@@ -142,74 +174,61 @@
   }
 
   /* ---------- Hero ----------
-     Editorial/business-magazine treatment: left-aligned masthead
-     instead of a centered SaaS-landing hero, real work-sample
-     photos instead of a portrait (that lives in About Me now). */
+     Masthead treatment: left-aligned name/intro, three of her best
+     pieces below it in cascading (staggered-height) columns, no
+     captions, no photo of her (that lives in About Me). */
   header.hero {
-    padding: 72px 0 56px;
+    padding: 56px 0 64px;
     text-align: left;
   }
 
   .hero-masthead {
     margin: 0 0 6px;
     font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: clamp(40px, 7.5vw, 64px);
+    font-size: clamp(36px, 6vw, 52px);
     font-weight: 700;
     letter-spacing: -0.01em;
-    line-height: 1;
+    line-height: 1.05;
     color: var(--color-text);
   }
 
-  .hero-byline {
-    max-width: 480px;
-    margin: 0 0 32px;
+  .hero-cascade {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 520px;
+    margin: 40px 0 0;
   }
 
-  .hero-work-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin: 0 0 32px;
-  }
-
-  .hero-work-strip figure {
-    margin: 0;
-  }
-
-  .hero-work-strip a {
+  .hero-cascade-photo {
     display: block;
-    text-decoration: none;
+    flex: 1 1 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(27, 58, 107, 0.14);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .hero-work-photo {
+  .hero-cascade-photo img {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: top;
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 8px 20px rgba(27, 58, 107, 0.12);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .hero-work-strip a:hover .hero-work-photo {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(27, 58, 107, 0.2);
+  .hero-cascade-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(27, 58, 107, 0.22);
   }
 
-  .hero-work-strip figcaption {
-    margin-top: 8px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--color-text-muted);
-  }
+  .hero-cascade-photo:nth-child(2) { margin-top: 28px; }
+  .hero-cascade-photo:nth-child(3) { margin-top: 56px; }
 
   @media (max-width: 480px) {
-    .hero-work-strip { gap: 8px; }
-    .hero-work-strip figcaption { font-size: 9px; letter-spacing: 0.5px; }
+    .hero-cascade { gap: 10px; }
+    .hero-cascade-photo:nth-child(2) { margin-top: 16px; }
+    .hero-cascade-photo:nth-child(3) { margin-top: 32px; }
   }
 
   /* Personal photo, now living in About Me instead of the hero
@@ -246,14 +265,6 @@
     max-width: 480px;
     color: var(--color-text-muted);
     font-size: 16px;
-  }
-
-  .hero-links {
-    margin-top: 28px;
-    display: flex;
-    justify-content: flex-start;
-    gap: 12px;
-    flex-wrap: wrap;
   }
 
   .btn {
@@ -1306,6 +1317,21 @@
 
 </div>
 
+<!-- ============================================================
+     TOP ACTIONS: the Email/LinkedIn/CV buttons, moved out of the
+     hero card to a top-center bar (fixed on wider screens, a plain
+     centered row under the mobile topbar on narrow ones). Parked
+     here "for now" per her request; revisit final placement later.
+     ============================================================ -->
+<div class="top-actions">
+  <a class="btn btn-primary lang-en" href="mailto:vsoldate@icloud.com">Email Me</a>
+  <a class="btn btn-primary lang-fr hidden" href="mailto:vsoldate@icloud.com">M'écrire</a>
+  <a class="btn btn-primary lang-ru hidden" href="mailto:vsoldate@icloud.com">Написать мне</a>
+  <a class="btn btn-secondary" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">LinkedIn</a>
+  <a class="btn btn-secondary lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">Download CV</a>
+  <a class="btn btn-secondary lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf">Télécharger le CV</a>
+</div>
+
 <div class="wrap">
 
   <!-- ============================================================
@@ -1328,100 +1354,23 @@
     <p class="tagline lang-fr hidden">Responsable Marketing B2B</p>
     <p class="tagline lang-ru hidden">Менеджер по B2B-маркетингу</p>
 
-    <div class="hero-byline">
-      <p class="intro lang-en">
-        I help B2B industrial companies design clear stories around complex products,
-        evaluate what's actually working, and organize scattered marketing efforts into
-        a coherent, consistent brand presence.
-      </p>
-      <p class="intro lang-fr hidden">
-        J'aide les entreprises B2B industrielles à concevoir des histoires claires
-        autour de produits complexes, à évaluer ce qui fonctionne vraiment, et à
-        organiser des efforts marketing dispersés en une présence de marque cohérente
-        et homogène.
-      </p>
-      <p class="intro lang-ru hidden">
-        Я помогаю промышленным B2B-компаниям создавать понятные истории о сложных
-        продуктах, оценивать, что действительно работает, и организовывать
-        разрозненные маркетинговые усилия в целостное, последовательное присутствие
-        бренда.
-      </p>
-    </div>
-
-    <!-- Editorial photo strip: real work-sample thumbnails (same
-         assets used in Content Samples), not a photo of her, for a
-         business-magazine feel. Swap or reorder by editing the 3
-         <a> blocks below (one per language, since captions and the
-         FR-localized SVGs differ). -->
-    <div class="hero-work-strip lang-en">
-      <a href="cs.jpeg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="cs.jpeg" alt="Mining Case Study Announcement">
-          <figcaption>Case Study Promo</figcaption>
-        </figure>
-      </a>
-      <a href="hubspot-workflow.svg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="hubspot-workflow.svg" alt="B2B Lead Nurture &amp; Sales Handoff (HubSpot)">
-          <figcaption>Automation Example</figcaption>
-        </figure>
-      </a>
-      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Diamond Crossing Case Study">
-          <figcaption>Case Study (PDF)</figcaption>
-        </figure>
-      </a>
-    </div>
-    <div class="hero-work-strip lang-fr hidden">
-      <a href="cs.jpeg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="cs.jpeg" alt="Annonce d'Étude de Cas : Mines">
-          <figcaption>Promotion d'Étude de Cas</figcaption>
-        </figure>
-      </a>
-      <a href="hubspot-workflow-fr.svg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="hubspot-workflow-fr.svg" alt="Nurturing et Transfert des Leads B2B (HubSpot)">
-          <figcaption>Exemple d'Automatisation</figcaption>
-        </figure>
-      </a>
-      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Étude de Cas Diamond Crossing">
-          <figcaption>Étude de Cas (PDF)</figcaption>
-        </figure>
-      </a>
-    </div>
-    <div class="hero-work-strip lang-ru hidden">
-      <a href="cs.jpeg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="cs.jpeg" alt="Анонс кейса для горнодобывающей отрасли">
-          <figcaption>Промо кейса</figcaption>
-        </figure>
-      </a>
-      <a href="hubspot-workflow.svg" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="hubspot-workflow.svg" alt="Взращивание и передача B2B-лидов (HubSpot)">
-          <figcaption>Пример автоматизации</figcaption>
-        </figure>
-      </a>
-      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
-        <figure>
-          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Кейс Diamond Crossing">
-          <figcaption>Кейс (PDF)</figcaption>
-        </figure>
-      </a>
-    </div>
-
-    <div class="hero-links">
-      <a class="btn btn-primary lang-en" href="mailto:vsoldate@icloud.com">Email Me</a>
-      <a class="btn btn-primary lang-fr hidden" href="mailto:vsoldate@icloud.com">M'écrire</a>
-      <a class="btn btn-primary lang-ru hidden" href="mailto:vsoldate@icloud.com">Написать мне</a>
-      <a class="btn btn-secondary" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-secondary lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">Download CV</a>
-      <a class="btn btn-secondary lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf">Télécharger le CV</a>
-    </div>
+    <p class="intro lang-en">
+      I help B2B industrial companies design clear stories around complex products,
+      evaluate what's actually working, and organize scattered marketing efforts into
+      a coherent, consistent brand presence.
+    </p>
+    <p class="intro lang-fr hidden">
+      J'aide les entreprises B2B industrielles à concevoir des histoires claires
+      autour de produits complexes, à évaluer ce qui fonctionne vraiment, et à
+      organiser des efforts marketing dispersés en une présence de marque cohérente
+      et homogène.
+    </p>
+    <p class="intro lang-ru hidden">
+      Я помогаю промышленным B2B-компаниям создавать понятные истории о сложных
+      продуктах, оценивать, что действительно работает, и организовывать
+      разрозненные маркетинговые усилия в целостное, последовательное присутствие
+      бренда.
+    </p>
 
     <p class="hero-credentials lang-fr hidden">Évaluée par <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a></p>
 
@@ -1435,6 +1384,15 @@
       <span class="hero-hashtag">#proximité</span>
       <span class="hero-hashtag">#principe</span>
       <span class="hero-hashtag">#bienveillante</span>
+    </div>
+
+    <!-- Three of her best pieces, cascading (staggered heights),
+         unlabeled: swap by editing the 3 <a> tags below. Same set
+         for every language since there's no caption to translate. -->
+    <div class="hero-cascade">
+      <a class="hero-cascade-photo" href="Cover Board Case Study 2021.pdf" target="_blank" rel="noopener"><img src="cover-board-thumb.jpg" alt=""></a>
+      <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener"><img src="Torque.jpeg" alt=""></a>
+      <a class="hero-cascade-photo" href="Event .jpeg" target="_blank" rel="noopener"><img src="Event .jpeg" alt=""></a>
     </div>
 
   </header>
