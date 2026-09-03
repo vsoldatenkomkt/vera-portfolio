@@ -2230,6 +2230,23 @@
       <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">View Example Persona</button>
     </div>
 
+    <div class="lang-en industries-subsection">
+      <p class="skill-group-title">Example: Renewable Energy SaaS Buyer Persona</p>
+      <p class="section-intro">
+        Another illustrative example (not a claim of direct experience), applying
+        the same ICP and buyer-persona methodology to a renewable energy asset
+        management SaaS category:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">CleanTech</span>
+        <span class="tag">Renewable Energy</span>
+        <span class="tag">Asset Management SaaS</span>
+        <span class="tag">Vertical SaaS</span>
+        <span class="tag">ABM</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="renewable">View Example Persona</button>
+    </div>
+
     <div class="lang-fr hidden industries-subsection">
       <p class="skill-group-title">Exemple : Profil d'Acheteur SaaS B2B</p>
       <p class="section-intro">
@@ -2248,6 +2265,23 @@
       <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">Voir l'Exemple de Profil</button>
     </div>
 
+    <div class="lang-fr hidden industries-subsection">
+      <p class="skill-group-title">Exemple : Profil d'Acheteur SaaS Énergies Renouvelables</p>
+      <p class="section-intro">
+        Un autre exemple illustratif (et non une expérience directe), appliquant la
+        même méthodologie ICP et profils d'acheteurs à une catégorie SaaS de
+        gestion d'actifs en énergies renouvelables :
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">CleanTech</span>
+        <span class="tag">Énergies Renouvelables</span>
+        <span class="tag">SaaS de Gestion d'Actifs</span>
+        <span class="tag">SaaS Vertical</span>
+        <span class="tag">ABM</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="renewable">Voir l'Exemple de Profil</button>
+    </div>
+
     <div class="lang-ru hidden industries-subsection">
       <p class="skill-group-title">Пример: портрет покупателя B2B SaaS</p>
       <p class="section-intro">
@@ -2264,6 +2298,23 @@
         <span class="tag">CRM и технологии продаж</span>
       </div>
       <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="saas">Посмотреть пример портрета</button>
+    </div>
+
+    <div class="lang-ru hidden industries-subsection">
+      <p class="skill-group-title">Пример: портрет покупателя SaaS в возобновляемой энергетике</p>
+      <p class="section-intro">
+        Ещё один иллюстративный пример (а не прямой опыт), применяющий тот же
+        подход к ICP и портретам покупателей в категории SaaS для управления
+        активами возобновляемой энергетики:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">CleanTech</span>
+        <span class="tag">Возобновляемая энергетика</span>
+        <span class="tag">SaaS для управления активами</span>
+        <span class="tag">Отраслевой SaaS</span>
+        <span class="tag">ABM</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="renewable">Посмотреть пример портрета</button>
     </div>
   </section>
 
@@ -2431,11 +2482,11 @@
 </div>
 
 <!-- ============================================================
-     IDEAL BUYER PERSONAS: slide-in drawer, currently holding three
-     personas (Rail, Mining, SaaS), opened from the trigger buttons
-     in the Industries section. Each trigger button has a
-     data-persona-open="rail|mining|saas" value so it opens straight
-     to the right tab instead of whatever was last active.
+     IDEAL BUYER PERSONAS: slide-in drawer, currently holding four
+     personas (Rail, Mining, SaaS, Renewable Energy), opened from the
+     trigger buttons in the Industries section. Each trigger button has a
+     data-persona-open="rail|mining|saas|renewable" value so it opens
+     straight to the right tab instead of whatever was last active.
      To add another persona:
      1. Copy one .persona-tab button below and give it a new
         data-persona-tab="your-id" value.
@@ -2473,6 +2524,11 @@
       <span class="lang-en">SaaS</span>
       <span class="lang-fr hidden">SaaS</span>
       <span class="lang-ru hidden">SaaS</span>
+    </button>
+    <button type="button" class="persona-tab" data-persona-tab="renewable">
+      <span class="lang-en">Renewable Energy</span>
+      <span class="lang-fr hidden">Énergies Renouvelables</span>
+      <span class="lang-ru hidden">Возобновляемая энергетика</span>
     </button>
   </div>
 
@@ -3089,6 +3145,211 @@
         <div class="persona-block">
           <h4>Био</h4>
           <p>Камиль унаследовала CRM, которым никто не пользовался, и отдел продаж, незаметно вернувшийся к таблицам. Теперь она оценивает инструменты не по списку функций, а по одному вопросу: будут ли менеджеры реально этим пользоваться? Её уже обжигало ПО, которое отлично смотрелось на демо и было заброшено через месяц после запуска.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RENEWABLE ENERGY SAAS PERSONA: illustrative example, asset
+         management/commercial software for renewable energy portfolios. -->
+    <div class="persona-card" data-persona="renewable">
+      <div class="lang-en">
+        <span class="persona-badge">Illustrative Example (Not a Client Persona)</span>
+        <div class="persona-top">
+          <div class="persona-avatar">FL</div>
+          <div>
+            <p class="persona-name">Freya Lindberg</p>
+            <p class="persona-role">Renewable Energy Asset Manager</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Industry</span>Renewable Energy: Asset &amp; Portfolio Management</li>
+          <li><span class="fact-label">Company Type</span>Independent power producer / renewable energy investment fund, mid-size wind &amp; solar portfolio</li>
+          <li><span class="fact-label">Team Size</span>5–15 person asset management team</li>
+          <li><span class="fact-label">Buying Role</span>Champion &amp; Budget Owner</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Needs</h4>
+            <ul>
+              <li>One centralized view of commercial performance (availability, PPA revenue, market exposure) across a growing multi-site portfolio</li>
+              <li>Faster, more consistent investor and board reporting, without manually reconciling spreadsheets and separate monitoring tools</li>
+              <li>Revenue and forecasting numbers reliable enough to support real commercial decisions, not just technical monitoring</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Portfolio data scattered across spreadsheets, emails, and site-level monitoring platforms that don't talk to each other</li>
+              <li>Reporting season means days lost reconciling numbers instead of analyzing them</li>
+              <li>Past tools were built for O&amp;M and technical monitoring, not commercial decision-making</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Decision Style</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Data-Driven</span><span>Relationship-Driven</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Risk-Averse</span><span>Risk-Tolerant</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:40%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Detail-Oriented</span><span>Big-Picture</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Goals</h4>
+          <ul>
+            <li>Consolidate commercial asset data onto one platform that both investors and internal teams trust</li>
+            <li>Cut investor reporting time from days to hours</li>
+            <li>Extract more value from the existing portfolio through faster, better commercial decisions, without adding headcount</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Freya manages a growing portfolio of wind and solar assets for a mid-size independent power producer. She's spent the past two years stitching together spreadsheets and exports from half a dozen monitoring tools just to answer basic questions about portfolio performance. She's less interested in another dashboard and more interested in one she can hand straight to investors without re-checking the numbers first.</p>
+        </div>
+      </div>
+
+      <div class="lang-fr hidden">
+        <span class="persona-badge">Exemple Illustratif (Pas un Profil Client)</span>
+        <div class="persona-top">
+          <div class="persona-avatar">FL</div>
+          <div>
+            <p class="persona-name">Freya Lindberg</p>
+            <p class="persona-role">Responsable Actifs Énergies Renouvelables</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Secteur</span>Énergies Renouvelables : Gestion d'Actifs et de Portefeuille</li>
+          <li><span class="fact-label">Type d'Entreprise</span>Producteur indépendant d'électricité / fonds d'investissement en énergies renouvelables, portefeuille éolien et solaire de taille intermédiaire</li>
+          <li><span class="fact-label">Taille d'Équipe</span>Équipe de gestion d'actifs de 5 à 15 personnes</li>
+          <li><span class="fact-label">Rôle d'Achat</span>Sponsor Interne et Responsable Budgétaire</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Besoins</h4>
+            <ul>
+              <li>Une vue centralisée unique de la performance commerciale (disponibilité, revenus PPA, exposition au marché) sur un portefeuille multi-sites en croissance</li>
+              <li>Un reporting investisseurs et conseil d'administration plus rapide et cohérent, sans réconciliation manuelle de tableurs et d'outils de supervision séparés</li>
+              <li>Des chiffres de revenus et de prévisions assez fiables pour appuyer de vraies décisions commerciales, pas seulement du suivi technique</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Frustrations</h4>
+            <ul>
+              <li>Données du portefeuille dispersées entre tableurs, e-mails et plateformes de supervision au niveau des sites, qui ne communiquent pas entre elles</li>
+              <li>La période de reporting fait perdre des jours à réconcilier les chiffres plutôt qu'à les analyser</li>
+              <li>Les outils précédents étaient conçus pour la maintenance et la supervision technique, pas pour la décision commerciale</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Style de Décision</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Axé Données</span><span>Axé Relation</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Prudent</span><span>Preneur de Risque</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:40%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Orienté Détail</span><span>Vue d'Ensemble</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Objectifs</h4>
+          <ul>
+            <li>Consolider les données commerciales des actifs sur une seule plateforme, fiable pour les investisseurs comme pour les équipes internes</li>
+            <li>Réduire le temps de reporting investisseurs de plusieurs jours à quelques heures</li>
+            <li>Extraire plus de valeur du portefeuille existant grâce à des décisions commerciales plus rapides et plus solides, sans augmenter les effectifs</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Bio</h4>
+          <p>Freya gère un portefeuille croissant d'actifs éoliens et solaires pour un producteur indépendant d'électricité de taille intermédiaire. Ces deux dernières années, elle a passé son temps à assembler des tableurs et des exports venant d'une demi-douzaine d'outils de supervision, juste pour répondre à des questions simples sur la performance du portefeuille. Elle ne cherche pas un tableau de bord de plus, mais un tableau de bord qu'elle peut transmettre directement aux investisseurs sans devoir revérifier les chiffres.</p>
+        </div>
+      </div>
+
+      <div class="lang-ru hidden">
+        <span class="persona-badge">Иллюстративный пример (не профиль клиента)</span>
+        <div class="persona-top">
+          <div class="persona-avatar">FL</div>
+          <div>
+            <p class="persona-name">Фрея Линдберг</p>
+            <p class="persona-role">Менеджер по активам возобновляемой энергетики</p>
+          </div>
+        </div>
+
+        <ul class="persona-facts">
+          <li><span class="fact-label">Отрасль</span>Возобновляемая энергетика: управление активами и портфелем</li>
+          <li><span class="fact-label">Тип компании</span>Независимый производитель электроэнергии / инвестиционный фонд возобновляемой энергетики, портфель ветровых и солнечных активов среднего размера</li>
+          <li><span class="fact-label">Размер команды</span>Команда управления активами 5–15 человек</li>
+          <li><span class="fact-label">Роль в закупке</span>Внутренний сторонник и ответственный за бюджет</li>
+        </ul>
+
+        <div class="persona-columns">
+          <div class="persona-col">
+            <h4>Потребности</h4>
+            <ul>
+              <li>Единое централизованное представление коммерческой эффективности (доступность, выручка по PPA, рыночная экспозиция) по растущему портфелю из нескольких площадок</li>
+              <li>Более быстрая и последовательная отчётность для инвесторов и совета директоров без ручной сверки таблиц и разрозненных систем мониторинга</li>
+              <li>Цифры по выручке и прогнозам, достаточно точные для реальных коммерческих решений, а не только технического мониторинга</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <h4>Проблемы</h4>
+            <ul>
+              <li>Данные портфеля разбросаны по таблицам, письмам и системам мониторинга на уровне отдельных площадок, которые не связаны между собой</li>
+              <li>Сезон отчётности означает потерю нескольких дней на сверку цифр вместо их анализа</li>
+              <li>Предыдущие инструменты создавались для технического обслуживания и мониторинга, а не для коммерческих решений</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Стиль принятия решений</h4>
+          <div class="decision-row">
+            <div class="decision-labels"><span>На основе данных</span><span>На основе отношений</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:20%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Избегающий риска</span><span>Толерантный к риску</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:40%;"></div></div>
+          </div>
+          <div class="decision-row">
+            <div class="decision-labels"><span>Ориентирован на детали</span><span>Ориентирован на картину в целом</span></div>
+            <div class="decision-track"><div class="decision-dot" style="left:25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="persona-block">
+          <h4>Цели</h4>
+          <ul>
+            <li>Объединить коммерческие данные об активах на одной платформе, которой доверяют и инвесторы, и внутренние команды</li>
+            <li>Сократить время подготовки отчётности для инвесторов с нескольких дней до нескольких часов</li>
+            <li>Извлечь больше ценности из существующего портфеля за счёт более качественных и быстрых коммерческих решений, не увеличивая штат</li>
+          </ul>
+        </div>
+
+        <div class="persona-block">
+          <h4>Био</h4>
+          <p>Фрея управляет растущим портфелем ветровых и солнечных активов для независимого производителя электроэнергии среднего размера. Последние два года она собирала данные из таблиц и выгрузок из полудюжины систем мониторинга, просто чтобы ответить на базовые вопросы о результативности портфеля. Её интересует не ещё одна панель показателей, а такая, которую можно сразу передать инвесторам, не перепроверяя цифры.</p>
         </div>
       </div>
     </div>
