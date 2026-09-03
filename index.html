@@ -43,6 +43,10 @@
 
   body {
     margin: 0;
+    /* The hero's full-bleed breakout (100vw + negative margins) can
+       overhang by a few px on some browsers; clip it here instead
+       of letting it add a stray horizontal scrollbar. */
+    overflow-x: hidden;
     background-color: var(--color-bg);
     /* Faint dot-grid texture: a subtle nod to dashboards/data tools.
        Delete this background-image line to go back to a flat background. */
@@ -78,36 +82,94 @@
     z-index: 40; /* sits below the persona drawer/overlay, which should cover it when open */
   }
 
-  /* Email/LinkedIn/CV buttons, temporarily parked top-center instead
-     of inside the hero card. Fixed + centered on wider screens;
-     drops into normal flow (a plain centered row right under the
-     mobile topbar) below 480px so it doesn't fight the fixed
+  /* "Open to opportunities" badge, parked top-center instead of
+     inside the hero card. Fixed + centered on wider screens; drops
+     into normal flow (a plain centered row right under the mobile
+     topbar) below 480px so it doesn't fight the fixed
      top-controls/dog-mascot bar for space. */
-  .top-actions {
+  .top-status {
     position: fixed;
     top: 16px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
     z-index: 39;
   }
 
-  .top-actions .btn {
-    padding: 8px 16px;
-    font-size: 13px;
+  .top-status .hero-badge {
+    margin: 0;
   }
 
   @media (max-width: 480px) {
-    .top-actions {
+    .top-status {
       position: static;
       left: auto;
       transform: none;
+      display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       margin: 68px 0 0;
       padding: 0 16px;
     }
+  }
+
+  /* Email/LinkedIn/CV, as small minimal icon+label pills fixed to
+     the left margin, vertically centered, following the user down
+     the page instead of living inside the hero card or a top bar.
+     Mobile positioning is a known rough edge (it can overlap the
+     hero photos on narrow screens) - left as-is for now, revisit
+     once the main desktop layout is settled. */
+  .side-actions {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 39;
+  }
+
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 34px;
+    padding: 0 14px 0 0;
+    border-radius: 999px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    color: var(--color-text-muted);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .icon-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .icon-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon-btn:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .side-actions { left: 10px; gap: 8px; }
+    .icon-btn { height: 30px; padding-right: 12px; font-size: 11.5px; }
+    .icon-btn-icon { width: 30px; height: 30px; }
+    .icon-btn svg { width: 14px; height: 14px; }
   }
 
   .lang-switcher {
@@ -174,39 +236,69 @@
   }
 
   /* ---------- Hero ----------
-     Masthead treatment: left-aligned name/intro, three of her best
-     pieces below it in cascading (staggered-height) columns, no
-     captions, no photo of her (that lives in About Me). */
+     Masthead treatment: title in the big wordmark spot, three of
+     her best pieces edge-to-edge below it (cascading heights,
+     bottom-left captions), then her name and the intro text. No
+     photo of her here (that lives in About Me).
+     Breaks out of the narrow .wrap column (full-bleed, like the
+     rest of the breakout techniques on this page) so it reads as a
+     portfolio opener, not another paragraph in the document below;
+     an inner wrapper caps it at a wider-than-.wrap-but-not-endless
+     width so it doesn't sprawl on huge monitors. */
   header.hero {
-    padding: 56px 0 64px;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 104px 24px 64px;
+    box-sizing: border-box;
     text-align: left;
   }
 
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    header.hero { padding-left: 40px; padding-right: 40px; }
+  }
+
   .hero-masthead {
-    margin: 0 0 6px;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: clamp(36px, 6vw, 52px);
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     line-height: 1.05;
+    color: var(--color-accent);
+  }
+
+  .hero-name {
+    margin: 32px 0 6px;
+    font-family: var(--font-body);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     color: var(--color-text);
   }
 
   .hero-cascade {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
-    max-width: 520px;
-    margin: 40px 0 0;
+    gap: 0;
+    max-width: 100%;
+    margin: 32px 0 0;
   }
 
   .hero-cascade-photo {
+    position: relative;
     display: block;
     flex: 1 1 0;
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(27, 58, 107, 0.14);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .hero-cascade-photo img {
@@ -215,20 +307,64 @@
     aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: top;
+    transition: transform 0.3s ease;
   }
 
-  .hero-cascade-photo:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 28px rgba(27, 58, 107, 0.22);
+  /* Third column reads shorter, like the reference: same top edge,
+     less height, instead of every card matching. */
+  .hero-cascade-photo:nth-child(3) img {
+    aspect-ratio: 3 / 3.1;
   }
 
-  .hero-cascade-photo:nth-child(2) { margin-top: 28px; }
-  .hero-cascade-photo:nth-child(3) { margin-top: 56px; }
+  .hero-cascade-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 40%);
+    pointer-events: none;
+  }
 
+  .hero-cascade-caption {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    z-index: 1;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  .hero-cascade-photo:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Below this width there's no room for three side-by-side
+     columns, so the cascade becomes a swipeable horizontal
+     slideshow instead: one card at a time, the next one peeking at
+     the edge, scroll-snapped so it settles cleanly per swipe. */
   @media (max-width: 480px) {
-    .hero-cascade { gap: 10px; }
-    .hero-cascade-photo:nth-child(2) { margin-top: 16px; }
-    .hero-cascade-photo:nth-child(3) { margin-top: 32px; }
+    .hero-cascade {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 12px;
+      max-width: none;
+      margin: 28px -24px 0;
+      padding: 0 24px 4px;
+      scrollbar-width: none;
+    }
+    .hero-cascade::-webkit-scrollbar { display: none; }
+
+    .hero-cascade-photo {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+    }
+
+    .hero-cascade-photo:nth-child(3) img {
+      aspect-ratio: 3 / 4;
+    }
   }
 
   /* Personal photo, now living in About Me instead of the hero
@@ -249,15 +385,6 @@
     font-size: 40px;
     font-weight: 400;
     color: var(--color-text);
-  }
-
-  .tagline {
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: var(--color-accent);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
   }
 
   .intro {
@@ -1318,18 +1445,43 @@
 </div>
 
 <!-- ============================================================
-     TOP ACTIONS: the Email/LinkedIn/CV buttons, moved out of the
-     hero card to a top-center bar (fixed on wider screens, a plain
-     centered row under the mobile topbar on narrow ones). Parked
-     here "for now" per her request; revisit final placement later.
+     TOP STATUS: the "open to opportunities" badge, moved out of
+     the hero to a top-center bar (fixed on wider screens, a plain
+     centered row under the mobile topbar on narrow ones).
      ============================================================ -->
-<div class="top-actions">
-  <a class="btn btn-primary lang-en" href="mailto:vsoldate@icloud.com">Email Me</a>
-  <a class="btn btn-primary lang-fr hidden" href="mailto:vsoldate@icloud.com">M'écrire</a>
-  <a class="btn btn-primary lang-ru hidden" href="mailto:vsoldate@icloud.com">Написать мне</a>
-  <a class="btn btn-secondary" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">LinkedIn</a>
-  <a class="btn btn-secondary lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">Download CV</a>
-  <a class="btn btn-secondary lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf">Télécharger le CV</a>
+<div class="top-status">
+  <p class="hero-badge lang-en"><span class="badge-dot"></span>Open to B2B Marketing opportunities</p>
+  <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
+  <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
+</div>
+
+<!-- ============================================================
+     SIDE ACTIONS: Email/LinkedIn/CV, as small icon-only buttons
+     fixed to the left margin, vertically centered, following the
+     user down the page. Minimal on purpose: icon + native tooltip
+     (title/aria-label) rather than another set of full buttons.
+     ============================================================ -->
+<div class="side-actions">
+  <a class="icon-btn lang-en" href="mailto:vsoldate@icloud.com" title="Email Me" aria-label="Email Me">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+  </a>
+  <a class="icon-btn lang-fr hidden" href="mailto:vsoldate@icloud.com" title="M'écrire" aria-label="M'écrire">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+  </a>
+  <a class="icon-btn lang-ru hidden" href="mailto:vsoldate@icloud.com" title="Написать мне" aria-label="Написать мне">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
+  </a>
+
+  <a class="icon-btn" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M21 3l-9 9"></path><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"></path></svg></span>LinkedIn
+  </a>
+
+  <a class="icon-btn lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf" title="Download CV" aria-label="Download CV">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
+  </a>
+  <a class="icon-btn lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf" title="Télécharger le CV" aria-label="Télécharger le CV">
+    <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>CV
+  </a>
 </div>
 
 <div class="wrap">
@@ -1341,18 +1493,65 @@
        language: nothing else needs to change.
        ============================================================ -->
   <header class="hero">
+   <div class="hero-inner">
 
-    <p class="hero-badge lang-en"><span class="badge-dot"></span>Open to B2B Marketing opportunities</p>
-    <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
-    <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
+    <!-- Title takes the big masthead spot (where a brand wordmark
+         would sit); her name comes after the photo strip instead,
+         see below. -->
+    <p class="hero-masthead lang-en">B2B Marketing Manager</p>
+    <p class="hero-masthead lang-fr hidden">Responsable Marketing B2B</p>
+    <p class="hero-masthead lang-ru hidden">Менеджер по B2B-маркетингу</p>
 
-    <h1 class="hero-masthead lang-en">Vera Soldatenko</h1>
-    <h1 class="hero-masthead lang-fr hidden">Vera Soldatenko</h1>
-    <h1 class="hero-masthead lang-ru hidden">Вера Солдатенко</h1>
+    <!-- Three of her best pieces, cascading heights, captioned
+         bottom-left over each photo: swap by editing the 3 <a>
+         blocks per language below (image files are the same across
+         languages, only the caption text changes). -->
+    <div class="hero-cascade lang-en">
+      <a class="hero-cascade-photo" href="Cover Board Case Study 2021.pdf" target="_blank" rel="noopener">
+        <img src="cover-board-thumb.jpg" alt="Cover Board Case Study">
+        <span class="hero-cascade-caption">Rail Case Study</span>
+      </a>
+      <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener">
+        <img src="Torque.jpeg" alt="The Role of Torque in Fastening">
+        <span class="hero-cascade-caption">Torque Infographic</span>
+      </a>
+      <a class="hero-cascade-photo" href="Event .jpeg" target="_blank" rel="noopener">
+        <img src="Event .jpeg" alt="Event Sponsorship Graphic">
+        <span class="hero-cascade-caption">Event Sponsorship</span>
+      </a>
+    </div>
+    <div class="hero-cascade lang-fr hidden">
+      <a class="hero-cascade-photo" href="FR_Cover Board Case Study 2021.pdf" target="_blank" rel="noopener">
+        <img src="cover-board-thumb-fr.jpg" alt="Étude de Cas Cover Board">
+        <span class="hero-cascade-caption">Étude de Cas Rail</span>
+      </a>
+      <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener">
+        <img src="Torque.jpeg" alt="Le Rôle du Couple de Serrage">
+        <span class="hero-cascade-caption">Infographie Technique</span>
+      </a>
+      <a class="hero-cascade-photo" href="Event .jpeg" target="_blank" rel="noopener">
+        <img src="Event .jpeg" alt="Visuel de Sponsoring d'Événement">
+        <span class="hero-cascade-caption">Sponsoring d'Événement</span>
+      </a>
+    </div>
+    <div class="hero-cascade lang-ru hidden">
+      <a class="hero-cascade-photo" href="Cover Board Case Study 2021.pdf" target="_blank" rel="noopener">
+        <img src="cover-board-thumb.jpg" alt="Кейс Cover Board">
+        <span class="hero-cascade-caption">Кейс: железная дорога</span>
+      </a>
+      <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener">
+        <img src="Torque.jpeg" alt="Роль момента затяжки в крепеже">
+        <span class="hero-cascade-caption">Техническая инфографика</span>
+      </a>
+      <a class="hero-cascade-photo" href="Event .jpeg" target="_blank" rel="noopener">
+        <img src="Event .jpeg" alt="Промо спонсорства мероприятия">
+        <span class="hero-cascade-caption">Спонсорство мероприятия</span>
+      </a>
+    </div>
 
-    <p class="tagline lang-en">B2B Marketing Manager</p>
-    <p class="tagline lang-fr hidden">Responsable Marketing B2B</p>
-    <p class="tagline lang-ru hidden">Менеджер по B2B-маркетингу</p>
+    <h1 class="hero-name lang-en">Vera Soldatenko</h1>
+    <h1 class="hero-name lang-fr hidden">Vera Soldatenko</h1>
+    <h1 class="hero-name lang-ru hidden">Вера Солдатенко</h1>
 
     <p class="intro lang-en">
       I help B2B industrial companies design clear stories around complex products,
@@ -1386,15 +1585,7 @@
       <span class="hero-hashtag">#bienveillante</span>
     </div>
 
-    <!-- Three of her best pieces, cascading (staggered heights),
-         unlabeled: swap by editing the 3 <a> tags below. Same set
-         for every language since there's no caption to translate. -->
-    <div class="hero-cascade">
-      <a class="hero-cascade-photo" href="Cover Board Case Study 2021.pdf" target="_blank" rel="noopener"><img src="cover-board-thumb.jpg" alt=""></a>
-      <a class="hero-cascade-photo" href="Torque.jpeg" target="_blank" rel="noopener"><img src="Torque.jpeg" alt=""></a>
-      <a class="hero-cascade-photo" href="Event .jpeg" target="_blank" rel="noopener"><img src="Event .jpeg" alt=""></a>
-    </div>
-
+   </div>
   </header>
 
   <!-- ============================================================
