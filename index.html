@@ -83,45 +83,32 @@
   }
 
   /* "Open to opportunities" badge, parked top-center instead of
-     inside the hero card. Fixed + centered on wider screens; drops
-     into normal flow (a plain centered row right under the mobile
-     topbar) below 480px so it doesn't fight the fixed
-     top-controls/dog-mascot bar for space. */
+     inside the hero card. Plain normal-flow content, not fixed: it
+     scrolls away with the rest of the hero, since the information
+     it carries doesn't need to stay on screen the whole time. */
   .top-status {
-    position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 39;
+    display: flex;
+    justify-content: center;
+    padding: 76px 16px 0;
   }
 
   .top-status .hero-badge {
     margin: 0;
   }
 
-  @media (max-width: 480px) {
-    .top-status {
-      position: static;
-      left: auto;
-      transform: none;
-      display: flex;
-      justify-content: center;
-      margin: 68px 0 0;
-      padding: 0 16px;
-    }
-  }
-
   /* Email/LinkedIn/CV, as small minimal icon+label pills fixed to
-     the left margin, vertically centered, following the user down
-     the page instead of living inside the hero card or a top bar.
+     the left margin. Sits level with the section-tabs ("folders")
+     row on load, then follows the user down the page once they
+     scroll past that point (see [data-side-actions] in the JS
+     further down) - it never sits any higher than the folders, so
+     it can't cover the hero photos above them.
      Mobile positioning is a known rough edge (it can overlap the
      hero photos on narrow screens) - left as-is for now, revisit
      once the main desktop layout is settled. */
   .side-actions {
     position: fixed;
     left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0; /* set per-frame by JS; this is just a safe fallback before it runs */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -252,7 +239,7 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    padding: 104px 24px 64px;
+    padding: 40px 24px 64px;
     box-sizing: border-box;
     text-align: left;
   }
@@ -1461,7 +1448,7 @@
      user down the page. Minimal on purpose: icon + native tooltip
      (title/aria-label) rather than another set of full buttons.
      ============================================================ -->
-<div class="side-actions">
+<div class="side-actions" data-side-actions>
   <a class="icon-btn lang-en" href="mailto:vsoldate@icloud.com" title="Email Me" aria-label="Email Me">
     <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>Email
   </a>
@@ -3950,7 +3937,7 @@
     }, { passive: true });
 
     // Any button on the page: stand up and bark while hovered.
-    var hoverTargets = document.querySelectorAll('button, a.btn');
+    var hoverTargets = document.querySelectorAll('button, a.btn, a.icon-btn');
     hoverTargets.forEach(function (el) {
       el.addEventListener('mouseenter', function () {
         hoverCount++;
@@ -3964,6 +3951,42 @@
           scheduleSettle();
         }
       });
+    });
+  })();
+</script>
+
+<script>
+  // SIDE ACTIONS (Email/LinkedIn/CV): sits level with the
+  // section-tabs ("folders") row on load, then sticks near the top
+  // of the viewport once the user has scrolled past that point,
+  // like `position: sticky` but for a fixed element living outside
+  // the narrow .wrap column. Re-emulated with a scroll listener
+  // (rather than plain CSS sticky) because the true page margin
+  // isn't inside a single tall ancestor a sticky child could anchor
+  // to.
+  (function () {
+    var el = document.querySelector('[data-side-actions]');
+    var folders = document.querySelector('.section-tabs');
+    if (!el || !folders) return;
+
+    var MIN_TOP = 24;
+    var naturalDocTop = 0;
+
+    function measure() {
+      naturalDocTop = folders.getBoundingClientRect().top + window.scrollY;
+    }
+
+    function update() {
+      var top = Math.max(MIN_TOP, naturalDocTop - window.scrollY);
+      el.style.top = top + 'px';
+    }
+
+    measure();
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function () {
+      measure();
+      update();
     });
   })();
 </script>
