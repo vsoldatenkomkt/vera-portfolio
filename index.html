@@ -3981,8 +3981,13 @@
 
 <!-- Content Samples data lives in content-data.js, loaded as a plain
      script (not fetched as JSON) so it also works when this page is
-     opened directly as a file, with no local server. -->
-<script src="content-data.js"></script>
+     opened directly as a file, with no local server. The "?v=" is a
+     cache-buster: some browsers (Chrome in particular) will keep
+     serving an old cached copy of this file indefinitely even after
+     index.html itself updates, silently breaking anything that
+     depends on it (like the hero carousel below). Bump the number
+     any time content-data.js changes. -->
+<script src="content-data.js?v=2"></script>
 
 <script>
   // Builds the "// 05 Content Samples" cards from CONTENT_SAMPLES
