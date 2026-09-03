@@ -364,11 +364,14 @@
   }
 
   /* Personal photo, now living in About Me instead of the hero
-     (the hero uses work-sample photos for an editorial feel). */
+     (the hero uses work-sample photos for an editorial feel).
+     Centered, sitting before the section heading rather than
+     alongside the body text. */
   .about-photo {
+    display: block;
     width: 110px;
     height: 110px;
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--color-border);
@@ -432,17 +435,74 @@
     border-top: 1px solid var(--color-border);
   }
 
-  /* ---------- Section tabs (folder-icon navigation) ----------
+  /* ---------- Section tabs (folder-window navigation) ----------
      The hero stays fixed above; everything below (About Me through
      Contact) becomes one folder-icon tile per section, in a
      responsive grid: auto-fill wraps cleanly into aligned rows at
      any width instead of a ragged tab strip. Only the active tile's
-     <section> is shown below. */
+     <section> is shown below.
+     The whole thing is dressed up as a little OS file-browser window
+     (titlebar with traffic-light dots + a path breadcrumb) and
+     widened to match the hero's full-bleed width via the same
+     breakout trick, rather than staying capped at the narrow .wrap
+     column like the content below it. */
+  .folder-window-track {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    margin-left: -50vw;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 640px) {
+    .folder-window-track { padding-left: 40px; padding-right: 40px; }
+  }
+
+  .folder-window {
+    max-width: 960px;
+    margin: 16px auto 0;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    padding: 14px;
+  }
+
+  /* Styled like a system file-browser's path/address bar: a plain
+     rounded pill with a folder icon and the current path, no window
+     chrome (no traffic-light dots, no buttons) - just the bar. */
+  .folder-window-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .folder-window-path-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  .folder-window-path {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .section-tabs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 14px;
   }
 
   .section-tab {
@@ -1593,43 +1653,55 @@
   </div>
 
   <!-- ============================================================
-       SECTION TABS: one tab per section below. data-section-tab
-       must match the id="..." of the <section> it opens. To add a
-       new tabbed section: copy one .section-tab button (all 3
-       languages), copy one <section class="tab-panel"> block, and
-       give both the same new id/data-section-tab value.
+       SECTION TABS: styled as a folder-window / file-browser chrome
+       (titlebar with traffic-light dots + a path breadcrumb, folder
+       tiles as the "contents"), full-bleed to match the hero's
+       width via the same breakout trick. One tab per section below;
+       data-section-tab must match the id="..." of the <section> it
+       opens. To add a new tabbed section: copy one .section-tab
+       button (all 3 languages), copy one <section class="tab-panel">
+       block, add a LABELS entry in the folder-path JS further down,
+       and give all three the same new id/data-section-tab value.
        ============================================================ -->
-  <div class="section-tabs" role="tablist">
-    <button type="button" class="section-tab active" data-section-tab="about">
-      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
-      <span class="lang-en">About Me</span>
-      <span class="lang-fr hidden">À propos de moi</span>
-      <span class="lang-ru hidden">Обо мне</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="expertise">
-      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
-      <span class="lang-en">Expertise</span>
-      <span class="lang-fr hidden">Expertise</span>
-      <span class="lang-ru hidden">Экспертиза</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="portfolio">
-      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
-      <span class="lang-en">Portfolio</span>
-      <span class="lang-fr hidden">Portfolio</span>
-      <span class="lang-ru hidden">Портфолио</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="education">
-      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
-      <span class="lang-en">Credentials</span>
-      <span class="lang-fr hidden">Diplômes</span>
-      <span class="lang-ru hidden">Дипломы</span>
-    </button>
-    <button type="button" class="section-tab" data-section-tab="contact">
-      <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
-      <span class="lang-en">Contact</span>
-      <span class="lang-fr hidden">Contact</span>
-      <span class="lang-ru hidden">Контакты</span>
-    </button>
+  <div class="folder-window-track">
+   <div class="folder-window">
+    <div class="folder-window-titlebar">
+      <svg class="folder-window-path-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"></path></svg>
+      <span class="folder-window-path" data-folder-path>systemfiles/About Me</span>
+    </div>
+    <div class="section-tabs" role="tablist">
+      <button type="button" class="section-tab active" data-section-tab="about">
+        <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
+        <span class="lang-en">About Me</span>
+        <span class="lang-fr hidden">À propos de moi</span>
+        <span class="lang-ru hidden">Обо мне</span>
+      </button>
+      <button type="button" class="section-tab" data-section-tab="expertise">
+        <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
+        <span class="lang-en">Expertise</span>
+        <span class="lang-fr hidden">Expertise</span>
+        <span class="lang-ru hidden">Экспертиза</span>
+      </button>
+      <button type="button" class="section-tab" data-section-tab="portfolio">
+        <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
+        <span class="lang-en">Portfolio</span>
+        <span class="lang-fr hidden">Portfolio</span>
+        <span class="lang-ru hidden">Портфолио</span>
+      </button>
+      <button type="button" class="section-tab" data-section-tab="education">
+        <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
+        <span class="lang-en">Credentials</span>
+        <span class="lang-fr hidden">Diplômes</span>
+        <span class="lang-ru hidden">Дипломы</span>
+      </button>
+      <button type="button" class="section-tab" data-section-tab="contact">
+        <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
+        <span class="lang-en">Contact</span>
+        <span class="lang-fr hidden">Contact</span>
+        <span class="lang-ru hidden">Контакты</span>
+      </button>
+    </div>
+   </div>
   </div>
 
   <div class="section-panels">
@@ -1640,11 +1712,11 @@
        same way, one row per language.
        ============================================================ -->
   <section class="about tab-panel active" id="about">
+    <img class="about-photo" src="PP.PNG" alt="Vera Soldatenko">
+
     <h2 class="lang-en"><span class="h2-index">// 01</span>About Me</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 01</span>À propos de moi</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 01</span>Обо мне</h2>
-
-    <img class="about-photo" src="PP.PNG" alt="Vera Soldatenko">
 
     <div class="lang-en">
       <p>
@@ -3733,6 +3805,41 @@
     var ids = Array.prototype.map.call(panels, function (p) { return p.id; });
     var hash = window.location.hash.replace('#', '');
     activateSection(ids.indexOf(hash) !== -1 ? hash : ids[0]);
+  })();
+
+  // Folder-window path breadcrumb: "systemfiles/<current tab>" in
+  // the path bar, kept in sync with whichever tab and language are
+  // active. Listens on the same buttons as the section-tabs and
+  // language-switcher scripts above rather than editing their
+  // closures, so it just needs a LABELS entry when a new tab is added.
+  (function () {
+    var pathEl = document.querySelector('[data-folder-path]');
+    if (!pathEl) return;
+
+    var LABELS = {
+      about: { en: 'About Me', fr: 'À propos de moi', ru: 'Обо мне' },
+      expertise: { en: 'Expertise', fr: 'Expertise', ru: 'Экспертиза' },
+      portfolio: { en: 'Portfolio', fr: 'Portfolio', ru: 'Портфолио' },
+      education: { en: 'Credentials', fr: 'Diplômes', ru: 'Дипломы' },
+      contact: { en: 'Contact', fr: 'Contact', ru: 'Контакты' }
+    };
+
+    function update() {
+      var langBtn = document.querySelector('.lang-btn.active');
+      var lang = langBtn ? langBtn.getAttribute('data-lang-btn') : 'en';
+      var tabBtn = document.querySelector('.section-tab.active');
+      var tab = tabBtn ? tabBtn.getAttribute('data-section-tab') : 'about';
+      var label = (LABELS[tab] && LABELS[tab][lang]) || '';
+      pathEl.textContent = 'systemfiles/' + label;
+    }
+
+    document.querySelectorAll('[data-section-tab]').forEach(function (t) {
+      t.addEventListener('click', update);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
+      b.addEventListener('click', update);
+    });
+    update();
   })();
 
   // Back-to-top buttons at the bottom of each tab-panel: scroll to the
