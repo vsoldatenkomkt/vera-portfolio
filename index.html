@@ -306,8 +306,13 @@
     transition: transform 0.3s ease;
   }
 
-  /* Third column reads shorter, like the reference: same top edge,
-     less height, instead of every card matching. */
+  /* True cascade: each column a different height (same top edge),
+     stepping down left to right, instead of just the last one
+     differing from a matching pair. */
+  .hero-cascade-photo:nth-child(2) img {
+    aspect-ratio: 3 / 3.55;
+  }
+
   .hero-cascade-photo:nth-child(3) img {
     aspect-ratio: 3 / 3.1;
   }
@@ -358,6 +363,7 @@
       scroll-snap-align: start;
     }
 
+    .hero-cascade-photo:nth-child(2) img,
     .hero-cascade-photo:nth-child(3) img {
       aspect-ratio: 3 / 4;
     }
