@@ -177,3 +177,87 @@ var CONTENT_SAMPLES = [
     }
   }
 ];
+
+// ============================================================
+// HERO CAROUSEL: the static "coverflow" photo carousel at the top
+// of the desktop hero reads this list and picks 5 random items on
+// every page load (see the render script near the end of
+// index.html). image/viewLink follow the same rules as above:
+// a plain filename, or an { en, fr, ru } object for a localized
+// asset (falls back to en for any language left out).
+// ============================================================
+
+var HERO_CAROUSEL_ITEMS = [
+  {
+    image: 'Torque.jpeg',
+    viewLink: 'Torque.jpeg',
+    caption: {
+      en: 'Torque Infographic',
+      fr: 'Infographie Technique',
+      ru: 'Техническая инфографика'
+    }
+  },
+  {
+    image: 'Event .jpeg',
+    viewLink: 'Event .jpeg',
+    caption: {
+      en: 'Event Sponsorship',
+      fr: "Sponsoring d'Événement",
+      ru: 'Спонсорство мероприятия'
+    }
+  },
+  {
+    image: 'imp v met.jpeg',
+    viewLink: 'imp v met.jpeg',
+    caption: {
+      en: 'Imperial vs. Metric Infographic',
+      fr: 'Infographie Impérial vs Métrique',
+      ru: 'Инфографика: дюймы и метры'
+    }
+  },
+  {
+    image: 'cs.jpeg',
+    viewLink: 'cs.jpeg',
+    caption: {
+      en: 'Case Study Announcement',
+      fr: "Annonce d'Étude de Cas",
+      ru: 'Анонс кейса'
+    }
+  },
+  {
+    image: { en: 'cover-board-thumb.jpg', fr: 'cover-board-thumb-fr.jpg' },
+    viewLink: { en: 'Cover Board Case Study 2021.pdf', fr: 'FR_Cover Board Case Study 2021.pdf' },
+    caption: {
+      en: 'Rail Case Study',
+      fr: 'Étude de Cas Ferroviaire',
+      ru: 'Кейс: железная дорога'
+    }
+  },
+  {
+    image: 'ptorque-thumb.jpg',
+    viewLink: 'Ptorque.pdf',
+    caption: {
+      en: 'Locknut Product Guide',
+      fr: 'Guide Produit',
+      ru: 'Гайд по продукту'
+    }
+  },
+  {
+    image: 'how-it-works-thumb.jpg',
+    viewLink: 'HOW IT WORK-EN-V1.0.pdf',
+    caption: {
+      en: 'How It Works Guide',
+      fr: 'Guide "Comment ça marche"',
+      ru: 'Гайд «Как это работает»'
+    }
+  },
+  {
+    image: 'surface-treatments-thumb.jpg',
+    viewLink: 'Surface treatments.pdf',
+    caption: {
+      en: 'Surface Treatments Guide',
+      fr: 'Guide des Traitements de Surface',
+      ru: 'Гайд по обработке поверхности'
+    }
+  }
+];
