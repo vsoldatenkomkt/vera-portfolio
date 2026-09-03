@@ -82,32 +82,27 @@
     z-index: 40; /* sits below the persona drawer/overlay, which should cover it when open */
   }
 
-  /* "Open to opportunities" status, living in the top-right corner
-     of the About Me card instead of floating anywhere near the
-     hero/nav (that caused overlap at in-between widths no matter
-     where it was pinned). Desktop only - the mobile hero already
-     shows the same text plainly inside .hero-mobile-text, so it's
-     not repeated here on mobile. */
-  .about-status {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  /* "Open to opportunities" status, centered under the hero headline
+     on desktop (the mobile hero already shows the same text plainly
+     inside .hero-mobile-text, so it's not repeated here on mobile -
+     this block only exists inside .hero-desktop-only). Same small
+     sizing it had when it lived in the About Me corner. */
+  .hero-status {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
   }
 
-  .about-status .hero-badge {
+  .hero-status .hero-badge {
     margin: 0;
     font-size: 11px;
     padding: 4px 12px 4px 9px;
     gap: 6px;
   }
 
-  .about-status .badge-dot {
+  .hero-status .badge-dot {
     width: 6px;
     height: 6px;
-  }
-
-  @media (max-width: 640px) {
-    .about-status { display: none; }
   }
 
   /* Email/LinkedIn/CV, as small minimal icon+label pills in the true
@@ -570,13 +565,13 @@
      alongside the body text. */
   .about-photo {
     display: block;
-    width: 110px;
-    height: 110px;
+    width: 168px;
+    height: 168px;
     margin: 0 auto 24px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--color-border);
-    box-shadow: 0 0 0 6px var(--color-accent-soft), 0 12px 28px rgba(46, 63, 115, 0.16);
+    box-shadow: 0 0 0 8px var(--color-accent-soft), 0 14px 32px rgba(46, 63, 115, 0.18);
   }
 
   h1 {
@@ -904,10 +899,6 @@
 
   @media (max-width: 480px) {
     .hero-badge { font-size: 12px; padding: 5px 14px 5px 11px; }
-  }
-
-  .about {
-    position: relative;
   }
 
   /* At the site's wider max-width, a left-hugging text block left a
@@ -1792,6 +1783,12 @@
       выстраивать <strong>единое, последовательное присутствие бренда</strong>.
     </h1>
 
+    <div class="hero-status">
+      <p class="hero-badge lang-en"><span class="badge-dot"></span>Open to B2B Marketing opportunities</p>
+      <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
+      <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
+    </div>
+
     <p class="hero-credentials lang-fr hidden">Évaluée par <a href="DRIVE.pdf" target="_blank" rel="noopener">AssessFirst</a></p>
 
     <div class="hero-hashtags lang-fr hidden">
@@ -1970,12 +1967,6 @@
        same way, one row per language.
        ============================================================ -->
   <section class="about tab-panel active" id="about">
-    <div class="about-status">
-      <p class="hero-badge lang-en"><span class="badge-dot"></span>Open to B2B Marketing opportunities</p>
-      <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
-      <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
-    </div>
-
     <img class="about-photo" src="PP.PNG" alt="Vera Soldatenko">
 
     <div class="about-content">
