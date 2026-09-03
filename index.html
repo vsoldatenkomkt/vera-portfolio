@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vera Soldatenko — B2B Marketing Specialist</title>
+<title>Vera Soldatenko | B2B Marketing Specialist</title>
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -32,7 +32,7 @@
     --color-text-muted: #5B6572;
     --color-accent: #1B3A6B;      /* headings, links, buttons */
     --color-accent-soft: #E6ECF5; /* tag backgrounds */
-    --color-data-accent: #6B7684; /* white-gold/platinum — section numbers, persona dot only */
+    --color-data-accent: #6B7684; /* white-gold/platinum: section numbers, persona dot only */
     --color-border: #E1E5EA;
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -44,7 +44,7 @@
   body {
     margin: 0;
     background-color: var(--color-bg);
-    /* Faint dot-grid texture — a subtle nod to dashboards/data tools.
+    /* Faint dot-grid texture: a subtle nod to dashboards/data tools.
        Delete this background-image line to go back to a flat background. */
     background-image: radial-gradient(circle, rgba(27, 58, 107, 0.06) 1px, transparent 1px);
     background-size: 22px 22px;
@@ -65,7 +65,7 @@
   .hidden { display: none !important; }
 
   /* ---------- Language switcher ---------- */
-  /* Shared fixed top-right wrapper — holds the dark-mode toggle and
+  /* Shared fixed top-right wrapper: holds the dark-mode toggle and
      the language switcher side by side. Add anything else that
      belongs in that corner as another flex child here. */
   .top-controls {
@@ -107,8 +107,7 @@
 
   /* ---------- Dark mode toggle ----------
      A sun/moon icon button next to the language switcher. Both icons
-     live in the DOM at all times; CSS just shows one or the other —
-     moon in light mode ("click to go dark"), sun in dark mode
+     live in the DOM at all times; CSS just shows one or the other:      moon in light mode ("click to go dark"), sun in dark mode
      ("click to go back to light"). */
   .theme-toggle-btn {
     display: flex;
@@ -246,7 +245,7 @@
   /* ---------- Section tabs (folder-icon navigation) ----------
      The hero stays fixed above; everything below (About Me through
      Contact) becomes one folder-icon tile per section, in a
-     responsive grid — auto-fill wraps cleanly into aligned rows at
+     responsive grid: auto-fill wraps cleanly into aligned rows at
      any width instead of a ragged tab strip. Only the active tile's
      <section> is shown below. */
   .section-tabs {
@@ -274,7 +273,7 @@
     line-height: 1.25;
   }
 
-  /* Real folder icon graphic (folder-icon.png — background removed
+  /* Real folder icon graphic (folder-icon.png: background removed
      and edge-decontaminated from the uploaded folder.png, so it sits
      cleanly on both light and dark backgrounds with no white fringe).
      Inactive tabs are dimmed/desaturated via filter; the active tab
@@ -329,7 +328,7 @@
     display: block;
   }
 
-  /* Back-to-top control at the bottom of each tab-panel — only
+  /* Back-to-top control at the bottom of each tab-panel: only
      useful once a panel is long enough to need scrolling, but shown
      on all of them for consistency (harmless on short ones). */
   .back-to-top {
@@ -389,7 +388,7 @@
 
   /* Sub-heading for a topic folded into a merged tab (e.g. "Skills &
      Expertise" and "Industries" both live inside the Expertise tab).
-     Deliberately not an <h2> / .h2-index — those are reserved for the
+     Deliberately not an <h2> / .h2-index: those are reserved for the
      tab's own top-level heading. */
   .subsection-title {
     font-size: 19px;
@@ -399,7 +398,7 @@
   }
 
   /* ---------- Hero status badge ----------
-     A small SaaS-landing-page-style pill above the name — a live
+     A small SaaS-landing-page-style pill above the name: a live
      status indicator (pulsing dot + short text) rather than the old
      terminal-prompt flourish. Signals she's actively open to roles. */
   .hero-badge {
@@ -475,10 +474,10 @@
 
   /* ---------- Hero assessment credentials ----------
      Deliberately understated: just the evaluator name as a quiet
-     link to the real PDF (DRIVE.pdf) — no score callouts, no
+     link to the real PDF (DRIVE.pdf): no score callouts, no
      explanation of what it is. Recruiters who use AssessFirst will
      recognize the name; nobody else needs it explained. Her AKSIS
-     marketing-assessment results aren't linked as a PDF — instead,
+     marketing-assessment results aren't linked as a PDF: instead,
      the competencies it tested are folded into the Strategy &
      Leadership skill group below (Marketing Strategy & Planning,
      Market Research, Segmentation & Targeting, Positioning &
@@ -502,7 +501,7 @@
     border-bottom-color: var(--color-accent);
   }
 
-  /* Real hashtags from the AssessFirst DRIVE report — kept in French
+  /* Real hashtags from the AssessFirst DRIVE report: kept in French
      across all site languages since they're literal tags from the
      certified PDF. Deliberately muted (not the bold sapphire .tag
      style used elsewhere) so this stays a quiet detail, not a
@@ -597,8 +596,8 @@
   /* ---------- Content samples (LinkedIn posts) ----------
      These are real social posts in mixed native shapes (square,
      tall portrait, PDF-page), so a uniform crop is needed for the
-     row to look consistent. Cropped to the top of each image — that's
-     where the headline/branding sits — with a "View Full ..." link
+     row to look consistent. Cropped to the top of each image: that's
+     where the headline/branding sits: with a "View Full ..." link
      in each card for anyone who wants the whole thing uncropped. */
   .content-grid {
     display: grid;
@@ -725,7 +724,7 @@
   }
 
   /* On desktop the wrapper around the dog and the top-right controls
-     is invisible to layout (display: contents) — both keep behaving
+     is invisible to layout (display: contents): both keep behaving
      exactly as independent fixed-position elements. On mobile it
      becomes a real full-width bar instead, see below: content
      scrolling underneath was showing through the gaps around both
@@ -1082,7 +1081,7 @@
   }
 
   /* ============================================================
-     DARK MODE — toggled by the sun/moon button next to the language
+     DARK MODE: toggled by the sun/moon button next to the language
      switcher. Adding "dark-mode" to <html> re-points every color
      token below to a dark palette; everything else on the page
      already reads those same variables, so it re-themes on its own.
@@ -1101,8 +1100,7 @@
     --color-border: #262C38;
   }
 
-  /* Card/button elevation shadows are tinted for a light background —
-     on dark they'd be invisible, so dark mode swaps them for plain
+  /* Card/button elevation shadows are tinted for a light background:      on dark they'd be invisible, so dark mode swaps them for plain
      black at higher opacity instead of re-deriving a whole shadow
      system. */
   html.dark-mode .work-card,
@@ -1136,7 +1134,7 @@
   }
 
   /* Only the platinum data-accent is light enough to still need dark
-     text on top of it in dark mode — the sapphire accent is
+     text on top of it in dark mode: the sapphire accent is
      dark/saturated enough that white button/badge text stays readable. */
   html.dark-mode .persona-subtab.active {
     color: #12161F;
@@ -1156,8 +1154,7 @@
   }
 
   /* ---------- Dog mascot (top-left) ----------
-     Stays visible for the whole page, the entire time you scroll —
-     it's a fixed companion, not just a hero flourish. It sits while
+     Stays visible for the whole page, the entire time you scroll:      it's a fixed companion, not just a hero flourish. It sits while
      idle, stands and wags its tail while you're actively scrolling,
      and "barks" (mouth animation only, no sound) when you hover any
      button. A plain sprite, no background/circle. Sits below the
@@ -1197,22 +1194,22 @@
 <body>
 
 <!-- ============================================================
-     DOG MASCOT — top-left corner, visible the whole time you're on
+     DOG MASCOT: top-left corner, visible the whole time you're on
      the page. Sits while idle, stands up and wags its tail while
      you're actively scrolling (sits back down a moment after you
-     stop, wherever that is on the page), and "barks" — just a mouth
-     animation, no sound — while hovering any button (see the JS at
+     stop, wherever that is on the page), and "barks": just a mouth
+     animation, no sound: while hovering any button (see the JS at
      the bottom of the page). Four pixel-art frames: dog-sit.png,
      dog-stand-1.png / dog-stand-2.png (alternate for the tail wag),
      and dog-bark.png (alternates with dog-stand-1.png for the bark).
      They all share the same canvas size so pose changes don't jump
-     around — swap any of the four files to change the look.
+     around: swap any of the four files to change the look.
      ============================================================ -->
 <!-- ============================================================
      MOBILE-TOPBAR wraps the dog mascot and the top-right controls.
      On desktop it's inert (display: contents) so both keep behaving
      as independent fixed-position elements, unchanged. Only under
-     the 420px breakpoint does it become a real full-width bar — see
+     the 420px breakpoint does it become a real full-width bar: see
      .mobile-topbar in the CSS above.
      ============================================================ -->
 <div class="mobile-topbar">
@@ -1222,7 +1219,7 @@
   </div>
 
   <!-- ============================================================
-       TOP-RIGHT CONTROLS — dark-mode toggle and language switcher,
+       TOP-RIGHT CONTROLS: dark-mode toggle and language switcher,
        side by side, always visible. This is where people expect to
        find both. To add a fourth language later, duplicate a
        lang-en / lang-fr / lang-ru trio (see comments below) for every
@@ -1256,10 +1253,10 @@
 <div class="wrap">
 
   <!-- ============================================================
-       HERO — name, photo, one-line tagline
+       HERO: name, photo, one-line tagline
        Wherever you see a "lang-en" block and matching "lang-fr" /
        "lang-ru" blocks right below it, edit each in its own
-       language — nothing else needs to change.
+       language: nothing else needs to change.
        ============================================================ -->
   <header class="hero">
 
@@ -1321,7 +1318,7 @@
   </header>
 
   <!-- ============================================================
-       SECTION TABS — one tab per section below. data-section-tab
+       SECTION TABS: one tab per section below. data-section-tab
        must match the id="..." of the <section> it opens. To add a
        new tabbed section: copy one .section-tab button (all 3
        languages), copy one <section class="tab-panel"> block, and
@@ -1363,7 +1360,7 @@
   <div class="section-panels">
 
   <!-- ============================================================
-       ABOUT ME — edit the English block and the French block
+       ABOUT ME: edit the English block and the French block
        separately. The tag pills near the bottom are grouped the
        same way, one row per language.
        ============================================================ -->
@@ -1375,7 +1372,7 @@
     <div class="lang-en">
       <p>
         I'm a polyvalent B2B marketing specialist with five years of experience across
-        industrial sectors — rail, energy, mining, aerospace. On the content side,
+        industrial sectors: rail, energy, mining, aerospace. On the content side,
         that's case studies, white papers, organic social growth, and branded sales
         materials. On the operations side, it's running paid campaigns, showing up at
         trade shows, and keeping the CRM running for the sales team day to day. I'm as
@@ -1384,9 +1381,9 @@
       </p>
 
       <p>
-        I care about doing more with less — finding the more efficient way to get
+        I care about doing more with less (finding the more efficient way to get
         something done, whether that's a smarter workflow or a sharper piece of
-        content — and I'm currently building on that instinct by developing deeper
+        content), and I'm currently building on that instinct by developing deeper
         skills in CRM systems, marketing engineering, and GEO / AI search
         optimization.
       </p>
@@ -1411,7 +1408,7 @@
     <div class="lang-fr hidden">
       <p>
         Je suis une spécialiste marketing B2B polyvalente avec cinq ans d'expérience
-        dans des secteurs industriels — ferroviaire, énergie, mines, aérospatiale. Côté
+        dans des secteurs industriels : ferroviaire, énergie, mines, aérospatiale. Côté
         contenu, cela va des études de cas et livres blancs à la croissance organique
         des réseaux sociaux et aux supports commerciaux de marque. Côté opérationnel,
         cela couvre le pilotage de campagnes payantes, la présence sur les salons
@@ -1422,9 +1419,9 @@
       </p>
 
       <p>
-        Je crois qu'il faut faire plus avec moins — trouver la façon la plus efficace
+        Je crois qu'il faut faire plus avec moins (trouver la façon la plus efficace
         de faire les choses, qu'il s'agisse d'un workflow plus intelligent ou d'un
-        contenu plus percutant — et je développe actuellement cet instinct en
+        contenu plus percutant), et je développe actuellement cet instinct en
         approfondissant mes compétences en systèmes CRM, en marketing engineering,
         et en optimisation pour les moteurs de réponse IA (GEO).
       </p>
@@ -1449,19 +1446,19 @@
     <div class="lang-ru hidden">
       <p>
         Я разносторонний специалист по B2B-маркетингу с пятилетним опытом работы в
-        промышленных отраслях — железнодорожной, энергетической, горнодобывающей,
-        аэрокосмической. Со стороны контента — это кейсы, лонгриды (white papers),
+        промышленных отраслях: железнодорожной, энергетической, горнодобывающей,
+        аэрокосмической. Со стороны контента, это кейсы, лонгриды (white papers),
         органический рост в соцсетях и брендированные коммерческие материалы. Со
-        стороны операционной работы — это платные кампании, присутствие на выставках
+        стороны операционной работы, это платные кампании, присутствие на выставках
         и повседневная работа с CRM в поддержку отдела продаж. Мне одинаково
         комфортно писать кейс, выстраивать контент-календарь или готовить
         отчётность по эффективности кампаний.
       </p>
 
       <p>
-        Мне важно делать больше меньшими средствами — находить более эффективный
+        Мне важно делать больше меньшими средствами (находить более эффективный
         способ выполнить задачу, будь то более продуманный рабочий процесс или более
-        точный контент — и сейчас я развиваю этот подход, углубляя навыки работы с
+        точный контент), и сейчас я развиваю этот подход, углубляя навыки работы с
         CRM-системами, маркетинговой инженерией и оптимизацией под ИИ-поиск (GEO).
       </p>
 
@@ -1492,7 +1489,7 @@
   </section>
 
   <!-- ============================================================
-       EXPERTISE TAB — merges Skills & Expertise and Industries under
+       EXPERTISE TAB: merges Skills & Expertise and Industries under
        one tab. Each keeps its own .subsection-title; only the outer
        div carries the tab's real // 02 heading.
        ============================================================ -->
@@ -1501,7 +1498,7 @@
     <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Expertise</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Экспертиза</h2>
 
-  <!-- SKILLS & EXPERTISE — grouped by category. To add a skill, copy
+  <!-- SKILLS & EXPERTISE: grouped by category. To add a skill, copy
        a <span class="tag">...</span> inside the matching group (in
        all three lang-en / lang-fr / lang-ru versions). To add a whole
        new category, copy a full .skill-group block. -->
@@ -1760,7 +1757,7 @@
     </div>
   </section>
 
-  <!-- INDUSTRIES — sectors served at J.Lanfranco. Add or remove a
+  <!-- INDUSTRIES: sectors served at J.Lanfranco. Add or remove a
        <span class="tag">...</span> in both language blocks to update
        the list. -->
   <section id="industries" class="subsection">
@@ -1823,7 +1820,7 @@
     <!-- The B2B SaaS illustrative-persona example used to live here as
          a subsection of Industries, but that framed it like real work
          history. It's now down in Content Samples, clearly labeled as
-         a methodology demonstration — see data-persona-open="saas". -->
+         a methodology demonstration: see data-persona-open="saas". -->
   </section>
 
   <button type="button" class="back-to-top" data-scroll-top>
@@ -1835,7 +1832,7 @@
   </div>
 
   <!-- ============================================================
-       PORTFOLIO TAB — merges Selected Work and Content Samples under
+       PORTFOLIO TAB: merges Selected Work and Content Samples under
        one tab, same pattern as the Expertise tab above.
        ============================================================ -->
   <div class="tab-panel" id="portfolio">
@@ -1843,7 +1840,7 @@
     <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Portfolio</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Портфолио</h2>
 
-  <!-- SELECTED WORK — personal projects and career highlights. To add
+  <!-- SELECTED WORK: personal projects and career highlights. To add
        a project, copy one .work-card block (in both language
        versions) and edit the title, description, and tools line. -->
   <section id="work">
@@ -1854,11 +1851,11 @@
     <div class="lang-en">
       <div class="work-grid">
         <div class="work-card">
-          <h3>Content Manager Agent — Personal Project</h3>
+          <h3>Content Manager Agent, Personal Project</h3>
           <p>
             Designed an AI-assisted automation system that analyzes a recurring
-            marketing workflow from first principles — mapping dependencies,
-            decision points, and failure modes — then automates it end-to-end.
+            marketing workflow from first principles (mapping dependencies,
+            decision points, and failure modes), then automates it end-to-end.
             Human input is only needed for judgment calls or output verification.
             Built while completing Profound University's marketing engineering
             program, as a hands-on example of evaluating and building no-code/AI
@@ -1871,7 +1868,7 @@
           <h3>CRM Selection &amp; Management</h3>
           <p>
             Identified the need for a new CRM, researched options, and
-            proposed Pipedrive — then led the migration, trained the sales
+            proposed Pipedrive, then led the migration, trained the sales
             team, and kept managing it afterward: clean data entry,
             integrations, and the filters and tags the team actually needed.
             Result: faster follow-ups, fewer lost quotes, full daily
@@ -1883,7 +1880,7 @@
         <div class="work-card">
           <h3>Organic LinkedIn Growth</h3>
           <p>
-            Built a LinkedIn content strategy from the ground up — dashboards,
+            Built a LinkedIn content strategy from the ground up: dashboards,
             analytics tracking, and short-form content translating technical
             product info into infographics. When the focus shifted to organic
             reach, tracked engagement by topic and format to see what
@@ -1897,7 +1894,7 @@
           <h3>Resource Hub &amp; SEO</h3>
           <p>
             Took full ownership of the resource hub's content through
-            backend access — planned it, wrote and published everything, ran
+            backend access: planned it, wrote and published everything, ran
             the SEO, and handled the French translation. The hub now hosts
             case studies, white papers, company news, and product catalogues
             in English and French. Result: almost 800 views since launch,
@@ -1911,7 +1908,7 @@
           <p>
             Designed Zoho-based landing pages accessed via QR code for trade
             show visitors, paired with automated email cadences that tracked
-            open rates and adapted content to ICP profiles — freeing the team
+            open rates and adapted content to ICP profiles, freeing the team
             to focus on customers while follow-ups ran in the background.
           </p>
           <p class="work-tools">Tools: Zoho, Marketing Automation</p>
@@ -1932,9 +1929,9 @@
         <div class="work-card">
           <h3>Multi-Channel Marketing Collateral</h3>
           <p>
-            Produced marketing content across formats — social posts, videos,
+            Produced marketing content across formats (social posts, videos,
             paid ads, website banners, trade show displays and backdrops,
-            catalogues, and magazine ads — plus team and event photography,
+            catalogues, and magazine ads), plus team and event photography,
             keeping branding consistent across every channel.
           </p>
           <p class="work-tools">Tools: Adobe InDesign, Adobe Illustrator, Video Production</p>
@@ -1956,12 +1953,12 @@
     <div class="lang-fr hidden">
       <div class="work-grid">
         <div class="work-card">
-          <h3>Content Manager Agent — Projet Personnel</h3>
+          <h3>Content Manager Agent, Projet Personnel</h3>
           <p>
             Conception d'un système d'automatisation assisté par IA qui analyse
-            un flux de travail marketing récurrent à partir de zéro — en
+            un flux de travail marketing récurrent à partir de zéro (en
             cartographiant les dépendances, points de décision et modes de
-            défaillance — puis l'automatise de bout en bout. Une intervention
+            défaillance), puis l'automatise de bout en bout. Une intervention
             humaine n'est nécessaire que pour les décisions ou la vérification
             des résultats. Réalisé dans le cadre du programme de marketing
             engineering de Profound University, comme exemple concret
@@ -1975,7 +1972,7 @@
           <h3>Choix et Gestion du CRM</h3>
           <p>
             Identifié le besoin d'un nouveau CRM, étudié les options et
-            proposé Pipedrive — puis piloté la migration, formé l'équipe
+            proposé Pipedrive, puis piloté la migration, formé l'équipe
             commerciale, et continué à gérer l'outil ensuite : saisie de
             données propre, intégrations, et les filtres et tags dont
             l'équipe avait réellement besoin. Résultat : délais de
@@ -1987,7 +1984,7 @@
         <div class="work-card">
           <h3>Croissance Organique LinkedIn</h3>
           <p>
-            Élaboration d'une stratégie de contenu LinkedIn à partir de zéro —
+            Élaboration d'une stratégie de contenu LinkedIn à partir de zéro :
             tableaux de bord, suivi analytique et contenus courts traduisant des
             informations techniques en infographies. Lorsque l'accent s'est
             déplacé vers la croissance organique, suivi de l'engagement par
@@ -2002,7 +1999,7 @@
           <h3>Page Ressources et SEO</h3>
           <p>
             Prise en charge complète du contenu du centre de ressources via
-            l'accès back-end — planifié, rédigé et publié le tout, géré le
+            l'accès back-end : planifié, rédigé et publié le tout, géré le
             SEO, et assuré la traduction en français. Le centre héberge
             aujourd'hui études de cas, livres blancs, actualités et
             catalogues produits en anglais et en français. Résultat : près
@@ -2019,7 +2016,7 @@
             Conception de pages d'atterrissage Zoho accessibles par QR code pour
             les visiteurs de salons professionnels, associées à des cadences
             d'e-mails automatisées suivant les taux d'ouverture et adaptant le
-            contenu aux profils ICP — libérant l'équipe pour se concentrer sur
+            contenu aux profils ICP, libérant l'équipe pour se concentrer sur
             le client pendant que les relances se faisaient en arrière-plan.
           </p>
           <p class="work-tools">Outils : Zoho, Automatisation Marketing</p>
@@ -2042,9 +2039,9 @@
         <div class="work-card">
           <h3>Supports Marketing Multicanaux</h3>
           <p>
-            Production de contenus marketing sous tous formats — publications
+            Production de contenus marketing sous tous formats (publications
             sociales, vidéos, publicités payantes, bannières web, stands et
-            fonds de salons, catalogues et publicités presse — ainsi que la
+            fonds de salons, catalogues et publicités presse), ainsi que la
             photographie d'équipe et d'événements, en assurant une image de
             marque cohérente sur tous les canaux.
           </p>
@@ -2067,14 +2064,14 @@
     <div class="lang-ru hidden">
       <div class="work-grid">
         <div class="work-card">
-          <h3>Content Manager Agent — личный проект</h3>
+          <h3>Content Manager Agent, личный проект</h3>
           <p>
             Разработала систему автоматизации с ИИ, которая анализирует
-            повторяющийся маркетинговый процесс с нуля — выявляя зависимости,
-            точки принятия решений и возможные сбои — а затем полностью
+            повторяющийся маркетинговый процесс с нуля (выявляя зависимости,
+            точки принятия решений и возможные сбои), а затем полностью
             автоматизирует его. Участие человека требуется только для принятия
             решений или проверки результата. Реализовано в рамках программы
-            marketing engineering от Profound University — практический
+            marketing engineering от Profound University, как практический
             пример оценки и создания no-code/ИИ-инструментов для маркетинга,
             а не только их использования.
           </p>
@@ -2085,7 +2082,7 @@
           <h3>Выбор и управление CRM</h3>
           <p>
             Определила потребность в новой CRM, изучила варианты и
-            предложила Pipedrive — затем провела миграцию, обучила отдел
+            предложила Pipedrive, затем провела миграцию, обучила отдел
             продаж и продолжала управлять системой: следила за корректным
             вводом данных, настраивала интеграции, фильтры и теги, нужные
             команде. Результат: более быстрые последующие контакты, меньше
@@ -2097,11 +2094,11 @@
         <div class="work-card">
           <h3>Органический рост LinkedIn</h3>
           <p>
-            Построила стратегию контента для LinkedIn с нуля — дашборды,
+            Построила стратегию контента для LinkedIn с нуля: дашборды,
             отслеживание аналитики и короткий контент, переводящий техническую
             информацию о продукте в инфографику. Когда фокус сместился на
             органический охват, отслеживала вовлечённость по темам и форматам,
-            чтобы понять, что работает лучше — по сути, неформальное A/B
+            чтобы понять, что работает лучше: неформальное A/B
             тестирование в рамках возможностей LinkedIn. Количество подписчиков
             выросло на 85% за 5 месяцев, исключительно органически.
           </p>
@@ -2111,7 +2108,7 @@
         <div class="work-card">
           <h3>Ресурсный центр и SEO</h3>
           <p>
-            Полностью вела контент ресурсного центра через бэкенд —
+            Полностью вела контент ресурсного центра через бэкенд:
             планировала, писала и публиковала всё сама, занималась SEO и
             переводом на французский. Сейчас там кейсы, лонгриды (white
             papers), новости компании и каталоги продукции на английском и
@@ -2128,7 +2125,7 @@
             Разработала лендинги на базе Zoho с доступом по QR-коду для
             посетителей выставок, в сочетании с автоматизированными
             email-цепочками, отслеживающими открываемость и адаптирующими
-            контент под ICP-профили — что позволило команде сосредоточиться на
+            контент под ICP-профили, что позволило команде сосредоточиться на
             клиентах, пока рассылки работали в фоновом режиме.
           </p>
           <p class="work-tools">Инструменты: Zoho, автоматизация маркетинга</p>
@@ -2149,9 +2146,9 @@
         <div class="work-card">
           <h3>Мультиканальные маркетинговые материалы</h3>
           <p>
-            Создавала маркетинговый контент во всех форматах — посты в
+            Создавала маркетинговый контент во всех форматах (посты в
             соцсетях, видео, платная реклама, баннеры для сайта, стенды и
-            фоны для выставок, каталоги и реклама в журналах — а также
+            фоны для выставок, каталоги и реклама в журналах), а также
             фотографии команды и мероприятий, обеспечивая единообразие
             бренда по всем каналам.
           </p>
@@ -2173,7 +2170,7 @@
     </div>
   </section>
 
-  <!-- CONTENT SAMPLES — real LinkedIn posts created for J.Lanfranco.
+  <!-- CONTENT SAMPLES: real LinkedIn posts created for J.Lanfranco.
        Deliberately mixed formats (two JPEGs, one PDF) and content
        types (case study promo, educational infographic, product
        guide) to show range. To add a new sample: drop the image (or
@@ -2185,22 +2182,22 @@
     <h3 class="subsection-title lang-ru hidden">Примеры контента</h3>
 
     <p class="section-intro lang-en">
-      A selection of marketing content in different formats and types — real LinkedIn
+      A selection of marketing content in different formats and types: real LinkedIn
       posts created for J.Lanfranco Fastener Systems, plus original examples
       demonstrating specific skills.
     </p>
     <p class="section-intro lang-fr hidden">
-      Une sélection de contenus marketing dans différents formats et types — de
+      Une sélection de contenus marketing dans différents formats et types : de
       vraies publications LinkedIn créées pour J.Lanfranco Fastener Systems, ainsi
       que des exemples originaux illustrant des compétences spécifiques.
     </p>
     <p class="section-intro lang-ru hidden">
-      Подборка маркетинговых материалов в разных форматах и типах — реальные посты
+      Подборка маркетинговых материалов в разных форматах и типах: реальные посты
       для LinkedIn, созданные для J.Lanfranco Fastener Systems, а также оригинальные
       примеры, демонстрирующие конкретные навыки.
     </p>
 
-    <!-- Populated by renderContentSamples() from content-data.js — see
+    <!-- Populated by renderContentSamples() from content-data.js: see
          that file to add, remove, or edit a post. Nothing here needs
          hand-editing. -->
     <div class="lang-en"><div class="content-grid" data-content-grid="en"></div></div>
@@ -2208,7 +2205,7 @@
     <div class="lang-ru hidden"><div class="content-grid" data-content-grid="ru"></div></div>
 
     <!-- ============================================================
-         B2B SaaS example persona — an illustrative demonstration of
+         B2B SaaS example persona: an illustrative demonstration of
          the ICP/buyer-persona methodology applied outside industrial
          fasteners, not a claim of direct B2B SaaS work experience.
          Lives here (rather than in Industries) so it reads as an
@@ -2218,7 +2215,7 @@
     <div class="lang-en industries-subsection">
       <p class="skill-group-title">Example: B2B SaaS Buyer Persona</p>
       <p class="section-intro">
-        As an illustrative example — not a claim of direct experience — here's
+        As an illustrative example (not a claim of direct experience), here's
         how I'd apply the same ICP and buyer-persona methodology to a B2B SaaS
         category:
       </p>
@@ -2236,7 +2233,7 @@
     <div class="lang-fr hidden industries-subsection">
       <p class="skill-group-title">Exemple : Profil d'Acheteur SaaS B2B</p>
       <p class="section-intro">
-        À titre d'exemple illustratif — et non d'expérience directe — voici
+        À titre d'exemple illustratif (et non d'expérience directe), voici
         comment j'appliquerais cette même méthodologie ICP et profils
         d'acheteurs à une catégorie SaaS B2B :
       </p>
@@ -2254,7 +2251,7 @@
     <div class="lang-ru hidden industries-subsection">
       <p class="skill-group-title">Пример: портрет покупателя B2B SaaS</p>
       <p class="section-intro">
-        В качестве иллюстративного примера — а не прямого опыта — вот как я
+        В качестве иллюстративного примера (а не прямого опыта) вот как я
         применила бы тот же подход к ICP и портретам покупателей в категории
         B2B SaaS:
       </p>
@@ -2279,7 +2276,7 @@
   </div>
 
   <!-- ============================================================
-       DEGREES & CERTIFICATIONS — copy a .degree-block (in both
+       DEGREES & CERTIFICATIONS: copy a .degree-block (in both
        language versions) to add a new entry.
        ============================================================ -->
   <section id="education" class="tab-panel">
@@ -2290,7 +2287,7 @@
     <div class="lang-en">
       <div class="degree-block">
         <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management — Milan, Italy</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italy</p>
         <p class="degree-courses">
           Key courses: Artificial Intelligence (built and interpreted Python
           regression models to support data-driven marketing recommendations),
@@ -2300,11 +2297,11 @@
 
       <div class="degree-block">
         <h3>Honours Bachelor of Arts, European &amp; Russian Studies (Minor in Business)</h3>
-        <p class="degree-org">Carleton University — Ottawa, Canada &middot; 2022</p>
+        <p class="degree-org">Carleton University, Ottawa, Canada &middot; 2022</p>
       </div>
 
       <div class="skill-group">
-        <p class="skill-group-title">Certifications — HubSpot Academy</p>
+        <p class="skill-group-title">Certifications: HubSpot Academy</p>
         <div class="tags no-margin">
           <span class="tag">Inbound Marketing</span>
           <span class="tag">Digital Marketing</span>
@@ -2319,7 +2316,7 @@
     <div class="lang-fr hidden">
       <div class="degree-block">
         <h3>Master en Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management — Milan, Italie</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italie</p>
         <p class="degree-courses">
           Matières clés : Intelligence Artificielle (construction et
           interprétation de modèles de régression Python pour appuyer des
@@ -2330,11 +2327,11 @@
 
       <div class="degree-block">
         <h3>Honours Bachelor of Arts, European &amp; Russian Studies (Minor in Business)</h3>
-        <p class="degree-org">Carleton University — Ottawa, Canada &middot; 2022</p>
+        <p class="degree-org">Carleton University, Ottawa, Canada &middot; 2022</p>
       </div>
 
       <div class="skill-group">
-        <p class="skill-group-title">Certifications — HubSpot Academy</p>
+        <p class="skill-group-title">Certifications: HubSpot Academy</p>
         <div class="tags no-margin">
           <span class="tag">Inbound Marketing</span>
           <span class="tag">Digital Marketing</span>
@@ -2349,7 +2346,7 @@
     <div class="lang-ru hidden">
       <div class="degree-block">
         <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management — Милан, Италия</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Милан, Италия</p>
         <p class="degree-courses">
           Ключевые курсы: искусственный интеллект (построение и интерпретация
           регрессионных моделей на Python для data-driven маркетинговых
@@ -2360,11 +2357,11 @@
 
       <div class="degree-block">
         <h3>Honours Bachelor of Arts, European &amp; Russian Studies (Minor in Business)</h3>
-        <p class="degree-org">Carleton University — Оттава, Канада &middot; 2022</p>
+        <p class="degree-org">Carleton University, Оттава, Канада &middot; 2022</p>
       </div>
 
       <div class="skill-group">
-        <p class="skill-group-title">Сертификаты — HubSpot Academy</p>
+        <p class="skill-group-title">Сертификаты: HubSpot Academy</p>
         <div class="tags no-margin">
           <span class="tag">Inbound Marketing</span>
           <span class="tag">Digital Marketing</span>
@@ -2385,7 +2382,7 @@
   </section>
 
   <!-- ============================================================
-       CONTACT — only the labels (Email, Phone, etc.) are
+       CONTACT: only the labels (Email, Phone, etc.) are
        translated; edit the actual details (address, number, links)
        once and they'll show in both languages.
        ============================================================ -->
@@ -2434,7 +2431,7 @@
 </div>
 
 <!-- ============================================================
-     IDEAL BUYER PERSONAS — slide-in drawer, currently holding three
+     IDEAL BUYER PERSONAS: slide-in drawer, currently holding three
      personas (Rail, Mining, SaaS), opened from the trigger buttons
      in the Industries section. Each trigger button has a
      data-persona-open="rail|mining|saas" value so it opens straight
@@ -2443,7 +2440,7 @@
      1. Copy one .persona-tab button below and give it a new
         data-persona-tab="your-id" value.
      2. Copy one .persona-card block below it and give it a
-        matching data-persona="your-id" — don't add "active" to
+        matching data-persona="your-id": don't add "active" to
         it, only one card should start active.
      3. If you want a dedicated trigger button elsewhere on the page,
         give it data-persona-open="your-id".
@@ -2546,7 +2543,7 @@
 
         <div class="persona-block">
           <h4>Bio</h4>
-          <p>Marc has spent over a decade keeping rolling stock compliant and running. He trusts suppliers who show up with documentation ready, not promises — and he remembers the vendor who got it wrong on a safety-critical order.</p>
+          <p>Marc has spent over a decade keeping rolling stock compliant and running. He trusts suppliers who show up with documentation ready, not promises, and he remembers the vendor who got it wrong on a safety-critical order.</p>
         </div>
       </div>
 
@@ -2613,7 +2610,7 @@
 
         <div class="persona-block">
           <h4>Bio</h4>
-          <p>Marc passe depuis plus de dix ans à garder le matériel roulant conforme et opérationnel. Il fait confiance aux fournisseurs qui arrivent avec la documentation prête, pas avec des promesses — et il se souvient du fournisseur qui s'est trompé sur une commande critique pour la sécurité.</p>
+          <p>Marc passe depuis plus de dix ans à garder le matériel roulant conforme et opérationnel. Il fait confiance aux fournisseurs qui arrivent avec la documentation prête, pas avec des promesses, et il se souvient du fournisseur qui s'est trompé sur une commande critique pour la sécurité.</p>
         </div>
       </div>
 
@@ -2680,7 +2677,7 @@
 
         <div class="persona-block">
           <h4>Био</h4>
-          <p>Марк уже больше десяти лет следит за тем, чтобы подвижной состав соответствовал нормам и оставался в рабочем состоянии. Он доверяет поставщикам, которые приходят с готовой документацией, а не обещаниями — и хорошо помнит поставщика, который ошибся в критически важном для безопасности заказе.</p>
+          <p>Марк уже больше десяти лет следит за тем, чтобы подвижной состав соответствовал нормам и оставался в рабочем состоянии. Он доверяет поставщикам, которые приходят с готовой документацией, а не обещаниями, и хорошо помнит поставщика, который ошибся в критически важном для безопасности заказе.</p>
         </div>
       </div>
     </div>
@@ -2850,7 +2847,7 @@
           <div class="persona-col">
             <h4>Проблемы</h4>
             <ul>
-              <li>Дефицит запасов дорого обходится, когда до ближайшего поставщика — часы пути</li>
+              <li>Дефицит запасов дорого обходится, когда до ближайшего поставщика несколько часов пути</li>
               <li>Прошлые детали преждевременно выходили из строя из-за нагрузки или пыли</li>
               <li>Нужна практическая поддержка, а не просто каталог</li>
             </ul>
@@ -2889,13 +2886,13 @@
       </div>
     </div>
 
-    <!-- SAAS PERSONA — fleet management platform. Two buyers in one
+    <!-- SAAS PERSONA: fleet management platform. Two buyers in one
          tab: the admin/compliance buyer (Julien) and the maintenance-
          ops buyer (Nicolas), switched via the teal sub-toggle below
          rather than a whole extra top-level tab. -->
     <div class="persona-card" data-persona="saas">
       <div class="lang-en">
-        <span class="persona-badge">Illustrative Example — Not a Client Persona</span>
+        <span class="persona-badge">Illustrative Example (Not a Client Persona)</span>
         <div class="persona-top">
           <div class="persona-avatar">CB</div>
           <div>
@@ -2905,7 +2902,7 @@
         </div>
 
         <ul class="persona-facts">
-          <li><span class="fact-label">Industry</span>B2B SaaS — CRM &amp; Sales Tech</li>
+          <li><span class="fact-label">Industry</span>B2B SaaS: CRM &amp; Sales Tech</li>
           <li><span class="fact-label">Company Type</span>Mid-market B2B company (100–500 employees), growing sales team</li>
           <li><span class="fact-label">Team Size</span>10–30 person sales team</li>
           <li><span class="fact-label">Buying Role</span>Champion &amp; Technical Evaluator</li>
@@ -2962,7 +2959,7 @@
       </div>
 
       <div class="lang-fr hidden">
-        <span class="persona-badge">Exemple Illustratif — Pas un Profil Client</span>
+        <span class="persona-badge">Exemple Illustratif (Pas un Profil Client)</span>
         <div class="persona-top">
           <div class="persona-avatar">CB</div>
           <div>
@@ -2972,7 +2969,7 @@
         </div>
 
         <ul class="persona-facts">
-          <li><span class="fact-label">Secteur</span>SaaS B2B — CRM et Tech de Vente</li>
+          <li><span class="fact-label">Secteur</span>SaaS B2B : CRM et Tech de Vente</li>
           <li><span class="fact-label">Type d'Entreprise</span>Entreprise B2B de taille intermédiaire (100 à 500 salariés), équipe commerciale en croissance</li>
           <li><span class="fact-label">Taille d'Équipe</span>Équipe commerciale de 10 à 30 personnes</li>
           <li><span class="fact-label">Rôle d'Achat</span>Sponsor Interne et Évaluateur Technique</li>
@@ -3029,7 +3026,7 @@
       </div>
 
       <div class="lang-ru hidden">
-        <span class="persona-badge">Иллюстративный пример — не профиль клиента</span>
+        <span class="persona-badge">Иллюстративный пример (не профиль клиента)</span>
         <div class="persona-top">
           <div class="persona-avatar">CB</div>
           <div>
@@ -3039,7 +3036,7 @@
         </div>
 
         <ul class="persona-facts">
-          <li><span class="fact-label">Отрасль</span>B2B SaaS — CRM и технологии продаж</li>
+          <li><span class="fact-label">Отрасль</span>B2B SaaS: CRM и технологии продаж</li>
           <li><span class="fact-label">Тип компании</span>B2B-компания среднего размера (100–500 сотрудников), растущий отдел продаж</li>
           <li><span class="fact-label">Размер команды</span>Отдел продаж 10–30 человек</li>
           <li><span class="fact-label">Роль в закупке</span>Внутренний сторонник и технический эксперт</li>
@@ -3106,7 +3103,7 @@
 
 <script>
   // Builds the "// 05 Content Samples" cards from CONTENT_SAMPLES
-  // (content-data.js) — one render per language, dropped straight
+  // (content-data.js): one render per language, dropped straight
   // into that language's .content-grid. To add/edit a post, only
   // content-data.js needs to change; this never has to be touched.
   (function () {
@@ -3115,7 +3112,7 @@
 
     // image/viewLink can be a plain filename (same asset for every
     // language) or an { en, fr, ru } object for pieces that have a
-    // localized graphic — falls back to the English version for any
+    // localized graphic: falls back to the English version for any
     // language that doesn't have its own (e.g. Russian, for now).
     function localizedAsset(value, lang) {
       if (typeof value === 'string') return value;
@@ -3203,7 +3200,7 @@
     activateSection(ids.indexOf(hash) !== -1 ? hash : ids[0]);
   })();
 
-  // Back-to-top buttons at the bottom of each tab-panel — scroll to the
+  // Back-to-top buttons at the bottom of each tab-panel: scroll to the
   // folder tabs so the user can pick another section right away. The
   // target lands the tabs low in the viewport (not flush at the top)
   // so they end up close to where the cursor/thumb already is instead
@@ -3302,12 +3299,12 @@
     });
 
     // Sub-toggle inside a single persona-card, for when one persona
-    // has multiple buying-role views (no active use right now — the
+    // has multiple buying-role views (no active use right now: the
     // SaaS card that used it, Fleet Ops vs. Fleet Maintenance, was
     // replaced with a single persona). Kept as reusable infrastructure:
     // give a persona-card a .persona-subtabs block and matching
     // .persona-subcard elements to use it again. Each sub-tab id
-    // appears on 3 buttons, one per language — a click syncs all of
+    // appears on 3 buttons, one per language: a click syncs all of
     // them by id, so the right one stays active if the visitor
     // switches language afterward.
     var subtabs = document.querySelectorAll('[data-persona-subtab]');
@@ -3322,15 +3319,15 @@
   })();
 
   // Dog mascot: a little state machine with three states.
-  //   sitting  — idle, default
-  //   standing — tail wagging (two frames on a timer), while the
+  //   sitting: idle, default
+  //   standing: tail wagging (two frames on a timer), while the
   //              page is actively being scrolled
-  //   barking  — mouth open/closed on a faster timer, while a
+  //   barking: mouth open/closed on a faster timer, while a
   //              button is hovered (visual only, no sound/text)
   // Scrolling always wins over sitting-back-down: every scroll event
   // restarts a short "settle" timer, so the dog only sits once
   // scrolling has actually stopped for a beat, at whatever position
-  // that happens to be — not tied to being near the top of the page.
+  // that happens to be: not tied to being near the top of the page.
   (function () {
     var img = document.getElementById('dog-mascot-img');
     if (!img) return;
