@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vera Soldatenko | B2B Marketing Specialist</title>
+<title>Vera Soldatenko | B2B Marketing Manager</title>
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -141,34 +141,88 @@
     display: none;
   }
 
-  /* ---------- Hero ---------- */
+  /* ---------- Hero ----------
+     Editorial/business-magazine treatment: left-aligned masthead
+     instead of a centered SaaS-landing hero, real work-sample
+     photos instead of a portrait (that lives in About Me now). */
   header.hero {
-    padding: 96px 0 64px;
-    text-align: center;
+    padding: 72px 0 56px;
+    text-align: left;
   }
 
-  .photo-placeholder {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 28px;
-    border-radius: 50%;
-    background: var(--color-accent-soft);
-    color: var(--color-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: 600;
-    letter-spacing: 1px;
+  .hero-masthead {
+    margin: 0 0 6px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: clamp(40px, 7.5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .hero-byline {
+    max-width: 480px;
+    margin: 0 0 32px;
+  }
+
+  .hero-work-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 0 32px;
+  }
+
+  .hero-work-strip figure {
+    margin: 0;
+  }
+
+  .hero-work-strip a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .hero-work-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
     border: 1px solid var(--color-border);
-    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(27, 58, 107, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hero-work-strip a:hover .hero-work-photo {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(27, 58, 107, 0.2);
+  }
+
+  .hero-work-strip figcaption {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 480px) {
+    .hero-work-strip { gap: 8px; }
+    .hero-work-strip figcaption { font-size: 9px; letter-spacing: 0.5px; }
+  }
+
+  /* Personal photo, now living in About Me instead of the hero
+     (the hero uses work-sample photos for an editorial feel). */
+  .about-photo {
+    width: 110px;
+    height: 110px;
+    margin: 0 0 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
     box-shadow: 0 0 0 6px var(--color-accent-soft), 0 12px 28px rgba(27, 58, 107, 0.16);
   }
-
-  /* Photo: currently using PP.PNG from this folder. To swap in a
-     different photo later, replace the src="PP.PNG" attribute on
-     the <img class="photo-placeholder"> tag below with your new
-     file's name. */
 
   h1 {
     margin: 0 0 8px;
@@ -180,13 +234,15 @@
 
   .tagline {
     margin: 0 0 20px;
-    font-size: 17px;
+    font-size: 13px;
     color: var(--color-accent);
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
   }
 
   .intro {
-    margin: 0 auto;
+    margin: 0;
     max-width: 480px;
     color: var(--color-text-muted);
     font-size: 16px;
@@ -195,7 +251,7 @@
   .hero-links {
     margin-top: 28px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 12px;
     flex-wrap: wrap;
   }
@@ -509,9 +565,9 @@
   .hero-hashtags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 6px;
-    margin: 10px auto 0;
+    margin: 10px 0 0;
     max-width: 460px;
   }
 
@@ -1129,7 +1185,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  html.dark-mode .photo-placeholder {
+  html.dark-mode .about-photo {
     box-shadow: 0 0 0 6px var(--color-accent-soft), 0 12px 28px rgba(0, 0, 0, 0.4);
   }
 
@@ -1264,33 +1320,99 @@
     <p class="hero-badge lang-fr hidden"><span class="badge-dot"></span>Ouverte aux opportunités Marketing B2B</p>
     <p class="hero-badge lang-ru hidden"><span class="badge-dot"></span>Открыта к предложениям в B2B-маркетинге</p>
 
-    <img class="photo-placeholder" src="PP.PNG" alt="Vera Soldatenko" style="object-fit:cover;">
+    <h1 class="hero-masthead lang-en">Vera Soldatenko</h1>
+    <h1 class="hero-masthead lang-fr hidden">Vera Soldatenko</h1>
+    <h1 class="hero-masthead lang-ru hidden">Вера Солдатенко</h1>
 
-    <h1 class="lang-en">Vera Soldatenko</h1>
-    <h1 class="lang-fr hidden">Vera Soldatenko</h1>
-    <h1 class="lang-ru hidden">Вера Солдатенко</h1>
+    <p class="tagline lang-en">B2B Marketing Manager</p>
+    <p class="tagline lang-fr hidden">Responsable Marketing B2B</p>
+    <p class="tagline lang-ru hidden">Менеджер по B2B-маркетингу</p>
 
-    <p class="tagline lang-en">B2B Marketing Specialist</p>
-    <p class="tagline lang-fr hidden">Spécialiste Marketing B2B</p>
-    <p class="tagline lang-ru hidden">Специалист по B2B-маркетингу</p>
+    <div class="hero-byline">
+      <p class="intro lang-en">
+        I help B2B industrial companies design clear stories around complex products,
+        evaluate what's actually working, and organize scattered marketing efforts into
+        a coherent, consistent brand presence.
+      </p>
+      <p class="intro lang-fr hidden">
+        J'aide les entreprises B2B industrielles à concevoir des histoires claires
+        autour de produits complexes, à évaluer ce qui fonctionne vraiment, et à
+        organiser des efforts marketing dispersés en une présence de marque cohérente
+        et homogène.
+      </p>
+      <p class="intro lang-ru hidden">
+        Я помогаю промышленным B2B-компаниям создавать понятные истории о сложных
+        продуктах, оценивать, что действительно работает, и организовывать
+        разрозненные маркетинговые усилия в целостное, последовательное присутствие
+        бренда.
+      </p>
+    </div>
 
-    <p class="intro lang-en">
-      I help B2B industrial companies design clear stories around complex products,
-      evaluate what's actually working, and organize scattered marketing efforts into
-      a coherent, consistent brand presence.
-    </p>
-    <p class="intro lang-fr hidden">
-      J'aide les entreprises B2B industrielles à concevoir des histoires claires
-      autour de produits complexes, à évaluer ce qui fonctionne vraiment, et à
-      organiser des efforts marketing dispersés en une présence de marque cohérente
-      et homogène.
-    </p>
-    <p class="intro lang-ru hidden">
-      Я помогаю промышленным B2B-компаниям создавать понятные истории о сложных
-      продуктах, оценивать, что действительно работает, и организовывать
-      разрозненные маркетинговые усилия в целостное, последовательное присутствие
-      бренда.
-    </p>
+    <!-- Editorial photo strip: real work-sample thumbnails (same
+         assets used in Content Samples), not a photo of her, for a
+         business-magazine feel. Swap or reorder by editing the 3
+         <a> blocks below (one per language, since captions and the
+         FR-localized SVGs differ). -->
+    <div class="hero-work-strip lang-en">
+      <a href="cs.jpeg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="cs.jpeg" alt="Mining Case Study Announcement">
+          <figcaption>Case Study Promo</figcaption>
+        </figure>
+      </a>
+      <a href="hubspot-workflow.svg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="hubspot-workflow.svg" alt="B2B Lead Nurture &amp; Sales Handoff (HubSpot)">
+          <figcaption>Automation Example</figcaption>
+        </figure>
+      </a>
+      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Diamond Crossing Case Study">
+          <figcaption>Case Study (PDF)</figcaption>
+        </figure>
+      </a>
+    </div>
+    <div class="hero-work-strip lang-fr hidden">
+      <a href="cs.jpeg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="cs.jpeg" alt="Annonce d'Étude de Cas : Mines">
+          <figcaption>Promotion d'Étude de Cas</figcaption>
+        </figure>
+      </a>
+      <a href="hubspot-workflow-fr.svg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="hubspot-workflow-fr.svg" alt="Nurturing et Transfert des Leads B2B (HubSpot)">
+          <figcaption>Exemple d'Automatisation</figcaption>
+        </figure>
+      </a>
+      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Étude de Cas Diamond Crossing">
+          <figcaption>Étude de Cas (PDF)</figcaption>
+        </figure>
+      </a>
+    </div>
+    <div class="hero-work-strip lang-ru hidden">
+      <a href="cs.jpeg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="cs.jpeg" alt="Анонс кейса для горнодобывающей отрасли">
+          <figcaption>Промо кейса</figcaption>
+        </figure>
+      </a>
+      <a href="hubspot-workflow.svg" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="hubspot-workflow.svg" alt="Взращивание и передача B2B-лидов (HubSpot)">
+          <figcaption>Пример автоматизации</figcaption>
+        </figure>
+      </a>
+      <a href="FR_Diamond Case Study.pdf" target="_blank" rel="noopener">
+        <figure>
+          <img class="hero-work-photo" src="diamond-thumb.jpg" alt="Кейс Diamond Crossing">
+          <figcaption>Кейс (PDF)</figcaption>
+        </figure>
+      </a>
+    </div>
 
     <div class="hero-links">
       <a class="btn btn-primary lang-en" href="mailto:vsoldate@icloud.com">Email Me</a>
@@ -1368,6 +1490,8 @@
     <h2 class="lang-en"><span class="h2-index">// 01</span>About Me</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 01</span>À propos de moi</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 01</span>Обо мне</h2>
+
+    <img class="about-photo" src="PP.PNG" alt="Vera Soldatenko">
 
     <div class="lang-en">
       <p>
