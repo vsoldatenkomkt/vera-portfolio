@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vera Soldatenko | B2B Marketing Manager</title>
+<meta name="description" content="Vera Soldatenko is a B2B Marketing Manager specializing in technical B2B companies: case studies, campaigns, content strategy, and consistent brand presence across French, English, and Russian markets.">
+<link rel="canonical" href="https://vsoldatenko.fr/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vera Soldatenko | B2B Marketing Manager">
+<meta property="og:description" content="B2B Marketing Manager specializing in technical B2B companies: case studies, campaigns, content strategy, and consistent brand presence.">
+<meta property="og:url" content="https://vsoldatenko.fr/">
+<meta property="og:image" content="https://vsoldatenko.fr/PP.PNG">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vera Soldatenko | B2B Marketing Manager">
+<meta name="twitter:description" content="B2B Marketing Manager specializing in technical B2B companies: case studies, campaigns, content strategy, and consistent brand presence.">
+<meta name="twitter:image" content="https://vsoldatenko.fr/PP.PNG">
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -397,7 +410,9 @@
 
     .hero-mobile-intro {
       margin: 20px 0 0;
+      font-family: var(--font-body);
       font-size: 16px;
+      font-weight: 400;
       line-height: 1.6;
       color: var(--color-text);
       text-align: center;
@@ -915,6 +930,21 @@
     max-width: 640px;
     margin: 0 0 16px;
     font-size: 16px;
+  }
+
+  /* Small chapter labels breaking the bio into distinct, scannable
+     sections instead of one continuous block of text. */
+  .about-kicker {
+    margin: 26px 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .about-kicker:first-child {
+    margin-top: 0;
   }
 
   .section-intro {
@@ -1768,17 +1798,17 @@
     <p class="hero-masthead lang-ru hidden">Менеджер по B2B-маркетингу</p>
 
     <h1 class="intro lang-en">
-      Hi, I'm <strong>Vera</strong>, and I specialize in helping <strong>B2B industrial companies</strong>
+      Hi, I'm <strong>Vera</strong>, and I specialize in helping <strong>technical B2B companies</strong>
       turn complex products into clear stories, figure out what's actually working, and build one
       <strong>consistent brand presence</strong>.
     </h1>
     <h1 class="intro lang-fr hidden">
-      Bonjour, je suis <strong>Vera</strong>, et j'aide les <strong>entreprises B2B industrielles</strong>
+      Bonjour, je suis <strong>Vera</strong>, et j'aide les <strong>entreprises B2B techniques</strong>
       à transformer des produits complexes en histoires claires, à identifier ce qui fonctionne
       vraiment, et à construire une <strong>présence de marque cohérente</strong>.
     </h1>
     <h1 class="intro lang-ru hidden">
-      Привет, меня зовут <strong>Вера</strong>, и я помогаю <strong>промышленным B2B-компаниям</strong>
+      Привет, меня зовут <strong>Вера</strong>, и я помогаю <strong>техническим B2B-компаниям</strong>
       превращать сложные продукты в понятные истории, определять, что действительно работает, и
       выстраивать <strong>единое, последовательное присутствие бренда</strong>.
     </h1>
@@ -1835,21 +1865,21 @@
         <p class="hero-mobile-title lang-fr hidden">Responsable Marketing B2B</p>
         <p class="hero-mobile-title lang-ru hidden">Менеджер по B2B-маркетингу</p>
 
-        <p class="hero-mobile-intro lang-en">
-          Hi, I'm <strong>Vera</strong>, and I specialize in helping <strong>B2B industrial companies</strong>
+        <h1 class="hero-mobile-intro lang-en">
+          Hi, I'm <strong>Vera</strong>, and I specialize in helping <strong>technical B2B companies</strong>
           turn complex products into clear stories, figure out what's actually working, and build one
           <strong>consistent brand presence</strong>.
-        </p>
-        <p class="hero-mobile-intro lang-fr hidden">
-          Bonjour, je suis <strong>Vera</strong>, et j'aide les <strong>entreprises B2B industrielles</strong>
+        </h1>
+        <h1 class="hero-mobile-intro lang-fr hidden">
+          Bonjour, je suis <strong>Vera</strong>, et j'aide les <strong>entreprises B2B techniques</strong>
           à transformer des produits complexes en histoires claires, à identifier ce qui fonctionne
           vraiment, et à construire une <strong>présence de marque cohérente</strong>.
-        </p>
-        <p class="hero-mobile-intro lang-ru hidden">
-          Привет, меня зовут <strong>Вера</strong>, и я помогаю <strong>промышленным B2B-компаниям</strong>
+        </h1>
+        <h1 class="hero-mobile-intro lang-ru hidden">
+          Привет, меня зовут <strong>Вера</strong>, и я помогаю <strong>техническим B2B-компаниям</strong>
           превращать сложные продукты в понятные истории, определять, что действительно работает, и
           выстраивать <strong>единое, последовательное присутствие бренда</strong>.
-        </p>
+        </h1>
       </div>
     </div>
 
@@ -1925,31 +1955,31 @@
       <span class="folder-window-path" data-folder-path>systemfiles/About Me</span>
     </div>
     <div class="section-tabs" role="tablist">
-      <button type="button" class="section-tab active" data-section-tab="about">
+      <button type="button" class="section-tab active" data-section-tab="about" role="tab" id="tab-about" aria-controls="about" aria-selected="true">
         <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
         <span class="lang-en">About Me</span>
         <span class="lang-fr hidden">À propos de moi</span>
         <span class="lang-ru hidden">Обо мне</span>
       </button>
-      <button type="button" class="section-tab" data-section-tab="expertise">
+      <button type="button" class="section-tab" data-section-tab="expertise" role="tab" id="tab-expertise" aria-controls="expertise" aria-selected="false">
         <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
         <span class="lang-en">Expertise</span>
         <span class="lang-fr hidden">Expertise</span>
         <span class="lang-ru hidden">Экспертиза</span>
       </button>
-      <button type="button" class="section-tab" data-section-tab="portfolio">
+      <button type="button" class="section-tab" data-section-tab="portfolio" role="tab" id="tab-portfolio" aria-controls="portfolio" aria-selected="false">
         <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
         <span class="lang-en">Portfolio</span>
         <span class="lang-fr hidden">Portfolio</span>
         <span class="lang-ru hidden">Портфолио</span>
       </button>
-      <button type="button" class="section-tab" data-section-tab="education">
+      <button type="button" class="section-tab" data-section-tab="education" role="tab" id="tab-education" aria-controls="education" aria-selected="false">
         <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
         <span class="lang-en">Credentials</span>
         <span class="lang-fr hidden">Diplômes</span>
         <span class="lang-ru hidden">Дипломы</span>
       </button>
-      <button type="button" class="section-tab" data-section-tab="contact">
+      <button type="button" class="section-tab" data-section-tab="contact" role="tab" id="tab-contact" aria-controls="contact" aria-selected="false">
         <img class="section-tab-icon" src="folder-icon.png" alt="" aria-hidden="true">
         <span class="lang-en">Contact</span>
         <span class="lang-fr hidden">Contact</span>
@@ -1966,7 +1996,7 @@
        separately. The tag pills near the bottom are grouped the
        same way, one row per language.
        ============================================================ -->
-  <section class="about tab-panel active" id="about">
+  <section class="about tab-panel active" id="about" role="tabpanel" aria-labelledby="tab-about">
     <img class="about-photo" src="PP.PNG" alt="Vera Soldatenko">
 
     <div class="about-content">
@@ -1976,16 +2006,18 @@
     <h2 class="lang-ru hidden"><span class="h2-index">// 01</span>Обо мне</h2>
 
     <div class="lang-en">
+      <p class="about-kicker">What I Do</p>
       <p>
-        I'm a polyvalent B2B marketing specialist with five years of experience across
+        I'm a versatile B2B marketing specialist with five years of experience across
         industrial sectors: rail, energy, mining, aerospace. On the content side,
         that's case studies, white papers, organic social growth, and branded sales
-        materials. On the operations side, it's running paid campaigns, showing up at
-        trade shows, and keeping the CRM running for the sales team day to day. I'm as
-        comfortable writing a case study as I am building a content calendar or
-        reporting on campaign performance.
+        materials. On the operations side, it's paid campaigns, trade shows, and
+        keeping the CRM running for the sales team day to day. I'm as comfortable
+        writing a case study as I am building a content calendar or reporting on
+        campaign performance.
       </p>
 
+      <p class="about-kicker">What I Bring</p>
       <p>
         I care about doing more with less (finding the more efficient way to get
         something done, whether that's a smarter workflow or a sharper piece of
@@ -1994,8 +2026,9 @@
         optimization.
       </p>
 
+      <p class="about-kicker">Background</p>
       <p>
-        This approach is backed by a Master's in Marketing Management from POLIMI
+        My expertise is backed by a Master's in Marketing Management from POLIMI
         Graduate School of Management, a Bachelor's in European &amp; Russian Studies
         (minor in Business) from Carleton University, and working fluency in French,
         English, and Russian.
@@ -2012,6 +2045,7 @@
     </div>
 
     <div class="lang-fr hidden">
+      <p class="about-kicker">Ce Que Je Fais</p>
       <p>
         Je suis une spécialiste marketing B2B polyvalente avec cinq ans d'expérience
         dans des secteurs industriels : ferroviaire, énergie, mines, aérospatiale. Côté
@@ -2024,6 +2058,7 @@
         campagnes.
       </p>
 
+      <p class="about-kicker">Ce Que J'Apporte</p>
       <p>
         Je crois qu'il faut faire plus avec moins (trouver la façon la plus efficace
         de faire les choses, qu'il s'agisse d'un workflow plus intelligent ou d'un
@@ -2032,8 +2067,9 @@
         et en optimisation pour les moteurs de réponse IA (GEO).
       </p>
 
+      <p class="about-kicker">Formation</p>
       <p>
-        Cette approche s'appuie sur un Master en Marketing Management de la POLIMI
+        Cette expertise s'appuie sur un Master en Marketing Management de la POLIMI
         Graduate School of Management, un Bachelor en European &amp; Russian Studies
         (Minor in Business) de la Carleton University, ainsi qu'une maîtrise
         professionnelle du français, de l'anglais et du russe.
@@ -2050,6 +2086,7 @@
     </div>
 
     <div class="lang-ru hidden">
+      <p class="about-kicker">Чем Я Занимаюсь</p>
       <p>
         Я разносторонний специалист по B2B-маркетингу с пятилетним опытом работы в
         промышленных отраслях: железнодорожной, энергетической, горнодобывающей,
@@ -2061,6 +2098,7 @@
         отчётность по эффективности кампаний.
       </p>
 
+      <p class="about-kicker">Что Я Привношу</p>
       <p>
         Мне важно делать больше меньшими средствами (находить более эффективный
         способ выполнить задачу, будь то более продуманный рабочий процесс или более
@@ -2068,8 +2106,9 @@
         CRM-системами, маркетинговой инженерией и оптимизацией под ИИ-поиск (GEO).
       </p>
 
+      <p class="about-kicker">Образование</p>
       <p>
-        Этот подход подкреплён степенью магистра в области управления маркетингом
+        Эта экспертиза подкреплена степенью магистра в области управления маркетингом
         от POLIMI Graduate School of Management, степенью бакалавра по специальности
         European &amp; Russian Studies (Minor in Business) от Carleton University, а
         также свободным владением французским, английским
@@ -2101,7 +2140,7 @@
        one tab. Each keeps its own .subsection-title; only the outer
        div carries the tab's real // 02 heading.
        ============================================================ -->
-  <div class="tab-panel" id="expertise">
+  <div class="tab-panel" id="expertise" role="tabpanel" aria-labelledby="tab-expertise">
     <h2 class="lang-en"><span class="h2-index">// 02</span>Expertise</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Expertise</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Экспертиза</h2>
@@ -2443,7 +2482,7 @@
        PORTFOLIO TAB: merges Selected Work and Content Samples under
        one tab, same pattern as the Expertise tab above.
        ============================================================ -->
-  <div class="tab-panel" id="portfolio">
+  <div class="tab-panel" id="portfolio" role="tabpanel" aria-labelledby="tab-portfolio">
     <h2 class="lang-en"><span class="h2-index">// 03</span>Portfolio</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 03</span>Portfolio</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 03</span>Портфолио</h2>
@@ -2935,7 +2974,7 @@
        DEGREES & CERTIFICATIONS: copy a .degree-block (in both
        language versions) to add a new entry.
        ============================================================ -->
-  <section id="education" class="tab-panel">
+  <section id="education" class="tab-panel" role="tabpanel" aria-labelledby="tab-education">
     <h2 class="lang-en"><span class="h2-index">// 04</span>Degrees &amp; Certifications</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 04</span>Diplômes et Certifications</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 04</span>Образование и сертификаты</h2>
@@ -2943,11 +2982,12 @@
     <div class="lang-en">
       <div class="degree-block">
         <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italy</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italy &middot; 2024</p>
         <p class="degree-courses">
           Key courses: Artificial Intelligence (built and interpreted Python
           regression models to support data-driven marketing recommendations),
-          Digital Transformation, CRM Lab, MROI, Marketing Strategy.
+          Strategic Brand Management, Consumer Neuroscience and Bioscience Lab,
+          Managing Omnichannel Marketing, CRM Lab.
         </p>
       </div>
 
@@ -2972,12 +3012,13 @@
     <div class="lang-fr hidden">
       <div class="degree-block">
         <h3>Master en Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italie</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Milan, Italie &middot; 2024</p>
         <p class="degree-courses">
-          Matières clés : Intelligence Artificielle (construction et
+          Cours clés : Intelligence Artificielle (construction et
           interprétation de modèles de régression Python pour appuyer des
-          recommandations marketing fondées sur les données), Transformation
-          Digitale, CRM Lab, MROI, Stratégie Marketing.
+          recommandations marketing fondées sur les données), Gestion
+          Stratégique de Marque, Laboratoire de Neurosciences et Biosciences
+          du Consommateur, Gestion du Marketing Omnicanal, CRM Lab.
         </p>
       </div>
 
@@ -3002,12 +3043,13 @@
     <div class="lang-ru hidden">
       <div class="degree-block">
         <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-        <p class="degree-org">POLIMI Graduate School of Management, Милан, Италия</p>
+        <p class="degree-org">POLIMI Graduate School of Management, Милан, Италия &middot; 2024</p>
         <p class="degree-courses">
           Ключевые курсы: искусственный интеллект (построение и интерпретация
           регрессионных моделей на Python для data-driven маркетинговых
-          рекомендаций), цифровая трансформация, CRM Lab, MROI, маркетинговая
-          стратегия.
+          рекомендаций), стратегическое управление брендом, лаборатория
+          потребительской нейронауки и биологии, управление омниканальным
+          маркетингом, CRM Lab.
         </p>
       </div>
 
@@ -3042,7 +3084,7 @@
        translated; edit the actual details (address, number, links)
        once and they'll show in both languages.
        ============================================================ -->
-  <section id="contact" class="tab-panel">
+  <section id="contact" class="tab-panel" role="tabpanel" aria-labelledby="tab-contact">
     <h2 class="lang-en"><span class="h2-index">// 05</span>Contact</h2>
     <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Contact</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Контакты</h2>
@@ -4110,7 +4152,11 @@
     if (!tabs.length || !panels.length) return;
 
     function activateSection(id) {
-      tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-section-tab') === id); });
+      tabs.forEach(function (t) {
+        var selected = t.getAttribute('data-section-tab') === id;
+        t.classList.toggle('active', selected);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
       panels.forEach(function (p) { p.classList.toggle('active', p.id === id); });
     }
 
