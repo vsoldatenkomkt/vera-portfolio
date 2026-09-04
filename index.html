@@ -1257,7 +1257,18 @@
   }
 
   /* ---------- Contact ---------- */
+  /* Contact info sits left, a CV thumbnail sits right (instead of
+     the section being nothing but plain text/links) - stacks on
+     narrow widths since flex-wrap lets the card drop below. */
+  .contact-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
   .contact-list {
+    flex: 1 1 320px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -1265,11 +1276,74 @@
     gap: 12px;
   }
 
+  .contact-cv-card {
+    flex: 0 0 auto;
+  }
+
+  @media (min-width: 641px) {
+    .contact-cv-card { margin-right: 60px; }
+  }
+
+  .contact-cv-card a {
+    display: block;
+    width: 170px;
+    text-decoration: none;
+  }
+
+  .contact-cv-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 24px rgba(46, 63, 115, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .contact-cv-card a:hover img {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(46, 63, 115, 0.22);
+  }
+
+  .contact-cv-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-align: center;
+  }
+
+  .contact-cv-label svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .contact-cv-label-short {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .contact-cv-card a { margin: 0 auto; }
+  }
+
   .contact-list li {
     display: flex;
     gap: 10px;
     align-items: baseline;
     font-size: 15px;
+  }
+
+  .contact-list li > a,
+  .contact-list li > span:not(.contact-label) {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .contact-label {
@@ -1289,6 +1363,116 @@
 
   .contact-list a:hover {
     text-decoration: underline;
+  }
+
+  .contact-link-icon {
+    display: none;
+  }
+
+  /* On mobile, the Email/LinkedIn links become icon-only round
+     buttons instead of plain inline text - bigger touch target, and
+     no long email/URL text to wrap or overflow. The text stays in
+     the DOM (screen-reader accessible), just visually hidden. */
+  @media (max-width: 640px) {
+    /* All three actions (Email, LinkedIn, CV) as one centered
+       horizontal row of big tappable buttons right under the
+       heading, instead of a tall stack with lots of empty space. */
+    .contact-layout {
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    .contact-list li {
+      align-items: center;
+    }
+
+    .contact-list a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-list a:hover {
+      text-decoration: none;
+    }
+
+    .contact-link-icon {
+      display: block;
+      width: 26px;
+      height: 26px;
+    }
+
+    .contact-link-text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Name and Location aren't actionable, so they drop out of the
+       compact mobile view entirely - just Email/LinkedIn icons and
+       the CV thumbnail remain. */
+    .contact-list li.contact-row-secondary {
+      display: none;
+    }
+
+    .contact-list .contact-label {
+      display: none;
+    }
+
+    /* No room for a CV thumbnail preview on mobile - just a plain
+       "CV" pill button, matching the Email/LinkedIn icon buttons. */
+    .contact-cv-card img {
+      display: none;
+    }
+
+    .contact-cv-card a {
+      display: inline-flex;
+      width: auto;
+    }
+
+    .contact-cv-label {
+      margin-top: 0;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-cv-label svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .contact-cv-label-full {
+      display: none;
+    }
+
+    .contact-cv-label-short {
+      display: inline;
+    }
   }
 
   footer {
@@ -1994,7 +2178,7 @@
       </a>
 
       <a class="icon-btn" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
-        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M21 3l-9 9"></path><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"></path></svg></span><span class="icon-btn-label">LinkedIn</span>
+        <span class="icon-btn-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4" stroke="var(--color-accent)" stroke-width="2"></rect><svg x="5" y="6.5" width="14" height="13" viewBox="0 0 448 512" preserveAspectRatio="xMidYMid meet"><path fill="var(--color-accent)" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></svg></span><span class="icon-btn-label">LinkedIn</span>
       </a>
 
       <a class="icon-btn lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf" title="Download CV" aria-label="Download CV">
@@ -3162,36 +3346,71 @@
     <h2 class="lang-fr hidden"><span class="h2-index">// 05</span>Contact</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 05</span>Контакты</h2>
 
-    <ul class="contact-list">
-      <li>
-        <span class="contact-label lang-en">Name</span>
-        <span class="contact-label lang-fr hidden">Nom</span>
-        <span class="contact-label lang-ru hidden">Имя</span>
-        <span class="lang-en">Vera Soldatenko</span>
-        <span class="lang-fr hidden">Vera Soldatenko</span>
-        <span class="lang-ru hidden">Вера Солдатенко</span>
-      </li>
-      <li>
-        <span class="contact-label lang-en">Email</span>
-        <span class="contact-label lang-fr hidden">E-mail</span>
-        <span class="contact-label lang-ru hidden">Email</span>
-        <a href="mailto:vsoldate@icloud.com">vsoldate@icloud.com</a>
-      </li>
-      <li>
-        <span class="contact-label lang-en">Location</span>
-        <span class="contact-label lang-fr hidden">Localisation</span>
-        <span class="contact-label lang-ru hidden">Местоположение</span>
-        <span class="lang-en">France</span>
-        <span class="lang-fr hidden">France</span>
-        <span class="lang-ru hidden">Франция</span>
-      </li>
-      <li>
-        <span class="contact-label lang-en">LinkedIn</span>
-        <span class="contact-label lang-fr hidden">LinkedIn</span>
-        <span class="contact-label lang-ru hidden">LinkedIn</span>
-        <a href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">linkedin.com/in/verasoldatenko</a>
-      </li>
-    </ul>
+    <div class="contact-layout">
+      <ul class="contact-list">
+        <li class="contact-row-secondary">
+          <span class="contact-label lang-en">Name</span>
+          <span class="contact-label lang-fr hidden">Nom</span>
+          <span class="contact-label lang-ru hidden">Имя</span>
+          <span class="lang-en">Vera Soldatenko</span>
+          <span class="lang-fr hidden">Vera Soldatenko</span>
+          <span class="lang-ru hidden">Вера Солдатенко</span>
+        </li>
+        <li>
+          <span class="contact-label lang-en">Email</span>
+          <span class="contact-label lang-fr hidden">E-mail</span>
+          <span class="contact-label lang-ru hidden">Email</span>
+          <a href="mailto:vsoldate@icloud.com">
+            <svg class="contact-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+            <span class="contact-link-text">vsoldate@icloud.com</span>
+          </a>
+        </li>
+        <li class="contact-row-secondary">
+          <span class="contact-label lang-en">Location</span>
+          <span class="contact-label lang-fr hidden">Localisation</span>
+          <span class="contact-label lang-ru hidden">Местоположение</span>
+          <span class="lang-en">France</span>
+          <span class="lang-fr hidden">France</span>
+          <span class="lang-ru hidden">Франция</span>
+        </li>
+        <li>
+          <span class="contact-label lang-en">LinkedIn</span>
+          <span class="contact-label lang-fr hidden">LinkedIn</span>
+          <span class="contact-label lang-ru hidden">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">
+            <svg class="contact-link-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4" stroke="var(--color-accent)" stroke-width="2"></rect><svg x="5" y="6.5" width="14" height="13" viewBox="0 0 448 512" preserveAspectRatio="xMidYMid meet"><path fill="var(--color-accent)" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></svg>
+            <span class="contact-link-text">linkedin.com/in/verasoldatenko</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="contact-cv-card">
+        <a class="lang-en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">
+          <img src="cv-thumb-en.jpg" alt="Vera Soldatenko's CV">
+          <span class="contact-cv-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            <span class="contact-cv-label-full">Download CV</span>
+            <span class="contact-cv-label-short">CV</span>
+          </span>
+        </a>
+        <a class="lang-fr hidden" href="CV_Soldatenko_FR.pdf" download="CV_Soldatenko_FR.pdf">
+          <img src="cv-thumb-fr.jpg" alt="CV de Vera Soldatenko">
+          <span class="contact-cv-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            <span class="contact-cv-label-full">Télécharger le CV</span>
+            <span class="contact-cv-label-short">CV</span>
+          </span>
+        </a>
+        <a class="lang-ru hidden" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">
+          <img src="cv-thumb-en.jpg" alt="Резюме Веры Солдатенко">
+          <span class="contact-cv-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            <span class="contact-cv-label-full">Скачать резюме</span>
+            <span class="contact-cv-label-short">CV</span>
+          </span>
+        </a>
+      </div>
+    </div>
 
     <button type="button" class="back-to-top" data-scroll-top>
       <span class="back-to-top-arrow" aria-hidden="true">&uarr;</span>
