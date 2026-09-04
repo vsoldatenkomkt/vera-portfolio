@@ -153,6 +153,126 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    image: 'Torque.jpeg',
+    viewLink: 'Torque.jpeg',
+    type: {
+      en: 'Educational Infographic',
+      fr: 'Infographie Pédagogique',
+      ru: 'Обучающая инфографика'
+    },
+    title: {
+      en: 'The Role of Torque in Fastening',
+      fr: 'Le Rôle du Couple de Serrage dans le Vissage',
+      ru: 'Роль момента затяжки в крепеже'
+    },
+    caption: {
+      en: 'Visual breakdown of how applied torque converts into preload and joint integrity, and why small variations in friction create large differences in clamping force.',
+      fr: "Visuel expliquant comment le couple appliqué se traduit en précontrainte et en intégrité de l'assemblage, et pourquoi de petites variations de frottement créent de grandes différences de serrage.",
+      ru: 'Наглядное объяснение того, как приложенный момент затяжки преобразуется в предварительное натяжение и целостность соединения, и почему небольшие колебания трения приводят к большим различиям в усилии зажима.'
+    },
+    linkText: {
+      en: 'View Full Image',
+      fr: "Voir l'Image Complète",
+      ru: 'Смотреть полное изображение'
+    }
+  },
+  {
+    image: 'Event .jpeg',
+    viewLink: 'Event .jpeg',
+    type: {
+      en: 'Event Sponsorship Promo',
+      fr: "Promotion de Sponsoring d'Événement",
+      ru: 'Промо спонсорства мероприятия'
+    },
+    title: {
+      en: 'Class 1 Rail Industry Event Sponsorship',
+      fr: "Sponsoring d'un Événement de l'Industrie Ferroviaire Classe 1",
+      ru: 'Спонсорство мероприятия железнодорожной отрасли класса 1'
+    },
+    caption: {
+      en: "Announcement graphic for sponsoring a guest-speaker event with a major North American Class 1 rail operator's operations technology team.",
+      fr: "Visuel d'annonce pour le sponsoring d'un événement avec conférencier invité, en partenariat avec l'équipe technologie des opérations d'un grand exploitant ferroviaire nord-américain de classe 1.",
+      ru: 'Анонсирующий визуал для спонсорства мероприятия с приглашённым спикером от команды операционных технологий крупного североамериканского железнодорожного оператора класса 1.'
+    },
+    linkText: {
+      en: 'View Full Image',
+      fr: "Voir l'Image Complète",
+      ru: 'Смотреть полное изображение'
+    }
+  },
+  {
+    image: 'cover-board-thumb-fr.jpg',
+    viewLink: { en: 'Cover Board Case Study 2021.pdf', fr: 'FR_Cover Board Case Study 2021.pdf' },
+    type: {
+      en: 'Case Study (PDF)',
+      fr: 'Étude de Cas (PDF)',
+      ru: 'Кейс (PDF)'
+    },
+    title: {
+      en: 'Cover Board Case Study',
+      fr: 'Étude de Cas Cover Board',
+      ru: 'Кейс Cover Board'
+    },
+    caption: {
+      en: "Case study on ERM self-locking nuts solving loosened cover-board fasteners on power rail, eliminating a recurring safety and maintenance problem for railway operators.",
+      fr: "Étude de cas sur les écrous autobloquants ERM résolvant le desserrage des fixations de cover board sur rail électrifié, éliminant un problème récurrent de sécurité et de maintenance pour les exploitants ferroviaires.",
+      ru: 'Кейс о самоконтрящихся гайках ERM, решающих проблему ослабления креплений cover board на электрифицированном рельсе, устраняя повторяющуюся проблему безопасности и обслуживания для железнодорожных операторов.'
+    },
+    linkText: {
+      en: 'View Full PDF',
+      fr: 'Voir le PDF complet',
+      ru: 'Смотреть PDF'
+    }
+  },
+  {
+    image: 'how-it-works-thumb.jpg',
+    viewLink: 'HOW IT WORK-EN-V1.0.pdf',
+    type: {
+      en: 'Product Guide (PDF)',
+      fr: 'Guide Produit (PDF)',
+      ru: 'Гайд по продукту (PDF)'
+    },
+    title: {
+      en: 'How Self-Locking Fasteners Work',
+      fr: 'Comment Fonctionnent les Fixations Autobloquantes',
+      ru: 'Как работают самоконтрящиеся крепления'
+    },
+    caption: {
+      en: "Visual explainer of the self-locking mechanism behind J.Lanfranco's fasteners, and why it holds under vibration where standard hardware backs out.",
+      fr: "Explication visuelle du mécanisme autobloquant des fixations J.Lanfranco, et pourquoi il résiste aux vibrations là où la quincaillerie standard se desserre.",
+      ru: 'Наглядное объяснение самоконтрящегося механизма крепежа J.Lanfranco и того, почему он выдерживает вибрацию там, где стандартный крепёж откручивается.'
+    },
+    linkText: {
+      en: 'View Full PDF',
+      fr: 'Voir le PDF complet',
+      ru: 'Смотреть PDF'
+    }
+  },
+  {
+    image: 'surface-treatments-thumb.jpg',
+    viewLink: 'Surface treatments.pdf',
+    type: {
+      en: 'Product Guide (PDF)',
+      fr: 'Guide Produit (PDF)',
+      ru: 'Гайд по продукту (PDF)'
+    },
+    title: {
+      en: 'Surface Treatments & Fastener Reliability',
+      fr: 'Traitements de Surface et Fiabilité des Fixations',
+      ru: 'Обработка поверхности и надёжность крепежа'
+    },
+    caption: {
+      en: 'Guide comparing surface coating options and how they affect corrosion resistance, torque consistency, and long-term fastener performance.',
+      fr: "Guide comparant les options de traitement de surface et leur impact sur la résistance à la corrosion, la constance du couple de serrage et la performance des fixations sur le long terme.",
+      ru: 'Гайд, сравнивающий варианты обработки поверхности и их влияние на коррозионную стойкость, стабильность момента затяжки и долгосрочную работу крепежа.'
+    },
+    linkText: {
+      en: 'View Full PDF',
+      fr: 'Voir le PDF complet',
+      ru: 'Смотреть PDF'
+    }
+  },
+  {
     image: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     viewLink: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     type: {

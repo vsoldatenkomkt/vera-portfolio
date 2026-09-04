@@ -1104,23 +1104,92 @@
      row to look consistent. Cropped to the top of each image: that's
      where the headline/branding sits: with a "View Full ..." link
      in each card for anyone who wants the whole thing uncropped. */
+  /* Horizontal scrolling row instead of a grid: with more samples
+     added over time this keeps the section a fixed height and lets
+     visitors swipe/scroll through rather than the page growing
+     forever. Snap-scrolled so cards settle cleanly; the last card is
+     deliberately cut off at the container edge as a "more here" cue. */
   .content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 4px 18px;
+    margin: -4px -4px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-accent-soft);
   }
 
-  @media (min-width: 640px) {
-    .content-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .content-grid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .content-grid::-webkit-scrollbar-track {
+    background: var(--color-accent-soft);
+    border-radius: 999px;
+  }
+
+  .content-grid::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 999px;
+  }
+
+  /* Left/right arrows: faded by default, full opacity on hover/focus
+     so they don't compete with the cards but are still discoverable
+     next to the scrollbar. Hidden on mobile, where swiping is the
+     natural gesture. */
+  .content-scroller {
+    position: relative;
+  }
+
+  .content-scroll-arrow {
+    position: absolute;
+    top: calc(50% - 9px);
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+  }
+
+  .content-scroll-arrow:hover,
+  .content-scroll-arrow:focus-visible {
+    opacity: 1;
+  }
+
+  .content-scroll-arrow--left { left: -6px; }
+  .content-scroll-arrow--right { right: -6px; }
+
+  @media (max-width: 640px) {
+    .content-scroll-arrow { display: none; }
   }
 
   .content-card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 16px rgba(46, 63, 115, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .content-card { flex-basis: 300px; }
   }
 
   .content-card:hover {
@@ -2145,6 +2214,72 @@
     <h2 class="lang-fr hidden"><span class="h2-index">// 02</span>Expertise</h2>
     <h2 class="lang-ru hidden"><span class="h2-index">// 02</span>Экспертиза</h2>
 
+  <!-- INDUSTRIES: sectors served at J.Lanfranco. Add or remove a
+       <span class="tag">...</span> in both language blocks to update
+       the list. -->
+  <section id="industries" class="subsection">
+    <h3 class="subsection-title lang-en">Industries</h3>
+    <h3 class="subsection-title lang-fr hidden">Secteurs d'Activité</h3>
+    <h3 class="subsection-title lang-ru hidden">Отрасли</h3>
+
+    <div class="lang-en">
+      <p class="section-intro">
+        Over five years at J.Lanfranco Fastener Systems, I marketed locknuts and
+        fastening solutions to clients across:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Aerospace &amp; Defense</span>
+        <span class="tag">Transportation &amp; Rail</span>
+        <span class="tag">Mining</span>
+        <span class="tag">Oil &amp; Gas</span>
+        <span class="tag">Wind Energy</span>
+        <span class="tag">Industrial Manufacturing</span>
+        <span class="tag">Construction &amp; Infrastructure</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">View Ideal Buyer Personas</button>
+    </div>
+
+    <div class="lang-fr hidden">
+      <p class="section-intro">
+        Pendant mes cinq années chez J.Lanfranco Fastener Systems, j'ai fait la
+        promotion d'écrous de blocage et de solutions de fixation auprès de clients
+        dans les secteurs suivants :
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Aérospatiale et Défense</span>
+        <span class="tag">Transport et Ferroviaire</span>
+        <span class="tag">Mines</span>
+        <span class="tag">Pétrole et Gaz</span>
+        <span class="tag">Énergie Éolienne</span>
+        <span class="tag">Fabrication Industrielle</span>
+        <span class="tag">Construction et Infrastructure</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Voir les Profils d'Acheteurs Idéaux</button>
+    </div>
+
+    <div class="lang-ru hidden">
+      <p class="section-intro">
+        За пять лет работы в J.Lanfranco Fastener Systems я продвигала стопорные
+        гайки и крепёжные решения для клиентов в следующих отраслях:
+      </p>
+      <div class="tags no-margin">
+        <span class="tag">Аэрокосмическая отрасль и оборона</span>
+        <span class="tag">Транспорт и железные дороги</span>
+        <span class="tag">Горнодобывающая промышленность</span>
+        <span class="tag">Нефть и газ</span>
+        <span class="tag">Ветроэнергетика</span>
+        <span class="tag">Промышленное производство</span>
+        <span class="tag">Строительство и инфраструктура</span>
+      </div>
+      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Посмотреть портреты идеальных клиентов</button>
+    </div>
+
+    <!-- The B2B SaaS illustrative-persona example used to live here as
+         a subsection of Industries, but that framed it like real work
+         history. It's now down in Content Samples, clearly labeled as
+         a methodology demonstration: see data-persona-open="saas". -->
+  </section>
+
   <!-- SKILLS & EXPERTISE: grouped by category. To add a skill, copy
        a <span class="tag">...</span> inside the matching group (in
        all three lang-en / lang-fr / lang-ru versions). To add a whole
@@ -2402,72 +2537,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- INDUSTRIES: sectors served at J.Lanfranco. Add or remove a
-       <span class="tag">...</span> in both language blocks to update
-       the list. -->
-  <section id="industries" class="subsection">
-    <h3 class="subsection-title lang-en">Industries</h3>
-    <h3 class="subsection-title lang-fr hidden">Secteurs d'Activité</h3>
-    <h3 class="subsection-title lang-ru hidden">Отрасли</h3>
-
-    <div class="lang-en">
-      <p class="section-intro">
-        Over five years at J.Lanfranco Fastener Systems, I marketed locknuts and
-        fastening solutions to clients across:
-      </p>
-      <div class="tags no-margin">
-        <span class="tag">Aerospace &amp; Defense</span>
-        <span class="tag">Transportation &amp; Rail</span>
-        <span class="tag">Mining</span>
-        <span class="tag">Oil &amp; Gas</span>
-        <span class="tag">Wind Energy</span>
-        <span class="tag">Industrial Manufacturing</span>
-        <span class="tag">Construction &amp; Infrastructure</span>
-      </div>
-      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">View Ideal Buyer Personas</button>
-    </div>
-
-    <div class="lang-fr hidden">
-      <p class="section-intro">
-        Pendant mes cinq années chez J.Lanfranco Fastener Systems, j'ai fait la
-        promotion d'écrous de blocage et de solutions de fixation auprès de clients
-        dans les secteurs suivants :
-      </p>
-      <div class="tags no-margin">
-        <span class="tag">Aérospatiale et Défense</span>
-        <span class="tag">Transport et Ferroviaire</span>
-        <span class="tag">Mines</span>
-        <span class="tag">Pétrole et Gaz</span>
-        <span class="tag">Énergie Éolienne</span>
-        <span class="tag">Fabrication Industrielle</span>
-        <span class="tag">Construction et Infrastructure</span>
-      </div>
-      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Voir les Profils d'Acheteurs Idéaux</button>
-    </div>
-
-    <div class="lang-ru hidden">
-      <p class="section-intro">
-        За пять лет работы в J.Lanfranco Fastener Systems я продвигала стопорные
-        гайки и крепёжные решения для клиентов в следующих отраслях:
-      </p>
-      <div class="tags no-margin">
-        <span class="tag">Аэрокосмическая отрасль и оборона</span>
-        <span class="tag">Транспорт и железные дороги</span>
-        <span class="tag">Горнодобывающая промышленность</span>
-        <span class="tag">Нефть и газ</span>
-        <span class="tag">Ветроэнергетика</span>
-        <span class="tag">Промышленное производство</span>
-        <span class="tag">Строительство и инфраструктура</span>
-      </div>
-      <button type="button" class="btn btn-secondary persona-trigger-btn" data-persona-open="rail">Посмотреть портреты идеальных клиентов</button>
-    </div>
-
-    <!-- The B2B SaaS illustrative-persona example used to live here as
-         a subsection of Industries, but that framed it like real work
-         history. It's now down in Content Samples, clearly labeled as
-         a methodology demonstration: see data-persona-open="saas". -->
   </section>
 
   <button type="button" class="back-to-top" data-scroll-top>
@@ -2847,9 +2916,13 @@
     <!-- Populated by renderContentSamples() from content-data.js: see
          that file to add, remove, or edit a post. Nothing here needs
          hand-editing. -->
-    <div class="lang-en"><div class="content-grid" data-content-grid="en"></div></div>
-    <div class="lang-fr hidden"><div class="content-grid" data-content-grid="fr"></div></div>
-    <div class="lang-ru hidden"><div class="content-grid" data-content-grid="ru"></div></div>
+    <div class="content-scroller" data-content-scroller>
+      <button type="button" class="content-scroll-arrow content-scroll-arrow--left" data-content-scroll="-1" aria-label="Scroll left">&larr;</button>
+      <div class="lang-en"><div class="content-grid" data-content-grid="en"></div></div>
+      <div class="lang-fr hidden"><div class="content-grid" data-content-grid="fr"></div></div>
+      <div class="lang-ru hidden"><div class="content-grid" data-content-grid="ru"></div></div>
+      <button type="button" class="content-scroll-arrow content-scroll-arrow--right" data-content-scroll="1" aria-label="Scroll right">&rarr;</button>
+    </div>
 
     <!-- ============================================================
          B2B SaaS example persona: an illustrative demonstration of
@@ -4020,7 +4093,7 @@
      index.html itself updates, silently breaking anything that
      depends on it (like the hero carousel below). Bump the number
      any time content-data.js changes. -->
-<script src="content-data.js?v=2"></script>
+<script src="content-data.js?v=6"></script>
 
 <script>
   // Builds the "// 05 Content Samples" cards from CONTENT_SAMPLES
@@ -4047,9 +4120,10 @@
       grid.innerHTML = CONTENT_SAMPLES.map(function (item) {
         var img = encodeURI(localizedAsset(item.image, lang));
         var link = encodeURI(localizedAsset(item.viewLink, lang));
+        var zoomStyle = item.imageZoom ? ' style="transform: scale(' + item.imageZoom + '); transform-origin: top;"' : '';
         return (
           '<div class="content-card">' +
-            '<img src="' + img + '" alt="' + item.title[lang] + '" loading="lazy">' +
+            '<img src="' + img + '" alt="' + item.title[lang] + '" loading="lazy"' + zoomStyle + '>' +
             '<div class="content-card-body">' +
               '<span class="content-type">' + item.type[lang] + '</span>' +
               '<h3>' + item.title[lang] + '</h3>' +
@@ -4059,6 +4133,21 @@
           '</div>'
         );
       }).join('');
+    });
+  })();
+
+  // Content samples left/right arrows: scroll the visible language's
+  // .content-grid by roughly one card width per click.
+  (function () {
+    document.querySelectorAll('[data-content-scroll]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var scroller = btn.closest('[data-content-scroller]');
+        var grids = scroller ? scroller.querySelectorAll('.content-grid') : [];
+        var grid = Array.prototype.find.call(grids, function (g) { return g.offsetParent !== null; });
+        if (!grid) return;
+        var direction = parseInt(btn.getAttribute('data-content-scroll'), 10);
+        grid.scrollBy({ left: direction * 300, behavior: 'smooth' });
+      });
     });
   })();
 
