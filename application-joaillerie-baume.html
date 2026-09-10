@@ -118,6 +118,37 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+
+  .hero-photo {
+    flex: 0 0 auto;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--brass-line);
+    box-shadow: 0 0 0 8px var(--brass-soft), 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .hero-copy { min-width: 0; }
+
+  @media (max-width: 640px) {
+    .hero-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 26px;
+    }
+
+    .hero-photo {
+      width: 108px;
+      height: 108px;
+    }
+  }
+
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -470,18 +501,21 @@
 <main id="top">
 
   <section class="hero" id="profil">
-    <div class="wrap">
-      <p class="eyebrow">Candidature — Joaillerie Baume, Poitiers</p>
-      <h1 class="hero-title">Assistante <em>E-commerce</em><br>&amp; Community Manager</h1>
-      <p class="hero-lede">
-        Cinq ans à faire vivre la présence digitale d'une entreprise seule au poste : réseaux sociaux,
-        contenu, site web et outils back-office. Formée à l'omnicanal et au e-commerce en Master, et
-        installée à Poitiers, à sept minutes à pied de vos locaux.
-      </p>
-      <div class="badge-row">
-        <span class="badge"><span class="dot"></span>Anglais natif</span>
-        <span class="badge"><span class="dot"></span>Français DUEF C1</span>
-        <span class="badge"><span class="dot"></span>Poitiers, disponible rapidement</span>
+    <div class="wrap hero-inner">
+      <img class="hero-photo" src="PP.PNG" alt="Vera Soldatenko">
+      <div class="hero-copy">
+        <p class="eyebrow">Candidature — Joaillerie Baume, Poitiers</p>
+        <h1 class="hero-title">Assistante <em>E-commerce</em><br>&amp; Community Manager</h1>
+        <p class="hero-lede">
+          Cinq ans à faire vivre la présence digitale d'une entreprise seule au poste : réseaux sociaux,
+          contenu, site web et outils back-office. Formée à l'omnicanal et au e-commerce en Master, et
+          installée à Poitiers, à sept minutes à pied de vos locaux.
+        </p>
+        <div class="badge-row">
+          <span class="badge"><span class="dot"></span>Anglais natif</span>
+          <span class="badge"><span class="dot"></span>Français DUEF C1</span>
+          <span class="badge"><span class="dot"></span>Poitiers, disponible rapidement</span>
+        </div>
       </div>
     </div>
   </section>
