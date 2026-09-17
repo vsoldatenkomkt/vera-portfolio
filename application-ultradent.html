@@ -360,6 +360,37 @@
 
   .record-notes { font-size: 14px; color: var(--ink-muted); margin: 0; }
 
+  /* ---------- Certifications ---------- */
+  .cert-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cert-group-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+
+  .cert-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cert-pill {
+    padding: 7px 13px;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+
   /* ---------- Footer / contact ---------- */
   footer { padding: 52px 0 72px; }
 
@@ -446,6 +477,7 @@
       <li><a href="#profil">Profil</a></li>
       <li><a href="#flow">Ce que j'apporte</a></li>
       <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -615,6 +647,38 @@
           site web. Création de supports imprimés et représentation de l'entreprise lors de salons
           professionnels, avec échanges directs avec les clients.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Certifications</h2>
+        <span class="section-num">9 certificats</span>
+      </div>
+      <p class="section-intro">Formations complémentaires en ligne, HubSpot Academy et Google.</p>
+
+      <div class="cert-groups">
+        <div class="cert-group">
+          <p class="cert-group-label">HubSpot Academy</p>
+          <div class="cert-pills">
+            <span class="cert-pill">Inbound Marketing</span>
+            <span class="cert-pill">Digital Marketing</span>
+            <span class="cert-pill">Email Marketing</span>
+            <span class="cert-pill">Marketing Hub Software</span>
+            <span class="cert-pill">Reporting</span>
+            <span class="cert-pill">RevOps</span>
+          </div>
+        </div>
+        <div class="cert-group">
+          <p class="cert-group-label">Google</p>
+          <div class="cert-pills">
+            <span class="cert-pill">Analytics 4</span>
+            <span class="cert-pill">Looker Studio</span>
+            <span class="cert-pill">Ads Search</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
