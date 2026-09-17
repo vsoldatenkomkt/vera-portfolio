@@ -11,7 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,500;0,600;0,700;1,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
 <style>
+  /* Locked to light mode always - a job application page should look
+     the same for every recruiter, regardless of their device's
+     system theme. */
   :root {
+    color-scheme: light;
     --bg: #F5F7F6;
     --bg-raised: #FFFFFF;
     --ink: #131A22;
@@ -24,32 +28,6 @@
     --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
     --sans: "Public Sans", "Helvetica Neue", Arial, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0F1513;
-      --bg-raised: #17201D;
-      --ink: #ECF1EF;
-      --ink-muted: #A7B4B0;
-      --ink-faint: #6E7A76;
-      --teal: #4FC9B4;
-      --teal-deep: #3AA894;
-      --teal-soft: #1B2D28;
-      --border: #263531;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #0F1513;
-    --bg-raised: #17201D;
-    --ink: #ECF1EF;
-    --ink-muted: #A7B4B0;
-    --ink-faint: #6E7A76;
-    --teal: #4FC9B4;
-    --teal-deep: #3AA894;
-    --teal-soft: #1B2D28;
-    --border: #263531;
   }
 
   * { box-sizing: border-box; }
