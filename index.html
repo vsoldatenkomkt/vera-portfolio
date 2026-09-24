@@ -4312,7 +4312,7 @@
      index.html itself updates, silently breaking anything that
      depends on it (like the hero carousel below). Bump the number
      any time content-data.js changes. -->
-<script src="content-data.js?v=6"></script>
+<script src="content-data.js?v=7"></script>
 
 <script>
   // Builds the "// 05 Content Samples" cards from CONTENT_SAMPLES
@@ -4322,6 +4322,16 @@
   (function () {
     if (typeof CONTENT_SAMPLES === 'undefined') return;
     var LANGS = ['en', 'fr', 'ru'];
+    var VARIANT = 'crm';
+
+    function position(item, index) {
+      var n = item.order && item.order[VARIANT];
+      return typeof n === 'number' ? n : 1000 + index;
+    }
+    var samples = CONTENT_SAMPLES
+      .map(function (item, index) { return { item: item, pos: position(item, index) }; })
+      .sort(function (a, b) { return a.pos - b.pos; })
+      .map(function (entry) { return entry.item; });
 
     // image/viewLink can be a plain filename (same asset for every
     // language) or an { en, fr, ru } object for pieces that have a
@@ -4336,7 +4346,7 @@
       var grid = document.querySelector('[data-content-grid="' + lang + '"]');
       if (!grid) return;
 
-      grid.innerHTML = CONTENT_SAMPLES.map(function (item) {
+      grid.innerHTML = samples.map(function (item) {
         var img = encodeURI(localizedAsset(item.image, lang));
         var link = encodeURI(localizedAsset(item.viewLink, lang));
         var zoomStyle = item.imageZoom ? ' style="transform: scale(' + item.imageZoom + '); transform-origin: top;"' : '';

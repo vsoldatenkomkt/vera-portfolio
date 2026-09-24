@@ -26,6 +26,10 @@
 //   caption    : one or two sentences under the title
 //   linkText   : the "View Full ..." link's label (e.g. "View Full
 //                Image" vs "View Full PDF", whatever fits the file)
+//   order      : optional. Card position on each page: crm is
+//                index.html, pmm is technical-marketing.html
+//                (1 = first). Leave it out and the card goes after
+//                the numbered ones, in list order.
 //
 // Filenames with spaces are fine; write them exactly as they
 // appear on disk, no need to type %20 yourself.
@@ -33,6 +37,7 @@
 
 var CONTENT_SAMPLES = [
   {
+    order: { crm: 2, pmm: 9 },
     image: 'cs.jpeg',
     viewLink: 'cs.jpeg',
     type: {
@@ -57,6 +62,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 7, pmm: 1 },
     image: 'imp v met.jpeg',
     viewLink: 'imp v met.jpeg',
     type: {
@@ -81,6 +87,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 8, pmm: 2 },
     image: 'ptorque-thumb.jpg',
     viewLink: 'Ptorque.pdf',
     type: {
@@ -105,6 +112,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 3, pmm: 7 },
     image: 'diamond-thumb.jpg',
     viewLink: 'FR_Diamond Case Study.pdf',
     type: {
@@ -129,6 +137,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 1, pmm: 11 },
     image: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
     viewLink: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
     type: {
@@ -153,6 +162,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 9, pmm: 3 },
     image: 'Torque.jpeg',
     viewLink: 'Torque.jpeg',
     type: {
@@ -177,6 +187,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 5, pmm: 10 },
     image: 'Event .jpeg',
     viewLink: 'Event .jpeg',
     type: {
@@ -201,6 +212,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 4, pmm: 8 },
     image: 'cover-board-thumb-fr.jpg',
     viewLink: { en: 'Cover Board Case Study 2021.pdf', fr: 'FR_Cover Board Case Study 2021.pdf' },
     type: {
@@ -225,6 +237,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 10, pmm: 4 },
     image: 'how-it-works-thumb.jpg',
     viewLink: 'HOW IT WORK-EN-V1.0.pdf',
     type: {
@@ -249,6 +262,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 11, pmm: 5 },
     image: 'surface-treatments-thumb.jpg',
     viewLink: 'Surface treatments.pdf',
     type: {
@@ -273,6 +287,7 @@ var CONTENT_SAMPLES = [
     }
   },
   {
+    order: { crm: 6, pmm: 6 },
     image: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     viewLink: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     type: {
