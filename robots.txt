@@ -1,0 +1,23 @@
+# Search engines: index the site, but keep the CVs (they contain
+# phone and email) and the assessment out of search results.
+User-agent: *
+Disallow: /CV_Soldatenko_EN.pdf
+Disallow: /Vera_Soldatenko_CV_Marketing_Ops_FR.pdf
+Disallow: /DRIVE.pdf
+
+# Crawlers that collect pages to train AI models: blocked entirely.
+# AI search assistants (ChatGPT search, Perplexity, Claude search)
+# are still allowed, since showing up in AI answers helps recruiters
+# find the site.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: Diffbot
+User-agent: Omgilibot
+User-agent: cohere-training-data-crawler
+Disallow: /

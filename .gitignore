@@ -1,2 +1,24 @@
 .DS_Store
 .claude/
+
+# Private working files kept in this folder but never published
+# (the repo is public). Listed by name so new site files aren't
+# accidentally hidden.
+COMPETENCES.pdf
+CV_Soldatenko_FR Compressed.pdf
+CV_Soldatenko_Maison_Baume.pdf
+CV_Soldatenko_Streem_Energy.pdf
+Fiche_de_poste_Responsable_Marketing_Drivein (1).docx
+GEO_Whitepaper_EN_draft.pdf
+GEO_Whitepaper_FR_draft.pdf
+Lettre_Motivation_Maison_Baume.pdf
+MARKETING_CV_SOLDATENKO FR.pages
+MARKETING_CV_SOLDATENKO.pages
+RUSSIAN_COPY_REVIEW.txt
+Vera_Soldatenko_CV.pdf
+BP.jpg
+ICP.webp
+folder.png
+*.pages
+*.docx
+Lettre_Motivation_*.pdf
