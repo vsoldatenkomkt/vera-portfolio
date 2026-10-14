@@ -26,10 +26,6 @@
 //   caption    : one or two sentences under the title
 //   linkText   : the "View Full ..." link's label (e.g. "View Full
 //                Image" vs "View Full PDF", whatever fits the file)
-//   order      : optional. Card position on each page: crm is
-//                index.html, pmm is technical-marketing.html
-//                (1 = first). Leave it out and the card goes after
-//                the numbered ones, in list order.
 //
 // Filenames with spaces are fine; write them exactly as they
 // appear on disk, no need to type %20 yourself.
@@ -37,32 +33,6 @@
 
 var CONTENT_SAMPLES = [
   {
-    order: { crm: 2, pmm: 9 },
-    image: 'cs.jpeg',
-    viewLink: 'cs.jpeg',
-    type: {
-      en: 'Case Study Promo',
-      fr: "Promotion d'Étude de Cas",
-      ru: 'Промо кейса'
-    },
-    title: {
-      en: 'Mining Case Study Announcement',
-      fr: "Annonce d'Étude de Cas : Mines",
-      ru: 'Анонс кейса для горнодобывающей отрасли'
-    },
-    caption: {
-      en: 'Announcement graphic for a mining-sector case study on self-locking technology for shaker tables under extreme vibration.',
-      fr: "Visuel d'annonce pour une étude de cas dans le secteur minier sur une technologie autobloquante pour tables vibrantes soumises à des vibrations extrêmes.",
-      ru: 'Анонсирующий визуал для кейса в горнодобывающей отрасли о самоконтрящейся технологии для вибростолов, работающих в условиях экстремальной вибрации.'
-    },
-    linkText: {
-      en: 'View Full Image',
-      fr: "Voir l'Image Complète",
-      ru: 'Смотреть полное изображение'
-    }
-  },
-  {
-    order: { crm: 7, pmm: 1 },
     image: 'imp v met.jpeg',
     viewLink: 'imp v met.jpeg',
     type: {
@@ -87,7 +57,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    order: { crm: 8, pmm: 2 },
     image: 'ptorque-thumb.jpg',
     viewLink: 'Ptorque.pdf',
     type: {
@@ -112,57 +81,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    order: { crm: 3, pmm: 7 },
-    image: 'diamond-thumb.jpg',
-    viewLink: 'FR_Diamond Case Study.pdf',
-    type: {
-      en: 'Case Study (PDF)',
-      fr: 'Étude de Cas (PDF)',
-      ru: 'Кейс (PDF)'
-    },
-    title: {
-      en: 'Diamond Crossing Case Study',
-      fr: 'Étude de Cas Diamond Crossing',
-      ru: 'Кейс Diamond Crossing'
-    },
-    caption: {
-      en: "Design, formatting, and translation for a branded case study on J.Lanfranco's THU self-locking nuts eliminating daily maintenance inspections at a major Class 1 railroad's diamond crossing. Copywriting was handled by an external hire; I also created the reusable branded template used for later case studies.",
-      fr: "Conception, mise en forme et traduction de cette étude de cas de marque sur les écrous autobloquants THU de J.Lanfranco, qui ont permis d'éliminer les inspections quotidiennes de maintenance sur un croisement ferroviaire (diamond) d'un grand réseau nord-américain de classe 1. La rédaction a été confiée à un prestataire externe ; j'ai également créé le gabarit de marque réutilisé pour les études de cas suivantes.",
-      ru: 'Дизайн, вёрстка и перевод этого брендированного кейса о самоконтрящихся гайках THU от J.Lanfranco, которые позволили отказаться от ежедневных проверок на пересечении путей (diamond) крупной североамериканской железной дороги класса 1. Копирайтинг выполнил внешний подрядчик; также разработала фирменный шаблон, использованный для последующих кейсов.'
-    },
-    linkText: {
-      en: 'View Full PDF (French)',
-      fr: 'Voir le PDF complet',
-      ru: 'Смотреть PDF (на французском)'
-    }
-  },
-  {
-    order: { crm: 1, pmm: 11 },
-    image: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
-    viewLink: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
-    type: {
-      en: 'Automation Example',
-      fr: "Exemple d'Automatisation",
-      ru: 'Пример автоматизации'
-    },
-    title: {
-      en: 'B2B Lead Nurture & Sales Handoff (HubSpot)',
-      fr: 'Nurturing et Transfert des Leads B2B (HubSpot)',
-      ru: 'Взращивание и передача B2B-лидов (HubSpot)'
-    },
-    caption: {
-      en: "An original example workflow showing how I'd structure lead scoring and sales handoff in HubSpot: from form submission through MQL routing to a 24-hour sales follow-up.",
-      fr: "Exemple original de workflow illustrant comment je structurerais le scoring des leads et leur transfert aux commerciaux dans HubSpot : du formulaire jusqu'au suivi commercial sous 24h.",
-      ru: 'Оригинальный пример workflow, показывающий, как я бы выстроила скоринг лидов и их передачу отделу продаж в HubSpot: от заполнения формы до передачи в продажи в течение 24 часов.'
-    },
-    linkText: {
-      en: 'View Full Diagram',
-      fr: 'Voir le Schéma Complet',
-      ru: 'Смотреть полную схему'
-    }
-  },
-  {
-    order: { crm: 9, pmm: 3 },
     image: 'Torque.jpeg',
     viewLink: 'Torque.jpeg',
     type: {
@@ -187,57 +105,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    order: { crm: 5, pmm: 10 },
-    image: 'Event .jpeg',
-    viewLink: 'Event .jpeg',
-    type: {
-      en: 'Event Sponsorship Promo',
-      fr: "Promotion de Sponsoring d'Événement",
-      ru: 'Промо спонсорства мероприятия'
-    },
-    title: {
-      en: 'Class 1 Rail Industry Event Sponsorship',
-      fr: "Sponsoring d'un Événement de l'Industrie Ferroviaire Classe 1",
-      ru: 'Спонсорство мероприятия железнодорожной отрасли класса 1'
-    },
-    caption: {
-      en: "Announcement graphic for sponsoring a guest-speaker event with a major North American Class 1 rail operator's operations technology team.",
-      fr: "Visuel d'annonce pour le sponsoring d'un événement avec conférencier invité, en partenariat avec l'équipe technologie des opérations d'un grand exploitant ferroviaire nord-américain de classe 1.",
-      ru: 'Анонсирующий визуал для спонсорства мероприятия с приглашённым спикером от команды операционных технологий крупного североамериканского железнодорожного оператора класса 1.'
-    },
-    linkText: {
-      en: 'View Full Image',
-      fr: "Voir l'Image Complète",
-      ru: 'Смотреть полное изображение'
-    }
-  },
-  {
-    order: { crm: 4, pmm: 8 },
-    image: 'cover-board-thumb-fr.jpg',
-    viewLink: { en: 'Cover Board Case Study 2021.pdf', fr: 'FR_Cover Board Case Study 2021.pdf' },
-    type: {
-      en: 'Case Study (PDF)',
-      fr: 'Étude de Cas (PDF)',
-      ru: 'Кейс (PDF)'
-    },
-    title: {
-      en: 'Cover Board Case Study',
-      fr: 'Étude de Cas Cover Board',
-      ru: 'Кейс Cover Board'
-    },
-    caption: {
-      en: "Case study on ERM self-locking nuts solving loosened cover-board fasteners on power rail, eliminating a recurring safety and maintenance problem for railway operators.",
-      fr: "Étude de cas sur les écrous autobloquants ERM résolvant le desserrage des fixations de cover board sur rail électrifié, éliminant un problème récurrent de sécurité et de maintenance pour les exploitants ferroviaires.",
-      ru: 'Кейс о самоконтрящихся гайках ERM, решающих проблему ослабления креплений cover board на электрифицированном рельсе, устраняя повторяющуюся проблему безопасности и обслуживания для железнодорожных операторов.'
-    },
-    linkText: {
-      en: 'View Full PDF',
-      fr: 'Voir le PDF complet',
-      ru: 'Смотреть PDF'
-    }
-  },
-  {
-    order: { crm: 10, pmm: 4 },
     image: 'how-it-works-thumb.jpg',
     viewLink: 'HOW IT WORK-EN-V1.0.pdf',
     type: {
@@ -262,7 +129,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    order: { crm: 11, pmm: 5 },
     image: 'surface-treatments-thumb.jpg',
     viewLink: 'Surface treatments.pdf',
     type: {
@@ -287,7 +153,6 @@ var CONTENT_SAMPLES = [
     }
   },
   {
-    order: { crm: 6, pmm: 6 },
     image: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     viewLink: { en: 'rail-fasteners-onepager.svg', fr: 'rail-fasteners-onepager-fr.svg' },
     type: {
@@ -309,6 +174,126 @@ var CONTENT_SAMPLES = [
       en: 'Coming Soon',
       fr: 'Bientôt Disponible',
       ru: 'Скоро'
+    }
+  },
+  {
+    image: 'diamond-thumb.jpg',
+    viewLink: 'FR_Diamond Case Study.pdf',
+    type: {
+      en: 'Case Study (PDF)',
+      fr: 'Étude de Cas (PDF)',
+      ru: 'Кейс (PDF)'
+    },
+    title: {
+      en: 'Diamond Crossing Case Study',
+      fr: 'Étude de Cas Diamond Crossing',
+      ru: 'Кейс Diamond Crossing'
+    },
+    caption: {
+      en: "Design, formatting, and translation for a branded case study on J.Lanfranco's THU self-locking nuts eliminating daily maintenance inspections at a major Class 1 railroad's diamond crossing. Copywriting was handled by an external hire; I also created the reusable branded template used for later case studies.",
+      fr: "Conception, mise en forme et traduction de cette étude de cas de marque sur les écrous autobloquants THU de J.Lanfranco, qui ont permis d'éliminer les inspections quotidiennes de maintenance sur un croisement ferroviaire (diamond) d'un grand réseau nord-américain de classe 1. La rédaction a été confiée à un prestataire externe ; j'ai également créé le gabarit de marque réutilisé pour les études de cas suivantes.",
+      ru: 'Дизайн, вёрстка и перевод этого брендированного кейса о самоконтрящихся гайках THU от J.Lanfranco, которые позволили отказаться от ежедневных проверок на пересечении путей (diamond) крупной североамериканской железной дороги класса 1. Копирайтинг выполнил внешний подрядчик; также разработала фирменный шаблон, использованный для последующих кейсов.'
+    },
+    linkText: {
+      en: 'View Full PDF (French)',
+      fr: 'Voir le PDF complet',
+      ru: 'Смотреть PDF (на французском)'
+    }
+  },
+  {
+    image: 'cover-board-thumb-fr.jpg',
+    viewLink: { en: 'Cover Board Case Study 2021.pdf', fr: 'FR_Cover Board Case Study 2021.pdf' },
+    type: {
+      en: 'Case Study (PDF)',
+      fr: 'Étude de Cas (PDF)',
+      ru: 'Кейс (PDF)'
+    },
+    title: {
+      en: 'Cover Board Case Study',
+      fr: 'Étude de Cas Cover Board',
+      ru: 'Кейс Cover Board'
+    },
+    caption: {
+      en: "Case study on ERM self-locking nuts solving loosened cover-board fasteners on power rail, eliminating a recurring safety and maintenance problem for railway operators.",
+      fr: "Étude de cas sur les écrous autobloquants ERM résolvant le desserrage des fixations de cover board sur rail électrifié, éliminant un problème récurrent de sécurité et de maintenance pour les exploitants ferroviaires.",
+      ru: 'Кейс о самоконтрящихся гайках ERM, решающих проблему ослабления креплений cover board на электрифицированном рельсе, устраняя повторяющуюся проблему безопасности и обслуживания для железнодорожных операторов.'
+    },
+    linkText: {
+      en: 'View Full PDF',
+      fr: 'Voir le PDF complet',
+      ru: 'Смотреть PDF'
+    }
+  },
+  {
+    image: 'cs.jpeg',
+    viewLink: 'cs.jpeg',
+    type: {
+      en: 'Case Study Promo',
+      fr: "Promotion d'Étude de Cas",
+      ru: 'Промо кейса'
+    },
+    title: {
+      en: 'Mining Case Study Announcement',
+      fr: "Annonce d'Étude de Cas : Mines",
+      ru: 'Анонс кейса для горнодобывающей отрасли'
+    },
+    caption: {
+      en: 'Announcement graphic for a mining-sector case study on self-locking technology for shaker tables under extreme vibration.',
+      fr: "Visuel d'annonce pour une étude de cas dans le secteur minier sur une technologie autobloquante pour tables vibrantes soumises à des vibrations extrêmes.",
+      ru: 'Анонсирующий визуал для кейса в горнодобывающей отрасли о самоконтрящейся технологии для вибростолов, работающих в условиях экстремальной вибрации.'
+    },
+    linkText: {
+      en: 'View Full Image',
+      fr: "Voir l'Image Complète",
+      ru: 'Смотреть полное изображение'
+    }
+  },
+  {
+    image: 'Event .jpeg',
+    viewLink: 'Event .jpeg',
+    type: {
+      en: 'Event Sponsorship Promo',
+      fr: "Promotion de Sponsoring d'Événement",
+      ru: 'Промо спонсорства мероприятия'
+    },
+    title: {
+      en: 'Class 1 Rail Industry Event Sponsorship',
+      fr: "Sponsoring d'un Événement de l'Industrie Ferroviaire Classe 1",
+      ru: 'Спонсорство мероприятия железнодорожной отрасли класса 1'
+    },
+    caption: {
+      en: "Announcement graphic for sponsoring a guest-speaker event with a major North American Class 1 rail operator's operations technology team.",
+      fr: "Visuel d'annonce pour le sponsoring d'un événement avec conférencier invité, en partenariat avec l'équipe technologie des opérations d'un grand exploitant ferroviaire nord-américain de classe 1.",
+      ru: 'Анонсирующий визуал для спонсорства мероприятия с приглашённым спикером от команды операционных технологий крупного североамериканского железнодорожного оператора класса 1.'
+    },
+    linkText: {
+      en: 'View Full Image',
+      fr: "Voir l'Image Complète",
+      ru: 'Смотреть полное изображение'
+    }
+  },
+  {
+    image: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
+    viewLink: { en: 'hubspot-workflow.svg', fr: 'hubspot-workflow-fr.svg' },
+    type: {
+      en: 'Automation Example',
+      fr: "Exemple d'Automatisation",
+      ru: 'Пример автоматизации'
+    },
+    title: {
+      en: 'B2B Lead Nurture & Sales Handoff (HubSpot)',
+      fr: 'Nurturing et Transfert des Leads B2B (HubSpot)',
+      ru: 'Взращивание и передача B2B-лидов (HubSpot)'
+    },
+    caption: {
+      en: "An original example workflow showing how I'd structure lead scoring and sales handoff in HubSpot: from form submission through MQL routing to a 24-hour sales follow-up.",
+      fr: "Exemple original de workflow illustrant comment je structurerais le scoring des leads et leur transfert aux commerciaux dans HubSpot : du formulaire jusqu'au suivi commercial sous 24h.",
+      ru: 'Оригинальный пример workflow, показывающий, как я бы выстроила скоринг лидов и их передачу отделу продаж в HubSpot: от заполнения формы до передачи в продажи в течение 24 часов.'
+    },
+    linkText: {
+      en: 'View Full Diagram',
+      fr: 'Voir le Schéma Complet',
+      ru: 'Смотреть полную схему'
     }
   }
 ];

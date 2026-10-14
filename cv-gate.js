@@ -5,13 +5,12 @@
 // Drive, then the download starts. Someone who has filled it in
 // once isn't asked again in that browser.
 //
-// Loaded by index.html and technical-marketing.html. To point it at
+// Loaded by index.html. To point it at
 // a new Apps Script deployment, only ENDPOINT needs to change.
 // ============================================================
 (function () {
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzm3Gs4oJj4fzPtIQCeBYCGvEtqUMJIfKyY5I-TueaPmJG_Jwo0XgCGkZeX_AJlhv8I/exec';
   var DONE_KEY = 'cv-form-done';
-  var PAGE = /technical-marketing/.test(location.pathname) ? 'technical-marketing' : 'main';
 
   var TEXT = {
     en: {
@@ -286,7 +285,7 @@
       email: email,
       website: trapInput.value,
       cv: link.getAttribute('href'),
-      page: PAGE,
+      page: 'main',
       lang: currentLang()
     });
 
