@@ -3,6 +3,8 @@
 User-agent: *
 Disallow: /CV_Soldatenko_EN.pdf
 Disallow: /Vera_Soldatenko_CV_Marketing_Ops_FR.pdf
+Disallow: /CV_Soldatenko_Luxe_FR.pdf
+Disallow: /CV_Soldatenko_Luxury_EN.pdf
 Disallow: /DRIVE.pdf
 # Archived B2B version of the site
 Disallow: /archive/
