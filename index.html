@@ -131,7 +131,7 @@
   .header-end { justify-self: end; }
 
   .index-menu { position: relative; }
-  .index-menu summary { list-style: none; cursor: pointer; font-size: 13px; padding: 8px 0; }
+  .index-menu summary { list-style: none; cursor: pointer; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 0; }
   .index-menu summary::-webkit-details-marker { display: none; }
   .index-menu nav {
     position: absolute;
@@ -143,9 +143,9 @@
     box-shadow: 0 16px 40px rgba(46, 50, 54, 0.10);
   }
   .index-menu ol { list-style: none; margin: 0; padding: 0; }
-  .index-menu li a { display: block; padding: 7px 0; text-decoration: none; font-size: 14px; }
+  .index-menu li a { display: block; padding: 8px 0; text-decoration: none; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
 
-  .lang-switch { display: flex; gap: 2px; font-size: 13px; }
+  .lang-switch { display: flex; gap: 2px; font-size: 11px; letter-spacing: 0.16em; }
   .lang-switch button { background: none; border: 0; padding: 8px 5px; font: inherit; color: var(--ink-soft); cursor: pointer; }
   .lang-switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
 
@@ -159,7 +159,7 @@
     letter-spacing: -0.01em;
     margin: 0 0 14px;
   }
-  .hero-roles { color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin: 0 auto 22px; max-width: 30rem; }
+  .hero-roles { font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 3.6vw, 1.35rem); line-height: 1.45; color: var(--ink); margin: 0 auto 26px; max-width: 30rem; }
   .open-to {
     display: inline-block;
     margin: 0 0 24px;
@@ -190,9 +190,10 @@
     min-height: 46px;
     padding: 0 26px;
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     text-decoration: none;
     border: 1px solid var(--ink);
     border-radius: 0;
@@ -206,9 +207,9 @@
   .caption { font-size: 12.5px; color: var(--ink-soft); margin-top: 12px; line-height: 1.5; text-align: center; }
 
   /* ---------- Chapters ---------- */
-  section.chapter { padding: 96px 0; scroll-margin-top: 60px; }
-  .chapter-head { text-align: center; margin: 0 auto 48px; max-width: 36rem; }
-  .chapter-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.75rem, 5vw, 2.25rem); line-height: 1.2; margin: 0; }
+  section.chapter { padding: clamp(88px, 12vw, 152px) 0; scroll-margin-top: 60px; }
+  .chapter-head { text-align: center; margin: 0 auto 64px; max-width: 36rem; }
+  .chapter-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; letter-spacing: -0.005em; margin: 0; }
   .chapter-head p { margin: 10px 0 0; color: var(--ink-soft); font-size: 14px; }
 
   .prose { max-width: var(--measure); margin: 0 auto; }
@@ -225,13 +226,13 @@
   }
 
   /* ---------- Selected work: large image, centred text below ---------- */
-  .plate { padding: 0 0 96px; }
+  .plate { padding: 0 0 clamp(96px, 12vw, 144px); }
   .plate:last-child { padding-bottom: 0; }
-  .plate-figure { margin: 0 auto; max-width: 1100px; }
+  .plate-figure { margin: 0 auto; max-width: 960px; }
   .plate-figure img { width: 100%; background: var(--tile); }
   @media (max-width: 599px) { .plate-figure { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); } }
   .plate-body { max-width: var(--measure); margin: 32px auto 0; text-align: center; }
-  .plate-no { font-size: 12px; color: var(--ink-soft); margin: 0 0 8px; font-variant-numeric: tabular-nums; }
+  .plate-no { font-size: 11px; letter-spacing: 0.22em; color: var(--ink-soft); margin: 0 0 14px; font-variant-numeric: tabular-nums; }
   .plate h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 4.6vw, 1.9rem); line-height: 1.2; margin: 0 0 14px; }
   .plate-body > p { margin: 0 0 20px; }
 
@@ -246,13 +247,22 @@
     line-height: 1.5;
     text-align: left;
   }
-  .label dt { text-align: right; color: var(--ink-soft); }
+  .label dt { text-align: right; color: var(--ink-soft); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; padding-top: 2px; }
   .label dd { margin: 0; }
-  .plate-link { font-size: 13px; font-weight: 500; }
+  .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* Work samples are shown in soft black and white so the page keeps one
+     palette; colour comes back on hover where hover exists. Château
+     photos and the portrait stay in colour. */
+  .plate-figure img, .work img { filter: grayscale(1) contrast(0.94) brightness(1.03); transition: filter 0.6s ease; }
+  @media (hover: hover) {
+    .plate-figure:hover img, .work:hover img { filter: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .plate-figure img, .work img { transition: none; } }
 
   /* CRM process: six numbered steps on a tinted panel */
   .process { background: var(--tile); padding: clamp(28px, 6vw, 64px); }
-  .process-logo { width: 150px; height: auto; margin: 0 0 32px; opacity: 0.9; }
+  .process-logo { width: 140px; height: auto; margin: 0 0 36px; filter: grayscale(1); opacity: 0.85; }
   .process ol { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 22px; text-align: left; }
   .process li { counter-increment: step; display: grid; grid-template-columns: 2.4rem 1fr; gap: 2px 14px; }
   .process li::before { content: counter(step, decimal-leading-zero); grid-row: span 2; font-family: var(--serif); font-size: 1.6rem; line-height: 1; color: var(--ink-soft); }
@@ -285,18 +295,18 @@
   .work img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--white); }
   .work h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.25; margin: 0; }
   .work p { margin: 0; font-size: 14px; color: var(--ink); text-align: left; }
-  .work .meta { font-size: 12px; color: var(--ink-soft); text-align: center; }
-  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; list-style: none; padding: 0; margin: 2px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+  .work .meta { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; list-style: none; padding: 0; margin: 4px 0 0; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
   @media (min-width: 700px) { .series-grid { grid-template-columns: 1fr 1fr; gap: 64px 40px; } }
   @media (min-width: 1080px) { .series-grid { grid-template-columns: repeat(3, 1fr); } }
 
   /* ---------- Method ---------- */
   .personas { display: grid; gap: 24px; max-width: 980px; margin: 0 auto; }
   .persona { background: var(--white); padding: 32px 28px; }
-  .persona-kind { font-size: 12px; color: var(--ink-soft); margin: 0 0 14px; }
+  .persona-kind { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
   .persona h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
   .persona .role { color: var(--ink-soft); margin: 4px 0 16px; font-size: 14px; }
-  .persona h4 { font-size: 12px; color: var(--ink-soft); margin: 18px 0 6px; font-weight: 500; }
+  .persona h4 { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 20px 0 8px; font-weight: 500; }
   .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
   .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
@@ -325,13 +335,13 @@
   .entry:first-child { border-top: 1px solid var(--rule); }
   .entry h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 4px; line-height: 1.3; }
   .entry p { margin: 0; color: var(--ink-soft); font-size: 14px; }
-  .entry .year { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .entry .year { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
   .assess { margin-top: 36px; font-size: 14px; text-align: center; }
   .hashtags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; margin-top: 8px; font-family: var(--serif); font-style: italic; font-size: 1.15rem; }
 
   /* ---------- CV / footer ---------- */
   .cv-block { text-align: center; }
-  .site-footer { padding: 40px 0 56px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-soft); }
+  .site-footer { padding: 48px 0 64px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
   .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
 
   /* ---------- Motion: gentle fade-up, off for reduced motion ---------- */
