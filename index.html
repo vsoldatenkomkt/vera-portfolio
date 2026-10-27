@@ -409,6 +409,13 @@
   .entry p { margin: 0; color: var(--ink-soft); font-size: 14px; }
   .entry .year { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
   .assess { margin-top: 36px; font-size: 14px; text-align: center; }
+  .entries-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); text-align: center; margin: 0 0 14px; }
+  .entries + .entries-label { margin-top: 48px; }
+  .entry-sub { margin: 20px auto 0; max-width: 32rem; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .entry-sub-label { font-size: 10px !important; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px !important; }
+  .sub-item + .sub-item { margin-top: 16px; }
+  .sub-date { font-size: 10.5px !important; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px !important; }
+  .sub-item h4 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; margin: 0 0 3px; line-height: 1.3; }
   .hashtags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; margin-top: 8px; font-family: var(--serif); font-style: italic; font-size: 1.15rem; }
 
   /* Community roles: a quiet centred list */
@@ -1079,33 +1086,33 @@
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Formation</span><span data-l="en">Education</span></h2>
       </div>
+      <h3 class="entries-label reveal"><span data-l="fr">Diplômes</span><span data-l="en">Degrees and diplomas</span></h3>
       <div class="entries">
-        <div class="entry reveal">
-          <span class="year">2024</span>
-          <div>
-            <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-            <p>POLIMI Graduate School of Management, Milan</p>
-          </div>
-        </div>
-        <div class="entry reveal">
-          <span class="year">2024</span>
-          <div>
-            <h3><span data-l="fr">Prix Social Media Excellence, Italian Way</span><span data-l="en">Social Media Excellence Award, Italian Way</span></h3>
-            <p><span data-l="fr">Édition 2024, une semaine de rencontres avec des maisons et marques italiennes, de Moncler à Acqua di Parma. Prix décerné le 28 juin 2024.</span><span data-l="en">2024 edition, a week of sessions with Italian houses and brands, from Moncler to Acqua di Parma. Awarded on 28 June 2024.</span></p>
-          </div>
-        </div>
-        <div class="entry reveal">
-          <span class="year">2023</span>
-          <div>
-            <h3><span data-l="fr">Séminaire NielsenIQ, stratégie de prix</span><span data-l="en">NielsenIQ seminar, pricing strategy</span></h3>
-            <p><span data-l="fr">Milan, 12 décembre 2023&nbsp;: inflation et grande consommation, prix d'un nouveau produit, réévaluation des prix existants.</span><span data-l="en">Milan, 12 December 2023: inflation in consumer goods, pricing a new product, reassessing existing prices.</span></p>
-          </div>
-        </div>
         <div class="entry reveal">
           <span class="year">2026</span>
           <div>
             <h3><span data-l="fr">DUEF C1, français langue étrangère</span><span data-l="en">DUEF C1, French as a foreign language</span></h3>
             <p><span data-l="fr">Université de Poitiers</span><span data-l="en">University of Poitiers</span></p>
+          </div>
+        </div>
+        <div class="entry reveal">
+          <span class="year">2024</span>
+          <div>
+            <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
+            <p>POLIMI Graduate School of Management, Milan</p>
+            <div class="entry-sub">
+              <p class="entry-sub-label"><span data-l="fr">Pendant le master</span><span data-l="en">During the master's</span></p>
+              <div class="sub-item">
+                <p class="sub-date"><span data-l="fr">Juin 2024</span><span data-l="en">June 2024</span></p>
+                <h4><span data-l="fr">Prix Social Media Excellence, Italian Way</span><span data-l="en">Social Media Excellence Award, Italian Way</span></h4>
+                <p><span data-l="fr">Une semaine de rencontres avec des maisons et marques italiennes, de Moncler à Acqua di Parma. Prix décerné le 28 juin 2024.</span><span data-l="en">A week of sessions with Italian houses and brands, from Moncler to Acqua di Parma. Awarded on 28 June 2024.</span></p>
+              </div>
+              <div class="sub-item">
+                <p class="sub-date"><span data-l="fr">Décembre 2023</span><span data-l="en">December 2023</span></p>
+                <h4><span data-l="fr">Séminaire NielsenIQ, stratégie de prix</span><span data-l="en">NielsenIQ seminar, pricing strategy</span></h4>
+                <p><span data-l="fr">Milan&nbsp;: inflation et grande consommation, prix d'un nouveau produit, réévaluation des prix existants.</span><span data-l="en">Milan: inflation in consumer goods, pricing a new product, reassessing existing prices.</span></p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="entry reveal">
@@ -1115,11 +1122,20 @@
             <p>Carleton University, Ottawa · <span data-l="fr">mineure en commerce</span><span data-l="en">minor in Business</span></p>
           </div>
         </div>
+      </div>
+
+      <h3 class="entries-label reveal">Certifications</h3>
+      <div class="entries">
         <div class="entry reveal">
-          <span class="year"><span data-l="fr">Certifications</span><span data-l="en">Certificates</span></span>
+          <span class="year">HubSpot Academy</span>
           <div>
-            <h3>HubSpot Academy · Google</h3>
-            <p>Inbound Marketing, Digital Marketing, Email Marketing, Marketing Hub, Reporting, RevOps · Analytics 4, Looker Studio, Ads Search</p>
+            <p>Inbound Marketing · Digital Marketing · Email Marketing · Marketing Hub · Reporting · RevOps</p>
+          </div>
+        </div>
+        <div class="entry reveal">
+          <span class="year">Google</span>
+          <div>
+            <p>Analytics 4 · Looker Studio · Ads Search</p>
           </div>
         </div>
       </div>
