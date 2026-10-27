@@ -240,8 +240,9 @@
   .interest-img.collage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 4px; background: none; }
   .interest-img.collage img { min-height: 0; }
   .interest-img.collage .collage-tall { grid-row: 1 / 4; }
-  /* Fine art collage: sculpture and couture on top, three paintings below */
-  .interest-img.collage-rows { grid-template-columns: repeat(3, 1fr); grid-template-rows: 3fr 2fr; }
+  /* Fine art collage: sculpture and couture on top, two paintings below */
+  .interest-img.collage-rows { grid-template-columns: 1fr 1fr; grid-template-rows: 3fr 2fr; }
+  .interest-img.collage-rows img:first-child { object-position: center 20%; }
   /* Two-row variant: one tall image on the left, two squares stacked */
   .interest-img.collage-2 { grid-template-rows: repeat(2, 1fr); }
   .interest-img.collage-2 .collage-tall { grid-row: 1 / 3; }
@@ -545,10 +546,8 @@
           <div class="interest-img collage collage-rows">
             <img src="img/interest-art-bust.webp" width="400" height="812" loading="lazy" decoding="async" alt="Buste en marbre d'une femme voilée, sur fond de velours violet">
             <img src="img/interest-fashion-gown.webp" width="440" height="800" loading="lazy" decoding="async" alt="Robe du soir Giorgio Armani, automne-hiver 1988-89, exposée à Armani/Silos, à Milan&nbsp;: corsage brodé de fils d'or sur tulle noir, ceinture de velours, jupe lamée">
-            <img src="img/interest-fashion-tailoring.webp" width="440" height="800" loading="lazy" decoding="async" alt="Deux silhouettes Giorgio Armani exposées à Armani/Silos, à Milan&nbsp;: un costume en chevrons et un ensemble en maille chinée avec une écharpe à franges">
             <img src="img/interest-art-tale.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture russe&nbsp;: des enfants écoutent l'un d'eux lire un conte, dans une isba">
             <img src="img/interest-art-oaks.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture d'une chênaie baignée de lumière">
-            <img src="img/interest-art-autumn.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture d'un sous-bois d'automne couvert de feuilles">
           </div>
           <figcaption>
             <span class="interest-name"><span data-l="fr">Beaux-arts</span><span data-l="en">Fine art</span></span>
@@ -560,8 +559,8 @@
           <div class="interest-img"><img src="img/interest-ballet.webp" width="600" height="600" loading="lazy" decoding="async" alt="Le corps de ballet en tutus blancs, sur une scène baignée de lumière bleue"></div>
           <figcaption>
             <span class="interest-name"><span data-l="fr">Musique et ballet</span><span data-l="en">Music and ballet</span></span>
-            <ul data-l="fr"><li>Le piano</li><li>Le violon</li><li>Le ballet classique</li></ul>
-            <ul data-l="en"><li>Piano</li><li>Violin</li><li>Classical ballet</li></ul>
+            <ul data-l="fr"><li>Le piano</li><li>Le ballet classique</li></ul>
+            <ul data-l="en"><li>Piano</li><li>Classical ballet</li></ul>
           </figcaption>
         </figure>
         <figure class="interest reveal">
