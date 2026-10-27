@@ -235,6 +235,15 @@
   .interest-img img { width: 100%; height: 100%; object-fit: cover; }
   .interest figcaption { margin-top: 8px; text-align: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
 
+  /* B2B to luxury bridges: title, then industry and luxury side by side */
+  .bridges { max-width: 1000px; margin: 0 auto; }
+  .bridge { display: grid; gap: 10px 40px; padding: 26px 0; border-top: 1px solid var(--rule); }
+  .bridge:last-child { border-bottom: 1px solid var(--rule); }
+  .bridge h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; line-height: 1.25; margin: 0; }
+  .bridge-col p { margin: 0; font-size: 14.5px; }
+  .bridge-label { font-size: 10.5px !important; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px !important; }
+  @media (min-width: 880px) { .bridge { grid-template-columns: 0.9fr 1fr 1fr; align-items: start; } }
+
   /* ---------- Selected work: large image, centred text below ---------- */
   .plate { padding: 0 0 clamp(96px, 12vw, 144px); }
   .plate:last-child { padding-bottom: 0; }
@@ -381,8 +390,9 @@
       <nav aria-label="Index">
         <ol>
           <li><a href="#avant-propos"><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></a></li>
+          <li><a href="#transposition"><span data-l="fr">Du B2B au luxe</span><span data-l="en">From B2B to luxury</span></a></li>
           <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
-          <li><a href="#chateau"><span data-l="fr">Le château</span><span data-l="en">The château</span></a></li>
+          <li><a href="#chateau">Château Landery</a></li>
           <li><a href="#travaux"><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
           <li><a href="#methode"><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
           <li><a href="#savoir-faire"><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
@@ -497,6 +507,46 @@
   </section>
 
   <!-- ============================================================
+       FROM TECHNICAL B2B TO LUXURY: how the background carries over,
+       read before the work itself.
+       ============================================================ -->
+  <section class="chapter" id="transposition">
+    <div class="wrap">
+      <div class="chapter-head reveal">
+        <h2><span data-l="fr">Du B2B technique au luxe</span><span data-l="en">From technical B2B to luxury</span></h2>
+        <p><span data-l="fr">Ce qui se transpose, concrètement.</span><span data-l="en">What carries over, specifically.</span></p>
+      </div>
+      <div class="bridges">
+        <div class="bridge reveal">
+          <h3><span data-l="fr">Défendre un prix premium</span><span data-l="en">Defending a premium price</span></h3>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans l'industrie</span><span data-l="en">In industry</span></p><p><span data-l="fr">Justifier un écrou plus cher par la sécurité et la durabilité qu'il garantit, preuves à l'appui.</span><span data-l="en">Justifying a more expensive nut by the safety and durability it guarantees, with proof.</span></p></div>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans le luxe</span><span data-l="en">In luxury</span></p><p><span data-l="fr">Justifier la valeur par le savoir-faire, la matière et l'exigence, jamais par la remise.</span><span data-l="en">Justifying value through craftsmanship, materials and standards, never through discounts.</span></p></div>
+        </div>
+        <div class="bridge reveal">
+          <h3><span data-l="fr">Rendre l'exigence lisible</span><span data-l="en">Making excellence legible</span></h3>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans l'industrie</span><span data-l="en">In industry</span></p><p><span data-l="fr">Traduire des fiches techniques en infographies, guides et études de cas que tout acheteur comprend.</span><span data-l="en">Turning technical specs into infographics, guides and case studies any buyer understands.</span></p></div>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans le luxe</span><span data-l="en">In luxury</span></p><p><span data-l="fr">Raconter un produit, sa composition, sa fabrication, son geste, avec la même précision, pour qu'il soit compris et désiré.</span><span data-l="en">Telling a product's story, its composition, its making, its gesture, with the same precision, so it is understood and desired.</span></p></div>
+        </div>
+        <div class="bridge reveal">
+          <h3><span data-l="fr">Connaître chaque client</span><span data-l="en">Knowing every client</span></h3>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans l'industrie</span><span data-l="en">In industry</span></p><p><span data-l="fr">Peu de clients, exigeants, suivis dans la durée grâce à un CRM tenu avec rigueur.</span><span data-l="en">Few, demanding clients, followed over time through a rigorously kept CRM.</span></p></div>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans le luxe</span><span data-l="en">In luxury</span></p><p><span data-l="fr">Le clienteling&nbsp;: une relation personnelle et suivie, nourrie par une donnée client juste.</span><span data-l="en">Clienteling: a personal, ongoing relationship, fed by accurate client data.</span></p></div>
+        </div>
+        <div class="bridge reveal">
+          <h3><span data-l="fr">Tenir une identité</span><span data-l="en">Holding one identity</span></h3>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans l'industrie</span><span data-l="en">In industry</span></p><p><span data-l="fr">Une même marque du catalogue au stand de salon, jusqu'à LinkedIn.</span><span data-l="en">One brand from the catalogue to the trade show stand, all the way to LinkedIn.</span></p></div>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans le luxe</span><span data-l="en">In luxury</span></p><p><span data-l="fr">Une même maison de la boutique au site, des événements aux réseaux sociaux.</span><span data-l="en">One house from the boutique to the website, from events to social media.</span></p></div>
+        </div>
+        <div class="bridge reveal">
+          <h3><span data-l="fr">Comprendre le consommateur</span><span data-l="en">Understanding the consumer</span></h3>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Au master</span><span data-l="en">At master's level</span></p><p><span data-l="fr">Un mémoire sur la cosmétique de luxe, un laboratoire de neuromarketing, l'analyse de la clientèle d'une marque de mode.</span><span data-l="en">A thesis on luxury cosmetics, a neuromarketing lab, a client-base analysis for a fashion brand.</span></p></div>
+          <div class="bridge-col"><p class="bridge-label"><span data-l="fr">Dans le luxe</span><span data-l="en">In luxury</span></p><p><span data-l="fr">Des décisions fondées sur ce qui crée la confiance et le désir, pas sur l'intuition seule.</span><span data-l="en">Decisions grounded in what builds trust and desire, not intuition alone.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        II. PLATES: selected work, each with an exhibition label.
        ============================================================ -->
   <section class="chapter" id="realisations">
@@ -523,9 +573,9 @@
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel, client anonymisé</span><span data-l="en">Industrial B2B, client anonymised</span></dd>
               <dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt>
-              <dd><mark class="todo">[TODO : votre rôle exact]</mark></dd>
+              <dd><span data-l="fr">Assistante commerciale et marketing&nbsp;: conception de l'étude de cas, et relais entre le vice-président et le rédacteur externe pour transmettre corrections et modifications.</span><span data-l="en">Marketing and sales assistant: designed the case study, and acted as the go-between for the VP and the outsourced copywriter, relaying edits and changes.</span></dd>
               <dt>Notes</dt>
-              <dd><span data-l="fr">Le prix premium défendu par la preuve, pas par la promesse.</span><span data-l="en">A premium price defended with proof, not promises.</span></dd>
+              <dd><span data-l="fr">Devenue le modèle d'étude de cas de l'entreprise, utilisée sur les salons et en ligne. Le prix premium défendu par la preuve, pas par la promesse.</span><span data-l="en">Became the company's case study template, used at trade shows and online. A premium price defended with proof, not promises.</span></dd>
             </dl>
             <a class="plate-link" data-l="fr" href="FR_Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Lire l'étude de cas (PDF) →</a>
             <a class="plate-link" data-l="en" href="Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Read the case study (PDF) →</a>
@@ -595,11 +645,11 @@
           <div class="plate-body">
             <p class="plate-no">N° 04</p>
             <h3><span data-l="fr">Rendre l'expertise lisible</span><span data-l="en">Making expertise legible</span></h3>
-            <p data-l="fr">Une stratégie de contenu LinkedIn bâtie de zéro&nbsp;: tableaux de bord, suivi des performances, et des formats courts qui traduisent l'information technique en infographies claires. Sujets et formats testés pour comprendre ce qui touche vraiment.</p>
-            <p data-l="en">A LinkedIn content strategy built from the ground up: dashboards, performance tracking, and short formats that turn technical information into clear infographics. Topics and formats tested to learn what actually resonates.</p>
+            <p data-l="fr">«&nbsp;Industry Insights&nbsp;», une campagne LinkedIn bâtie de zéro pour éduquer le marché, installer une parole d'expert et inciter les collaborateurs à publier eux-mêmes. Des formats courts qui traduisent l'information technique en infographies claires, suivis par tableaux de bord pour comprendre ce qui touche vraiment.</p>
+            <p data-l="en">“Industry Insights”, a LinkedIn campaign built from the ground up to educate the market, establish thought leadership and encourage employees to post themselves. Short formats that turn technical information into clear infographics, tracked with dashboards to learn what actually resonates.</p>
             <dl class="label">
               <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Contenu éditorial et infographies</span><span data-l="en">Editorial content and infographics</span></dd>
+              <dd><span data-l="fr">Campagne LinkedIn «&nbsp;Industry Insights&nbsp;», infographies</span><span data-l="en">“Industry Insights” LinkedIn campaign, infographics</span></dd>
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
               <dt>Notes</dt>
@@ -615,15 +665,13 @@
           <div class="plate-body">
             <p class="plate-no">N° 05</p>
             <h3><span data-l="fr">Une marque cohérente, du catalogue au salon</span><span data-l="en">One consistent brand, from catalogue to trade show</span></h3>
-            <p data-l="fr">Catalogues, guides produits, bannières, stands et fonds de salon, publicités presse, vidéos, photographie d'équipe et d'événements&nbsp;: une identité tenue sur chaque format, en print comme en digital.</p>
-            <p data-l="en">Catalogues, product guides, banners, trade show stands and backdrops, print ads, videos, team and event photography: one identity held across every format, print and digital.</p>
+            <p data-l="fr">Catalogues, guides produits, bannières, stands et fonds de salon, publicités presse et vidéos&nbsp;: une identité tenue sur chaque format, en print comme en digital.</p>
+            <p data-l="en">Catalogues, product guides, banners, trade show stands and backdrops, print ads and videos: one identity held across every format, print and digital.</p>
             <dl class="label">
               <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Supports print et digital, photographie</span><span data-l="en">Print and digital collateral, photography</span></dd>
+              <dd><span data-l="fr">Supports print et digital, diffusés aussi sur LinkedIn</span><span data-l="en">Print and digital collateral, also published on LinkedIn</span></dd>
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt><span data-l="fr">Photographies</span><span data-l="en">Photographs</span></dt>
-              <dd><mark class="todo">[TODO : vos photographies d'équipe et d'événements]</mark></dd>
             </dl>
           </div>
         </article>
@@ -676,10 +724,10 @@
   <section class="chapter" id="chateau">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <h2><span data-l="fr">Le château</span><span data-l="en">The château</span></h2>
-        <p><span data-l="fr">Gîte, projet familial, été 2025.</span><span data-l="en">Holiday rental, family project, summer 2025.</span> <mark class="todo">[TODO : nom du château, dates, votre rôle en une phrase]</mark></p>
+        <h2>Château Landery</h2>
+        <p><span data-l="fr">Gîte, projet familial, été 2025. Gestion des clients, prospection et conception des activités.</span><span data-l="en">Holiday rental, family project, summer 2025. Client management, customer outreach and activity curation.</span></p>
       </div>
-      <div class="image-grid" aria-label="Le château en images">
+      <div class="image-grid" aria-label="Château Landery en images">
         <figure class="tile reveal"><img src="img/chateau-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château sous un ciel bleu"></figure>
         <figure class="tile reveal"><img src="img/chateau-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le chemin menant à la tour, dans la lumière d&#x27;automne"></figure>
         <figure class="tile reveal"><img src="img/chateau-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un chat blanc devant une porte en fer forgé"></figure>
@@ -710,7 +758,7 @@
 
         <article class="work reveal">
           <img src="img/master-neuro-lab.webp" width="1000" height="548" loading="lazy" decoding="async" alt="Analyse en Python de l'asymétrie alpha frontale par condition publicitaire, dans Google Colab">
-          <p class="meta">Consumer Neuroscience and Bioscience Lab · <mark class="todo">[TODO : individuel ou en groupe]</mark></p>
+          <p class="meta">Consumer Neuroscience and Bioscience Lab · <span data-l="fr">en groupe</span><span data-l="en">group work</span></p>
           <h3><span data-l="fr">Ce que le cerveau dit d'une publicité</span><span data-l="en">What the brain says about an ad</span></h3>
           <p data-l="fr">Une expérience sous PsychoPy présente trois conditions publicitaires (une e-cigarette présentée comme «&nbsp;cool&nbsp;», des avertissements sanitaires, une cigarette classique) pendant l'enregistrement de l'activité cérébrale (EEG) et du rythme cardiaque (ECG). Puis l'analyse en Python&nbsp;: appréciation déclarée, rythme cardiaque moyen et asymétrie alpha frontale, un indicateur de motivation d'approche.</p>
           <p data-l="en">A PsychoPy experiment shows three ad conditions (an e-cigarette framed as “cool”, health warnings, a regular cigarette) while brain activity (EEG) and heart rate (ECG) are recorded. Then the analysis in Python: stated liking, average heart rate and frontal alpha asymmetry, an indicator of approach motivation.</p>
@@ -884,25 +932,25 @@
         <h2><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></h2>
       </div>
       <p class="precision-note reveal">
-        <span data-l="fr">J'ai appris la précision dans les systèmes de fixation pour le ferroviaire, l'énergie, les mines et l'aérospatiale, où une spécification mal comprise peut arrêter un chantier. Vérifier chaque chiffre, expliquer simplement un produit exigeant, tenir une marque cohérente sur chaque support&nbsp;: c'est ce que j'emporte avec moi.</span>
-        <span data-l="en">I learned precision in fastening systems for rail, energy, mining and aerospace, where a misunderstood specification can stop a worksite. Checking every figure, explaining a demanding product simply, holding a brand steady across every medium: that is what I bring with me.</span>
+        <span data-l="fr">Défendre un produit haut de gamme par la preuve m'a appris la rigueur&nbsp;: vérifier chaque chiffre, rendre un produit exigeant simple à comprendre, tenir une identité cohérente sur chaque support. Mon master y a ajouté la lecture du consommateur&nbsp;: ce qui crée la confiance, le désir et la fidélité.</span>
+        <span data-l="en">Defending a high-end product with proof taught me rigour: checking every figure, making a demanding product simple to understand, keeping one identity across every medium. My master's added a reading of the consumer: what builds trust, desire and loyalty.</span>
       </p>
 
       <div class="skill-groups">
         <div class="skill-group reveal">
           <h3><span data-l="fr">Marque &amp; contenu</span><span data-l="en">Brand &amp; content</span></h3>
-          <ul data-l="fr"><li>Stratégie de contenu</li><li>Récit produit et rédaction éditoriale</li><li>Supports print et digital</li><li>Réseaux sociaux en organique</li><li>Traduction et adaptation FR / EN</li></ul>
-          <ul data-l="en"><li>Content strategy</li><li>Product storytelling and editorial writing</li><li>Print and digital collateral</li><li>Organic social media</li><li>FR / EN translation and adaptation</li></ul>
+          <ul data-l="fr"><li>Récit de marque et storytelling produit</li><li>Contenu éditorial, print et digital</li><li>Réseaux sociaux et prise de parole d'expert</li><li>Événements et lancements</li><li>Traduction et adaptation FR / EN</li></ul>
+          <ul data-l="en"><li>Brand and product storytelling</li><li>Editorial content, print and digital</li><li>Social media and thought leadership</li><li>Events and launches</li><li>FR / EN translation and adaptation</li></ul>
         </div>
         <div class="skill-group reveal">
           <h3>CRM &amp; clienteling</h3>
-          <ul data-l="fr"><li>Choix, migration et gestion de CRM</li><li>Segmentation et fidélité</li><li>Parcours client omnicanal</li><li>Rétention et valeur vie client</li><li>Pipedrive, Salesforce, HubSpot (certifications)</li></ul>
-          <ul data-l="en"><li>CRM selection, migration and management</li><li>Segmentation and loyalty</li><li>Omnichannel customer journeys</li><li>Retention and lifetime value</li><li>Pipedrive, Salesforce, HubSpot (certifications)</li></ul>
+          <ul data-l="fr"><li>Connaissance et segmentation client</li><li>Fidélisation et valeur vie client</li><li>Parcours client omnicanal</li><li>Adoption d'un CRM par les équipes</li><li>Salesforce, Pipedrive, HubSpot (certifications)</li></ul>
+          <ul data-l="en"><li>Client knowledge and segmentation</li><li>Loyalty and lifetime value</li><li>Omnichannel client journeys</li><li>Getting teams to adopt a CRM</li><li>Salesforce, Pipedrive, HubSpot (certifications)</li></ul>
         </div>
         <div class="skill-group reveal">
-          <h3><span data-l="fr">Analyse</span><span data-l="en">Analytics</span></h3>
-          <ul data-l="fr"><li>Enquêtes (Google Forms) et analyse qualitative (méthode Gioia)</li><li>Neuromarketing&nbsp;: EEG, ECG, PsychoPy</li><li>Python sous Google Colab (régression, clustering)</li><li>SQL, Excel et Power BI</li><li>GA4 et Looker Studio</li><li>Écoute sociale&nbsp;: Brand24, SimilarWeb, Google Trends</li></ul>
-          <ul data-l="en"><li>Surveys (Google Forms) and qualitative analysis (Gioia method)</li><li>Neuromarketing: EEG, ECG, PsychoPy</li><li>Python in Google Colab (regression, clustering)</li><li>SQL, Excel and Power BI</li><li>GA4 and Looker Studio</li><li>Social listening: Brand24, SimilarWeb, Google Trends</li></ul>
+          <h3><span data-l="fr">Insight consommateur</span><span data-l="en">Consumer insight</span></h3>
+          <ul data-l="fr"><li>Enquêtes et analyse qualitative (méthode Gioia)</li><li>Neuromarketing&nbsp;: EEG, ECG, PsychoPy</li><li>Études de marché et veille concurrentielle</li><li>Écoute sociale&nbsp;: Brand24, SimilarWeb, Google Trends</li><li>Python, SQL, Excel, Power BI</li><li>GA4 et Looker Studio</li></ul>
+          <ul data-l="en"><li>Surveys and qualitative analysis (Gioia method)</li><li>Neuromarketing: EEG, ECG, PsychoPy</li><li>Market research and competitive intelligence</li><li>Social listening: Brand24, SimilarWeb, Google Trends</li><li>Python, SQL, Excel, Power BI</li><li>GA4 and Looker Studio</li></ul>
         </div>
         <div class="skill-group reveal">
           <h3><span data-l="fr">Langues &amp; outils</span><span data-l="en">Languages &amp; tools</span></h3>
@@ -926,7 +974,7 @@
           <span class="year">2024</span>
           <div>
             <h3>Master in Marketing Management, Omnichannel and Consumer Analytics</h3>
-            <p>POLIMI Graduate School of Management, Milan · <span data-l="fr">mention très bien</span><span data-l="en">with highest honours</span></p>
+            <p>POLIMI Graduate School of Management, Milan</p>
           </div>
         </div>
         <div class="entry reveal">
@@ -995,7 +1043,6 @@
         <li><span data-l="fr">Ambassadrice de faculté</span><span data-l="en">Faculty ambassador</span><small>Carleton University</small></li>
         <li><span data-l="fr">Rencontre d'affaires Kazakhstan</span><span data-l="en">Kazakhstan business meeting</span><small>Canada Eurasia Chamber of Commerce</small></li>
         <li><span data-l="fr">Photographe de programme</span><span data-l="en">Programme photographer</span><small>McMichel Art Gallery <mark class="todo">[TODO : orthographe exacte]</mark></small></li>
-        <li><span data-l="fr">Coordinatrice d'événements communautaires</span><span data-l="en">Community event coordinator</span><small>Alice Bakery</small></li>
       </ul>
     </div>
   </section>
