@@ -357,6 +357,13 @@
   .persona-kind { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
   .persona h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
   .persona .role { color: var(--ink-soft); margin: 4px 0 16px; font-size: 14px; }
+  .persona-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin: 0 0 8px; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .persona-meta div { margin: 0; }
+  .persona-meta dt { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px; }
+  .persona-meta dd { margin: 0; font-size: 13.5px; line-height: 1.45; }
+  .persona { display: flex; flex-direction: column; }
+  .persona blockquote { margin-top: auto !important; }
+  .persona ul:nth-last-of-type(-n+2) { margin-bottom: 20px; }
   .persona h4 { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 20px 0 8px; font-weight: 500; }
   .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
@@ -969,34 +976,46 @@
 
       <div class="personas">
         <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · B2B industriel</span><span data-l="en">Illustrative example · Industrial B2B</span></p>
+          <p class="persona-kind"><span data-l="fr">Exemple illustratif · B2B industriel</span><span data-l="en">Illustrative example · industrial B2B</span></p>
           <h3>Marc Dubois</h3>
           <p class="role"><span data-l="fr">Ingénieur maintenance matériel roulant</span><span data-l="en">Rolling stock maintenance engineer</span></p>
+          <dl class="persona-meta">
+            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">Équipe maintenance d'un exploitant ferroviaire</span><span data-l="en">Maintenance team at a rail operator</span></dd></div>
+            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Fixations pour matériel roulant</span><span data-l="en">Fasteners for rolling stock</span></dd></div>
+            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Prescripteur technique&nbsp;; les achats signent</span><span data-l="en">Technical specifier; purchasing signs off</span></dd></div>
+            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Documentation technique, salons, commercial dédié</span><span data-l="en">Technical documentation, trade shows, a dedicated sales rep</span></dd></div>
+          </dl>
           <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Des fixations certifiées selon les normes ferroviaires de vibration et de sécurité</li><li>Un approvisionnement fiable et traçable pour la maintenance planifiée</li></ul>
-          <ul data-l="en"><li>Fasteners certified to rail vibration and safety standards</li><li>Reliable, traceable supply for scheduled maintenance</li></ul>
+          <ul data-l="fr"><li>Des fixations certifiées selon les normes ferroviaires de vibration, de feu et de sécurité</li><li>Un approvisionnement fiable et traçable, calé sur les fenêtres de maintenance planifiée</li></ul>
+          <ul data-l="en"><li>Fasteners certified to rail vibration, fire and safety standards</li><li>Reliable, traceable supply, timed to scheduled maintenance windows</li></ul>
           <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Des fournisseurs peu familiers des certifications et délais ferroviaires</li><li>Une qualité de lot inconstante</li></ul>
-          <ul data-l="en"><li>Suppliers unfamiliar with rail certifications and lead times</li><li>Inconsistent lot quality</li></ul>
+          <ul data-l="fr"><li>Des fournisseurs peu familiers des certifications et des délais ferroviaires</li><li>Une qualité de lot inconstante, qui oblige à tout recontrôler</li><li>Des réponses techniques qui mettent des jours à arriver</li></ul>
+          <ul data-l="en"><li>Suppliers unfamiliar with rail certifications and lead times</li><li>Inconsistent lot quality that forces a full re-inspection</li><li>Technical answers that take days to arrive</li></ul>
           <h4><span data-l="fr">Façon de décider</span><span data-l="en">How he decides</span></h4>
-          <ul data-l="fr"><li>Sur les données, avec prudence et un grand souci du détail</li></ul>
-          <ul data-l="en"><li>On data, cautiously, with close attention to detail</li></ul>
-          <blockquote><span data-l="fr">Il fait confiance aux fournisseurs qui arrivent avec la documentation prête, pas avec des promesses.</span><span data-l="en">He trusts suppliers who arrive with the documentation ready, not with promises.</span></blockquote>
+          <ul data-l="fr"><li>Sur les données, avec prudence&nbsp;: fiches techniques, certificats et essais d'abord, puis une référence chez un autre exploitant</li></ul>
+          <ul data-l="en"><li>On data, cautiously: datasheets, certificates and test results first, then a reference from another operator</li></ul>
+          <blockquote><span data-l="fr">Un fournisseur gagne sa confiance avec un dossier complet, et la perd au premier lot non conforme.</span><span data-l="en">A supplier earns his trust with a complete file, and loses it with the first non-conforming batch.</span></blockquote>
         </article>
 
         <article class="persona reveal">
-          <p class="persona-kind illustrative"><span data-l="fr">Exemple illustratif · luxe et beauté · d'après un entretien</span><span data-l="en">Illustrative example · luxury and beauty · from an interview</span></p>
+          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe et beauté</span><span data-l="en">Illustrative example · luxury and beauty</span></p>
           <h3>Claire Moreau</h3>
-          <p class="role"><span data-l="fr">35 à 45 ans, famille avec enfants, loin des grandes villes et de leurs boutiques. Fidèle à une seule maison depuis l'adolescence, elle achète surtout en ligne.</span><span data-l="en">35 to 45, family with children, far from big cities and their boutiques. Loyal to one house since her teens, she buys mostly online.</span></p>
+          <p class="role"><span data-l="fr">Consommatrice de luxe aspirationnelle</span><span data-l="en">Aspirational luxury consumer</span></p>
+          <dl class="persona-meta">
+            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">35 à 45 ans, famille avec enfants, hors des grandes villes</span><span data-l="en">35 to 45, family with children, outside big cities</span></dd></div>
+            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Beauté et accessoires de luxe, environ 200&nbsp;€ par mois</span><span data-l="en">Luxury beauty and accessories, about €200 a month</span></dd></div>
+            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Cliente fidèle à une maison depuis l'adolescence</span><span data-l="en">Loyal to one house since her teens</span></dd></div>
+            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">En ligne, loin des boutiques</span><span data-l="en">Online, far from the boutiques</span></dd></div>
+          </dl>
           <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
           <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, personnalisation</li></ul>
           <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, personalisation</li></ul>
           <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Les hausses de prix d'une marque en laquelle elle a confiance</li><li>Des boutiques en ligne lentes, qui la déconnectent et lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà, plutôt que pour ce qu'elle désire</li></ul>
-          <ul data-l="en"><li>Price increases from a brand she trusts</li><li>Slow online stores that log her out and make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys, instead of something she wants</li></ul>
+          <ul data-l="fr"><li>Les hausses de prix d'une marque en laquelle elle a confiance</li><li>Des boutiques en ligne lentes, qui la déconnectent et lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà</li></ul>
+          <ul data-l="en"><li>Price increases from a brand she trusts</li><li>Slow online stores that log her out and make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys</li></ul>
           <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
-          <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: elle lit la composition sur le site de la marque, puis les avis, avant de commander</li></ul>
-          <ul data-l="en"><li>On relationship more than data, cautiously: she reads the ingredients on the brand's website, then reviews, before ordering</li></ul>
+          <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: la composition sur le site de la marque d'abord, puis les avis</li></ul>
+          <ul data-l="en"><li>On relationship more than data, cautiously: ingredients on the brand's website first, then reviews</li></ul>
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
         </article>
       </div>
