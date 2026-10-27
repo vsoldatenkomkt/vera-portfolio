@@ -5,6 +5,10 @@
 // Drive, then the download starts. Someone who has filled it in
 // once isn't asked again in that browser.
 //
+// A link with data-cv-fr and data-cv-en offers both files: the form
+// asks which language (the site's current one is pre-selected), and
+// still asks for the language once the name and email are on file.
+//
 // Loaded by index.html. To point it at
 // a new Apps Script deployment, only ENDPOINT needs to change.
 // ============================================================
@@ -16,6 +20,10 @@
     en: {
       title: 'Download my CV',
       intro: 'Just your name and email, then the download starts.',
+      introChoice: 'Choose the language, then the download starts.',
+      cvLang: 'CV language',
+      langFr: 'French',
+      langEn: 'English',
       name: 'Name',
       email: 'Email',
       notice: 'Your details are only used to follow up on your interest in my profile. They stay private and are deleted on request.',
@@ -31,6 +39,10 @@
     fr: {
       title: 'Télécharger mon CV',
       intro: 'Votre nom et votre e-mail, puis le téléchargement démarre.',
+      introChoice: 'Choisissez la langue, puis le téléchargement démarre.',
+      cvLang: 'Langue du CV',
+      langFr: 'Français',
+      langEn: 'Anglais',
       name: 'Nom',
       email: 'E-mail',
       notice: 'Vos coordonnées servent uniquement à donner suite à votre intérêt pour mon profil. Elles restent confidentielles et sont supprimées sur simple demande.',
@@ -46,6 +58,10 @@
     ru: {
       title: 'Скачать моё резюме',
       intro: 'Укажите имя и email, и загрузка начнётся.',
+      introChoice: 'Выберите язык, и загрузка начнётся.',
+      cvLang: 'Язык резюме',
+      langFr: 'Французский',
+      langEn: 'Английский',
       name: 'Имя',
       email: 'Email',
       notice: 'Ваши данные используются только для того, чтобы связаться с вами по поводу моей кандидатуры. Они не передаются третьим лицам и удаляются по запросу.',
@@ -116,6 +132,12 @@
     '.cv-form label{display:block;margin:0 0 12px;font-size:13px;font-weight:600}' +
     '.cv-form input{display:block;width:100%;margin-top:6px;padding:10px 12px;font:inherit;font-weight:400;font-size:15px;color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px}' +
     '.cv-form input:focus{outline:2px solid var(--color-accent);outline-offset:1px}' +
+    '.cv-form-lang{margin:0 0 14px;padding:0;border:0}' +
+    '.cv-form-lang[hidden]{display:none}' +
+    '.cv-form-lang legend{padding:0;margin:0 0 8px;font-size:13px;font-weight:600}' +
+    '.cv-form-lang label{display:inline-flex;align-items:center;gap:8px;margin:0 18px 0 0;font-weight:400;font-size:15px;cursor:pointer}' +
+    '.cv-form-lang input{display:inline-block;width:auto;margin:0;accent-color:var(--color-accent)}' +
+    '.cv-form [hidden]{display:none}' +
     '.cv-form-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}' +
     '.cv-form-error{margin:-4px 0 12px;font-size:13px;color:#B3261E}' +
     'html.dark-mode .cv-form-error{color:#F2B8B5}' +
@@ -139,16 +161,17 @@
     return TEXT[lang] ? lang : 'en';
   }
 
-  function startDownload(link) {
+  function startDownload(href) {
     var a = document.createElement('a');
-    a.href = link.getAttribute('href');
-    a.setAttribute('download', link.getAttribute('download') || '');
+    a.href = href;
+    a.setAttribute('download', href.split('/').pop());
     document.body.appendChild(a);
     a.click();
     a.remove();
   }
 
   var overlay, form, title, intro, nameLabel, emailLabel, nameInput, emailInput, trapInput, errorBox, notice, submitBtn, cancelBtn;
+  var langBox, langLegend, langFrLabel, langEnLabel, nameField, emailField;
   var pendingLink = null;
   var lastFocus = null;
 
@@ -164,6 +187,10 @@
       '<form class="cv-form" role="dialog" aria-modal="true" aria-labelledby="cv-form-title">' +
         '<h3 id="cv-form-title"></h3>' +
         '<p class="cv-form-intro"></p>' +
+        '<fieldset class="cv-form-lang" hidden><legend></legend>' +
+          '<label><input type="radio" name="cv-lang" value="fr"><span data-cv-lang-fr></span></label>' +
+          '<label><input type="radio" name="cv-lang" value="en"><span data-cv-lang-en></span></label>' +
+        '</fieldset>' +
         '<label><span data-cv-name-label></span><input type="text" name="name" autocomplete="name" maxlength="100" required></label>' +
         '<label><span data-cv-email-label></span><input type="email" name="email" autocomplete="email" maxlength="200" required></label>' +
         '<div class="cv-form-trap" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>' +
@@ -188,6 +215,12 @@
     notice = form.querySelector('.cv-form-notice');
     submitBtn = form.querySelector('[data-cv-submit]');
     cancelBtn = form.querySelector('[data-cv-cancel]');
+    langBox = form.querySelector('.cv-form-lang');
+    langLegend = langBox.querySelector('legend');
+    langFrLabel = form.querySelector('[data-cv-lang-fr]');
+    langEnLabel = form.querySelector('[data-cv-lang-en]');
+    nameField = nameInput.closest('label');
+    emailField = emailInput.closest('label');
 
     cancelBtn.addEventListener('click', close);
     emailInput.addEventListener('input', clearError);
@@ -198,11 +231,31 @@
     form.addEventListener('submit', submit);
   }
 
+  function hasChoice(link) {
+    return link.hasAttribute('data-cv-fr') && link.hasAttribute('data-cv-en');
+  }
+
+  // The file to download: the chosen language when the link offers both.
+  function chosenHref(link) {
+    if (!hasChoice(link)) return link.getAttribute('href');
+    var picked = form.querySelector('input[name="cv-lang"]:checked');
+    return link.getAttribute(picked && picked.value === 'en' ? 'data-cv-en' : 'data-cv-fr');
+  }
+
   function open(link) {
     if (!overlay) build();
     var t = TEXT[currentLang()];
+    var choice = hasChoice(link);
+    var known = isDone();
     title.textContent = t.title;
-    intro.textContent = t.intro;
+    intro.textContent = known ? t.introChoice : t.intro;
+    langBox.hidden = !choice;
+    langLegend.textContent = t.cvLang;
+    langFrLabel.textContent = t.langFr;
+    langEnLabel.textContent = t.langEn;
+    form.querySelector('input[name="cv-lang"][value="' + (currentLang() === 'fr' ? 'fr' : 'en') + '"]').checked = true;
+    nameField.hidden = emailField.hidden = notice.hidden = known;
+    nameInput.required = emailInput.required = !known;
     nameLabel.textContent = t.name;
     emailLabel.textContent = t.email;
     notice.textContent = t.notice;
@@ -213,7 +266,7 @@
     pendingLink = link;
     lastFocus = document.activeElement;
     overlay.hidden = false;
-    nameInput.focus();
+    (known ? form.querySelector('input[name="cv-lang"]:checked') : nameInput).focus();
   }
 
   function close() {
@@ -256,6 +309,11 @@
     e.preventDefault();
     var link = pendingLink;
     if (!link) return;
+    var href = chosenHref(link);
+    if (isDone()) {
+      close();
+      return startDownload(href);
+    }
     var t = TEXT[currentLang()];
     var email = emailInput.value.trim();
     var at = email.lastIndexOf('@');
@@ -275,16 +333,16 @@
         return showError(t.invalid);
       }
       submitBtn.textContent = t.sending;
-      send(link, email);
+      send(href, email);
     });
   }
 
-  function send(link, email) {
+  function send(href, email) {
     var body = new URLSearchParams({
       name: nameInput.value.trim(),
       email: email,
       website: trapInput.value,
-      cv: link.getAttribute('href'),
+      cv: href,
       page: 'main',
       lang: currentLang()
     });
@@ -300,13 +358,13 @@
     Promise.race([request, timeout]).then(function () {
       markDone();
       close();
-      startDownload(link);
+      startDownload(href);
     });
   }
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest && e.target.closest('a[download][href$=".pdf"]');
-    if (!link || isDone()) return;
+    if (!link || (isDone() && !hasChoice(link))) return;
     e.preventDefault();
     open(link);
   });

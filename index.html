@@ -431,6 +431,7 @@
 
   /* ---------- CV / footer ---------- */
   .cv-block { text-align: center; }
+  .cv-block .hero-actions { justify-content: center; }
   .site-footer { padding: 48px 0 64px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
   .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
 
@@ -616,7 +617,7 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></h2>
-        <p><span data-l="fr">Une sélection de travaux, chacun présenté pour ce qu'il est.</span><span data-l="en">A selection of work, each presented for exactly what it is.</span></p>
+        <p><span data-l="fr">Une sélection de mes travaux récents.</span><span data-l="en">A selection of my recent work.</span></p>
       </div>
 
       <div class="plates">
@@ -1255,11 +1256,11 @@
         <h2>CV</h2>
       </div>
       <div class="prose reveal">
-        <p><span data-l="fr">Le parcours détaillé, les postes et les dates sont dans le CV.</span><span data-l="en">The detailed career path, roles and dates are in the CV.</span> <mark class="todo">[TODO: new luxury CVs, FR and EN]</mark></p>
+        <p><span data-l="fr">Le parcours détaillé, les postes et les dates sont dans le CV, en français ou en anglais.</span><span data-l="en">The detailed career path, roles and dates are in the CV, in French or English.</span></p>
       </div>
       <div class="hero-actions reveal">
-        <a class="btn btn-primary" data-l="fr" href="Vera_Soldatenko_CV_Marketing_Ops_FR.pdf" download="Vera_Soldatenko_CV_Marketing_Ops_FR.pdf">Télécharger le CV</a>
-        <a class="btn btn-primary" data-l="en" href="CV_Soldatenko_EN.pdf" download="CV_Soldatenko_EN.pdf">Download the CV</a>
+        <!-- One button: the form asks which language. data-cv-fr / data-cv-en are the two files. -->
+        <a class="btn btn-primary" href="CV_Soldatenko_Luxe_FR.pdf" download data-cv-fr="CV_Soldatenko_Luxe_FR.pdf" data-cv-en="CV_Soldatenko_Luxury_EN.pdf"><span data-l="fr">Télécharger le CV</span><span data-l="en">Download the CV</span></a>
         <a class="btn btn-secondary" href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
@@ -1274,7 +1275,7 @@
   </div>
 </footer>
 
-<script src="cv-gate.js?v=2"></script>
+<script src="cv-gate.js?v=3"></script>
 <script>
   // Language: FR by default, EN on request; remembered between visits.
   // Russian will return here once its copy is written.
