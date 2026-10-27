@@ -22,3 +22,6 @@ folder.png
 *.pages
 *.docx
 Lettre_Motivation_*.pdf
+
+# Course files and personal documents used as background only
+Master Work/
