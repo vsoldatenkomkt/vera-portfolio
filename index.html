@@ -298,6 +298,14 @@
   @media (min-width: 900px) { .image-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
   .tile { margin: 0; aspect-ratio: 3 / 4; background: var(--tile); overflow: hidden; }
   .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; }
+  /* Nearby activities: two landscape images, third-party, credited */
+  .nearby-head { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; text-align: center; margin: 56px 0 20px; }
+  .nearby { display: grid; gap: 16px; }
+  @media (min-width: 700px) { .nearby { grid-template-columns: 1fr 1fr; } }
+  .nearby figure { margin: 0; }
+  .nearby img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--tile); }
+  .nearby figcaption { font-size: 13.5px; margin-top: 10px; }
+  .nearby .credit { display: block; font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
 
   /* ---------- Master's projects ---------- */
   .series-grid { display: grid; gap: 48px; }
@@ -725,7 +733,8 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2>Château Landery</h2>
-        <p><span data-l="fr">Gîte, projet familial, été 2025. Gestion des clients, prospection et conception des activités.</span><span data-l="en">Holiday rental, family project, summer 2025. Client management, customer outreach and activity curation.</span></p>
+        <p><span data-l="fr">Gîte, projet familial, été 2025. Mon rôle&nbsp;: gestion des clients, prospection et conception des activités.</span><span data-l="en">Holiday rental, family project, summer 2025. My role: client management, customer outreach and activity curation.</span></p>
+        <p><span data-l="fr">Les hôtes venaient uniquement par le bouche-à-oreille et sur recommandation, sans ouverture au public. Le gîte n'accueille plus de clients aujourd'hui.</span><span data-l="en">Guests came by word of mouth and referral only; it was never open to the public. The gîte no longer takes guests.</span></p>
       </div>
       <div class="image-grid" aria-label="Château Landery en images">
         <figure class="tile reveal"><img src="img/chateau-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château sous un ciel bleu"></figure>
@@ -740,6 +749,18 @@
         <figure class="tile reveal"><img src="img/chateau-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La piscine entourée d&#x27;arbres"></figure>
         <figure class="tile reveal"><img src="img/chateau-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La cour et ses piliers de pierre"></figure>
         <figure class="tile reveal"><img src="img/chateau-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le lac en été, vu entre les arbres"></figure>
+      </div>
+
+      <h3 class="nearby-head reveal"><span data-l="fr">Aux alentours, proposé aux hôtes</span><span data-l="en">Nearby, suggested to guests</span></h3>
+      <div class="nearby">
+        <figure class="reveal">
+          <img src="img/chateau-nearby-circuit.webp" width="700" height="525" loading="lazy" decoding="async" alt="Départ d'une course de voitures sous l'arche du Circuit du Val de Vienne">
+          <figcaption><span data-l="fr">Une journée au Circuit du Val de Vienne.</span><span data-l="en">A day at the Circuit du Val de Vienne.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Circuit du Val de Vienne</span><span data-l="en">Photo: Circuit du Val de Vienne website</span></span></figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="img/chateau-nearby-pressac.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Tables dressées sur une terrasse couverte, face au lac et aux cabanes flottantes au coucher du soleil">
+          <figcaption><span data-l="fr">Un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Dinner on the water at the Village Flottant de Pressac.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Village Flottant de Pressac</span><span data-l="en">Photo: Village Flottant de Pressac website</span></span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
