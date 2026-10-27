@@ -17,12 +17,12 @@
 <meta name="twitter:title" content="Vera Soldatenko · Marketing, CRM & contenu de marque">
 <meta name="twitter:description" content="Précision technique, positionnement premium, analyse consommateur et récit. Ouverte aux opportunités : luxe, beauté, hôtellerie.">
 <meta name="twitter:image" content="https://vsoldatenko.fr/PP.PNG">
-<meta name="theme-color" content="#F4EFE7">
+<meta name="theme-color" content="#F8F8F7">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,34 +42,34 @@
 }
 </script>
 <style>
-  @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
-  @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); }
-  @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url("fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); }
-  @font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
-  @font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); }
-  @font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/eb-garamond-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/eb-garamond-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/eb-garamond-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "DM Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/dm-sans-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "DM Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/dm-sans-latin-500-normal.woff2") format("woff2"); }
 
-  /* Palette: warm paper, deep ink, one muted oxblood accent. The
-     --color-* names are also read by cv-gate.js for the CV form. */
+  /* Quiet, near-white couture register: charcoal ink, soft greys,
+     no accent colour except on [TODO] markers. The --color-* names
+     are also read by cv-gate.js for the CV form. */
   :root {
     color-scheme: light;
-    --paper: #F4EFE7;
-    --paper-deep: #EAE2D6;
-    --ink: #1F1B16;
-    --ink-soft: #5C5348;
-    --rule: #D6CBBB;
-    --accent: #7B2D26;
-    --white: #FFFDF9;
-    --serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
-    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --measure: 36rem;
-    --gutter: clamp(20px, 5vw, 56px);
+    --paper: #F8F8F7;
+    --tile: #ECECE9;
+    --white: #FFFFFF;
+    --ink: #2E3236;
+    --ink-soft: #62696D;
+    --rule: #E1E1DD;
+    --todo: #8A3B2E;
+    --serif: "EB Garamond", Garamond, "Times New Roman", serif;
+    --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --measure: 34rem;
+    --gutter: clamp(20px, 5vw, 48px);
 
     --color-bg: var(--paper);
     --color-surface: var(--white);
     --color-text: var(--ink);
     --color-text-muted: var(--ink-soft);
-    --color-accent: var(--accent);
+    --color-accent: var(--ink);
     --color-border: var(--rule);
     --font-body: var(--sans);
   }
@@ -87,131 +87,110 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 15px;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
-  img { display: block; max-width: 100%; height: auto; }
-  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:hover { color: var(--accent); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  a:hover { color: var(--ink-soft); }
+  :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
   .skip { position: absolute; left: -9999px; top: 0; }
   .skip:focus { left: 12px; top: 12px; z-index: 100; background: var(--white); padding: 8px 14px; }
 
-  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 14px;
-  }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+  .narrow { max-width: calc(var(--measure) + 2 * var(--gutter)); }
 
   .todo {
     background: none;
-    color: var(--accent);
+    color: var(--todo);
     font-family: var(--sans);
     font-size: 0.85em;
     font-style: normal;
-    border: 1px dashed var(--accent);
+    border: 1px dashed var(--todo);
     padding: 1px 6px;
-    border-radius: 3px;
   }
 
-  /* ---------- Header ---------- */
+  /* ---------- Header: index left, name centred, language right ---------- */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--rule);
   }
-  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; }
-  .monogram { font-family: var(--serif); font-size: 22px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; }
-  .header-tools { display: flex; align-items: center; gap: 18px; }
+  .site-header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 60px; }
+  .wordmark { font-family: var(--serif); font-size: 21px; letter-spacing: 0.01em; text-decoration: none; white-space: nowrap; }
+  /* The header name appears once the big name in the hero has scrolled
+     away, so the first screen never shows it twice. */
+  html.js .wordmark { opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; }
+  html.js .site-header.show-name .wordmark { opacity: 1; visibility: visible; }
+  .header-start { justify-self: start; }
+  .header-end { justify-self: end; }
 
   .index-menu { position: relative; }
-  .index-menu summary {
-    list-style: none;
-    cursor: pointer;
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 8px 0;
-  }
+  .index-menu summary { list-style: none; cursor: pointer; font-size: 13px; padding: 8px 0; }
   .index-menu summary::-webkit-details-marker { display: none; }
   .index-menu nav {
     position: absolute;
-    right: 0;
+    left: 0;
     top: calc(100% + 8px);
     background: var(--white);
-    border: 1px solid var(--rule);
-    padding: 14px 18px;
-    min-width: 220px;
-    box-shadow: 0 18px 40px rgba(31, 27, 22, 0.12);
+    padding: 16px 22px;
+    min-width: 230px;
+    box-shadow: 0 16px 40px rgba(46, 50, 54, 0.10);
   }
   .index-menu ol { list-style: none; margin: 0; padding: 0; }
-  .index-menu li a { display: flex; gap: 12px; padding: 7px 0; text-decoration: none; font-size: 15px; }
-  .index-menu li a span { color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 1.6em; }
+  .index-menu li a { display: block; padding: 7px 0; text-decoration: none; font-size: 14px; }
 
-  .lang-switch { display: flex; gap: 2px; font-size: 12px; letter-spacing: 0.12em; }
-  .lang-switch button {
-    background: none;
-    border: 0;
-    padding: 8px 6px;
-    font: inherit;
-    letter-spacing: inherit;
-    color: var(--ink-soft);
-    cursor: pointer;
-  }
+  .lang-switch { display: flex; gap: 2px; font-size: 13px; }
+  .lang-switch button { background: none; border: 0; padding: 8px 5px; font: inherit; color: var(--ink-soft); cursor: pointer; }
   .lang-switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 40px 0 56px; }
-  .hero-grid { display: grid; gap: 32px; }
+  /* ---------- Hero: centred, then one large image ---------- */
+  .hero { padding: 48px 0 0; text-align: center; }
   .hero h1 {
     font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(3rem, 12vw, 6.4rem);
-    line-height: 0.95;
+    font-weight: 400;
+    font-size: clamp(2.3rem, 8vw, 3.4rem);
+    line-height: 1.1;
     letter-spacing: -0.01em;
-    margin: 0 0 18px;
+    margin: 0 0 14px;
   }
-  .hero-roles {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(1.3rem, 4.6vw, 1.75rem);
-    line-height: 1.3;
-    margin: 0 0 22px;
-  }
+  .hero-roles { color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin: 0 auto 22px; max-width: 30rem; }
   .open-to {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 26px;
-    padding: 9px 14px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 500;
+    display: inline-block;
+    margin: 0 0 24px;
+    padding: 10px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
-  .open-to::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
-  .hero-lede { max-width: var(--measure); font-size: 17px; margin: 0 0 28px; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-lede { max-width: var(--measure); margin: 0 auto 28px; font-size: 15px; }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .hero-grid { display: grid; gap: 40px; }
+  .hero-portrait { margin: 0 auto; width: 100%; max-width: 360px; }
+  .hero-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 22%; }
+  @media (min-width: 880px) {
+    .hero { padding-top: 72px; text-align: left; }
+    .hero-grid { grid-template-columns: 1.35fr 0.9fr; align-items: center; gap: 64px; }
+    .hero-roles, .hero-lede { margin-left: 0; }
+    .hero-actions { justify-content: flex-start; }
+    .hero-portrait { max-width: none; }
+  }
 
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 26px;
     font-family: var(--sans);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.02em;
     text-decoration: none;
@@ -219,166 +198,144 @@
     border-radius: 0;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
-  .btn-primary { background: var(--ink); color: var(--paper); }
-  .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--white); }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover { background: var(--white); color: var(--ink); }
   .btn-secondary { background: transparent; color: var(--ink); }
-  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+  .btn-secondary:hover { background: var(--ink); color: var(--white); }
 
-  .hero-portrait { margin: 0; }
-  .hero-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; }
-  .caption { font-size: 12.5px; color: var(--ink-soft); margin-top: 10px; line-height: 1.5; }
+  .caption { font-size: 12.5px; color: var(--ink-soft); margin-top: 12px; line-height: 1.5; text-align: center; }
 
-  @media (min-width: 880px) {
-    .hero { padding: 72px 0 96px; }
-    .hero-grid { grid-template-columns: 1.35fr 0.9fr; align-items: end; gap: 64px; }
-  }
+  /* ---------- Chapters ---------- */
+  section.chapter { padding: 96px 0; scroll-margin-top: 60px; }
+  .chapter-head { text-align: center; margin: 0 auto 48px; max-width: 36rem; }
+  .chapter-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.75rem, 5vw, 2.25rem); line-height: 1.2; margin: 0; }
+  .chapter-head p { margin: 10px 0 0; color: var(--ink-soft); font-size: 14px; }
 
-  /* ---------- Sections ---------- */
-  section.chapter { padding: 72px 0; border-top: 1px solid var(--rule); scroll-margin-top: 56px; }
-  .chapter-head { display: grid; gap: 6px; margin-bottom: 40px; }
-  .chapter-head h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2.2rem, 7vw, 3.4rem);
-    line-height: 1.05;
-    margin: 0;
-  }
-  .chapter-head p { max-width: var(--measure); margin: 6px 0 0; color: var(--ink-soft); }
-
-  .prose { max-width: var(--measure); }
-  .prose p { margin: 0 0 1.1em; }
-  .prose .drop::first-letter {
-    font-family: var(--serif);
-    float: left;
-    font-size: 4.2em;
-    line-height: 0.82;
-    padding: 6px 10px 0 0;
-    color: var(--accent);
-  }
+  .prose { max-width: var(--measure); margin: 0 auto; }
+  .prose p { margin: 0 0 1.2em; }
   .aside-interests {
     max-width: var(--measure);
-    margin-top: 28px;
-    padding-top: 18px;
-    border-top: 1px solid var(--rule);
+    margin: 40px auto 0;
+    text-align: center;
     font-family: var(--serif);
     font-style: italic;
-    font-size: 1.25rem;
-    line-height: 1.45;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
   }
 
-  /* ---------- Plates (catalogue entries) ---------- */
-  .plate { display: grid; gap: 22px; padding: 48px 0; border-bottom: 1px solid var(--rule); }
-  .plate:last-child { border-bottom: 0; }
-  .plate-figure { margin: 0; }
-  .plate-figure img { width: 100%; background: var(--paper-deep); }
-  .plate-type {
-    aspect-ratio: 16 / 11;
-    background: var(--paper-deep);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 9%;
-  }
-  .plate-type blockquote {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 6vw, 2.8rem);
-    line-height: 1.1;
-  }
-  .plate-type cite { margin-top: 18px; font-style: normal; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
-
-  .plate-no { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; font-variant-numeric: tabular-nums; }
-  .plate h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.1; margin: 0 0 14px; }
-  .plate-body > p { max-width: var(--measure); margin: 0 0 18px; }
+  /* ---------- Selected work: large image, centred text below ---------- */
+  .plate { padding: 0 0 96px; }
+  .plate:last-child { padding-bottom: 0; }
+  .plate-figure { margin: 0 auto; max-width: 1100px; }
+  .plate-figure img { width: 100%; background: var(--tile); }
+  @media (max-width: 599px) { .plate-figure { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); } }
+  .plate-body { max-width: var(--measure); margin: 32px auto 0; text-align: center; }
+  .plate-no { font-size: 12px; color: var(--ink-soft); margin: 0 0 8px; font-variant-numeric: tabular-nums; }
+  .plate h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 4.6vw, 1.9rem); line-height: 1.2; margin: 0 0 14px; }
+  .plate-body > p { margin: 0 0 20px; }
 
   .label {
     display: grid;
-    grid-template-columns: minmax(6.5rem, auto) 1fr;
-    gap: 8px 16px;
-    margin: 0 0 18px;
-    padding: 16px 0 0;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6px 16px;
+    margin: 0 0 20px;
+    padding-top: 18px;
     border-top: 1px solid var(--rule);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
-    max-width: var(--measure);
+    text-align: left;
   }
-  .label dt { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding-top: 2px; }
+  .label dt { text-align: right; color: var(--ink-soft); }
   .label dd { margin: 0; }
-  .plate-link { font-size: 14px; font-weight: 500; }
+  .plate-link { font-size: 13px; font-weight: 500; }
 
-  @media (min-width: 880px) {
-    .plate { grid-template-columns: 7fr 5fr; gap: 56px; align-items: center; padding: 72px 0; }
-    .plate:nth-child(even) { grid-template-columns: 5fr 7fr; }
-    .plate:nth-child(even) .plate-figure { order: 2; }
-  }
+  /* CRM process: six numbered steps on a tinted panel */
+  .process { background: var(--tile); padding: clamp(28px, 6vw, 64px); }
+  .process-logo { width: 150px; height: auto; margin: 0 0 32px; opacity: 0.9; }
+  .process ol { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 22px; text-align: left; }
+  .process li { counter-increment: step; display: grid; grid-template-columns: 2.4rem 1fr; gap: 2px 14px; }
+  .process li::before { content: counter(step, decimal-leading-zero); grid-row: span 2; font-family: var(--serif); font-size: 1.6rem; line-height: 1; color: var(--ink-soft); }
+  .process b { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; line-height: 1.25; }
+  .process span { font-size: 13.5px; color: var(--ink-soft); }
+  @media (min-width: 880px) { .process ol { grid-template-columns: repeat(3, 1fr); gap: 36px 32px; } }
 
   /* Thesis chart */
-  .stat-chart { max-width: var(--measure); margin: 4px 0 22px; }
-  .stat-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; margin-bottom: 14px; font-size: 14px; }
-  .stat-row b { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1; }
-  .stat-bar { grid-column: 1 / -1; height: 6px; background: var(--paper-deep); }
+  .stat-chart { margin: 0 auto 22px; text-align: left; }
+  .stat-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; margin-bottom: 14px; font-size: 13.5px; }
+  .stat-row b { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; line-height: 1; }
+  .stat-bar { grid-column: 1 / -1; height: 2px; background: var(--rule); }
   .stat-bar span { display: block; height: 100%; background: var(--ink); }
-  .stat-bar.muted span { background: var(--accent); }
-  .stat-source { font-size: 12.5px; color: var(--ink-soft); }
+  .stat-bar.muted span { background: var(--ink-soft); }
+  .stat-source { font-size: 12.5px; color: var(--ink-soft); text-align: center; }
+
+  /* ---------- Château: image-only grid ----------
+     Add photos or short videos as tiles:
+       <figure class="tile"><img src="img/chateau-01.webp" width="900" height="1200" alt="..." loading="lazy"></figure>
+       <figure class="tile"><video src="img/chateau-02.mp4" muted loop playsinline autoplay aria-label="..."></video></figure>
+     Tiles are cropped to a 3:4 portrait. */
+  .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (min-width: 900px) { .image-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+  .tile { margin: 0; aspect-ratio: 3 / 4; background: var(--tile); overflow: hidden; }
+  .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; }
 
   /* ---------- Master's projects ---------- */
-  .series-grid { display: grid; gap: 40px; }
-  .work { display: grid; gap: 14px; align-content: start; }
-  .work img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule); }
-  .work h3 { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; line-height: 1.15; margin: 0; }
-  .work p { margin: 0; font-size: 15px; }
-  .work .meta { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 4px 0 0; }
-  .chips li { font-size: 12.5px; border: 1px solid var(--rule); padding: 3px 10px; background: var(--white); }
-  @media (min-width: 700px) { .series-grid { grid-template-columns: 1fr 1fr; gap: 56px 40px; } }
+  .series-grid { display: grid; gap: 48px; }
+  .work { display: grid; gap: 12px; align-content: start; text-align: center; }
+  .work img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--white); }
+  .work h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.25; margin: 0; }
+  .work p { margin: 0; font-size: 14px; color: var(--ink); text-align: left; }
+  .work .meta { font-size: 12px; color: var(--ink-soft); text-align: center; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; list-style: none; padding: 0; margin: 2px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+  @media (min-width: 700px) { .series-grid { grid-template-columns: 1fr 1fr; gap: 64px 40px; } }
   @media (min-width: 1080px) { .series-grid { grid-template-columns: repeat(3, 1fr); } }
 
   /* ---------- Method ---------- */
-  .personas { display: grid; gap: 24px; }
-  .persona { background: var(--white); border: 1px solid var(--rule); padding: 26px; }
-  .persona-kind { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 14px; }
-  .persona-kind.illustrative { color: var(--accent); }
-  .persona h3 { font-family: var(--serif); font-weight: 500; font-size: 1.7rem; margin: 0; line-height: 1.15; }
-  .persona .role { color: var(--ink-soft); margin: 4px 0 18px; font-size: 15px; }
-  .persona h4 { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin: 18px 0 6px; font-weight: 500; }
-  .persona ul { margin: 0; padding-left: 18px; font-size: 15px; }
+  .personas { display: grid; gap: 24px; max-width: 980px; margin: 0 auto; }
+  .persona { background: var(--white); padding: 32px 28px; }
+  .persona-kind { font-size: 12px; color: var(--ink-soft); margin: 0 0 14px; }
+  .persona h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
+  .persona .role { color: var(--ink-soft); margin: 4px 0 16px; font-size: 14px; }
+  .persona h4 { font-size: 12px; color: var(--ink-soft); margin: 18px 0 6px; font-weight: 500; }
+  .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
-  .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.2rem; line-height: 1.4; }
-  @media (min-width: 880px) { .personas { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
+  @media (min-width: 880px) { .personas { grid-template-columns: 1fr 1fr; gap: 24px; } }
 
   /* ---------- Expertise ---------- */
   .precision-note {
-    max-width: 44rem;
+    max-width: 38rem;
+    margin: 0 auto 64px;
+    text-align: center;
     font-family: var(--serif);
-    font-size: clamp(1.35rem, 4.5vw, 1.75rem);
-    line-height: 1.4;
-    margin: 0 0 48px;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    line-height: 1.5;
   }
-  .skill-groups { display: grid; gap: 32px; }
-  .skill-group h3 { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+  .skill-groups { display: grid; gap: 40px; max-width: 1100px; margin: 0 auto; }
+  .skill-group { text-align: center; }
+  .skill-group h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 12px; }
   .skill-group ul { list-style: none; margin: 0; padding: 0; }
-  .skill-group li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
-  @media (min-width: 700px) { .skill-groups { grid-template-columns: 1fr 1fr; gap: 40px; } }
+  .skill-group li { padding: 6px 0; font-size: 14px; color: var(--ink); }
+  @media (min-width: 700px) { .skill-groups { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1080px) { .skill-groups { grid-template-columns: repeat(4, 1fr); } }
 
   /* ---------- Education ---------- */
-  .entries { display: grid; gap: 0; max-width: 52rem; }
-  .entry { display: grid; gap: 4px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
-  .entry h3 { font-family: var(--serif); font-weight: 500; font-size: 1.45rem; margin: 0; line-height: 1.2; }
-  .entry p { margin: 0; color: var(--ink-soft); font-size: 15px; }
-  @media (min-width: 700px) { .entry { grid-template-columns: 7rem 1fr; gap: 24px; } .entry .year { padding-top: 6px; } }
-  .entry .year { font-size: 13px; letter-spacing: 0.08em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-  .assess { margin-top: 32px; font-size: 15px; }
-  .hashtags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 8px; font-family: var(--serif); font-style: italic; font-size: 1.15rem; }
+  .entries { max-width: 40rem; margin: 0 auto; }
+  .entry { padding: 22px 0; border-bottom: 1px solid var(--rule); text-align: center; }
+  .entry:first-child { border-top: 1px solid var(--rule); }
+  .entry h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 4px; line-height: 1.3; }
+  .entry p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+  .entry .year { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .assess { margin-top: 36px; font-size: 14px; text-align: center; }
+  .hashtags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; margin-top: 8px; font-family: var(--serif); font-style: italic; font-size: 1.15rem; }
 
   /* ---------- CV / footer ---------- */
-  .cv-block { display: grid; gap: 20px; }
-  .cv-block .prose p { font-size: 17px; }
-  .site-footer { padding: 40px 0 56px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-soft); }
-  .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .cv-block { text-align: center; }
+  .site-footer { padding: 40px 0 56px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-soft); }
+  .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
 
   /* ---------- Motion: gentle fade-up, off for reduced motion ---------- */
-  html.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  html.js .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
   html.js .reveal.is-in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     html.js .reveal { opacity: 1; transform: none; transition: none; }
@@ -392,26 +349,25 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="monogram" href="#accueil" aria-label="Vera Soldatenko">V.S.</a>
-    <div class="header-tools">
-      <details class="index-menu">
-        <summary>Index</summary>
-        <nav aria-label="Index">
-          <ol>
-            <li><a href="#avant-propos"><span>I</span><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></a></li>
-            <li><a href="#planches"><span>II</span><span data-l="fr">Planches</span><span data-l="en">Plates</span></a></li>
-            <li><a href="#travaux"><span>III</span><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
-            <li><a href="#methode"><span>IV</span><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
-            <li><a href="#savoir-faire"><span>V</span><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
-            <li><a href="#formation"><span>VI</span><span data-l="fr">Formation</span><span data-l="en">Education</span></a></li>
-            <li><a href="#cv"><span>VII</span>CV</a></li>
-          </ol>
-        </nav>
-      </details>
-      <div class="lang-switch" role="group" aria-label="Langue / Language">
-        <button type="button" data-lang-btn="fr" aria-pressed="true" lang="fr">FR</button>
-        <button type="button" data-lang-btn="en" aria-pressed="false" lang="en">EN</button>
-      </div>
+    <details class="index-menu header-start">
+      <summary>Index</summary>
+      <nav aria-label="Index">
+        <ol>
+          <li><a href="#avant-propos"><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></a></li>
+          <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
+          <li><a href="#chateau"><span data-l="fr">Le château</span><span data-l="en">The château</span></a></li>
+          <li><a href="#travaux"><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
+          <li><a href="#methode"><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
+          <li><a href="#savoir-faire"><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
+          <li><a href="#formation"><span data-l="fr">Formation</span><span data-l="en">Education</span></a></li>
+          <li><a href="#cv">CV</a></li>
+        </ol>
+      </nav>
+    </details>
+    <a class="wordmark" href="#accueil">Vera Soldatenko</a>
+    <div class="lang-switch header-end" role="group" aria-label="Langue / Language">
+      <button type="button" data-lang-btn="fr" aria-pressed="true" lang="fr">FR</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false" lang="en">EN</button>
     </div>
   </div>
 </header>
@@ -424,8 +380,7 @@
        ============================================================ -->
   <section class="hero" id="accueil">
     <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow"><span data-l="fr">Catalogue · Édition 2026</span><span data-l="en">Catalogue · 2026 edition</span></p>
+      <div class="hero-text">
         <h1>Vera Soldatenko</h1>
         <p class="hero-roles">
           <span data-l="fr">Marketing &amp; marketing produit · CRM &amp; clienteling · Contenu de marque &amp; éditorial</span>
@@ -441,7 +396,7 @@
           <mark class="todo">[TODO : à affiner dans votre voix]</mark>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#planches"><span data-l="fr">Voir les planches</span><span data-l="en">See the plates</span></a>
+          <a class="btn btn-primary" href="#realisations"><span data-l="fr">Découvrir</span><span data-l="en">Discover</span></a>
           <a class="btn btn-secondary" href="#cv">CV</a>
         </div>
       </div>
@@ -461,17 +416,16 @@
   <section class="chapter" id="avant-propos">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">I</p>
         <h2><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></h2>
       </div>
       <div class="prose reveal">
         <div data-l="fr">
-          <p class="drop">Pendant cinq ans, j'ai fait connaître des pièces conçues pour que des voies ferrées, des mines et des avions tiennent sous la vibration. Ce marketing ne pardonne pas l'approximation&nbsp;: chaque argument se prouve, et un prix haut de gamme se justifie par la sécurité et la confiance qu'il apporte.</p>
+          <p>Pendant cinq ans, j'ai fait connaître des pièces conçues pour que des voies ferrées, des mines et des avions tiennent sous la vibration. Ce marketing ne pardonne pas l'approximation&nbsp;: chaque argument se prouve, et un prix haut de gamme se justifie par la sécurité et la confiance qu'il apporte.</p>
           <p>J'y ai appris ce que le luxe pratique chaque jour. Un produit d'exception se raconte avec précision, se défend par la preuve et se vit dans une relation durable avec le client, ce qui commence par une donnée client juste.</p>
           <p>Mon master à Milan a ajouté l'analyse consommateur et l'omnicanal, jusqu'à un mémoire sur les influenceurs virtuels dans la cosmétique de luxe européenne. Je travaille en français, en anglais et en russe, et j'ai vécu entre plusieurs pays et plusieurs cultures, de mes racines biélorusses au Canada, à l'Italie et à la France.</p>
         </div>
         <div data-l="en">
-          <p class="drop">For five years I marketed parts designed to keep railways, mines and aircraft holding firm under vibration. That kind of marketing does not forgive approximation: every claim has to be proven, and a premium price has to be earned through the safety and trust it delivers.</p>
+          <p>For five years I marketed parts designed to keep railways, mines and aircraft holding firm under vibration. That kind of marketing does not forgive approximation: every claim has to be proven, and a premium price has to be earned through the safety and trust it delivers.</p>
           <p>It taught me what luxury practises every day. An exceptional product is told with precision, defended with proof and lived through a lasting relationship with the client, which starts with accurate client data.</p>
           <p>My master's in Milan added consumer analytics and omnichannel, up to a thesis on virtual influencers in European luxury cosmetics. I work in French, English and Russian, and I have lived across several countries and cultures, from my Belarusian roots to Canada, Italy and France.</p>
         </div>
@@ -486,11 +440,10 @@
   <!-- ============================================================
        II. PLATES: selected work, each with an exhibition label.
        ============================================================ -->
-  <section class="chapter" id="planches">
+  <section class="chapter" id="realisations">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">II</p>
-        <h2><span data-l="fr">Planches</span><span data-l="en">Plates</span></h2>
+        <h2><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></h2>
         <p><span data-l="fr">Une sélection de travaux, chacun présenté pour ce qu'il est.</span><span data-l="en">A selection of work, each presented for exactly what it is.</span></p>
       </div>
 
@@ -521,22 +474,37 @@
         </article>
 
         <article class="plate reveal">
-          <div class="plate-figure plate-type" aria-hidden="true">
-            <blockquote><span data-l="fr">«&nbsp;Adoption quotidienne par toute l'équipe.&nbsp;»</span><span data-l="en">“Full daily adoption across the team.”</span></blockquote>
-            <cite><span data-l="fr">Résultat de la migration CRM</span><span data-l="en">Outcome of the CRM migration</span></cite>
+          <div class="plate-figure process">
+            <img class="process-logo" src="img/pipedrive-logo.svg" width="820" height="304" alt="Pipedrive">
+            <ol data-l="fr" aria-label="Étapes de l'introduction du CRM">
+              <li><b>Identifier le besoin</b><span>Constater qu'un nouvel outil est nécessaire, avant de chercher une solution.</span></li>
+              <li><b>Comparer et choisir</b><span>Étudier les options et retenir Pipedrive.</span></li>
+              <li><b>Maîtriser avant de proposer</b><span>Apprendre l'outil soi-même, puis le présenter à la direction.</span></li>
+              <li><b>Migrer et structurer</b><span>Transférer les données et structurer la base clients&nbsp;: segmentation, filtres, étiquettes, intégrations.</span></li>
+              <li><b>Former</b><span>Intégrer et former les quatre commerciaux de l'équipe.</span></li>
+              <li><b>Accompagner</b><span>Assurer un suivi continu et trouver des solutions face aux réticences.</span></li>
+            </ol>
+            <ol data-l="en" aria-label="Steps in introducing the CRM">
+              <li><b>Identify the need</b><span>Establish that a new tool is needed before looking for one.</span></li>
+              <li><b>Compare and choose</b><span>Research the options and select Pipedrive.</span></li>
+              <li><b>Master it before proposing it</b><span>Learn the tool first, then present it to management.</span></li>
+              <li><b>Migrate and structure</b><span>Move the data and structure the client base: segmentation, filters, tags, integrations.</span></li>
+              <li><b>Train</b><span>Onboard and train the four sales reps.</span></li>
+              <li><b>Support</b><span>Provide ongoing support and find answers to reluctance.</span></li>
+            </ol>
           </div>
           <div class="plate-body">
             <p class="plate-no">N° 02</p>
-            <h3><span data-l="fr">Une donnée propre, une relation durable</span><span data-l="en">Clean data, lasting relationships</span></h3>
-            <p data-l="fr">J'ai identifié le besoin d'un nouveau CRM, comparé les options et proposé Pipedrive, puis piloté la migration, formé l'équipe commerciale et continué à le gérer&nbsp;: saisie rigoureuse, intégrations, filtres et étiquettes dont l'équipe avait vraiment besoin.</p>
-            <p data-l="en">I identified the need for a new CRM, compared the options and proposed Pipedrive, then led the migration, trained the sales team and kept managing it: rigorous data entry, integrations, and the filters and tags the team actually needed.</p>
+            <h3><span data-l="fr">Migrer l'équipe vers Pipedrive, sans la perdre en route</span><span data-l="en">Moving the team to Pipedrive, without losing anyone on the way</span></h3>
+            <p data-l="fr">J'ai conduit la migration de toute l'équipe commerciale vers le CRM Pipedrive. Changer de CRM est d'abord une affaire de personnes. Ma méthode&nbsp;: comprendre l'outil avant de le défendre, préparer des données propres avant la migration, puis rester aux côtés de l'équipe jusqu'à ce que l'outil devienne une habitude.</p>
+            <p data-l="en">I led the whole sales team's move to the Pipedrive CRM. Changing CRM is first and foremost about people. My approach: understand the tool before championing it, prepare clean data before the migration, then stay alongside the team until the tool becomes a habit.</p>
             <dl class="label">
               <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Sélection, migration et gestion d'un CRM</span><span data-l="en">CRM selection, migration and management</span></dd>
+              <dd><span data-l="fr">Sélection, migration et gestion du CRM Pipedrive, conduite du changement</span><span data-l="en">Selection, migration and management of the Pipedrive CRM, change management</span></dd>
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt>Notes</dt>
-              <dd><span data-l="fr">Relances plus rapides, moins de devis perdus, adoption quotidienne par toute l'équipe.</span><span data-l="en">Faster follow-ups, fewer lost quotes, full daily adoption.</span></dd>
+              <dt><span data-l="fr">Résultat</span><span data-l="en">Outcome</span></dt>
+              <dd><span data-l="fr">Relances plus rapides, moins de devis perdus, et un outil utilisé chaque jour par toute l'équipe commerciale.</span><span data-l="en">Faster follow-ups, fewer lost quotes, and a tool the whole sales team uses every day.</span></dd>
             </dl>
           </div>
         </article>
@@ -638,23 +606,33 @@
           </div>
         </article>
 
-        <article class="plate reveal">
-          <div class="plate-figure plate-type">
-            <blockquote><mark class="todo">[TODO : photographies du gîte]</mark></blockquote>
-          </div>
-          <div class="plate-body">
-            <p class="plate-no">N° 07</p>
-            <h3><span data-l="fr">L'hospitalité, au château</span><span data-l="en">Hospitality, at the château</span></h3>
-            <p><mark class="todo">[TODO : en une ou deux phrases, ce que vous avez fait au gîte du château, été 2025]</mark></p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Gîte, projet familial</span><span data-l="en">Holiday rental, family project</span></dd>
-              <dt>Provenance</dt>
-              <dd><mark class="todo">[TODO : nom du château et dates]</mark></dd>
-            </dl>
-          </div>
-        </article>
+      </div>
+    </div>
+  </section>
 
+  <!-- ============================================================
+       THE CHÂTEAU: image-only grid (photos or short videos), no
+       captions. See the .image-grid comment in the CSS for tile markup.
+       ============================================================ -->
+  <section class="chapter" id="chateau">
+    <div class="wrap">
+      <div class="chapter-head reveal">
+        <h2><span data-l="fr">Le château</span><span data-l="en">The château</span></h2>
+        <p><span data-l="fr">Gîte, projet familial, été 2025.</span><span data-l="en">Holiday rental, family project, summer 2025.</span> <mark class="todo">[TODO : nom du château, dates, votre rôle en une phrase]</mark></p>
+      </div>
+      <div class="image-grid" aria-label="Le château en images">
+        <figure class="tile reveal"><img src="img/chateau-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château sous un ciel bleu"></figure>
+        <figure class="tile reveal"><img src="img/chateau-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le chemin givré menant à la tour, à l&#x27;automne"></figure>
+        <figure class="tile reveal"><img src="img/chateau-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un chat blanc devant une porte en fer forgé"></figure>
+        <figure class="tile reveal"><img src="img/chateau-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le lac et les arbres reflétés dans l&#x27;eau"></figure>
+        <figure class="tile reveal"><img src="img/chateau-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Des moutons dans la prairie"></figure>
+        <figure class="tile reveal"><img src="img/chateau-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc dans la brume, vu depuis un balcon en fer forgé"></figure>
+        <figure class="tile reveal"><img src="img/chateau-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un gâteau aux framboises sur une table en bois"></figure>
+        <figure class="tile reveal"><img src="img/chateau-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une jacinthe devant un mur de pierre"></figure>
+        <figure class="tile reveal"><img src="img/chateau-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc arboré devant le château"></figure>
+        <figure class="tile reveal"><img src="img/chateau-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La piscine entourée d&#x27;arbres"></figure>
+        <figure class="tile reveal"><img src="img/chateau-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La cour et ses piliers de pierre"></figure>
+        <figure class="tile reveal"><img src="img/chateau-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une dépendance en pierre par un matin givré"></figure>
       </div>
     </div>
   </section>
@@ -665,12 +643,20 @@
   <section class="chapter" id="travaux">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">III</p>
         <h2><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></h2>
         <p><span data-l="fr">Projets de groupe réalisés à POLIMI Graduate School of Management, 2023-2024.</span><span data-l="en">Group projects at POLIMI Graduate School of Management, 2023-2024.</span></p>
       </div>
 
       <div class="series-grid">
+
+        <article class="work reveal">
+          <img src="img/master-neuro-lab.webp" width="1000" height="548" loading="lazy" decoding="async" alt="Analyse en Python de l'asymétrie alpha frontale par condition publicitaire, dans Google Colab">
+          <p class="meta">Consumer Neuroscience and Bioscience Lab · <mark class="todo">[TODO : individuel ou en groupe]</mark></p>
+          <h3><span data-l="fr">Ce que le cerveau dit d'une publicité</span><span data-l="en">What the brain says about an ad</span></h3>
+          <p data-l="fr">Une expérience sous PsychoPy présente trois conditions publicitaires (une e-cigarette présentée comme «&nbsp;cool&nbsp;», des avertissements sanitaires, une cigarette classique) pendant l'enregistrement de l'activité cérébrale (EEG) et du rythme cardiaque (ECG). Puis l'analyse en Python&nbsp;: appréciation déclarée, rythme cardiaque moyen et asymétrie alpha frontale, un indicateur de motivation d'approche.</p>
+          <p data-l="en">A PsychoPy experiment shows three ad conditions (an e-cigarette framed as “cool”, health warnings, a regular cigarette) while brain activity (EEG) and heart rate (ECG) are recorded. Then the analysis in Python: stated liking, average heart rate and frontal alpha asymmetry, an indicator of approach motivation.</p>
+          <ul class="chips"><li>Neuromarketing</li><li data-l="fr">EEG et ECG</li><li data-l="en">EEG and ECG</li><li>Python</li></ul>
+        </article>
 
         <article class="work reveal">
           <img src="img/master-crm-lab.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture du rapport Alpha Fashion Company Analysis">
@@ -737,7 +723,6 @@
   <section class="chapter" id="methode">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">IV</p>
         <h2><span data-l="fr">Méthode&nbsp;: comprendre avant de convaincre</span><span data-l="en">Method: understand before you persuade</span></h2>
         <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples, dans deux mondes très différents.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two examples, from two very different worlds.</span></p>
       </div>
@@ -784,7 +769,6 @@
   <section class="chapter" id="savoir-faire">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">V</p>
         <h2><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></h2>
       </div>
       <p class="precision-note reveal">
@@ -800,13 +784,13 @@
         </div>
         <div class="skill-group reveal">
           <h3>CRM &amp; clienteling</h3>
-          <ul data-l="fr"><li>Choix, migration et gestion de CRM</li><li>Segmentation et fidélité</li><li>Parcours client omnicanal</li><li>Rétention et valeur vie client</li><li>HubSpot (certifications)</li></ul>
-          <ul data-l="en"><li>CRM selection, migration and management</li><li>Segmentation and loyalty</li><li>Omnichannel customer journeys</li><li>Retention and lifetime value</li><li>HubSpot (certifications)</li></ul>
+          <ul data-l="fr"><li>Choix, migration et gestion de CRM</li><li>Segmentation et fidélité</li><li>Parcours client omnicanal</li><li>Rétention et valeur vie client</li><li>Pipedrive, Salesforce, HubSpot (certifications)</li></ul>
+          <ul data-l="en"><li>CRM selection, migration and management</li><li>Segmentation and loyalty</li><li>Omnichannel customer journeys</li><li>Retention and lifetime value</li><li>Pipedrive, Salesforce, HubSpot (certifications)</li></ul>
         </div>
         <div class="skill-group reveal">
           <h3><span data-l="fr">Analyse</span><span data-l="en">Analytics</span></h3>
-          <ul data-l="fr"><li>Analyse consommateur et enquêtes</li><li>Analyse qualitative (méthode Gioia)</li><li>GA4 et Looker Studio</li><li>Excel et Power BI</li><li>Écoute sociale et veille concurrentielle</li></ul>
-          <ul data-l="en"><li>Consumer analytics and surveys</li><li>Qualitative analysis (Gioia method)</li><li>GA4 and Looker Studio</li><li>Excel and Power BI</li><li>Social listening and competitor research</li></ul>
+          <ul data-l="fr"><li>Enquêtes (Google Forms) et analyse qualitative (méthode Gioia)</li><li>Neuromarketing&nbsp;: EEG, ECG, PsychoPy</li><li>Python sous Google Colab (régression, clustering)</li><li>SQL, Excel et Power BI</li><li>GA4 et Looker Studio</li><li>Écoute sociale&nbsp;: Brand24, SimilarWeb, Google Trends</li></ul>
+          <ul data-l="en"><li>Surveys (Google Forms) and qualitative analysis (Gioia method)</li><li>Neuromarketing: EEG, ECG, PsychoPy</li><li>Python in Google Colab (regression, clustering)</li><li>SQL, Excel and Power BI</li><li>GA4 and Looker Studio</li><li>Social listening: Brand24, SimilarWeb, Google Trends</li></ul>
         </div>
         <div class="skill-group reveal">
           <h3><span data-l="fr">Langues &amp; outils</span><span data-l="en">Languages &amp; tools</span></h3>
@@ -823,7 +807,6 @@
   <section class="chapter" id="formation">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <p class="eyebrow">VI</p>
         <h2><span data-l="fr">Formation</span><span data-l="en">Education</span></h2>
       </div>
       <div class="entries">
@@ -838,7 +821,14 @@
           <span class="year">2024</span>
           <div>
             <h3><span data-l="fr">Prix Social Media Excellence, Italian Way</span><span data-l="en">Social Media Excellence Award, Italian Way</span></h3>
-            <p><span data-l="fr">Édition 2024, décerné le 28 juin 2024</span><span data-l="en">2024 edition, awarded on 28 June 2024</span></p>
+            <p><span data-l="fr">Édition 2024, une semaine de rencontres avec des maisons et marques italiennes, de Moncler à Acqua di Parma. Prix décerné le 28 juin 2024.</span><span data-l="en">2024 edition, a week of sessions with Italian houses and brands, from Moncler to Acqua di Parma. Awarded on 28 June 2024.</span></p>
+          </div>
+        </div>
+        <div class="entry reveal">
+          <span class="year">2023</span>
+          <div>
+            <h3><span data-l="fr">Séminaire NielsenIQ, stratégie de prix</span><span data-l="en">NielsenIQ seminar, pricing strategy</span></h3>
+            <p><span data-l="fr">Milan, 12 décembre 2023&nbsp;: inflation et grande consommation, prix d'un nouveau produit, réévaluation des prix existants.</span><span data-l="en">Milan, 12 December 2023: inflation in consumer goods, pricing a new product, reassessing existing prices.</span></p>
           </div>
         </div>
         <div class="entry reveal">
@@ -876,7 +866,6 @@
   <section class="chapter" id="cv">
     <div class="wrap cv-block">
       <div class="chapter-head reveal">
-        <p class="eyebrow">VII</p>
         <h2>CV</h2>
       </div>
       <div class="prose reveal">
@@ -927,6 +916,16 @@
     var menu = document.querySelector('.index-menu');
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu.removeAttribute('open'); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu.removeAttribute('open'); });
+  })();
+
+  // Header name: shown only after the hero's own name leaves the screen.
+  (function () {
+    var header = document.querySelector('.site-header');
+    var heroName = document.querySelector('.hero h1');
+    if (!('IntersectionObserver' in window)) { header.classList.add('show-name'); return; }
+    new IntersectionObserver(function (entries) {
+      header.classList.toggle('show-name', !entries[0].isIntersecting);
+    }, { rootMargin: '-60px 0px 0px 0px' }).observe(heroName);
   })();
 
   // Gentle reveal on scroll. Skipped entirely for reduced motion or
