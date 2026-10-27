@@ -362,6 +362,20 @@
   .persona li { margin-bottom: 4px; }
   .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
   @media (min-width: 880px) { .personas { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  /* Findings from the luxury persona, and what a house could do with them */
+  .implications { max-width: 980px; margin: 56px auto 0; }
+  .implications h3 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; text-align: center; margin: 0; }
+  .implications-sub { text-align: center; color: var(--ink-soft); font-size: 14px; margin: 8px 0 28px; }
+  .implication { display: grid; gap: 4px 40px; padding: 16px 0; border-top: 1px solid var(--rule); }
+  .implication:last-child { border-bottom: 1px solid var(--rule); }
+  .implication p { margin: 0; font-size: 14.5px; }
+  .implication-finding { font-family: var(--serif); font-size: 1.15rem !important; line-height: 1.35; }
+  .implication-head { display: none; }
+  .implication-head p { font-size: 10.5px !important; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  @media (min-width: 880px) {
+    .implication { grid-template-columns: 1fr 1.3fr; align-items: baseline; }
+    .implication-head { display: grid; border-top: 0; padding-bottom: 10px; }
+  }
 
   /* ---------- Expertise ---------- */
   .precision-note {
@@ -950,6 +964,7 @@
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Méthode&nbsp;: comprendre avant de convaincre</span><span data-l="en">Method: understand before you persuade</span></h2>
         <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples illustratifs, dans deux mondes très différents&nbsp;; aucun ne décrit un client réel.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two illustrative examples from two very different worlds; neither describes a real client.</span></p>
+        <p><span data-l="fr">Le profil luxe s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon.</span><span data-l="en">The luxury profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample.</span></p>
       </div>
 
       <div class="personas">
@@ -970,20 +985,34 @@
         </article>
 
         <article class="persona reveal">
-          <p class="persona-kind illustrative"><span data-l="fr">Exemple illustratif · luxe et beauté</span><span data-l="en">Illustrative example · luxury and beauty</span></p>
-          <h3>Hélène</h3>
-          <p class="role"><span data-l="fr">41 ans, Lyon. Cliente fidèle d'une maison de soins haut de gamme, en boutique et en ligne.</span><span data-l="en">41, Lyon. Loyal client of a high-end skincare house, in store and online.</span></p>
+          <p class="persona-kind illustrative"><span data-l="fr">Exemple illustratif · luxe et beauté · d'après un entretien</span><span data-l="en">Illustrative example · luxury and beauty · from an interview</span></p>
+          <h3>Claire Moreau</h3>
+          <p class="role"><span data-l="fr">35 à 45 ans, famille avec enfants, loin des grandes villes et de leurs boutiques. Fidèle à une seule maison depuis l'adolescence, elle achète surtout en ligne.</span><span data-l="en">35 to 45, family with children, far from big cities and their boutiques. Loyal to one house since her teens, she buys mostly online.</span></p>
           <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Un conseil personnalisé, qui se souvient de ses achats</li><li>La même attention en boutique, sur le site et au service client</li></ul>
-          <ul data-l="en"><li>Personal advice that remembers what she has bought</li><li>The same attention in store, online and from client services</li></ul>
+          <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, personnalisation</li></ul>
+          <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, personalisation</li></ul>
           <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Une qualité ou une finition qui baisse sur un produit qu'elle connaît bien</li><li>Des messages génériques qui ignorent son historique</li></ul>
-          <ul data-l="en"><li>Quality or finish slipping on a product she knows well</li><li>Generic messages that ignore her history</li></ul>
+          <ul data-l="fr"><li>Les hausses de prix d'une marque en laquelle elle a confiance</li><li>Des boutiques en ligne lentes, qui la déconnectent et lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà, plutôt que pour ce qu'elle désire</li></ul>
+          <ul data-l="en"><li>Price increases from a brand she trusts</li><li>Slow online stores that log her out and make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys, instead of something she wants</li></ul>
           <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
-          <ul data-l="fr"><li>Sur la relation et la preuve&nbsp;: composition, efficacité, cohérence de la maison</li></ul>
-          <ul data-l="en"><li>On relationship and proof: ingredients, results, the house's consistency</li></ul>
-          <blockquote><span data-l="fr">Elle reste fidèle tant que la maison tient son niveau d'exigence. Le jour où la qualité baisse, son intérêt s'en va.</span><span data-l="en">She stays loyal as long as the house holds its standards. The day quality slips, her interest goes with it.</span></blockquote>
+          <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: elle lit la composition sur le site de la marque, puis les avis, avant de commander</li></ul>
+          <ul data-l="en"><li>On relationship more than data, cautiously: she reads the ingredients on the brand's website, then reviews, before ordering</li></ul>
+          <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
         </article>
+      </div>
+      <div class="implications reveal">
+        <h3><span data-l="fr">Ce qu'une maison pourrait en faire</span><span data-l="en">What a house could do with it</span></h3>
+        <p class="implications-sub"><span data-l="fr">Sept constats tirés du profil de Claire, sept pistes de marketing et de CRM.</span><span data-l="en">Seven findings from Claire's profile, seven marketing and CRM moves.</span></p>
+        <div class="implication-list">
+          <div class="implication implication-head" aria-hidden="true"><p><span data-l="fr">Constat</span><span data-l="en">Finding</span></p><p><span data-l="fr">Piste</span><span data-l="en">Move</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">La fidélité naît dans la famille</span><span data-l="en">Loyalty starts in the family</span></p><p><span data-l="fr">Un récit patrimonial et des cadeaux qui se transmettent d'une génération à l'autre.</span><span data-l="en">Heritage storytelling and gifting passed from one generation to the next.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">L'achat suit un besoin ou une offre</span><span data-l="en">Purchases follow a need or an offer</span></p><p><span data-l="fr">Caler les offres sur les cycles de réassort, et les adresser aux clientes existantes.</span><span data-l="en">Time offers to replenishment cycles and send them to existing clients.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">Les échantillons comptent</span><span data-l="en">Samples carry weight</span></p><p><span data-l="fr">Un geste de remerciement et des échantillons avec les commandes importantes.</span><span data-l="en">A thank-you gift and samples with larger orders.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">L'exclusivité doit mener à un objet désiré</span><span data-l="en">Exclusivity must lead to something wanted</span></p><p><span data-l="fr">Un accès exclusif à d'autres catégories&nbsp;: sacs, bijoux, accessoires.</span><span data-l="en">Exclusive access across categories: bags, jewellery, accessories.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">Le site ne suit pas</span><span data-l="en">The website falls short</span></p><p><span data-l="fr">Plusieurs photos par produit, des contenances claires, une session stable, un panier sauvegardé.</span><span data-l="en">Several photos per product, clear sizes, a stable session, a saved cart.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">Une lassitude de la surconsommation</span><span data-l="en">Fatigue with overconsumption</span></p><p><span data-l="fr">Mettre en avant les essentiels et les petits formats.</span><span data-l="en">Put essentials and small formats forward.</span></p></div>
+          <div class="implication"><p class="implication-finding"><span data-l="fr">La personnalisation compte</span><span data-l="en">Personalisation matters</span></p><p><span data-l="fr">Gravure et paquet cadeau proposés par défaut au paiement.</span><span data-l="en">Engraving and gift wrapping offered as standard at checkout.</span></p></div>
+        </div>
       </div>
     </div>
   </section>
