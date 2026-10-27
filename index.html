@@ -228,12 +228,15 @@
   }
 
   /* Personal interests: small squares, deliberately secondary */
-  .interests { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 640px; margin: 36px auto 0; }
-  @media (min-width: 700px) { .interests { grid-template-columns: repeat(6, 1fr); max-width: 760px; gap: 12px; } }
+  .interests { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 300px; margin: 36px auto 0; }
+  @media (min-width: 700px) { .interests { grid-template-columns: repeat(3, 1fr); max-width: 820px; gap: 24px; } }
   .interest { margin: 0; }
   .interest-img { aspect-ratio: 1 / 1; background: var(--tile); overflow: hidden; }
   .interest-img img { width: 100%; height: 100%; object-fit: cover; }
-  .interest figcaption { margin-top: 8px; text-align: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .interest figcaption { margin-top: 14px; text-align: center; }
+  .interest-name { display: block; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+  .interest ul { list-style: none; margin: 0; padding: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .interest li + li { margin-top: 2px; }
 
   /* B2B to luxury bridges: title, then industry and luxury side by side */
   .bridges { max-width: 1000px; margin: 0 auto; }
@@ -492,40 +495,40 @@
         </div>
       </div>
       <p class="aside-interests reveal">
-        <span data-l="fr">Hors catalogue&nbsp;: la peinture, des maîtres russes aux impressionnistes, la sculpture italienne en marbre, le piano et le violon, les antiquités et l'architecture intérieure, le monde équestre.</span>
-        <span data-l="en">Outside the catalogue: painting, from the Russian masters to the Impressionists, Italian marble sculpture, piano and violin, antiques and interior design, the equestrian world.</span>
+        <span data-l="fr">Hors catalogue, trois passions qui nourrissent mon regard.</span>
+        <span data-l="en">Outside the catalogue, three passions that shape the way I look at things.</span>
       </p>
 
-      <!-- Personal interests: small square photos with a one-word caption.
+      <!-- Personal interests: three areas, one square photo each, examples below.
            Add a photo inside .interest-img:
-             <img src="img/interest-piano.webp" width="600" height="600" alt="..." loading="lazy"> -->
+             <img src="img/interest-music.webp" width="600" height="600" alt="..." loading="lazy"> -->
       <div class="interests" aria-label="Centres d'intérêt">
         <figure class="interest reveal">
           <div class="interest-img"></div>
-          <figcaption><span data-l="fr">Peinture</span><span data-l="en">Painting</span></figcaption>
+          <figcaption>
+            <span class="interest-name"><span data-l="fr">Beaux-arts</span><span data-l="en">Fine art</span></span>
+            <ul data-l="fr"><li>La peinture, des maîtres russes aux impressionnistes</li><li>La sculpture italienne en marbre</li></ul>
+            <ul data-l="en"><li>Painting, from the Russian masters to the Impressionists</li><li>Italian marble sculpture</li></ul>
+          </figcaption>
         </figure>
         <figure class="interest reveal">
           <div class="interest-img"></div>
-          <figcaption><span data-l="fr">Sculpture</span><span data-l="en">Sculpture</span></figcaption>
-        </figure>
-        <figure class="interest reveal">
-          <div class="interest-img"></div>
-          <figcaption><span data-l="fr">Piano</span><span data-l="en">Piano</span></figcaption>
-        </figure>
-        <figure class="interest reveal">
-          <div class="interest-img"></div>
-          <figcaption><span data-l="fr">Violon</span><span data-l="en">Violin</span></figcaption>
-        </figure>
-        <figure class="interest reveal">
-          <div class="interest-img"></div>
-          <figcaption><span data-l="fr">Antiquités</span><span data-l="en">Antiques</span></figcaption>
+          <figcaption>
+            <span class="interest-name"><span data-l="fr">Musique</span><span data-l="en">Music</span></span>
+            <ul data-l="fr"><li>Le piano</li><li>Le violon</li></ul>
+            <ul data-l="en"><li>Piano</li><li>Violin</li></ul>
+          </figcaption>
         </figure>
         <figure class="interest reveal">
           <div class="interest-img"><img src="img/interest-riding.webp" width="600" height="600" loading="lazy" decoding="async" alt="Vera Soldatenko à cheval"></div>
-          <figcaption><span data-l="fr">Équitation</span><span data-l="en">Riding</span></figcaption>
+          <figcaption>
+            <span class="interest-name"><span data-l="fr">Art de vivre</span><span data-l="en">Art de vivre</span></span>
+            <ul data-l="fr"><li>Les antiquités et l'architecture intérieure</li><li>Le monde équestre</li></ul>
+            <ul data-l="en"><li>Antiques and interior design</li><li>The equestrian world</li></ul>
+          </figcaption>
         </figure>
       </div>
-      <p class="caption"><mark class="todo">[TODO : six photographies personnelles, format carré]</mark></p>
+      <p class="caption"><mark class="todo">[TODO : deux photographies personnelles, format carré, pour les beaux-arts et la musique]</mark></p>
     </div>
   </section>
 
@@ -773,18 +776,14 @@
       </div>
 
       <div class="image-grid" aria-label="Château Landery en images">
-        <figure class="tile reveal"><img src="img/chateau-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château sous un ciel bleu"></figure>
-        <figure class="tile reveal"><img src="img/chateau-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le chemin menant à la tour, dans la lumière d&#x27;automne"></figure>
-        <figure class="tile reveal"><img src="img/chateau-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un chat blanc devant une porte en fer forgé"></figure>
-        <figure class="tile reveal"><img src="img/chateau-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le lac et les arbres reflétés dans l&#x27;eau"></figure>
-        <figure class="tile reveal"><img src="img/chateau-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Des moutons dans la prairie"></figure>
-        <figure class="tile reveal"><img src="img/chateau-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La piscine au soleil, bordée d&#x27;arbres"></figure>
-        <figure class="tile reveal"><img src="img/chateau-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un gâteau aux framboises sur une table en bois"></figure>
-        <figure class="tile reveal"><img src="img/chateau-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une jacinthe devant un mur de pierre"></figure>
-        <figure class="tile reveal"><img src="img/chateau-09.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc arboré devant le château"></figure>
-        <figure class="tile reveal"><img src="img/chateau-10.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La piscine entourée d&#x27;arbres"></figure>
-        <figure class="tile reveal"><img src="img/chateau-11.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La cour et ses piliers de pierre"></figure>
-        <figure class="tile reveal"><img src="img/chateau-12.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le lac en été, vu entre les arbres"></figure>
+        <figure class="tile reveal"><img src="img/chateau-01.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château, sa tour et ses lucarnes"></figure>
+        <figure class="tile reveal"><img src="img/chateau-02.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La porte d&#x27;entrée et sa grille en fer forgé, dans un encadrement de pierre"></figure>
+        <figure class="tile reveal"><img src="img/chateau-03.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc dans la brume d&#x27;automne, derrière une balustrade en fer forgé"></figure>
+        <figure class="tile reveal"><img src="img/chateau-04.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le lac et ses arbres reflétés dans l&#x27;eau"></figure>
+        <figure class="tile reveal"><img src="img/chateau-05.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une dépendance en pierre aux volets verts, un matin de givre"></figure>
+        <figure class="tile reveal"><img src="img/chateau-06.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La piscine bordée de pierre, entourée de grands arbres"></figure>
+        <figure class="tile reveal"><img src="img/chateau-07.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le chemin longeant les bâtiments en pierre, dans la lumière d&#x27;automne"></figure>
+        <figure class="tile reveal"><img src="img/chateau-08.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc arboré devant le château"></figure>
       </div>
 
       <h3 class="nearby-head reveal"><span data-l="fr">Aux alentours, proposé aux hôtes</span><span data-l="en">Nearby, suggested to guests</span></h3>
