@@ -4,6 +4,8 @@ User-agent: *
 Disallow: /CV_Soldatenko_EN.pdf
 Disallow: /Vera_Soldatenko_CV_Marketing_Ops_FR.pdf
 Disallow: /DRIVE.pdf
+# Archived B2B version of the site
+Disallow: /archive/
 
 # Crawlers that collect pages to train AI models: blocked entirely.
 # AI search assistants (ChatGPT search, Perplexity, Claude search)
