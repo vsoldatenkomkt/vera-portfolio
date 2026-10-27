@@ -230,16 +230,20 @@
     color: var(--ink-soft);
   }
 
-  /* Personal interests: one photograph and one line each, deliberately secondary */
+  /* Personal interests: small squares, deliberately secondary */
   .interests { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 300px; margin: 36px auto 0; }
-  @media (min-width: 700px) { .interests { grid-template-columns: repeat(3, 1fr); max-width: 840px; gap: 40px; } }
+  @media (min-width: 700px) { .interests { grid-template-columns: repeat(3, 1fr); max-width: 900px; gap: 24px; } }
   .interest { margin: 0; }
-  .interest-img { aspect-ratio: 4 / 5; background: var(--tile); overflow: hidden; }
+  .interest-img { aspect-ratio: 1 / 1; background: var(--tile); overflow: hidden; }
   .interest-img img { width: 100%; height: 100%; object-fit: cover; }
-  .interest-img img.pos-top { object-position: center 20%; }
+  /* Fine art collage: the sculpture tall on the left, three paintings stacked */
+  .interest-img.collage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 4px; background: none; }
+  .interest-img.collage img { min-height: 0; }
+  .interest-img.collage .collage-tall { grid-row: 1 / 4; }
   .interest figcaption { margin-top: 14px; text-align: center; }
   .interest-name { display: block; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
-  .interest-line { margin: 0; font-family: var(--serif); font-style: italic; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  .interest ul { list-style: none; margin: 0; padding: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .interest li + li { margin-top: 2px; }
 
   /* B2B to luxury bridges: title, then industry and luxury side by side */
   .bridges { max-width: 1000px; margin: 0 auto; }
@@ -533,24 +537,32 @@
              <img src="img/interest-music.webp" width="600" height="600" alt="..." loading="lazy"> -->
       <div class="interests" aria-label="Centres d'intérêt">
         <figure class="interest reveal">
-          <div class="interest-img"><img class="pos-top" src="img/interest-art-bust.webp" width="400" height="812" loading="lazy" decoding="async" alt="Buste en marbre d'une femme voilée, sur fond de velours violet"></div>
+          <div class="interest-img collage">
+            <img class="collage-tall" src="img/interest-art-bust.webp" width="400" height="812" loading="lazy" decoding="async" alt="Buste en marbre d'une femme voilée, sur fond de velours violet">
+            <img src="img/interest-art-tale.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture russe&nbsp;: des enfants écoutent l'un d'eux lire un conte, dans une isba">
+            <img src="img/interest-art-oaks.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture d'une chênaie baignée de lumière">
+            <img src="img/interest-art-autumn.webp" width="400" height="263" loading="lazy" decoding="async" alt="Peinture d'un sous-bois d'automne couvert de feuilles">
+          </div>
           <figcaption>
-            <span class="interest-name"><span data-l="fr">L'art</span><span data-l="en">Art</span></span>
-            <p class="interest-line"><span data-l="fr">La peinture, la sculpture, la mode et le ballet. Je joue aussi du piano et je fais de la photo.</span><span data-l="en">Painting, sculpture, fashion and ballet. I also play the piano and take photographs.</span></p>
+            <span class="interest-name"><span data-l="fr">Beaux-arts</span><span data-l="en">Fine art</span></span>
+            <ul data-l="fr"><li>La peinture, des maîtres russes aux impressionnistes</li><li>La sculpture italienne en marbre</li></ul>
+            <ul data-l="en"><li>Painting, from the Russian masters to the Impressionists</li><li>Italian marble sculpture</li></ul>
+          </figcaption>
+        </figure>
+        <figure class="interest reveal">
+          <div class="interest-img"><img src="img/interest-ballet.webp" width="600" height="600" loading="lazy" decoding="async" alt="Le corps de ballet en tutus blancs, sur une scène baignée de lumière bleue"></div>
+          <figcaption>
+            <span class="interest-name"><span data-l="fr">Musique et ballet</span><span data-l="en">Music and ballet</span></span>
+            <ul data-l="fr"><li>Le piano</li><li>Le ballet classique</li></ul>
+            <ul data-l="en"><li>Piano</li><li>Classical ballet</li></ul>
           </figcaption>
         </figure>
         <figure class="interest reveal">
           <div class="interest-img"><img src="img/interest-riding.webp" width="600" height="600" loading="lazy" decoding="async" alt="Vera Soldatenko à cheval"></div>
           <figcaption>
-            <span class="interest-name"><span data-l="fr">Le monde équestre</span><span data-l="en">The equestrian world</span></span>
-            <p class="interest-line"><span data-l="fr">Je regarde plus que je ne monte aujourd'hui, mais j'aime toujours autant les chevaux.</span><span data-l="en">These days I watch more than I ride, but I still love horses.</span></p>
-          </figcaption>
-        </figure>
-        <figure class="interest reveal">
-          <div class="interest-img"><img src="img/interest-photo-street-2.webp" width="500" height="1000" loading="lazy" decoding="async" alt="Photographie de Vera Soldatenko&nbsp;: une ruelle italienne aux illuminations dorées, à la tombée du jour"></div>
-          <figcaption>
             <span class="interest-name"><span data-l="fr">Art de vivre</span><span data-l="en">Art de vivre</span></span>
-            <p class="interest-line"><span data-l="fr">Le voyage, les antiquités et l'architecture intérieure.</span><span data-l="en">Travel, antiques and interior design.</span></p>
+            <ul data-l="fr"><li>Les antiquités et l'architecture intérieure</li><li>Le monde équestre</li><li>Le voyage</li></ul>
+            <ul data-l="en"><li>Antiques and interior design</li><li>The equestrian world</li><li>Travel</li></ul>
           </figcaption>
         </figure>
       </div>
