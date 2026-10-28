@@ -107,14 +107,14 @@
       --shown: min(calc((100vw - 1200px) / 2 + 28px), 210px);
       content: "";
       position: fixed;
-      width: 36vh;
-      height: 150vh;
+      width: 29vh;
+      height: 120vh;
       background: url("img/margin-botanical-2.webp") center / 100% 100% no-repeat;
       opacity: 0.17;
       pointer-events: none;
     }
-    body::before { top: -24vh; left: calc(var(--shown) - 36vh); }
-    body::after { top: -62vh; right: calc(var(--shown) - 36vh); transform: scaleX(-1); }
+    body::before { top: -10vh; left: calc(var(--shown) - 29vh); }
+    body::after { top: -28vh; right: calc(var(--shown) - 29vh); transform: scaleX(-1); }
   }
 
   .skip { position: absolute; left: -9999px; top: 0; }
