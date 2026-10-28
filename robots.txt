@@ -25,3 +25,5 @@ User-agent: Diffbot
 User-agent: Omgilibot
 User-agent: cohere-training-data-crawler
 Disallow: /
+
+Sitemap: https://vsoldatenko.fr/sitemap.xml
