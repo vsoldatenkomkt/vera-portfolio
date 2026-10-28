@@ -98,22 +98,44 @@
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
   /* Botanical toile: flax and cornflower (Belarus), maple (Canada), olive (Italy),
-     the château's apples, and horses. One seamless pattern runs behind the whole
-     page and scrolls with it; a mask fades it out under the content, so only the
-     side margins show it, each a different part of the same design. Only on
-     screens wide enough to leave those margins empty. */
-  @media (min-width: 1320px) {
-    body { position: relative; }
+     the château's apples, and horses. Each side has its own long strip, stitched
+     from different parts of one seamless pattern, so nothing repeats and the two
+     sides differ. The strips stay thin and pinned to the screen edges however
+     wide the window; where the margins get too narrow, the pattern moves into
+     the navigation bar instead. */
+  @media (min-width: 1300px) {
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      width: min(200px, calc((100vw - 1104px) / 2 - 8px));
+      opacity: 0.16;
+      pointer-events: none;
+    }
     body::before {
+      left: 0;
+      background: url("img/toile-left.webp") left top / 200px auto repeat-y;
+      -webkit-mask-image: linear-gradient(to right, #000 40%, transparent);
+      mask-image: linear-gradient(to right, #000 40%, transparent);
+    }
+    body::after {
+      right: 0;
+      background: url("img/toile-right.webp") right top / 200px auto repeat-y;
+      -webkit-mask-image: linear-gradient(to left, #000 40%, transparent);
+      mask-image: linear-gradient(to left, #000 40%, transparent);
+    }
+  }
+  @media (max-width: 1299px) {
+    .site-header::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: url("img/toile-botanical.webp") center top / 620px auto repeat;
-      opacity: 0.15;
+      background: url("img/toile-botanical.webp") center / 320px auto repeat;
+      opacity: 0.09;
       pointer-events: none;
-      -webkit-mask-image: linear-gradient(to right, #000 calc(50% - 650px), transparent calc(50% - 560px), transparent calc(50% + 560px), #000 calc(50% + 650px));
-      mask-image: linear-gradient(to right, #000 calc(50% - 650px), transparent calc(50% - 560px), transparent calc(50% + 560px), #000 calc(50% + 650px));
     }
   }
 
