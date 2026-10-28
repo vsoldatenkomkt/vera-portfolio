@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google tag (gtag.js), loaded only once the visitor accepts audience
-     measurement (CNIL rules). The choice is kept in localStorage
-     'cookie-consent'; the banner at the end of the page asks for it. -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3KMK0192E2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-  window.loadAnalytics = function () {
-    if (window.analyticsLoaded) return;
-    window.analyticsLoaded = true;
-    gtag('consent', 'update', { analytics_storage: 'granted' });
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-3KMK0192E2';
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', 'G-3KMK0192E2');
-  };
-  // A yes is kept for 13 months, as the CNIL allows.
-  try {
-    var c = JSON.parse(localStorage.getItem('cookie-consent') || 'null');
-    if (c && c.v === 'granted' && Date.now() - c.t < 395 * 864e5) window.loadAnalytics();
-  } catch (e) {}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3KMK0192E2');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -504,15 +489,6 @@
   .cv-block .hero-actions { justify-content: center; }
   .site-footer { padding: 48px 0 64px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
   .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
-  .footer-link { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; cursor: pointer; }
-  .footer-link:hover { color: var(--ink); }
-
-  /* Cookie consent: Refuse and Accept carry equal weight, as the CNIL requires */
-  .consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; max-width: 560px; margin: 0 auto; padding: 18px 20px; background: var(--white); border: 1px solid var(--ink); box-shadow: 0 8px 28px rgba(46, 50, 54, 0.08); font-size: 13px; line-height: 1.6; }
-  .consent[hidden] { display: none; }
-  .consent p { margin: 0 0 14px; }
-  .consent-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
-  .consent .btn { min-height: 40px; padding: 0 22px; }
 
   /* ---------- Motion: gentle fade-up, off for reduced motion ---------- */
   html.js .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -1352,17 +1328,8 @@
   <div class="wrap">
     <span>© 2026 Vera Soldatenko</span>
     <a href="https://www.linkedin.com/in/verasoldatenko" target="_blank" rel="noopener">LinkedIn</a>
-    <button type="button" class="footer-link" data-consent-open>Cookies</button>
   </div>
 </footer>
-
-<div class="consent" id="consent" role="dialog" aria-label="Cookies" hidden>
-  <p><span data-l="fr">Ce site utilise Google Analytics pour mesurer son audience, uniquement avec votre accord. Vous pouvez changer d'avis à tout moment avec le lien «&nbsp;Cookies&nbsp;» en bas de page.</span><span data-l="en">This site uses Google Analytics to measure its audience, only with your consent. You can change your mind at any time with the “Cookies” link at the bottom of the page.</span></p>
-  <div class="consent-actions">
-    <button type="button" class="btn btn-secondary" data-consent="denied"><span data-l="fr">Refuser</span><span data-l="en">Decline</span></button>
-    <button type="button" class="btn btn-secondary" data-consent="granted"><span data-l="fr">Accepter</span><span data-l="en">Accept</span></button>
-  </div>
-</div>
 
 <script src="cv-gate.js?v=3"></script>
 <script>
@@ -1385,35 +1352,6 @@
     var saved = null;
     try { saved = localStorage.getItem('site-lang'); } catch (e) {}
     setLang(LANGS.indexOf(saved) !== -1 ? saved : 'fr');
-  })();
-
-  // Cookie consent: asked once, a yes kept 13 months and a no 6, then asked
-  // again. Withdrawing a yes stops measurement and clears Google's cookies.
-  (function () {
-    var box = document.getElementById('consent');
-    var KEEP = { granted: 395 * 864e5, denied: 182 * 864e5 };
-    var saved = null;
-    try { saved = JSON.parse(localStorage.getItem('cookie-consent') || 'null'); } catch (e) {}
-    if (!saved || !KEEP[saved.v] || Date.now() - saved.t > KEEP[saved.v]) box.hidden = false;
-    function clearGoogleCookies() {
-      document.cookie.split(';').forEach(function (c) {
-        var name = c.split('=')[0].trim();
-        if (name.indexOf('_ga') !== 0) return;
-        ['', '; domain=' + location.hostname, '; domain=.' + location.hostname.replace(/^www\./, '')].forEach(function (d) {
-          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
-        });
-      });
-    }
-    box.querySelectorAll('[data-consent]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var v = b.getAttribute('data-consent');
-        try { localStorage.setItem('cookie-consent', JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
-        box.hidden = true;
-        if (v === 'granted') { window.loadAnalytics(); }
-        else { gtag('consent', 'update', { analytics_storage: 'denied' }); clearGoogleCookies(); }
-      });
-    });
-    document.querySelector('[data-consent-open]').addEventListener('click', function () { box.hidden = false; });
   })();
 
   // Index menu closes after choosing a section.
