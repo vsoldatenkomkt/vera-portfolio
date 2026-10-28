@@ -98,21 +98,23 @@
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
   /* Botanical margins: flax and cornflower (Belarus), maple (Canada), olive (Italy),
-     the château's apples and horseshoe, and a horse. Only on screens wide enough
-     to leave the side margins empty, so they never sit under text. */
+     the château's apples, and a horse. The drawing is enlarged and runs off the
+     screen edges, so only its outer leaves show; the right side is mirrored and
+     shows the lower part, with the horse. Only on screens wide enough to leave
+     the side margins empty, so it never sits under text. */
   @media (min-width: 1320px) {
     body::before, body::after {
+      --shown: min(calc((100vw - 1200px) / 2 + 28px), 210px);
       content: "";
       position: fixed;
-      top: 0;
-      bottom: 0;
-      width: min(calc((100vw - 1200px) / 2 + 28px), 210px);
-      background: url("img/margin-botanical.webp") left center / contain no-repeat;
+      width: 36vh;
+      height: 150vh;
+      background: url("img/margin-botanical-2.webp") center / 100% 100% no-repeat;
       opacity: 0.17;
       pointer-events: none;
     }
-    body::before { left: 6px; }
-    body::after { right: 6px; transform: scaleX(-1); }
+    body::before { top: -24vh; left: calc(var(--shown) - 36vh); }
+    body::after { top: -62vh; right: calc(var(--shown) - 36vh); transform: scaleX(-1); }
   }
 
   .skip { position: absolute; left: -9999px; top: 0; }
