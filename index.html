@@ -97,24 +97,24 @@
   a:hover { color: var(--ink-soft); }
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
-  /* Botanical margins: flax and cornflower (Belarus), maple (Canada), olive (Italy),
-     the château's apples, and a horse. The drawing is enlarged and runs off the
-     screen edges, so only its outer leaves show; the right side is mirrored and
-     shows the lower part, with the horse. Only on screens wide enough to leave
-     the side margins empty, so it never sits under text. */
+  /* Botanical toile: flax and cornflower (Belarus), maple (Canada), olive (Italy),
+     the château's apples, and horses. One seamless pattern runs behind the whole
+     page and scrolls with it; a mask fades it out under the content, so only the
+     side margins show it, each a different part of the same design. Only on
+     screens wide enough to leave those margins empty. */
   @media (min-width: 1320px) {
-    body::before, body::after {
-      --shown: min(calc((100vw - 1200px) / 2 + 28px), 210px);
+    body { position: relative; }
+    body::before {
       content: "";
-      position: fixed;
-      width: 29vh;
-      height: 120vh;
-      background: url("img/margin-botanical-2.webp") center / 100% 100% no-repeat;
-      opacity: 0.17;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: url("img/toile-botanical.webp") center top / 620px auto repeat;
+      opacity: 0.15;
       pointer-events: none;
+      -webkit-mask-image: linear-gradient(to right, #000 calc(50% - 650px), transparent calc(50% - 560px), transparent calc(50% + 560px), #000 calc(50% + 650px));
+      mask-image: linear-gradient(to right, #000 calc(50% - 650px), transparent calc(50% - 560px), transparent calc(50% + 560px), #000 calc(50% + 650px));
     }
-    body::before { top: -10vh; left: calc(var(--shown) - 29vh); }
-    body::after { top: -28vh; right: calc(var(--shown) - 29vh); transform: scaleX(-1); }
   }
 
   .skip { position: absolute; left: -9999px; top: 0; }
