@@ -97,6 +97,48 @@
   a:hover { color: var(--ink-soft); }
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
+  /* Botanical toile: flax and cornflower (Belarus), maple (Canada), olive (Italy),
+     the château's apples, and horses. Each side has its own long strip, stitched
+     from different parts of one seamless pattern, so nothing repeats and the two
+     sides differ. The strips stay thin and pinned to the screen edges however
+     wide the window; where the margins get too narrow, the pattern moves into
+     the navigation bar instead. */
+  @media (min-width: 1300px) {
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      width: min(200px, calc((100vw - 1104px) / 2 - 8px));
+      opacity: 0.16;
+      pointer-events: none;
+    }
+    body::before {
+      left: 0;
+      background: url("img/toile-left.webp") left top / 200px auto repeat-y;
+      -webkit-mask-image: linear-gradient(to right, #000 40%, transparent);
+      mask-image: linear-gradient(to right, #000 40%, transparent);
+    }
+    body::after {
+      right: 0;
+      background: url("img/toile-right.webp") right top / 200px auto repeat-y;
+      -webkit-mask-image: linear-gradient(to left, #000 40%, transparent);
+      mask-image: linear-gradient(to left, #000 40%, transparent);
+    }
+  }
+  @media (max-width: 1299px) {
+    .site-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: url("img/toile-botanical.webp") center / 320px auto repeat;
+      opacity: 0.09;
+      pointer-events: none;
+    }
+  }
+
   .skip { position: absolute; left: -9999px; top: 0; }
   .skip:focus { left: 12px; top: 12px; z-index: 100; background: var(--white); padding: 8px 14px; }
 
@@ -456,7 +498,7 @@
       <summary>Index</summary>
       <nav aria-label="Index">
         <ol>
-          <li><a href="#avant-propos"><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></a></li>
+          <li><a href="#avant-propos">Portrait</a></li>
           <li><a href="#transposition"><span data-l="fr">Du B2B au luxe</span><span data-l="en">From B2B to luxury</span></a></li>
           <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
           <li><a href="#chateau">Château Landery</a></li>
@@ -496,8 +538,8 @@
           <span data-l="en"><span>Open to opportunities: luxury, hospitality, consumer goods</span><span class="open-to-details">Based&nbsp;in&nbsp;France · Open&nbsp;to&nbsp;relocation&nbsp;within&nbsp;France · Available&nbsp;immediately · Right&nbsp;to&nbsp;work&nbsp;in&nbsp;France</span></span>
         </p>
         <p class="hero-lede">
-          <span data-l="fr">Je viens du marketing technique, où chaque argument doit être prouvé et où un prix premium se mérite. Mon master à Milan m'a appris comment le client du luxe pense et choisit. J'apporte aujourd'hui cette rigueur et cette compréhension au luxe, à la beauté et à l'hôtellerie, en français, en anglais et en russe.</span>
-          <span data-l="en">My background is in technical marketing, where every claim has to be proven and a premium price has to be earned. My master's in Milan taught me how luxury clients think and choose. Today I bring that rigour and that understanding to luxury, beauty and hospitality, in French, English and Russian.</span>
+          <span data-l="fr">Je façonne la manière dont une marque parle à ses clients, du récit produit au parcours CRM, car le luxe se joue dans les détails dont le client se souvient. Le marketing technique m'a appris que chaque argument doit être prouvé et qu'un prix premium se mérite. Mon master à Milan m'a appris comment le client du luxe pense et choisit.</span>
+          <span data-l="en">I shape how a brand speaks to its clients, from the product story to the CRM journey, because luxury is earned in the details a client remembers. Technical marketing taught me that every claim must be proven and a premium price earned. My master's in Milan taught me how luxury clients think and choose.</span>
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#realisations"><span data-l="fr">Découvrir</span><span data-l="en">Discover</span></a>
@@ -511,12 +553,12 @@
   </section>
 
   <!-- ============================================================
-       I. FOREWORD: the story, not the CV. No employers or dates.
+       I. PORTRAIT: the story, not the CV. No employers or dates.
        ============================================================ -->
   <section class="chapter" id="avant-propos">
     <div class="wrap">
       <div class="chapter-head reveal">
-        <h2><span data-l="fr">Avant-propos</span><span data-l="en">Foreword</span></h2>
+        <h2>Portrait</h2>
       </div>
       <div class="prose reveal">
         <div data-l="fr">
