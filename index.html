@@ -370,7 +370,8 @@
   .thesis-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
   @media (prefers-reduced-motion: reduce) { .tab-panel.is-leaving, .tab-panel.is-entering { transition: none; animation: none; } }
 
-  /* "Also": shorter work, text only, after the full entries */
+  /* "Further work" / "Further projects": shorter entries, text only,
+     after the full ones */
   .also { max-width: 1000px; margin: clamp(96px, 12vw, 144px) auto 0; }
   .also-title { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; text-align: center; margin: 0 0 32px; }
   .also-list { display: grid; gap: 0 48px; }
@@ -409,7 +410,7 @@
   @media (min-width: 900px) { .image-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
   .tile { margin: 0; aspect-ratio: 3 / 4; background: var(--tile); overflow: hidden; }
   .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; }
-  /* Château: the stay as hospitality work, before the images */
+  /* Château: a personal project, the roles it involved, before the images */
   .stay { max-width: 1000px; margin: -24px auto 64px; text-align: center; }
   .stay-intro { max-width: 38rem; margin: 0 auto 40px; }
   .stay-label { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
@@ -418,7 +419,7 @@
   .stay-role h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 8px; }
   .stay-role p { margin: 0; font-size: 14.5px; }
   @media (min-width: 880px) {
-    .stay-roles { grid-template-columns: repeat(3, 1fr); gap: 40px; border-top: 0; }
+    .stay-roles { grid-template-columns: repeat(2, 1fr); gap: 0 56px; border-top: 0; }
     .stay-role { border-top: 1px solid var(--rule); border-bottom: 0; }
   }
   .stay-takeaway { font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; max-width: 38rem; margin: 32px auto 0; }
@@ -877,7 +878,7 @@
       </div>
 
       <div class="also reveal">
-        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
+        <h3 class="also-title"><span data-l="fr">Autres réalisations</span><span data-l="en">Further work</span></h3>
         <div class="also-list three">
           <article class="also-item">
             <p class="meta"><span data-l="fr">B2B industriel · contenu en ligne</span><span data-l="en">Industrial B2B · online content</span></p>
@@ -910,11 +911,11 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2>Château Landery</h2>
-        <p><span data-l="fr">Hospitalité, gîte familial, 2025</span><span data-l="en">Hospitality, family-run holiday rental, 2025</span></p>
+        <p><span data-l="fr">Projet personnel, gîte familial, 2025</span><span data-l="en">Personal project, family-run holiday rental, 2025</span></p>
       </div>
 
       <div class="stay">
-        <p class="stay-intro reveal"><span data-l="fr">En 2025, le château a reçu des hôtes venus uniquement par le bouche-à-oreille et sur recommandation, sans annonce publique. Sans publicité, chaque séjour devait donner envie d'en parler&nbsp;: la relation faisait la réputation. Le gîte n'accueille plus de clients aujourd'hui.</span><span data-l="en">In 2025, the château welcomed guests who came by word of mouth and referral only, with no public listing. With no advertising, every stay had to be worth talking about: the relationship was the reputation. The gîte no longer takes guests.</span></p>
+        <p class="stay-intro reveal"><span data-l="fr">Un projet personnel, mené par goût de l'accueil. En 2025, le château a reçu des hôtes venus uniquement par le bouche-à-oreille et sur recommandation, sans annonce publique. Sans publicité, chaque séjour devait donner envie d'en parler&nbsp;: la relation faisait la réputation. Le gîte n'accueille plus de clients aujourd'hui.</span><span data-l="en">A personal project, born of a love of hosting. In 2025, the château welcomed guests who came by word of mouth and referral only, with no public listing. With no advertising, every stay had to be worth talking about: the relationship was the reputation. The gîte no longer takes guests.</span></p>
         <p class="stay-label reveal"><span data-l="fr">Mon rôle</span><span data-l="en">My role</span></p>
         <div class="stay-roles">
         <div class="stay-role reveal">
@@ -928,6 +929,10 @@
         <div class="stay-role reveal">
           <h3><span data-l="fr">Conception des activités</span><span data-l="en">Activity curation</span></h3>
           <p><span data-l="fr">Composer autour de chaque séjour un programme à la carte, d'une journée au Circuit du Val de Vienne à un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Building an à la carte programme around each stay, from a day at the Circuit du Val de Vienne to dinner on the water at the Village Flottant de Pressac.</span></p>
+        </div>
+        <div class="stay-role reveal">
+          <h3><span data-l="fr">Sélection des photos</span><span data-l="en">Photo curation</span></h3>
+          <p><span data-l="fr">Choisir les images qui racontent le lieu, de la façade du château aux petits détails du parc.</span><span data-l="en">Choosing the images that tell the story of the place, from the château's façade to the small details of the grounds.</span></p>
         </div>
         </div>
         <p class="stay-takeaway reveal"><span data-l="fr">Ce que j'en retiens&nbsp;: le clienteling en personne. Anticiper avant qu'on demande, retenir les préférences de chacun, et faire d'un séjour une histoire que l'on raconte.</span><span data-l="en">What I take from it: clienteling in person. Anticipating before being asked, remembering each guest's preferences, and turning a stay into a story people retell.</span></p>
@@ -1071,7 +1076,7 @@
       </div>
 
       <div class="also reveal">
-        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
+        <h3 class="also-title"><span data-l="fr">Autres travaux</span><span data-l="en">Further projects</span></h3>
         <div class="also-list three">
           <article class="also-item">
             <p class="meta">eCommerce &amp; Omnichannel Experience · <span data-l="fr">groupe de 8, en deux jours</span><span data-l="en">group of 8, over two days</span></p>
