@@ -25,19 +25,19 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vera Soldatenko · Marketing, CRM &amp; contenu de marque · Luxe, hôtellerie, biens de consommation</title>
-<meta name="description" content="Vera Soldatenko : marketing et marketing produit, CRM et clienteling, contenu de marque. Cinq ans de marketing technique haut de gamme, un master en marketing omnicanal et analyse consommateur. Ouverte aux opportunités dans le luxe, l'hôtellerie et les biens de consommation.">
+<title>Vera Soldatenko · Marketing omnicanal &amp; expérience client · Maisons de luxe</title>
+<meta name="description" content="Vera Soldatenko : marketing et marketing produit, CRM et clienteling, contenu de marque. Cinq ans de marketing technique haut de gamme, un master en marketing omnicanal et analyse consommateur. Ouverte aux opportunités : marketing omnicanal et expérience client dans les Maisons de luxe.">
 <link rel="canonical" href="https://vsoldatenko.fr/">
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_GB">
-<meta property="og:title" content="Vera Soldatenko · Marketing, CRM & contenu de marque">
-<meta property="og:description" content="Précision technique, positionnement premium, analyse consommateur et récit. Ouverte aux opportunités : luxe, hôtellerie, biens de consommation.">
+<meta property="og:title" content="Vera Soldatenko · Marketing omnicanal & expérience client · Maisons de luxe">
+<meta property="og:description" content="Précision technique, positionnement premium, analyse consommateur et récit. Ouverte aux opportunités : marketing omnicanal et expérience client, Maisons de luxe.">
 <meta property="og:url" content="https://vsoldatenko.fr/">
 <meta property="og:image" content="https://vsoldatenko.fr/img/vera-portrait-3.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vera Soldatenko · Marketing, CRM & contenu de marque">
-<meta name="twitter:description" content="Précision technique, positionnement premium, analyse consommateur et récit. Ouverte aux opportunités : luxe, hôtellerie, biens de consommation.">
+<meta name="twitter:title" content="Vera Soldatenko · Marketing omnicanal & expérience client · Maisons de luxe">
+<meta name="twitter:description" content="Précision technique, positionnement premium, analyse consommateur et récit. Ouverte aux opportunités : marketing omnicanal et expérience client, Maisons de luxe.">
 <meta name="twitter:image" content="https://vsoldatenko.fr/img/vera-portrait-3.jpg">
 <meta name="theme-color" content="#F8F8F7">
 <link rel="icon" href="favicon.ico?v=2" sizes="any">
@@ -54,7 +54,7 @@
   "url": "https://vsoldatenko.fr/",
   "image": "https://vsoldatenko.fr/img/vera-portrait-3.jpg",
   "jobTitle": "Marketing, CRM & clienteling, brand content",
-  "description": "Marketing and product marketing, CRM and clienteling, brand content and editorial. Open to opportunities in luxury, hospitality and consumer goods.",
+  "description": "Marketing and product marketing, CRM and clienteling, brand content and editorial. Open to opportunities in omnichannel marketing and client experience in luxury Maisons.",
   "knowsLanguage": ["fr", "en", "ru"],
   "knowsAbout": ["Product marketing", "CRM", "Clienteling", "Brand content", "Consumer analytics", "Omnichannel marketing"],
   "alumniOf": [
@@ -329,6 +329,7 @@
   .plate:last-child { padding-bottom: 0; }
   .plate-figure { margin: 0 auto; max-width: 960px; }
   .plate-figure img { width: 100%; background: var(--tile); }
+  .plate-figure.wide img { aspect-ratio: 16 / 9; object-fit: cover; }
   @media (max-width: 599px) { .plate-figure { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); } }
   .plate-body { max-width: var(--measure); margin: 32px auto 0; text-align: center; }
   .plate-no { font-size: 11px; letter-spacing: 0.22em; color: var(--ink-soft); margin: 0 0 14px; font-variant-numeric: tabular-nums; }
@@ -349,6 +350,17 @@
   .label dt { text-align: right; color: var(--ink-soft); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; padding-top: 2px; }
   .label dd { margin: 0; }
   .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* "Also": shorter work, text only, after the full entries */
+  .also { max-width: 1000px; margin: clamp(96px, 12vw, 144px) auto 0; }
+  .also-title { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; text-align: center; margin: 0 0 32px; }
+  .also-list { display: grid; gap: 0 48px; }
+  .also-item { padding: 24px 0; border-top: 1px solid var(--rule); }
+  .also-item .meta { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px; }
+  .also-item h4 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.3; margin: 0 0 8px; }
+  .also-item p { margin: 0; font-size: 14px; }
+  @media (min-width: 700px) { .also-list { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px) { .also-list.three { grid-template-columns: repeat(3, 1fr); } }
 
   /* CRM process: six numbered steps on a tinted panel */
   .process { background: var(--tile); padding: clamp(28px, 6vw, 64px); }
@@ -423,7 +435,11 @@
   .exercise p { margin: 0 0 8px; font-size: 14px; }
   .exercise-answer.lead { margin-top: 12px !important; }
   .exercise-answer strong { font-weight: 500; }
-  @media (min-width: 880px) { .exercise-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 880px) {
+    .exercise-grid { grid-template-columns: 1fr 1fr; }
+    .exercise.wide { grid-column: 1 / -1; }
+    .exercise.wide .exercise-answer { columns: 2; column-gap: 48px; }
+  }
 
   /* ---------- Method ---------- */
   .personas { display: grid; gap: 24px; max-width: 980px; margin: 0 auto; }
@@ -568,8 +584,8 @@
           <span data-l="en"><span>Master's in Marketing Management, Omnichannel and Consumer Analytics, Politecnico di Milano (POLIMI)</span><span>Five years in product marketing, CRM and brand content</span></span>
         </p>
         <p class="open-to">
-          <span data-l="fr"><span>Ouverte aux opportunités&nbsp;: luxe, hôtellerie, biens de consommation</span><span class="open-to-details">Basée&nbsp;en&nbsp;France · Mobilité&nbsp;nationale · Disponible&nbsp;immédiatement · Autorisée&nbsp;à&nbsp;travailler&nbsp;en&nbsp;France</span></span>
-          <span data-l="en"><span>Open to opportunities: luxury, hospitality, consumer goods</span><span class="open-to-details">Based&nbsp;in&nbsp;France · Open&nbsp;to&nbsp;relocation&nbsp;within&nbsp;France · Available&nbsp;immediately · Right&nbsp;to&nbsp;work&nbsp;in&nbsp;France</span></span>
+          <span data-l="fr"><span>Ouverte aux opportunités&nbsp;: marketing omnicanal et expérience client dans les Maisons de luxe</span><span class="open-to-details">Basée&nbsp;en&nbsp;France · Mobilité&nbsp;nationale · Disponible&nbsp;immédiatement · Autorisée&nbsp;à&nbsp;travailler&nbsp;en&nbsp;France</span></span>
+          <span data-l="en"><span>Open to opportunities: omnichannel marketing and client experience in luxury Maisons</span><span class="open-to-details">Based&nbsp;in&nbsp;France · Open&nbsp;to&nbsp;relocation&nbsp;within&nbsp;France · Available&nbsp;immediately · Right&nbsp;to&nbsp;work&nbsp;in&nbsp;France</span></span>
         </p>
         <p class="hero-lede">
           <span data-l="fr">Je façonne la manière dont une marque parle à ses clients, du récit produit au parcours CRM, car le luxe se joue dans les détails dont le client se souvient. Le marketing technique m'a appris que chaque argument doit être prouvé et qu'un prix premium se mérite. Mon master à Milan m'a appris comment le client du luxe pense et choisit.</span>
@@ -695,36 +711,10 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></h2>
-        <p><span data-l="fr">Une sélection de mes travaux récents.</span><span data-l="en">A selection of my recent work.</span></p>
+        <p><span data-l="fr">Une sélection de projets, en entreprise et en master.</span><span data-l="en">Selected projects, from industry and from my master's.</span></p>
       </div>
 
       <div class="plates">
-
-        <article class="plate reveal">
-          <figure class="plate-figure">
-            <img src="img/plate-case-study.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Les deux pages de l'étude de cas sur les planches de recouvrement du rail d'alimentation">
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 01</p>
-            <h3><span data-l="fr">La sécurité comme argument premium</span><span data-l="en">Safety as the premium argument</span></h3>
-            <p data-l="fr">Un écrou autofreiné coûte plus cher qu'un écrou standard. Cette étude de cas le justifie par ce qui compte vraiment pour un exploitant ferroviaire&nbsp;: la sécurité des équipes et des passagers, et la fin d'un problème de maintenance récurrent.</p>
-            <p data-l="en">A self-locking nut costs more than a standard one. This case study justifies the premium through what really matters to a rail operator: the safety of crews and passengers, and the end of a recurring maintenance problem.</p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Étude de cas, 2 pages, français et anglais</span><span data-l="en">Case study, 2 pages, French and English</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel, client anonymisé</span><span data-l="en">Industrial B2B, client anonymised</span></dd>
-              <dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt>
-              <dd><span data-l="fr">Assistante commerciale et marketing&nbsp;: conception de l'étude de cas, et relais entre le vice-président et le rédacteur externe pour transmettre corrections et modifications.</span><span data-l="en">Marketing and sales assistant: designed the case study, and acted as the go-between for the VP and the outsourced copywriter, relaying edits and changes.</span></dd>
-              <dt>Notes</dt>
-              <dd><span data-l="fr">Devenue le modèle d'étude de cas de l'entreprise, utilisée sur les salons et en ligne. Le prix premium défendu par la preuve, pas par la promesse.</span><span data-l="en">Became the company's case study template, used at trade shows and online. A premium price defended with proof, not promises.</span></dd>
-              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
-              <dd><span data-l="fr">Un «&nbsp;reason to believe&nbsp;»&nbsp;: la preuve qui rend crédible un positionnement premium, comme le savoir-faire en luxe.</span><span data-l="en">A “reason to believe”: the proof that makes a premium position credible, as craftsmanship does in luxury.</span></dd>
-            </dl>
-            <a class="plate-link" data-l="fr" href="FR_Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Lire l'étude de cas (PDF) →</a>
-            <a class="plate-link" data-l="en" href="Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Read the case study (PDF) →</a>
-          </div>
-        </article>
 
         <article class="plate reveal">
           <div class="plate-figure process">
@@ -747,83 +737,17 @@
             </ol>
           </div>
           <div class="plate-body">
-            <p class="plate-no">N° 02</p>
+            <p class="plate-no">N° 01</p>
             <h3><span data-l="fr">Migrer l'équipe vers Pipedrive, sans la perdre en route</span><span data-l="en">Moving the team to Pipedrive, without losing anyone on the way</span></h3>
-            <p data-l="fr">J'ai conduit la migration de toute l'équipe commerciale vers le CRM Pipedrive. Changer de CRM est d'abord une affaire de personnes. Ma méthode&nbsp;: comprendre l'outil avant de le défendre, préparer des données propres avant la migration, puis rester aux côtés de l'équipe jusqu'à ce que l'outil devienne une habitude.</p>
-            <p data-l="en">I led the whole sales team's move to the Pipedrive CRM. Changing CRM is first and foremost about people. My approach: understand the tool before championing it, prepare clean data before the migration, then stay alongside the team until the tool becomes a habit.</p>
+            <p data-l="fr">Un CRM utilisé chaque jour par toute l'équipe commerciale, des relances plus rapides et moins de devis perdus. J'ai conduit la migration de l'équipe vers Pipedrive, et changer de CRM est d'abord une affaire de personnes&nbsp;: comprendre l'outil avant de le défendre, préparer des données propres avant la migration, puis rester aux côtés de l'équipe jusqu'à ce que l'outil devienne une habitude.</p>
+            <p data-l="en">A CRM the whole sales team uses every day, with faster follow-ups and fewer lost quotes. I led the team's move to Pipedrive, and changing CRM is first about people: understand the tool before championing it, prepare clean data before migrating, then stay alongside the team until the tool becomes a habit.</p>
             <dl class="label">
               <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
               <dd><span data-l="fr">Sélection, migration et gestion du CRM Pipedrive, conduite du changement</span><span data-l="en">Selection, migration and management of the Pipedrive CRM, change management</span></dd>
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt><span data-l="fr">Résultat</span><span data-l="en">Outcome</span></dt>
-              <dd><span data-l="fr">Relances plus rapides, moins de devis perdus, et un outil utilisé chaque jour par toute l'équipe commerciale.</span><span data-l="en">Faster follow-ups, fewer lost quotes, and a tool the whole sales team uses every day.</span></dd>
               <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
               <dd><span data-l="fr">Faire adopter plutôt qu'imposer&nbsp;: convaincre par la démonstration, puis construire l'usage avec l'équipe.</span><span data-l="en">Adoption rather than imposition: persuade by demonstration, then build the routine with the team.</span></dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="plate reveal">
-          <figure class="plate-figure">
-            <img src="img/plate-resource-hub.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Trois documents du centre de ressources : une étude de cas, un guide sur les traitements de surface et une étude de cas en français">
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 03</p>
-            <h3><span data-l="fr">Une bibliothèque plutôt qu'une brochure</span><span data-l="en">A library, not a brochure</span></h3>
-            <p data-l="fr">Un centre de ressources construit de A à Z&nbsp;: planification, analyse concurrentielle, SEO, puis études de cas, livres blancs, actualités et catalogues produits, et leur traduction en français.</p>
-            <p data-l="en">A resource hub built from scratch: planning, competitor research and SEO, then case studies, white papers, company news and product catalogues, and their French translation.</p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Centre de ressources en ligne, bilingue</span><span data-l="en">Online resource hub, bilingual</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt>Notes</dt>
-              <dd><span data-l="fr">Près de 800 vues depuis le lancement, et des commerciaux qui rencontrent des clients mieux informés.</span><span data-l="en">Nearly 800 views since launch, and sales teams meeting better-informed clients.</span></dd>
-              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
-              <dd><span data-l="fr">Réduire le coût de la recherche&nbsp;: une marque qui simplifie le choix gagne la confiance du client.</span><span data-l="en">Lowering the cost of searching: a brand that makes choosing easier earns the client's trust.</span></dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="plate reveal">
-          <figure class="plate-figure">
-            <img src="img/plate-linkedin.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Deux infographies LinkedIn : le rôle du couple de serrage, et la différence entre filetages impérial et métrique">
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 04</p>
-            <h3><span data-l="fr">Rendre l'expertise lisible</span><span data-l="en">Making expertise legible</span></h3>
-            <p data-l="fr">«&nbsp;Industry Insights&nbsp;», une campagne LinkedIn bâtie de zéro pour éduquer le marché, installer une parole d'expert et inciter les collaborateurs à publier eux-mêmes. Des formats courts qui traduisent l'information technique en infographies claires, suivis par tableaux de bord pour comprendre ce qui touche vraiment.</p>
-            <p data-l="en">“Industry Insights”, a LinkedIn campaign built from the ground up to educate the market, establish thought leadership and encourage employees to post themselves. Short formats that turn technical information into clear infographics, tracked with dashboards to learn what actually resonates.</p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Campagne LinkedIn «&nbsp;Industry Insights&nbsp;», infographies</span><span data-l="en">“Industry Insights” LinkedIn campaign, infographics</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt>Notes</dt>
-              <dd><span data-l="fr">+85&nbsp;% d'abonnés en 5 mois, en organique uniquement.</span><span data-l="en">+85% followers in 5 months, organic only.</span></dd>
-              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
-              <dd><span data-l="fr">Des médias propres aux médias gagnés&nbsp;: les publications des collaborateurs prolongent la parole de la marque.</span><span data-l="en">From owned to earned media: employees' posts carry the brand's voice further.</span></dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="plate reveal">
-          <figure class="plate-figure">
-            <img src="img/plate-collateral.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Une page de catalogue produit, un guide sur les écrous à couple prévalent et un visuel d'événement">
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 05</p>
-            <h3><span data-l="fr">Une marque cohérente, du catalogue au salon</span><span data-l="en">One consistent brand, from catalogue to trade show</span></h3>
-            <p data-l="fr">Catalogues, guides produits, bannières, stands et fonds de salon, publicités presse et vidéos&nbsp;: une identité tenue sur chaque format, en print comme en digital.</p>
-            <p data-l="en">Catalogues, product guides, banners, trade show stands and backdrops, print ads and videos: one identity held across every format, print and digital.</p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Supports print et digital, diffusés aussi sur LinkedIn</span><span data-l="en">Print and digital collateral, also published on LinkedIn</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
-              <dd><span data-l="fr">Des éléments de marque mémorables, adaptables et transférables d'un support à l'autre.</span><span data-l="en">Brand elements kept memorable, adaptable and transferable from one medium to the next.</span></dd>
             </dl>
           </div>
         </article>
@@ -837,7 +761,7 @@
             </figcaption>
           </figure>
           <div class="plate-body">
-            <p class="plate-no">N° 06</p>
+            <p class="plate-no">N° 02</p>
             <h3><span data-l="fr">La nouveauté attire le regard, l'authenticité fait la vente</span><span data-l="en">Novelty catches the eye, authenticity makes the sale</span></h3>
             <p data-l="fr">Les influenceurs virtuels attirent l'attention, mais font-ils acheter un parfum de luxe&nbsp;? Avec Alessia Cappa, nous avons présenté deux visuels de la relance de Prada Candy en 2021, l'un porté par une influenceuse humaine, l'autre par un personnage virtuel, à 105 répondants, puis analysé 430 commentaires publiés sur les réseaux sociaux. La curiosité est réelle, la confiance beaucoup moins.</p>
             <p data-l="en">Virtual influencers attract attention, but do they make people buy a luxury fragrance? With Alessia Cappa, I showed 105 respondents two visuals from the 2021 Prada Candy relaunch, one featuring a human influencer and one a virtual character, then analysed 430 social media comments. The curiosity is real; the trust much less so.</p>
@@ -865,6 +789,68 @@
           </div>
         </article>
 
+        <article class="plate reveal">
+          <figure class="plate-figure wide">
+            <img src="img/plate-case-study.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Les deux pages de l'étude de cas sur les planches de recouvrement du rail d'alimentation">
+          </figure>
+          <div class="plate-body">
+            <p class="plate-no">N° 03</p>
+            <h3><span data-l="fr">La sécurité comme argument premium</span><span data-l="en">Safety as the premium argument</span></h3>
+            <p data-l="fr">Une étude de cas devenue le modèle de l'entreprise, utilisée sur les salons et en ligne&nbsp;: un prix premium défendu par la preuve, pas par la promesse. Un écrou autofreiné coûte plus cher qu'un écrou standard&nbsp;; l'étude de cas justifie cet écart par ce qui compte pour un exploitant ferroviaire&nbsp;: la sécurité des équipes et des passagers, et la fin d'un problème de maintenance récurrent.</p>
+            <p data-l="en">A case study that became the company's template, used at trade shows and online: a premium price defended with proof, not promises. A self-locking nut costs more than a standard one, so the case study justifies the premium through what matters to a rail operator: the safety of crews and passengers, and the end of a recurring maintenance problem.</p>
+            <dl class="label">
+              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
+              <dd><span data-l="fr">Étude de cas, 2 pages, français et anglais</span><span data-l="en">Case study, 2 pages, French and English</span></dd>
+              <dt>Provenance</dt>
+              <dd><span data-l="fr">B2B industriel, client anonymisé</span><span data-l="en">Industrial B2B, client anonymised</span></dd>
+              <dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt>
+              <dd><span data-l="fr">Seule personne en charge du marketing dans l'entreprise&nbsp;: construction de la fonction marketing de zéro, et conception de cette étude de cas.</span><span data-l="en">The company's only marketer: built the marketing function from scratch, and designed this case study.</span></dd>
+              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
+              <dd><span data-l="fr">Un «&nbsp;reason to believe&nbsp;»&nbsp;: la preuve qui rend crédible un positionnement premium, comme le savoir-faire en luxe.</span><span data-l="en">A “reason to believe”: the proof that makes a premium position credible, as craftsmanship does in luxury.</span></dd>
+            </dl>
+            <a class="plate-link" data-l="fr" href="FR_Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Lire l'étude de cas (PDF) →</a>
+            <a class="plate-link" data-l="en" href="Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Read the case study (PDF) →</a>
+          </div>
+        </article>
+
+        <article class="plate reveal">
+          <figure class="plate-figure wide">
+            <img src="img/plate-resource-hub.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Trois documents du centre de ressources : une étude de cas, un guide sur les traitements de surface et une étude de cas en français">
+          </figure>
+          <div class="plate-body">
+            <p class="plate-no">N° 04</p>
+            <h3><span data-l="fr">Une bibliothèque plutôt qu'une brochure</span><span data-l="en">A library, not a brochure</span></h3>
+            <p data-l="fr">Près de 800 vues depuis le lancement, et des commerciaux qui rencontrent des clients mieux informés. Un centre de ressources construit de A à Z&nbsp;: planification, analyse concurrentielle, SEO, puis études de cas, livres blancs, actualités et catalogues produits, et leur traduction en français.</p>
+            <p data-l="en">Nearly 800 views since launch, and sales teams meeting better-informed clients. A resource hub built from scratch: planning, competitor research and SEO, then case studies, white papers, company news and product catalogues, and their French translation.</p>
+            <dl class="label">
+              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
+              <dd><span data-l="fr">Centre de ressources en ligne, bilingue</span><span data-l="en">Online resource hub, bilingual</span></dd>
+              <dt>Provenance</dt>
+              <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
+              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
+              <dd><span data-l="fr">Réduire le coût de la recherche&nbsp;: une marque qui simplifie le choix gagne la confiance du client.</span><span data-l="en">Lowering the cost of searching: a brand that makes choosing easier earns the client's trust.</span></dd>
+            </dl>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="also reveal">
+        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
+        <div class="also-list">
+          <article class="also-item">
+            <p class="meta"><span data-l="fr">B2B industriel · LinkedIn</span><span data-l="en">Industrial B2B · LinkedIn</span></p>
+            <h4><span data-l="fr">«&nbsp;Industry Insights&nbsp;», une parole d'expert sur LinkedIn</span><span data-l="en">“Industry Insights”, thought leadership on LinkedIn</span></h4>
+            <p data-l="fr">+85&nbsp;% d'abonnés en 5 mois, en organique uniquement&nbsp;: une campagne bâtie de zéro, qui traduit l'expertise en formats courts et incite les collaborateurs à publier eux-mêmes.</p>
+            <p data-l="en">+85% followers in 5 months, organic only: a campaign built from the ground up that turns expertise into short formats and encourages employees to post themselves.</p>
+          </article>
+          <article class="also-item">
+            <p class="meta"><span data-l="fr">B2B industriel · print et digital</span><span data-l="en">Industrial B2B · print and digital</span></p>
+            <h4><span data-l="fr">Une marque cohérente, du catalogue au salon</span><span data-l="en">One consistent brand, from catalogue to trade show</span></h4>
+            <p data-l="fr">Une même identité tenue sur chaque format, en print comme en digital&nbsp;: catalogues, guides produits, stands, publicités presse et vidéos.</p>
+            <p data-l="en">One identity held across every format, print and digital: catalogues, product guides, trade show stands, print ads and videos.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -982,23 +968,7 @@
           <ul class="chips"><li data-l="fr">Écoute sociale</li><li data-l="en">Social listening</li><li data-l="fr">Concept produit</li><li data-l="en">Product concept</li><li data-l="fr">Analyse concurrentielle</li><li data-l="en">Competitor analysis</li></ul>
         </article>
 
-        <article class="work reveal">
-          <img src="img/master-mondadori.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture du projet Mondadori">
-          <p class="meta">eCommerce &amp; Omnichannel Experience · <span data-l="fr">groupe de 8, en deux jours</span><span data-l="en">group of 8, over two days</span></p>
-          <h3><span data-l="fr">La librairie à l'ère de l'omnicanal</span><span data-l="en">The bookshop in the omnichannel age</span></h3>
-          <p data-l="fr">Transformation digitale pour un grand éditeur et libraire italien&nbsp;: application membres avec événements réservés, refonte progressive du e-commerce, parcours fluide entre magasin et en ligne, et personas Gen Z et Millennials.</p>
-          <p data-l="en">Digital transformation for a major Italian publisher and bookseller: a members' app with exclusive events, a gradual e-commerce redesign, a seamless path between store and online, and Gen Z and Millennial personas.</p>
-          <ul class="chips"><li data-l="fr">Transformation digitale</li><li data-l="en">Digital transformation</li><li data-l="fr">Programme membres</li><li data-l="en">Membership programme</li><li>Personas</li></ul>
-        </article>
 
-        <article class="work reveal">
-          <img src="img/master-salads.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture du projet Ready-to-eat Salads">
-          <p class="meta">Channels &amp; Consumers · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
-          <h3><span data-l="fr">Lancer une gamme, de l'analyse au rayon</span><span data-l="en">Launching a range, from analysis to shelf</span></h3>
-          <p data-l="fr">Lancement d'une gamme de salades prêtes à consommer&nbsp;: analyse des concurrents (format, prix, emballage, distribution), SWOT, cinq forces de Porter, 4P, prix entre 3 et 4&nbsp;€, et trois recettes, dont l'une baptisée «&nbsp;La Vera&nbsp;».</p>
-          <p data-l="en">Launch of a ready-to-eat salad range: competitor analysis (size, price, packaging, distribution), SWOT, Porter's five forces, the 4Ps, pricing between €3 and €4, and three recipes, one of them named “La Vera”.</p>
-          <ul class="chips"><li data-l="fr">Lancement produit</li><li data-l="en">Product launch</li><li data-l="fr">Prix et distribution</li><li data-l="en">Pricing and distribution</li><li>SWOT</li></ul>
-        </article>
 
       </div>
 
@@ -1042,7 +1012,7 @@
             <p class="exercise-answer lead" data-l="en"><strong>Our proposal: match the format to the market.</strong> In the most active markets, where much of the profit comes from travelling international clients, we placed the large image event. In the smaller discovery markets, pop-up events with influencers and invited guests, to build engagement and reward loyal local clients with a branded experience.</p>
           </article>
 
-          <article class="exercise reveal">
+          <article class="exercise wide reveal">
             <p class="meta">E-commerce Lab · 2024</p>
             <h4><span data-l="fr">Les services en ligne de Borsalino</span><span data-l="en">Borsalino's online services</span></h4>
             <p data-l="fr">Comparer les services e-commerce de Borsalino à ceux de Maison Michel, Stetson, Prada, Gucci, Dior, Mytheresa et Luisaviaroma&nbsp;: livraison, retours, paiement, service client, emballage, cadeau, personnalisation, omnicanal, programme VIP. Puis recommander les services à développer.</p>
@@ -1050,34 +1020,41 @@
             <p class="exercise-answer lead" data-l="fr"><strong>Ma recommandation&nbsp;: faire entrer l'expérience de la boutique en ligne, avant de chercher le volume.</strong> En ligne, la force de Borsalino n'est pas la vitesse ni la gratuité de la livraison, mais les services qui portent son savoir-faire. D'abord, le conseil&nbsp;: un chapeau ou une casquette se choisit selon sa taille et l'occasion, donc un chat de recommandations, la possibilité de réserver un appel avec un conseiller selon ses disponibilités, un guide des tailles et l'échange gratuit. Des images nombreuses et variées aident aussi chacun à s'imaginer avec chaque pièce. Ensuite, la personnalisation&nbsp;: initiales sur les chapeaux et la maroquinerie, choix du ruban, puis un configurateur sur mesure, pour mettre en valeur le savoir-faire artisanal de la Maison. Puis l'ouverture du colis&nbsp;: la boîte à chapeau signature, un écrin soigné pour toute la gamme et une option cadeau, pour que la livraison ait le goût de la boutique. Enfin, l'omnicanal et la fidélité&nbsp;: retour et retrait en boutique, et un programme client qui reconnaît les clients fidèles et voyageurs, en ligne comme en boutique.</p>
             <p class="exercise-answer lead" data-l="en"><strong>My recommendation: bring the boutique experience online, before chasing volume.</strong> Online, Borsalino's strength is not speed or free delivery but the services that carry its craft. First, advice: a hat or cap is chosen by size and occasion, so a recommendation chat, the option to book a call with an advisor subject to availability, a sizing guide and free exchanges. A wide, diverse range of images also helps clients picture each piece on themselves. Second, personalisation: initials on hats and leather goods, a choice of ribbon, then a made-to-measure configurator, to showcase the Maison's hand-made savoir-faire. Third, the unboxing: the signature hat box, considered packaging across the range and a gift option, so the delivery feels like the boutique. Finally, omnichannel and loyalty: returns and pick-up in store, and a client programme that recognises loyal and travelling clients both online and in the boutiques.</p>
           </article>
+        </div>
+      </div>
 
-          <article class="exercise reveal">
+      <div class="also reveal">
+        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
+        <div class="also-list three">
+          <article class="also-item">
+            <p class="meta">eCommerce &amp; Omnichannel Experience · <span data-l="fr">groupe de 8, en deux jours</span><span data-l="en">group of 8, over two days</span></p>
+            <h4><span data-l="fr">La librairie à l'ère de l'omnicanal</span><span data-l="en">The bookshop in the omnichannel age</span></h4>
+            <p data-l="fr">Une application membres, une refonte du e-commerce et un parcours fluide entre magasin et en ligne pour un grand éditeur et libraire italien.</p>
+            <p data-l="en">A members' app, an e-commerce redesign and a seamless path between store and online for a major Italian publisher and bookseller.</p>
+          </article>
+          <article class="also-item">
+            <p class="meta">Channels &amp; Consumers · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
+            <h4><span data-l="fr">Lancer une gamme, de l'analyse au rayon</span><span data-l="en">Launching a range, from analysis to shelf</span></h4>
+            <p data-l="fr">Une gamme de salades prêtes à consommer, de l'analyse concurrentielle au prix (3 à 4&nbsp;€) et aux recettes, dont «&nbsp;La Vera&nbsp;».</p>
+            <p data-l="en">A ready-to-eat salad range, from competitor analysis to pricing (€3 to €4) and recipes, including “La Vera”.</p>
+          </article>
+          <article class="also-item">
             <p class="meta">Shaping Purposeful Futures · <span data-l="fr">15 mars 2024</span><span data-l="en">15 March 2024</span></p>
             <h4><span data-l="fr">Une journée pour une idée durable</span><span data-l="en">One day for a sustainable idea</span></h4>
-            <p data-l="fr">L'initiative annuelle de POLIMI Graduate School of Management&nbsp;: en une journée et en équipe, développer une idée concrète et durable à impact positif, dans le cadre d'un appel à idées (call4ideas), de l'analyse du contexte à la proposition de valeur.</p>
-            <p data-l="en">POLIMI Graduate School of Management's annual initiative: in one day, as a team, develop a concrete, sustainable idea with positive impact for a call for ideas (call4ideas), from context analysis to value proposition.</p>
-            <p class="exercise-answer lead" data-l="fr"><strong>Notre idée&nbsp;: «&nbsp;No one left behind&nbsp;».</strong> Deux problèmes, une seule réponse. Les jeunes diplômés sortent de l'université prêts à travailler, et peinent pourtant à décrocher ne serait-ce qu'un stage. Au même moment, les petites entreprises qui font vivre un territoire ont besoin de ces mêmes compétences (transformation numérique, innovation, regard neuf) sans pouvoir se permettre de recruter. Des deux côtés, on reste en marge d'un marché taillé pour les plus grands employeurs.</p>
-            <p class="exercise-answer" data-l="fr">Notre programme les réunit. Chaque étudiant est placé dans une entreprise locale où sa formation comble un vrai manque. Il découvre des métiers qu'il n'imaginait pas ouverts à son diplôme, gagne une expérience concrète et se construit un réseau dès le premier jour. L'entreprise, elle, gagne les compétences pour se moderniser et rivaliser avec les grands employeurs de la région, et l'occasion de former la génération suivante en mentor, au plus près, plutôt que de laisser ce premier emploi à un grand groupe anonyme.</p>
-            <p class="exercise-answer" data-l="fr">Au bout du compte&nbsp;: des talents qui grandissent sur place, des entreprises qui tiennent le rythme, et un premier emploi qui apprend autant qu'il exige.</p>
-            <p class="exercise-answer lead" data-l="en"><strong>Our idea: “No one left behind”.</strong> Two problems, one answer. Graduates leave university ready to work, yet struggle to land even an internship. At the same time, the small businesses that keep a town alive need exactly those skills (digital transformation, innovation, a fresh eye) and cannot afford to hire for them. Both are left on the edge of a market built around the largest employers.</p>
-            <p class="exercise-answer" data-l="en">Our programme brings them together. Each student is placed with a local business where their field of study fills a real gap. They discover roles they never knew their degree could open, gain hands-on experience and build a network from day one. The business gains the skills to modernise and compete with the region's largest employers, and the chance to train the next generation as a mentor, side by side, instead of leaving that first job to an anonymous corporation.</p>
-            <p class="exercise-answer" data-l="en">The result: talent that grows locally, businesses that keep pace, and a first job that teaches as much as it asks.</p>
+            <p data-l="fr">«&nbsp;No one left behind&nbsp;»&nbsp;: placer de jeunes diplômés dans les petites entreprises locales qui ont besoin de leurs compétences sans pouvoir recruter.</p>
+            <p data-l="en">“No one left behind”: placing graduates with small local businesses that need their skills but cannot afford to hire.</p>
           </article>
-
-          <article class="exercise reveal">
+          <article class="also-item">
             <p class="meta">Marketing Decisions · <span data-l="fr">analyse écrite</span><span data-l="en">written analysis</span></p>
             <h4><span data-l="fr">Pourquoi un produit premium ne se vend pas</span><span data-l="en">Why a premium product does not sell</span></h4>
-            <p data-l="fr">Cas Aqualisa Quartz&nbsp;: une douche supérieure à ses concurrentes, mais 15 ventes par jour quand il en faudrait 100 à 200, avec une force de vente qui consacre 90&nbsp;% de son temps aux comptes existants. Mes recommandations&nbsp;: créer la demande auprès des consommateurs et viser de nouveaux canaux, sans diluer la marque premium dans la grande distribution à prix réduits.</p>
-            <p data-l="en">The Aqualisa Quartz case: a shower better than its rivals, yet selling 15 units a day when it needs 100 to 200, with a sales force spending 90% of its time on existing accounts. My recommendations: build consumer demand and target new channels, without diluting the premium brand in discount retail.</p>
+            <p data-l="fr">Une douche supérieure qui ne se vend pas&nbsp;: créer la demande auprès des consommateurs et ouvrir de nouveaux canaux, sans diluer la marque dans la grande distribution.</p>
+            <p data-l="en">A better shower that does not sell: build consumer demand and open new channels, without diluting the brand in discount retail.</p>
           </article>
-
-          <article class="exercise reveal">
+          <article class="also-item">
             <p class="meta">Artificial Intelligence · <span data-l="fr">en groupe</span><span data-l="en">group work</span></p>
             <h4><span data-l="fr">Repenser un processus avec l'IA</span><span data-l="en">Redesigning a process with AI</span></h4>
-            <p data-l="fr">Décrire un processus métier tel qu'il fonctionne, ses limites d'échelle et d'apprentissage, puis proposer une refonte appuyée sur des briques d'IA et des données, avec ses obstacles et ses risques.</p>
-            <p data-l="en">Describe a business process as it runs today and its limits of scale and learning, then propose a redesign built on AI components and data, with its obstacles and risks.</p>
-            <p class="exercise-answer lead" data-l="fr"><strong>Notre proposition&nbsp;: une alerte précoce aux inondations au Bangladesh.</strong> Plutôt que de réagir une fois l'eau montée, anticiper&nbsp;: un modèle de prédiction, nourri par l'historique des précipitations, repère les zones les plus exposées pour donner l'alerte plus tôt. Nous avons construit les modèles en Python, avec l'IA comme assistant de programmation, puis présenté nos résultats.</p>
-            <p class="exercise-answer lead" data-l="en"><strong>Our proposal: an early flood warning for Bangladesh.</strong> Rather than reacting once the water has risen, anticipate: a prediction model fed with historical rainfall data flags the most exposed areas so warnings can go out earlier. We built the models in Python, using AI as a coding assistant, then reported our findings.</p>
+            <p data-l="fr">Une alerte précoce aux inondations au Bangladesh, fondée sur un modèle de prédiction construit en Python à partir de l'historique des précipitations.</p>
+            <p data-l="en">An early flood warning for Bangladesh, built on a Python prediction model fed with historical rainfall data.</p>
           </article>
         </div>
       </div>
@@ -1085,8 +1062,8 @@
   </section>
 
   <!-- ============================================================
-       IV. METHOD: personas as a method. One real B2B profile, one
-       clearly labelled illustrative luxury client.
+       IV. METHOD: personas as a method. Two illustrative profiles,
+       the luxury client first, then a shorter B2B one.
        ============================================================ -->
   <section class="chapter" id="methode">
     <div class="wrap">
@@ -1097,28 +1074,6 @@
       </div>
 
       <div class="personas">
-        <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · B2B industriel</span><span data-l="en">Illustrative example · industrial B2B</span></p>
-          <h3>Marc Dubois</h3>
-          <p class="role"><span data-l="fr">Ingénieur maintenance matériel roulant</span><span data-l="en">Rolling stock maintenance engineer</span></p>
-          <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">Équipe maintenance d'un exploitant ferroviaire</span><span data-l="en">Maintenance team at a rail operator</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Sécurité et maintenance</span><span data-l="en">Safety and maintenance</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Prescripteur technique&nbsp;; les achats signent</span><span data-l="en">Technical specifier; purchasing signs off</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Documentation technique, salons, commercial dédié</span><span data-l="en">Technical documentation, trade shows, a dedicated sales rep</span></dd></div>
-          </dl>
-          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Des fixations certifiées selon les normes ferroviaires de vibration, de feu et de sécurité</li><li>Un approvisionnement fiable et traçable, calé sur les fenêtres de maintenance planifiée</li></ul>
-          <ul data-l="en"><li>Fasteners certified to rail vibration, fire and safety standards</li><li>Reliable, traceable supply, timed to scheduled maintenance windows</li></ul>
-          <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Des fournisseurs qui répondent peu, ou tard</li><li>Des délais de livraison longs</li><li>Des lots inconstants d'une livraison à l'autre</li><li>Un couple de serrage et une qualité de fixation irréguliers</li></ul>
-          <ul data-l="en"><li>Suppliers who rarely respond, or respond late</li><li>Long lead times</li><li>Inconsistent batches from one delivery to the next</li><li>Inconsistent torque and fastener quality</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How he decides</span></h4>
-          <ul data-l="fr"><li>Sur les données, avec prudence&nbsp;: fiches techniques, certificats et essais d'abord, puis une référence chez un autre exploitant</li></ul>
-          <ul data-l="en"><li>On data, cautiously: datasheets, certificates and test results first, then a reference from another operator</li></ul>
-          <blockquote><span data-l="fr">Pour lui, la meilleure fixation est celle dont on n'entend plus jamais parler.</span><span data-l="en">To him, the best fastener is the one you never hear about again.</span></blockquote>
-        </article>
-
         <article class="persona reveal">
           <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe et beauté</span><span data-l="en">Illustrative example · luxury and beauty</span></p>
           <h3>Claire Moreau</h3>
@@ -1139,6 +1094,28 @@
           <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: la composition sur le site de la marque d'abord, puis les avis</li></ul>
           <ul data-l="en"><li>On relationship more than data, cautiously: ingredients on the brand's website first, then reviews</li></ul>
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
+        </article>
+
+        <article class="persona reveal">
+          <p class="persona-kind"><span data-l="fr">Exemple illustratif · B2B industriel</span><span data-l="en">Illustrative example · industrial B2B</span></p>
+          <h3>Marc Dubois</h3>
+          <p class="role"><span data-l="fr">Ingénieur maintenance matériel roulant</span><span data-l="en">Rolling stock maintenance engineer</span></p>
+          <dl class="persona-meta">
+            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">Équipe maintenance d'un exploitant ferroviaire</span><span data-l="en">Maintenance team at a rail operator</span></dd></div>
+            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Sécurité et maintenance</span><span data-l="en">Safety and maintenance</span></dd></div>
+            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Prescripteur technique&nbsp;; les achats signent</span><span data-l="en">Technical specifier; purchasing signs off</span></dd></div>
+            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Documentation technique, salons, commercial dédié</span><span data-l="en">Technical documentation, trade shows, a dedicated sales rep</span></dd></div>
+          </dl>
+          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
+          <ul data-l="fr"><li>Des pièces certifiées, livrées à temps pour la maintenance planifiée</li></ul>
+          <ul data-l="en"><li>Certified parts, delivered on time for planned maintenance</li></ul>
+          <h4>Frustrations</h4>
+          <ul data-l="fr"><li>Des fournisseurs qui répondent tard, avec des délais longs</li><li>Une qualité qui varie d'une livraison à l'autre</li></ul>
+          <ul data-l="en"><li>Suppliers who respond late, with long lead times</li><li>Quality that varies from one delivery to the next</li></ul>
+          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How he decides</span></h4>
+          <ul data-l="fr"><li>Sur les données, avec prudence&nbsp;: fiches techniques, certificats et essais d'abord, puis une référence chez un autre exploitant</li></ul>
+          <ul data-l="en"><li>On data, cautiously: datasheets, certificates and test results first, then a reference from another operator</li></ul>
+          <blockquote><span data-l="fr">Pour lui, la meilleure fixation est celle dont on n'entend plus jamais parler.</span><span data-l="en">To him, the best fastener is the one you never hear about again.</span></blockquote>
         </article>
       </div>
       <div class="implications reveal">
@@ -1370,8 +1347,8 @@
   (function () {
     var LANGS = ['fr', 'en'];
     var TITLES = {
-      fr: 'Vera Soldatenko · Marketing, CRM & contenu de marque · Luxe, hôtellerie, biens de consommation',
-      en: 'Vera Soldatenko · Marketing, CRM & brand content · Luxury, hospitality, consumer goods'
+      fr: 'Vera Soldatenko · Marketing omnicanal & expérience client · Maisons de luxe',
+      en: 'Vera Soldatenko · Omnichannel marketing & client experience · Luxury Maisons'
     };
     var buttons = document.querySelectorAll('[data-lang-btn]');
     function setLang(lang) {
