@@ -91,6 +91,8 @@
   .works { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: 1fr; gap: 48px 32px; max-width: 380px; }
   @media (min-width: 600px) { .works { grid-template-columns: repeat(2, 1fr); max-width: 760px; } }
   @media (min-width: 960px) { .works { grid-template-columns: repeat(3, 1fr); max-width: none; } }
+  /* a group of two stays centred at the same tile size as the others */
+  @media (min-width: 960px) { .works.two { grid-template-columns: repeat(2, 1fr); max-width: calc((100% - 64px) * 2 / 3 + 32px); } }
 
   /* Each piece is shown matted on a soft grey tile, at its own proportions */
   .work a.tile { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 5; padding: 9%; background: var(--tile); text-decoration: none; }
@@ -204,8 +206,8 @@
 
   <section class="group" aria-labelledby="g-visuals">
     <div class="wrap">
-      <h2 class="group-title" id="g-visuals"><span data-l="fr">Infographies et annonces</span><span data-l="en">Infographics and announcements</span></h2>
-      <ul class="works">
+      <h2 class="group-title" id="g-visuals"><span data-l="fr">Infographies</span><span data-l="en">Infographics</span></h2>
+      <ul class="works two">
         <li class="work"><figure style="margin:0">
           <a class="tile" href="../img/work/imperial-metric.webp" data-view><img src="../img/work/imperial-metric.webp" width="900" height="1600" loading="lazy" decoding="async" alt="Infographie sur les pas de filetage impérial et métrique"></a>
           <figcaption>
@@ -218,13 +220,6 @@
           <figcaption>
             <span class="work-type"><span data-l="fr">Infographie</span><span data-l="en">Infographic</span></span>
             <span class="work-title"><span data-l="fr">Le rôle du couple de serrage</span><span data-l="en">The role of torque in fastening</span></span>
-          </figcaption>
-        </figure></li>
-        <li class="work"><figure style="margin:0">
-          <a class="tile" href="../img/work/event-sponsorship.webp" data-view><img src="../img/work/event-sponsorship.webp" width="1200" height="1200" loading="lazy" decoding="async" alt="Visuel d'annonce du sponsoring d'un événement ferroviaire"></a>
-          <figcaption>
-            <span class="work-type"><span data-l="fr">Visuel d'annonce</span><span data-l="en">Announcement graphic</span></span>
-            <span class="work-title"><span data-l="fr">Sponsoring d'un événement ferroviaire</span><span data-l="en">Rail industry event sponsorship</span></span>
           </figcaption>
         </figure></li>
       </ul>
