@@ -26,7 +26,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vera Soldatenko · Marketing omnicanal &amp; expérience client · Maisons de luxe</title>
-<meta name="description" content="Vera Soldatenko : marketing et marketing produit, CRM et clienteling, contenu de marque. Cinq ans de marketing technique haut de gamme, un master en marketing omnicanal et analyse consommateur. Ouverte aux opportunités : marketing omnicanal et expérience client dans les Maisons de luxe.">
+<meta name="description" content="Vera Soldatenko : marketing et marketing produit, CRM et clienteling, contenu de marque. Une expérience en marketing technique haut de gamme, un master en marketing omnicanal et analyse consommateur. Ouverte aux opportunités : marketing omnicanal et expérience client dans les Maisons de luxe.">
 <link rel="canonical" href="https://vsoldatenko.fr/">
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="fr_FR">
@@ -351,7 +351,27 @@
   .label dd { margin: 0; }
   .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
 
-  /* "Also": shorter work, text only, after the full entries */
+  /* Thesis card: the image stays, and the text under it is four cards
+     (the thesis, data collection, analysis, limits), switched by the
+     named buttons below them with a fade.
+     Without JavaScript all four simply show one after another. */
+  html.js .tab-panel:not(.is-active) { display: none; }
+  .tab-panel.is-leaving { opacity: 0; transition: opacity 0.22s ease; }
+  .tab-panel.is-entering { animation: panel-in 0.5s ease both; }
+  @keyframes panel-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .tab-panel { margin-top: 32px; }
+  .tab-panel .plate-body, .tab-panel .implications, .tab-panel .validate { margin-top: 0; }
+  .thesis-question { max-width: var(--measure); margin: 0 auto 36px; text-align: center; }
+  .thesis-question p { margin: 0; font-size: 15px; }
+  .thesis-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; max-width: var(--measure); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--rule); }
+  html:not(.js) .thesis-tabs { display: none; }
+  .thesis-tabs button { padding: 4px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: var(--ink-soft); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease; }
+  .thesis-tabs button:hover { color: var(--ink); }
+  .thesis-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .tab-panel.is-leaving, .tab-panel.is-entering { transition: none; animation: none; } }
+
+  /* "Further work" / "Further projects": shorter entries, text only,
+     after the full ones */
   .also { max-width: 1000px; margin: clamp(96px, 12vw, 144px) auto 0; }
   .also-title { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; text-align: center; margin: 0 0 32px; }
   .also-list { display: grid; gap: 0 48px; }
@@ -390,7 +410,7 @@
   @media (min-width: 900px) { .image-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
   .tile { margin: 0; aspect-ratio: 3 / 4; background: var(--tile); overflow: hidden; }
   .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; }
-  /* Château: the stay as hospitality work, before the images */
+  /* Château: a personal project, the roles it involved, before the images */
   .stay { max-width: 1000px; margin: -24px auto 64px; text-align: center; }
   .stay-intro { max-width: 38rem; margin: 0 auto 40px; }
   .stay-label { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
@@ -399,7 +419,7 @@
   .stay-role h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 8px; }
   .stay-role p { margin: 0; font-size: 14.5px; }
   @media (min-width: 880px) {
-    .stay-roles { grid-template-columns: repeat(3, 1fr); gap: 40px; border-top: 0; }
+    .stay-roles { grid-template-columns: repeat(2, 1fr); gap: 0 56px; border-top: 0; }
     .stay-role { border-top: 1px solid var(--rule); border-bottom: 0; }
   }
   .stay-takeaway { font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; max-width: 38rem; margin: 32px auto 0; }
@@ -551,8 +571,8 @@
           <li><a href="#avant-propos">Portrait</a></li>
           <li><a href="#transposition"><span data-l="fr">Du B2B au luxe</span><span data-l="en">From B2B to luxury</span></a></li>
           <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
-          <li><a href="#chateau">Château Landery</a></li>
           <li><a href="#travaux"><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
+          <li><a href="#chateau">Château Landery</a></li>
           <li><a href="#methode"><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
           <li><a href="#savoir-faire"><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
           <li><a href="#formation"><span data-l="fr">Formation</span><span data-l="en">Education</span></a></li>
@@ -580,8 +600,8 @@
       <div class="hero-text">
         <h1>Vera Soldatenko</h1>
         <p class="hero-roles">
-          <span data-l="fr"><span>Master en management du marketing, omnicanal et analyse consommateur, Politecnico di Milano (POLIMI)</span><span>Cinq ans d'expérience en marketing produit, CRM et brand content</span></span>
-          <span data-l="en"><span>Master's in Marketing Management, Omnichannel and Consumer Analytics, Politecnico di Milano (POLIMI)</span><span>Five years in product marketing, CRM and brand content</span></span>
+          <span data-l="fr"><span>Master en management du marketing, omnicanal et analyse consommateur, Politecnico di Milano (POLIMI)</span><span>Expérience en marketing produit, CRM et brand content</span></span>
+          <span data-l="en"><span>Master's in Marketing Management, Omnichannel and Consumer Analytics, Politecnico di Milano (POLIMI)</span><span>Experience in product marketing, CRM and brand content</span></span>
         </p>
         <p class="open-to">
           <span data-l="fr"><span>Ouverte aux opportunités&nbsp;: marketing omnicanal et expérience client dans les Maisons de luxe</span><span class="open-to-details">Basée&nbsp;en&nbsp;France · Mobilité&nbsp;nationale · Disponible&nbsp;immédiatement · Autorisée&nbsp;à&nbsp;travailler&nbsp;en&nbsp;France</span></span>
@@ -612,14 +632,14 @@
       </div>
       <div class="prose reveal">
         <div data-l="fr">
-          <p>Pendant cinq ans, j'ai fait connaître des pièces conçues pour que des voies ferrées, des mines et des avions tiennent sous la vibration. Ce marketing ne pardonne pas l'approximation&nbsp;: chaque argument se prouve, et un prix haut de gamme se justifie par la sécurité et la confiance qu'il apporte.</p>
+          <p>En B2B technique, j'ai fait connaître des pièces conçues pour que des voies ferrées, des mines et des avions tiennent sous la vibration. Ce marketing ne pardonne pas l'approximation&nbsp;: chaque argument se prouve, et un prix haut de gamme se justifie par la sécurité et la confiance qu'il apporte.</p>
           <p>J'y ai appris ce que le luxe pratique chaque jour. Un produit d'exception se raconte avec précision, se défend par la preuve et se vit dans une relation durable avec le client, ce qui commence par une donnée client juste.</p>
-          <p>Mon master à Milan a ajouté l'analyse consommateur et l'omnicanal, jusqu'à un mémoire sur les influenceurs virtuels dans la parfumerie de luxe européenne. Je travaille en français, en anglais et en russe, et j'ai vécu entre plusieurs pays et plusieurs cultures, de mes racines biélorusses au Canada, à l'Italie et à la France.</p>
+          <p>Mon master à Milan a ajouté l'analyse consommateur et l'omnicanal, jusqu'à un mémoire sur les influenceurs virtuels dans les parfums et cosmétiques de luxe européens. Je travaille en français, en anglais et en russe, et j'ai vécu entre plusieurs pays et plusieurs cultures, de mes racines biélorusses au Canada, à l'Italie et à la France.</p>
         </div>
         <div data-l="en">
-          <p>For five years I marketed parts designed to keep railways, mines and aircraft holding firm under vibration. That kind of marketing does not forgive approximation: every claim has to be proven, and a premium price has to be earned through the safety and trust it delivers.</p>
+          <p>In technical B2B, I marketed parts designed to keep railways, mines and aircraft holding firm under vibration. That kind of marketing does not forgive approximation: every claim has to be proven, and a premium price has to be earned through the safety and trust it delivers.</p>
           <p>It taught me what luxury practises every day. An exceptional product is told with precision, defended with proof and lived through a lasting relationship with the client, which starts with accurate client data.</p>
-          <p>My master's in Milan added consumer analytics and omnichannel, up to a thesis on virtual influencers in European luxury fragrance. I work in French, English and Russian, and I have lived across several countries and cultures, from my Belarusian roots to Canada, Italy and France.</p>
+          <p>My master's in Milan added consumer analytics and omnichannel, up to a thesis on virtual influencers in European luxury perfume and cosmetics. I work in French, English and Russian, and I have lived across several countries and cultures, from my Belarusian roots to Canada, Italy and France.</p>
         </div>
       </div>
       <p class="aside-interests reveal">
@@ -711,7 +731,7 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></h2>
-        <p><span data-l="fr">Une sélection de projets, en entreprise et en master.</span><span data-l="en">Selected projects, from industry and from my master's.</span></p>
+        <p><span data-l="fr">Une sélection de projets en entreprise.</span><span data-l="en">Selected projects from industry.</span></p>
       </div>
 
       <div class="plates">
@@ -753,48 +773,11 @@
         </article>
 
         <article class="plate reveal">
-          <figure class="plate-figure">
-            <img src="img/plate-thesis.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Les deux visuels testés dans l'enquête : une influenceuse humaine et le personnage virtuel Candy, tenant le parfum Prada Candy">
-            <figcaption class="caption">
-              <span data-l="fr">Les deux visuels testés&nbsp;: une influenceuse humaine et le personnage virtuel Candy. Images&nbsp;: Prada et leurs auteurs respectifs, reproduites à titre d'illustration de recherche.</span>
-              <span data-l="en">The two visuals tested: a human influencer and the virtual character Candy. Images: Prada and their respective authors, shown as research illustration.</span>
-            </figcaption>
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 02</p>
-            <h3><span data-l="fr">La nouveauté attire le regard, l'authenticité fait la vente</span><span data-l="en">Novelty catches the eye, authenticity makes the sale</span></h3>
-            <p data-l="fr">Les influenceurs virtuels attirent l'attention, mais font-ils acheter un parfum de luxe&nbsp;? Avec Alessia Cappa, nous avons présenté deux visuels de la relance de Prada Candy en 2021, l'un porté par une influenceuse humaine, l'autre par un personnage virtuel, à 105 répondants, puis analysé 430 commentaires publiés sur les réseaux sociaux. La curiosité est réelle, la confiance beaucoup moins.</p>
-            <p data-l="en">Virtual influencers attract attention, but do they make people buy a luxury fragrance? With Alessia Cappa, I showed 105 respondents two visuals from the 2021 Prada Candy relaunch, one featuring a human influencer and one a virtual character, then analysed 430 social media comments. The curiosity is real; the trust much less so.</p>
-            <div class="stat-chart" role="img" aria-label="57 % préfèrent un influenceur humain pour acheter, contre environ 24 % pour un influenceur virtuel">
-              <div class="stat-row">
-                <span data-l="fr">Préfèrent un influenceur humain pour acheter</span><span data-l="en">Prefer a human influencer when buying</span>
-                <b>57&nbsp;%</b>
-                <div class="stat-bar"><span style="width:57%"></span></div>
-              </div>
-              <div class="stat-row">
-                <span data-l="fr">Plus enclins à acheter via un influenceur virtuel</span><span data-l="en">More likely to buy through a virtual influencer</span>
-                <b>~24&nbsp;%</b>
-                <div class="stat-bar muted"><span style="width:24%"></span></div>
-              </div>
-              <p class="stat-source"><span data-l="fr">64,8&nbsp;% estiment qu'un influenceur virtuel nuit à l'image d'une marque de luxe. Enquête, 105 répondants, juillet à octobre 2024.</span><span data-l="en">64.8% think a virtual influencer detracts from a luxury brand's image. Survey, 105 respondents, July to October 2024.</span></p>
-            </div>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Mémoire de master, 41 pages, coécrit avec Alessia Cappa</span><span data-l="en">Master's thesis, 41 pages, co-authored with Alessia Cappa</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">POLIMI Graduate School of Management, Milan, 2024</span><span data-l="en">POLIMI Graduate School of Management, Milan, 2024</span></dd>
-              <dt><span data-l="fr">Méthode</span><span data-l="en">Method</span></dt>
-              <dd><span data-l="fr">Revue de littérature, deux études de cas (Dove «&nbsp;Real Beauty&nbsp;», Shudu × Fenty Beauty), enquête, analyse Gioia</span><span data-l="en">Literature review, two case studies (Dove “Real Beauty”, Shudu × Fenty Beauty), survey, Gioia analysis</span></dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="plate reveal">
           <figure class="plate-figure wide">
             <img src="img/plate-case-study.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Les deux pages de l'étude de cas sur les planches de recouvrement du rail d'alimentation">
           </figure>
           <div class="plate-body">
-            <p class="plate-no">N° 03</p>
+            <p class="plate-no">N° 02</p>
             <h3><span data-l="fr">La sécurité comme argument premium</span><span data-l="en">Safety as the premium argument</span></h3>
             <p data-l="fr">Une étude de cas devenue le modèle de l'entreprise, utilisée sur les salons et en ligne&nbsp;: un prix premium défendu par la preuve, pas par la promesse. Un écrou autofreiné coûte plus cher qu'un écrou standard&nbsp;; l'étude de cas justifie cet écart par ce qui compte pour un exploitant ferroviaire&nbsp;: la sécurité des équipes et des passagers, et la fin d'un problème de maintenance récurrent.</p>
             <p data-l="en">A case study that became the company's template, used at trade shows and online: a premium price defended with proof, not promises. A self-locking nut costs more than a standard one, so the case study justifies the premium through what matters to a rail operator: the safety of crews and passengers, and the end of a recurring maintenance problem.</p>
@@ -804,7 +787,7 @@
               <dt>Provenance</dt>
               <dd><span data-l="fr">B2B industriel, client anonymisé</span><span data-l="en">Industrial B2B, client anonymised</span></dd>
               <dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt>
-              <dd><span data-l="fr">Seule personne en charge du marketing dans l'entreprise&nbsp;: construction de la fonction marketing de zéro, et conception de cette étude de cas.</span><span data-l="en">The company's only marketer: built the marketing function from scratch, and designed this case study.</span></dd>
+              <dd><span data-l="fr">Mise en place des canaux, des modèles et des outils marketing de l'entreprise, et conception de cette étude de cas.</span><span data-l="en">Set up the company's marketing channels, templates and tools, and designed this case study.</span></dd>
               <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
               <dd><span data-l="fr">Un «&nbsp;reason to believe&nbsp;»&nbsp;: la preuve qui rend crédible un positionnement premium, comme le savoir-faire en luxe.</span><span data-l="en">A “reason to believe”: the proof that makes a premium position credible, as craftsmanship does in luxury.</span></dd>
             </dl>
@@ -813,31 +796,17 @@
           </div>
         </article>
 
-        <article class="plate reveal">
-          <figure class="plate-figure wide">
-            <img src="img/plate-resource-hub.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Trois documents du centre de ressources : une étude de cas, un guide sur les traitements de surface et une étude de cas en français">
-          </figure>
-          <div class="plate-body">
-            <p class="plate-no">N° 04</p>
-            <h3><span data-l="fr">Une bibliothèque plutôt qu'une brochure</span><span data-l="en">A library, not a brochure</span></h3>
-            <p data-l="fr">Près de 800 vues depuis le lancement, et des commerciaux qui rencontrent des clients mieux informés. Un centre de ressources construit de A à Z&nbsp;: planification, analyse concurrentielle, SEO, puis études de cas, livres blancs, actualités et catalogues produits, et leur traduction en français.</p>
-            <p data-l="en">Nearly 800 views since launch, and sales teams meeting better-informed clients. A resource hub built from scratch: planning, competitor research and SEO, then case studies, white papers, company news and product catalogues, and their French translation.</p>
-            <dl class="label">
-              <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Centre de ressources en ligne, bilingue</span><span data-l="en">Online resource hub, bilingual</span></dd>
-              <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel</span><span data-l="en">Industrial B2B</span></dd>
-              <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
-              <dd><span data-l="fr">Réduire le coût de la recherche&nbsp;: une marque qui simplifie le choix gagne la confiance du client.</span><span data-l="en">Lowering the cost of searching: a brand that makes choosing easier earns the client's trust.</span></dd>
-            </dl>
-          </div>
-        </article>
-
       </div>
 
       <div class="also reveal">
-        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
-        <div class="also-list">
+        <h3 class="also-title"><span data-l="fr">Autres réalisations</span><span data-l="en">Further work</span></h3>
+        <div class="also-list three">
+          <article class="also-item">
+            <p class="meta"><span data-l="fr">B2B industriel · contenu en ligne</span><span data-l="en">Industrial B2B · online content</span></p>
+            <h4><span data-l="fr">Une bibliothèque plutôt qu'une brochure</span><span data-l="en">A library, not a brochure</span></h4>
+            <p data-l="fr">Près de 800 vues depuis le lancement&nbsp;: j'ai géré le contenu du centre de ressources, de la planification et du SEO aux études de cas, livres blancs, actualités et catalogues, traduits en français.</p>
+            <p data-l="en">Nearly 800 views since launch: I managed the resource hub's content, from planning and SEO to case studies, white papers, company news and catalogues, translated into French.</p>
+          </article>
           <article class="also-item">
             <p class="meta"><span data-l="fr">B2B industriel · LinkedIn</span><span data-l="en">Industrial B2B · LinkedIn</span></p>
             <h4><span data-l="fr">«&nbsp;Industry Insights&nbsp;», une parole d'expert sur LinkedIn</span><span data-l="en">“Industry Insights”, thought leadership on LinkedIn</span></h4>
@@ -856,70 +825,94 @@
   </section>
 
   <!-- ============================================================
-       THE CHÂTEAU: image-only grid (photos or short videos), no
-       captions. See the .image-grid comment in the CSS for tile markup.
-       ============================================================ -->
-  <section class="chapter" id="chateau">
-    <div class="wrap">
-      <div class="chapter-head reveal">
-        <h2>Château Landery</h2>
-        <p><span data-l="fr">Hospitalité, gîte familial, 2025</span><span data-l="en">Hospitality, family-run holiday rental, 2025</span></p>
-      </div>
-
-      <div class="stay">
-        <p class="stay-intro reveal"><span data-l="fr">En 2025, le château a reçu des hôtes venus uniquement par le bouche-à-oreille et sur recommandation, sans annonce publique. Sans publicité, chaque séjour devait donner envie d'en parler&nbsp;: la relation faisait la réputation. Le gîte n'accueille plus de clients aujourd'hui.</span><span data-l="en">In 2025, the château welcomed guests who came by word of mouth and referral only, with no public listing. With no advertising, every stay had to be worth talking about: the relationship was the reputation. The gîte no longer takes guests.</span></p>
-        <p class="stay-label reveal"><span data-l="fr">Mon rôle</span><span data-l="en">My role</span></p>
-        <div class="stay-roles">
-        <div class="stay-role reveal">
-          <h3><span data-l="fr">Gestion des clients</span><span data-l="en">Client management</span></h3>
-          <p><span data-l="fr">Le lien avec chaque hôte, du premier échange au départ&nbsp;: disponibilités, préparation du séjour, demandes particulières.</span><span data-l="en">The link with each guest from first exchange to departure: availability, preparing the stay, particular requests.</span></p>
-        </div>
-        <div class="stay-role reveal">
-          <h3><span data-l="fr">Prospection</span><span data-l="en">Customer outreach</span></h3>
-          <p><span data-l="fr">Faire connaître le gîte au sein du réseau de recommandation, et transformer une recommandation en réservation.</span><span data-l="en">Spreading the word through the referral network, and turning a recommendation into a booking.</span></p>
-        </div>
-        <div class="stay-role reveal">
-          <h3><span data-l="fr">Conception des activités</span><span data-l="en">Activity curation</span></h3>
-          <p><span data-l="fr">Composer autour de chaque séjour un programme à la carte, d'une journée au Circuit du Val de Vienne à un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Building an à la carte programme around each stay, from a day at the Circuit du Val de Vienne to dinner on the water at the Village Flottant de Pressac.</span></p>
-        </div>
-        </div>
-        <p class="stay-takeaway reveal"><span data-l="fr">Ce que j'en retiens&nbsp;: le clienteling en personne. Anticiper avant qu'on demande, retenir les préférences de chacun, et faire d'un séjour une histoire que l'on raconte.</span><span data-l="en">What I take from it: clienteling in person. Anticipating before being asked, remembering each guest's preferences, and turning a stay into a story people retell.</span></p>
-      </div>
-
-      <div class="image-grid" aria-label="Château Landery en images">
-        <figure class="tile reveal"><img src="img/landery-31.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château, sa tour et ses lucarnes"></figure>
-        <figure class="tile reveal"><img src="img/landery-40.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une réplique de la Vénus de Milo dans le parc, sous les arbres roux de l&#x27;automne"></figure>
-        <figure class="tile reveal"><img src="img/landery-32.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un ponton en bois s&#x27;avance sur le lac, sous les branches"></figure>
-        <figure class="tile reveal"><img src="img/landery-43.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un vieux fer à cheval suspendu à un mur de pierre"></figure>
-        <figure class="tile reveal"><img src="img/landery-41.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un chat assis devant la porte en fer forgé, à côté d&#x27;une caisse en bois de pommes cueillies sur le domaine"></figure>
-        <figure class="tile reveal"><img src="img/landery-38.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Des moutons dans la prairie, au soleil du matin"></figure>
-        <figure class="tile reveal"><img src="img/landery-42.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc dans la brume d&#x27;automne, derrière une rampe en fer forgé"></figure>
-        <figure class="tile reveal"><img src="img/landery-37.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La porte en fer forgé vue de l&#x27;intérieur, son ombre dessinée sur le mur par la lumière du soir"></figure>
-      </div>
-
-      <h3 class="nearby-head reveal"><span data-l="fr">Aux alentours, proposé aux hôtes</span><span data-l="en">Nearby, suggested to guests</span></h3>
-      <div class="nearby">
-        <figure class="reveal">
-          <img src="img/chateau-nearby-circuit.webp" width="700" height="525" loading="lazy" decoding="async" alt="Départ d'une course de voitures sous l'arche du Circuit du Val de Vienne">
-          <figcaption><span data-l="fr">Une journée au Circuit du Val de Vienne.</span><span data-l="en">A day at the Circuit du Val de Vienne.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Circuit du Val de Vienne</span><span data-l="en">Photo: Circuit du Val de Vienne website</span></span></figcaption>
-        </figure>
-        <figure class="reveal">
-          <img src="img/chateau-nearby-pressac.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Tables dressées sur une terrasse couverte, face au lac et aux cabanes flottantes au coucher du soleil">
-          <figcaption><span data-l="fr">Un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Dinner on the water at the Village Flottant de Pressac.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Village Flottant de Pressac</span><span data-l="en">Photo: Village Flottant de Pressac website</span></span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       III. MASTER'S WORK: group projects, credited as such.
+       III. MASTER'S WORK: the thesis first, then group projects,
+       credited as such.
        ============================================================ -->
   <section class="chapter" id="travaux">
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></h2>
-        <p><span data-l="fr">Projets de groupe réalisés à POLIMI Graduate School of Management, 2023-2024.</span><span data-l="en">Group projects at POLIMI Graduate School of Management, 2023-2024.</span></p>
+        <p><span data-l="fr">Mémoire et projets de groupe, POLIMI Graduate School of Management, 2023-2024.</span><span data-l="en">Thesis and group projects, POLIMI Graduate School of Management, 2023-2024.</span></p>
       </div>
+
+        <article class="plate thesis-card reveal">
+          <figure class="plate-figure">
+            <img src="img/plate-thesis.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Les deux visuels testés dans l'enquête : une influenceuse humaine et le personnage virtuel Candy, tenant le parfum Prada Candy">
+            <figcaption class="caption">
+              <span data-l="fr">Les deux visuels testés&nbsp;: une influenceuse humaine et le personnage virtuel Candy. Images&nbsp;: Prada et leurs auteurs respectifs, reproduites à titre d'illustration de recherche.</span>
+              <span data-l="en">The two visuals tested: a human influencer and the virtual character Candy. Images: Prada and their respective authors, shown as research illustration.</span>
+            </figcaption>
+          </figure>
+          <div class="tab-panel is-active" id="thesis-memoire" role="tabpanel" aria-labelledby="thesis-memoire-tab">
+            <div class="plate-body">
+              <p class="plate-no"><span data-l="fr">Mémoire · 2024</span><span data-l="en">Thesis · 2024</span></p>
+              <h3><span data-l="fr">La nouveauté attire le regard, l'authenticité fait la vente</span><span data-l="en">Novelty catches the eye, authenticity makes the sale</span></h3>
+              <p data-l="fr">Les influenceurs virtuels attirent l'attention, mais font-ils acheter un parfum de luxe&nbsp;? Avec une camarade de promotion, nous avons présenté deux visuels de la relance de Prada Candy en 2021, l'un porté par une influenceuse humaine, l'autre par un personnage virtuel, à 105 répondants, puis analysé 430 commentaires publiés sur les réseaux sociaux. La curiosité est réelle, la confiance beaucoup moins.</p>
+              <p data-l="en">Virtual influencers attract attention, but do they make people buy a luxury fragrance? With a classmate, I showed 105 respondents two visuals from the 2021 Prada Candy relaunch, one featuring a human influencer and one a virtual character, then analysed 430 social media comments. The curiosity is real; the trust much less so.</p>
+              <div class="stat-chart" role="img" aria-label="57 % préfèrent un influenceur humain pour acheter, contre environ 24 % pour un influenceur virtuel">
+                <div class="stat-row">
+                  <span data-l="fr">Préfèrent un influenceur humain pour acheter</span><span data-l="en">Prefer a human influencer when buying</span>
+                  <b>57&nbsp;%</b>
+                  <div class="stat-bar"><span style="width:57%"></span></div>
+                </div>
+                <div class="stat-row">
+                  <span data-l="fr">Plus enclins à acheter via un influenceur virtuel</span><span data-l="en">More likely to buy through a virtual influencer</span>
+                  <b>~24&nbsp;%</b>
+                  <div class="stat-bar muted"><span style="width:24%"></span></div>
+                </div>
+                <p class="stat-source"><span data-l="fr">64,8&nbsp;% estiment qu'un influenceur virtuel nuit à l'image d'une marque de luxe. Enquête, 105 répondants, juillet à octobre 2024.</span><span data-l="en">64.8% think a virtual influencer detracts from a luxury brand's image. Survey, 105 respondents, July to October 2024.</span></p>
+              </div>
+              <dl class="label">
+                <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
+                <dd><span data-l="fr">Mémoire de master, 41 pages, coécrit avec une camarade de promotion</span><span data-l="en">Master's thesis, 41 pages, co-authored with a classmate</span></dd>
+                <dt>Provenance</dt>
+                <dd><span data-l="fr">POLIMI Graduate School of Management, Milan, 2024</span><span data-l="en">POLIMI Graduate School of Management, Milan, 2024</span></dd>
+                <dt><span data-l="fr">Méthode</span><span data-l="en">Method</span></dt>
+                <dd><span data-l="fr">Revue de littérature, deux études de cas (Dove «&nbsp;Real Beauty&nbsp;», Shudu × Fenty Beauty), enquête, analyse Gioia</span><span data-l="en">Literature review, two case studies (Dove “Real Beauty”, Shudu × Fenty Beauty), survey, Gioia analysis</span></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="tab-panel" id="thesis-collecte" role="tabpanel" aria-labelledby="thesis-collecte-tab">
+            <div class="implications">
+              <div class="thesis-question">
+                <p data-l="fr">La question&nbsp;: dans quelle mesure un influenceur virtuel influence-t-il la décision d'achat et l'image de marque dans les parfums et cosmétiques de luxe européens&nbsp;? Pour y répondre, nous avons croisé quatre sources, des réponses déclarées aux réactions spontanées.</p>
+                <p data-l="en">The question: to what extent does a virtual influencer shape purchase decisions and brand image in European luxury perfume and cosmetics? To answer it, we combined four sources, from stated answers to spontaneous reactions.</p>
+              </div>
+              <h3><span data-l="fr">Comment nous avons collecté les données</span><span data-l="en">How we collected the data</span></h3>
+              <p class="implications-sub"><span data-l="fr">Quatre sources, de la théorie au terrain.</span><span data-l="en">Four sources, from theory to the field.</span></p>
+              <div class="implication-list">
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Revue de littérature</span><span data-l="en">Literature review</span></p><p><span data-l="fr">Revues académiques, rapports sectoriels et ouvrages, pour poser le cadre&nbsp;: preuve sociale, crédibilité de la source, flux de communication à deux étages et vallée de l'étrange.</span><span data-l="en">Academic journals, industry reports and books, to set the frame: social proof, source credibility, the two-step flow of communication and the uncanny valley.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Deux études de cas</span><span data-l="en">Two case studies</span></p><p><span data-l="fr">Dove «&nbsp;Real Beauty&nbsp;» et Shudu × Fenty Beauty, deux campagnes reconnues, étudiées pour leur stratégie et leurs résultats en engagement.</span><span data-l="en">Dove “Real Beauty” and Shudu × Fenty Beauty, two well-known campaigns, examined for their strategy and their results in engagement.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Une enquête</span><span data-l="en">A survey</span></p><p><span data-l="fr">Un questionnaire Google Forms de 15 questions, ouvert du 18 juillet au 3 octobre 2024. Deux visuels de la relance de Prada Candy en 2021, l'un avec une influenceuse humaine, l'autre avec un personnage virtuel, choisis pour être comparables&nbsp;: même produit, même geste, aucune des deux ne regarde l'objectif. Chacun est noté sur l'attrait, l'authenticité, les émotions et l'intention d'achat. 105 réponses anonymes, surtout d'Italie, de France et d'Espagne.</span><span data-l="en">A 15-question Google Forms survey, open from 18 July to 3 October 2024. Two visuals from the 2021 Prada Candy relaunch, one with a human influencer and one with a virtual character, chosen to be comparable: the same product, the same gesture, neither facing the camera. Each was rated on appeal, authenticity, emotions and purchase intent. 105 anonymous responses, mostly from Italy, France and Spain.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires en ligne</span><span data-l="en">Comments online</span></p><p><span data-l="fr">Plus de 430 commentaires publics sous des publications consacrées aux influenceurs virtuels, sur Reddit, YouTube, Instagram et TikTok, retenus pour leur lien avec l'authenticité, la confiance et la représentation.</span><span data-l="en">Over 430 public comments under posts about virtual influencers, on Reddit, YouTube, Instagram and TikTok, selected for their bearing on authenticity, trust and representation.</span></p></div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="thesis-analyse" role="tabpanel" aria-labelledby="thesis-analyse-tab">
+            <div class="implications">
+              <h3><span data-l="fr">Comment nous les avons analysées</span><span data-l="en">How we analysed it</span></h3>
+              <p class="implications-sub"><span data-l="fr">Les chiffres d'un côté, les mots de l'autre.</span><span data-l="en">The numbers on one side, the words on the other.</span></p>
+              <div class="implication-list">
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les réponses à l'enquête</span><span data-l="en">The survey answers</span></p><p><span data-l="fr">Synthétisées dans Google Forms et Excel, pour relier l'authenticité perçue à l'intention d'achat et comparer les émotions suscitées par les deux visuels.</span><span data-l="en">Summarised in Google Forms and Excel, to link perceived authenticity with purchase intent and compare the emotions each visual triggered.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires, par la méthode Gioia</span><span data-l="en">The comments, with the Gioia method</span></p><p><span data-l="fr">Chaque commentaire est d'abord codé selon ce qu'il exprime (doute sur la réalité, préférence pour de vrais modèles, crainte pour l'emploi), puis ces concepts sont regroupés en thèmes, et les thèmes en quatre grandes dimensions.</span><span data-l="en">Each comment is first coded by what it expresses (doubt about what is real, a preference for real models, fear for jobs), then these concepts are grouped into themes, and the themes into four broad dimensions.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les quatre dimensions</span><span data-l="en">The four dimensions</span></p><p><span data-l="fr">La confiance et l'authenticité, la responsabilité culturelle et sociale, l'anxiété face à la technologie et à l'emploi, et la distance émotionnelle face à des standards de beauté irréalistes.</span><span data-l="en">Trust and authenticity, cultural and social responsibility, anxiety about technology and jobs, and emotional distance from unrealistic beauty standards.</span></p></div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="thesis-limites" role="tabpanel" aria-labelledby="thesis-limites-tab">
+            <div class="validate">
+              <h3><span data-l="fr">Ses limites</span><span data-l="en">Its limits</span></h3>
+              <p data-l="fr">Un échantillon réduit, faute de temps et de moyens, et des réponses déclarées, exposées au biais de désirabilité sociale malgré l'anonymat. Les conclusions donnent une direction plutôt qu'une preuve, et gagneraient à être vérifiées sur un échantillon plus large.</p>
+              <p data-l="en">A small sample, limited by time and resources, and self-reported answers, open to social desirability bias despite anonymity. The findings point a direction rather than prove it, and would benefit from a larger sample.</p>
+            </div>
+          </div>
+          <div class="thesis-tabs" role="tablist" aria-label="Mémoire">
+            <button type="button" role="tab" id="thesis-memoire-tab" aria-controls="thesis-memoire" aria-selected="true"><span data-l="fr">Le mémoire</span><span data-l="en">The thesis</span></button>
+            <button type="button" role="tab" id="thesis-collecte-tab" aria-controls="thesis-collecte" aria-selected="false" tabindex="-1"><span data-l="fr">La collecte</span><span data-l="en">Data collection</span></button>
+            <button type="button" role="tab" id="thesis-analyse-tab" aria-controls="thesis-analyse" aria-selected="false" tabindex="-1"><span data-l="fr">L'analyse</span><span data-l="en">Analysis</span></button>
+            <button type="button" role="tab" id="thesis-limites-tab" aria-controls="thesis-limites" aria-selected="false" tabindex="-1"><span data-l="fr">Les limites</span><span data-l="en">Limits</span></button>
+          </div>
+        </article>
 
       <div class="series-grid">
 
@@ -1024,7 +1017,7 @@
       </div>
 
       <div class="also reveal">
-        <h3 class="also-title"><span data-l="fr">Également</span><span data-l="en">Also</span></h3>
+        <h3 class="also-title"><span data-l="fr">Autres travaux</span><span data-l="en">Further projects</span></h3>
         <div class="also-list three">
           <article class="also-item">
             <p class="meta">eCommerce &amp; Omnichannel Experience · <span data-l="fr">groupe de 8, en deux jours</span><span data-l="en">group of 8, over two days</span></p>
@@ -1062,15 +1055,75 @@
   </section>
 
   <!-- ============================================================
-       IV. METHOD: personas as a method. Two illustrative profiles,
-       the luxury client first, then a shorter B2B one.
+       THE CHÂTEAU: image-only grid (photos or short videos), no
+       captions. See the .image-grid comment in the CSS for tile markup.
+       ============================================================ -->
+  <section class="chapter" id="chateau">
+    <div class="wrap">
+      <div class="chapter-head reveal">
+        <h2>Château Landery</h2>
+        <p><span data-l="fr">Projet personnel, gîte familial, 2025</span><span data-l="en">Personal project, family-run holiday rental, 2025</span></p>
+      </div>
+
+      <div class="stay">
+        <p class="stay-intro reveal"><span data-l="fr">Un projet personnel, mené par goût de l'accueil. En 2025, le château a reçu des hôtes venus uniquement par le bouche-à-oreille et sur recommandation, sans annonce publique. Sans publicité, chaque séjour devait donner envie d'en parler&nbsp;: la relation faisait la réputation.</span><span data-l="en">A personal project, born of a love of hosting. In 2025, the château welcomed guests who came by word of mouth and referral only, with no public listing. With no advertising, every stay had to be worth talking about: the relationship was the reputation.</span></p>
+        <p class="stay-label reveal"><span data-l="fr">Mon rôle</span><span data-l="en">My role</span></p>
+        <div class="stay-roles">
+        <div class="stay-role reveal">
+          <h3><span data-l="fr">Gestion des clients</span><span data-l="en">Client management</span></h3>
+          <p><span data-l="fr">Le lien avec chaque hôte, du premier échange au départ&nbsp;: disponibilités, préparation du séjour, demandes particulières.</span><span data-l="en">The link with each guest from first exchange to departure: availability, preparing the stay, particular requests.</span></p>
+        </div>
+        <div class="stay-role reveal">
+          <h3><span data-l="fr">Prospection</span><span data-l="en">Customer outreach</span></h3>
+          <p><span data-l="fr">Faire connaître le gîte au sein du réseau de recommandation, et transformer une recommandation en réservation.</span><span data-l="en">Spreading the word through the referral network, and turning a recommendation into a booking.</span></p>
+        </div>
+        <div class="stay-role reveal">
+          <h3><span data-l="fr">Conception des activités</span><span data-l="en">Activity curation</span></h3>
+          <p><span data-l="fr">Composer autour de chaque séjour un programme à la carte, d'une journée au Circuit du Val de Vienne à un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Building an à la carte programme around each stay, from a day at the Circuit du Val de Vienne to dinner on the water at the Village Flottant de Pressac.</span></p>
+        </div>
+        <div class="stay-role reveal">
+          <h3><span data-l="fr">Sélection des photos</span><span data-l="en">Photo curation</span></h3>
+          <p><span data-l="fr">Choisir les images qui racontent le lieu, de la façade du château aux petits détails du parc.</span><span data-l="en">Choosing the images that tell the story of the place, from the château's façade to the small details of the grounds.</span></p>
+        </div>
+        </div>
+        <p class="stay-takeaway reveal"><span data-l="fr">Ce que j'en retiens&nbsp;: le clienteling en personne. Anticiper avant qu'on demande, retenir les préférences de chacun, et faire d'un séjour une histoire que l'on raconte.</span><span data-l="en">What I take from it: clienteling in person. Anticipating before being asked, remembering each guest's preferences, and turning a stay into a story people retell.</span></p>
+      </div>
+
+      <div class="image-grid" aria-label="Château Landery en images">
+        <figure class="tile reveal"><img src="img/landery-31.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La façade du château, sa tour et ses lucarnes"></figure>
+        <figure class="tile reveal"><img src="img/landery-40.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Une réplique de la Vénus de Milo dans le parc, sous les arbres roux de l&#x27;automne"></figure>
+        <figure class="tile reveal"><img src="img/landery-32.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un ponton en bois s&#x27;avance sur le lac, sous les branches"></figure>
+        <figure class="tile reveal"><img src="img/landery-43.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un vieux fer à cheval suspendu à un mur de pierre"></figure>
+        <figure class="tile reveal"><img src="img/landery-41.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Un chat assis devant la porte en fer forgé, à côté d&#x27;une caisse en bois de pommes cueillies sur le domaine"></figure>
+        <figure class="tile reveal"><img src="img/landery-38.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Des moutons dans la prairie, au soleil du matin"></figure>
+        <figure class="tile reveal"><img src="img/landery-42.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Le parc dans la brume d&#x27;automne, derrière une rampe en fer forgé"></figure>
+        <figure class="tile reveal"><img src="img/landery-37.webp" width="900" height="1200" loading="lazy" decoding="async" alt="La porte en fer forgé vue de l&#x27;intérieur, son ombre dessinée sur le mur par la lumière du soir"></figure>
+      </div>
+
+      <h3 class="nearby-head reveal"><span data-l="fr">Aux alentours, proposé aux hôtes</span><span data-l="en">Nearby, suggested to guests</span></h3>
+      <div class="nearby">
+        <figure class="reveal">
+          <img src="img/chateau-nearby-circuit.webp" width="700" height="525" loading="lazy" decoding="async" alt="Départ d'une course de voitures sous l'arche du Circuit du Val de Vienne">
+          <figcaption><span data-l="fr">Une journée au Circuit du Val de Vienne.</span><span data-l="en">A day at the Circuit du Val de Vienne.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Circuit du Val de Vienne</span><span data-l="en">Photo: Circuit du Val de Vienne website</span></span></figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="img/chateau-nearby-pressac.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Tables dressées sur une terrasse couverte, face au lac et aux cabanes flottantes au coucher du soleil">
+          <figcaption><span data-l="fr">Un dîner sur l'eau au Village Flottant de Pressac.</span><span data-l="en">Dinner on the water at the Village Flottant de Pressac.</span> <span class="credit"><span data-l="fr">Photo&nbsp;: site du Village Flottant de Pressac</span><span data-l="en">Photo: Village Flottant de Pressac website</span></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IV. METHOD: personas as a method. Two illustrative luxury
+       profiles, two generations; neither describes a real client.
        ============================================================ -->
   <section class="chapter" id="methode">
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Méthode&nbsp;: comprendre avant de convaincre</span><span data-l="en">Method: understand before you persuade</span></h2>
-        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples illustratifs, dans deux mondes très différents&nbsp;; aucun ne décrit un client réel.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two illustrative examples from two very different worlds; neither describes a real client.</span></p>
-        <p><span data-l="fr">Le profil luxe s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon.</span><span data-l="en">The luxury profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample.</span></p>
+        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples illustratifs, deux générations de clientes du luxe&nbsp;; aucun ne décrit une cliente réelle.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two illustrative examples, two generations of luxury clients; neither describes a real client.</span></p>
+        <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon. Celui d'Inès est un profil type de la génération Z, à valider de la même façon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample. Inès's is a typical Gen Z profile, to be validated the same way.</span></p>
       </div>
 
       <div class="personas">
@@ -1097,25 +1150,25 @@
         </article>
 
         <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · B2B industriel</span><span data-l="en">Illustrative example · industrial B2B</span></p>
-          <h3>Marc Dubois</h3>
-          <p class="role"><span data-l="fr">Ingénieur maintenance matériel roulant</span><span data-l="en">Rolling stock maintenance engineer</span></p>
+          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe, génération Z</span><span data-l="en">Illustrative example · luxury, Gen Z</span></p>
+          <h3>Inès Laurent</h3>
+          <p class="role"><span data-l="fr">Jeune cliente du luxe</span><span data-l="en">Young luxury client</span></p>
           <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">Équipe maintenance d'un exploitant ferroviaire</span><span data-l="en">Maintenance team at a rail operator</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Sécurité et maintenance</span><span data-l="en">Safety and maintenance</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Prescripteur technique&nbsp;; les achats signent</span><span data-l="en">Technical specifier; purchasing signs off</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Documentation technique, salons, commercial dédié</span><span data-l="en">Technical documentation, trade shows, a dedicated sales rep</span></dd></div>
+            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">22 à 27 ans, étudiante ou jeune active, en ville</span><span data-l="en">22 to 27, student or young professional, city-based</span></dd></div>
+            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Parfum, petite maroquinerie, luxe de seconde main</span><span data-l="en">Fragrance, small leather goods, pre-owned luxury</span></dd></div>
+            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Achète rarement, mais choisit avec soin</span><span data-l="en">Buys rarely, but chooses carefully</span></dd></div>
+            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Réseaux sociaux, la boutique pour l'expérience, la revente en ligne</span><span data-l="en">Social media, the boutique for the experience, online resale</span></dd></div>
           </dl>
           <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Des pièces certifiées, livrées à temps pour la maintenance planifiée</li></ul>
-          <ul data-l="en"><li>Certified parts, delivered on time for planned maintenance</li></ul>
+          <ul data-l="fr"><li>Des preuves concrètes&nbsp;: matières, savoir-faire, traçabilité</li><li>Des expériences à vivre et à partager&nbsp;: ateliers, événements, coulisses de la Maison</li></ul>
+          <ul data-l="en"><li>Concrete proof: materials, craftsmanship, traceability</li><li>Experiences to live and share: workshops, events, a look behind the scenes of the Maison</li></ul>
           <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Des fournisseurs qui répondent tard, avec des délais longs</li><li>Une qualité qui varie d'une livraison à l'autre</li></ul>
-          <ul data-l="en"><li>Suppliers who respond late, with long lead times</li><li>Quality that varies from one delivery to the next</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How he decides</span></h4>
-          <ul data-l="fr"><li>Sur les données, avec prudence&nbsp;: fiches techniques, certificats et essais d'abord, puis une référence chez un autre exploitant</li></ul>
-          <ul data-l="en"><li>On data, cautiously: datasheets, certificates and test results first, then a reference from another operator</li></ul>
-          <blockquote><span data-l="fr">Pour lui, la meilleure fixation est celle dont on n'entend plus jamais parler.</span><span data-l="en">To him, the best fastener is the one you never hear about again.</span></blockquote>
+          <ul data-l="fr"><li>Des promesses durables sans preuve</li><li>Des campagnes trop lisses pour sonner vrai</li><li>Un accueil en boutique qui juge sur l'apparence</li></ul>
+          <ul data-l="en"><li>Sustainability promises without proof</li><li>Campaigns too polished to feel real</li><li>Boutique staff who judge by appearance</li></ul>
+          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
+          <ul data-l="fr"><li>Sur les valeurs et l'avis de ses pairs plus que sur le prestige&nbsp;: les créateurs qu'elle suit, les avis en ligne, puis la boutique</li></ul>
+          <ul data-l="en"><li>On values and her peers' opinions more than prestige: the creators she follows, online reviews, then the boutique</li></ul>
+          <blockquote><span data-l="fr">Elle n'achète pas un logo, elle achète une histoire vraie, et elle vérifie.</span><span data-l="en">She does not buy a logo; she buys a true story, and she checks.</span></blockquote>
         </article>
       </div>
       <div class="implications reveal">
@@ -1403,6 +1456,46 @@
     new IntersectionObserver(function (entries) {
       header.classList.toggle('show-name', !entries[0].isIntersecting);
     }, { rootMargin: '-60px 0px 0px 0px' }).observe(heroName);
+  })();
+
+  // Thesis card: the named buttons switch the text under the image
+  // between its four cards. The current card fades out, the chosen one
+  // fades in, and the page comes back to its top if the reader was
+  // further down.
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.thesis-tabs [role="tab"]'));
+    if (!tabs.length) return;
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var current = 0, busy = false;
+    function select(i, focus) {
+      if (i === current || busy) return;
+      var from = panels[current], to = panels[i];
+      tabs.forEach(function (t, n) {
+        t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        t.tabIndex = n === i ? 0 : -1;
+      });
+      if (focus) tabs[i].focus();
+      current = i; busy = true;
+      function swap() {
+        from.classList.remove('is-active', 'is-leaving');
+        to.classList.add('is-active', 'is-entering');
+        var top = to.getBoundingClientRect().top + window.scrollY - 96;
+        if (window.scrollY > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+        setTimeout(function () { to.classList.remove('is-entering'); }, 500);
+        busy = false;
+      }
+      if (reduce) { swap(); return; }
+      from.classList.add('is-leaving');
+      setTimeout(swap, 220);
+    }
+    tabs.forEach(function (t, n) {
+      t.addEventListener('click', function () { select(n); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); select((current + d + tabs.length) % tabs.length, true); }
+      });
+    });
   })();
 
   // Gentle reveal on scroll. Skipped entirely for reduced motion or
