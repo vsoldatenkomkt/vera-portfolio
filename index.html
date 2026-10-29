@@ -330,6 +330,8 @@
   .plate-figure { margin: 0 auto; max-width: 960px; }
   .plate-figure img { width: 100%; background: var(--tile); }
   .plate-figure.wide img { aspect-ratio: 16 / 9; object-fit: cover; }
+  .plate-figure .credit { margin-top: 8px; font-size: 11.5px; color: var(--ink-soft); text-align: right; }
+  @media (max-width: 599px) { .plate-figure .credit { padding: 0 var(--gutter); } }
   @media (max-width: 599px) { .plate-figure { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); } }
   .plate-body { max-width: var(--measure); margin: 32px auto 0; text-align: center; }
   .plate-no { font-size: 11px; letter-spacing: 0.22em; color: var(--ink-soft); margin: 0 0 14px; font-variant-numeric: tabular-nums; }
@@ -350,6 +352,17 @@
   .label dt { text-align: right; color: var(--ink-soft); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; padding-top: 2px; }
   .label dd { margin: 0; }
   .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* Italian Way: the certificate beside the story of the challenge */
+  .iw { display: grid; gap: 40px; max-width: 980px; margin: 0 auto; align-items: center; }
+  .iw-figure { margin: 0 auto; max-width: 360px; }
+  .iw-figure img { width: 100%; box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.08); }
+  .iw-figure a { display: block; }
+  .iw-figure figcaption { margin-top: 12px; text-align: center; font-size: 12px; color: var(--ink-soft); }
+  .iw-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 4.6vw, 1.9rem); line-height: 1.2; margin: 0 0 14px; }
+  .iw-body > p { margin: 0 0 20px; }
+  @media (min-width: 880px) { .iw { grid-template-columns: 0.8fr 1fr; gap: 64px; } .iw-figure { max-width: none; } }
+  .iw-links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0; }
 
   /* Thesis card: the image stays, and the text under it is four cards
      (the thesis, data collection, analysis, limits), switched by the
@@ -437,6 +450,15 @@
   .series-grid { display: grid; gap: 48px; }
   .work { display: grid; gap: 12px; align-content: start; text-align: center; }
   .work img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--white); }
+  /* Master's work images open full size (see the viewer script) */
+  .work .zoom { display: block; cursor: zoom-in; }
+  .viewer { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; margin: 0; }
+  .viewer::backdrop { background: rgba(248, 248, 247, 0.96); }
+  .viewer[open] { display: flex; align-items: center; justify-content: center; }
+  .viewer img { max-width: min(94vw, 1600px); max-height: 86vh; width: auto; height: auto; box-shadow: 0 16px 48px rgba(46, 50, 54, 0.18); animation: viewer-in 0.35s ease both; }
+  @keyframes viewer-in { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .viewer img { animation: none; } }
+  .viewer-close { position: fixed; top: 16px; right: var(--gutter); background: none; border: 0; padding: 8px 0; font: inherit; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); cursor: pointer; }
   .work h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.25; margin: 0; }
   .work p { margin: 0; font-size: 14px; color: var(--ink); text-align: left; }
   .work .meta { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
@@ -462,7 +484,6 @@
   }
 
   /* ---------- Method ---------- */
-  .personas { display: grid; gap: 24px; max-width: 980px; margin: 0 auto; }
   .persona { background: var(--white); padding: 32px 28px; }
   .persona-kind { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
   .persona h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
@@ -478,7 +499,36 @@
   .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
   .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
-  @media (min-width: 880px) { .personas { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  /* The persona: one detailed card */
+  .persona-single { max-width: 980px; margin: 0 auto; }
+  .persona-full { box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.06); }
+
+  /* Claire's detailed card, laid out by the course's customer categories:
+     who she is, how she buys, what she looks for. */
+  .persona-bio { margin: 0 0 8px; font-size: 15px; }
+  .icp-group { margin-top: 36px; }
+  .persona .icp-group-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink); margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+  .icp-rows { margin: 0; }
+  .icp-rows > div { display: grid; gap: 4px 32px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .icp-rows dt { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; }
+  .icp-rows dd { margin: 0; font-size: 14px; }
+  .icp-rows dd ul, .icp-rows dd ol { margin-bottom: 0 !important; }
+  @media (min-width: 700px) { .icp-rows > div { grid-template-columns: 170px 1fr; } }
+  .journey { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  .journey li { counter-increment: step; position: relative; padding: 0 0 12px 34px; }
+  .journey li:last-child { padding-bottom: 0; }
+  .journey li::before { content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .journey-step { display: block; font-weight: 500; }
+  .drivers { margin: 0; padding-left: 22px; font-family: var(--serif); font-size: 1.1rem; line-height: 1.5; }
+  .persona-note { margin: 6px 0 0; font-size: 13px; color: var(--ink-soft); }
+  .scale { margin-bottom: 12px; max-width: 360px; }
+  .scale:last-child { margin-bottom: 0; }
+  .scale-poles { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 12.5px; color: var(--ink-soft); }
+  .scale-track { position: relative; height: 1px; background: var(--rule); }
+  .scale-track i { position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); transform: translate(-50%, -50%); }
+  .persona-grid { display: grid; gap: 0 40px; margin-top: 16px; }
+  @media (min-width: 700px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 880px) { .persona-full { padding: 48px 56px; } }
   /* Findings from the luxury persona, and what a Maison could do with them */
   .implications { max-width: 980px; margin: 56px auto 0; }
   .implications h3 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; text-align: center; margin: 0; }
@@ -572,6 +622,7 @@
           <li><a href="#transposition"><span data-l="fr">Du B2B au luxe</span><span data-l="en">From B2B to luxury</span></a></li>
           <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
           <li><a href="#travaux"><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
+          <li><a href="#italian-way">Italian Way</a></li>
           <li><a href="#chateau">Château Landery</a></li>
           <li><a href="#methode"><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
           <li><a href="#savoir-faire"><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
@@ -774,25 +825,25 @@
 
         <article class="plate reveal">
           <figure class="plate-figure wide">
-            <img src="img/plate-case-study.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Les deux pages de l'étude de cas sur les planches de recouvrement du rail d'alimentation">
+            <img src="img/plate-locknut-valve.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Un écrou autofreiné J.Lanfranco monté au cœur d'une pièce en acier">
+            <figcaption class="credit"><span data-l="fr">Photo&nbsp;: site de J.Lanfranco</span><span data-l="en">Photo: J.Lanfranco website</span></figcaption>
           </figure>
           <div class="plate-body">
             <p class="plate-no">N° 02</p>
             <h3><span data-l="fr">La sécurité comme argument premium</span><span data-l="en">Safety as the premium argument</span></h3>
-            <p data-l="fr">Une étude de cas devenue le modèle de l'entreprise, utilisée sur les salons et en ligne&nbsp;: un prix premium défendu par la preuve, pas par la promesse. Un écrou autofreiné coûte plus cher qu'un écrou standard&nbsp;; l'étude de cas justifie cet écart par ce qui compte pour un exploitant ferroviaire&nbsp;: la sécurité des équipes et des passagers, et la fin d'un problème de maintenance récurrent.</p>
-            <p data-l="en">A case study that became the company's template, used at trade shows and online: a premium price defended with proof, not promises. A self-locking nut costs more than a standard one, so the case study justifies the premium through what matters to a rail operator: the safety of crews and passengers, and the end of a recurring maintenance problem.</p>
+            <p data-l="fr">Des supports qui défendent un prix premium par la preuve, pas par la promesse. Un écrou autofreiné coûte plus cher qu'un écrou standard&nbsp;; études de cas, guides produit et infographies justifient cet écart par ce qui compte pour un exploitant&nbsp;: la sécurité des équipes, une pièce qui dure et moins d'entretien. Le modèle d'étude de cas que j'ai créé a servi pour les suivantes.</p>
+            <p data-l="en">Materials that defend a premium price with proof, not promises. A self-locking nut costs more than a standard one, so the case studies, product guides and infographics justify the premium through what matters to an operator: the safety of crews, a part that lasts and less maintenance. The case study template I created was reused for the ones that followed.</p>
             <dl class="label">
               <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-              <dd><span data-l="fr">Étude de cas, 2 pages, français et anglais</span><span data-l="en">Case study, 2 pages, French and English</span></dd>
+              <dd><span data-l="fr">Études de cas, guides produit, infographies et visuels d'annonce</span><span data-l="en">Case studies, product guides, infographics and announcement graphics</span></dd>
               <dt>Provenance</dt>
-              <dd><span data-l="fr">B2B industriel, client anonymisé</span><span data-l="en">Industrial B2B, client anonymised</span></dd>
+              <dd><span data-l="fr">J.Lanfranco Fastener Systems, B2B industriel</span><span data-l="en">J.Lanfranco Fastener Systems, industrial B2B</span></dd>
               <dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt>
-              <dd><span data-l="fr">Mise en place des canaux, des modèles et des outils marketing de l'entreprise, et conception de cette étude de cas.</span><span data-l="en">Set up the company's marketing channels, templates and tools, and designed this case study.</span></dd>
+              <dd><span data-l="fr">Mise en place des canaux, des modèles et des outils marketing de l'entreprise, et conception des supports.</span><span data-l="en">Set up the company's marketing channels, templates and tools, and designed the materials.</span></dd>
               <dt><span data-l="fr">Lecture</span><span data-l="en">Lens</span></dt>
               <dd><span data-l="fr">Un «&nbsp;reason to believe&nbsp;»&nbsp;: la preuve qui rend crédible un positionnement premium, comme le savoir-faire en luxe.</span><span data-l="en">A “reason to believe”: the proof that makes a premium position credible, as craftsmanship does in luxury.</span></dd>
             </dl>
-            <a class="plate-link" data-l="fr" href="FR_Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Lire l'étude de cas (PDF) →</a>
-            <a class="plate-link" data-l="en" href="Cover%20Board%20Case%20Study%202021.pdf" target="_blank" rel="noopener">Read the case study (PDF) →</a>
+            <a class="plate-link" href="portfolio/"><span data-l="fr">Portfolio de travaux</span><span data-l="en">Work portfolio</span> →</a>
           </div>
         </article>
 
@@ -917,7 +968,7 @@
       <div class="series-grid">
 
         <article class="work reveal">
-          <img src="img/master-neuro-lab.webp" width="1000" height="548" loading="lazy" decoding="async" alt="Analyse en Python de l'asymétrie alpha frontale par condition publicitaire, dans Google Colab">
+          <a class="zoom" href="img/master-neuro-lab.webp" data-view><img src="img/master-neuro-lab.webp" width="1000" height="548" loading="lazy" decoding="async" alt="Analyse en Python de l'asymétrie alpha frontale par condition publicitaire, dans Google Colab"></a>
           <p class="meta">Consumer Neuroscience and Bioscience Lab · <span data-l="fr">en groupe</span><span data-l="en">group work</span></p>
           <h3><span data-l="fr">Ce que le cerveau dit d'une publicité</span><span data-l="en">What the brain says about an ad</span></h3>
           <p data-l="fr">Une expérience sous PsychoPy présente trois conditions publicitaires (une e-cigarette présentée comme «&nbsp;cool&nbsp;», des avertissements sanitaires, une cigarette classique) pendant l'enregistrement de l'activité cérébrale (EEG) et du rythme cardiaque (ECG). Puis l'analyse en Python&nbsp;: appréciation déclarée, rythme cardiaque moyen et asymétrie alpha frontale, un indicateur de motivation d'approche.</p>
@@ -926,7 +977,7 @@
         </article>
 
         <article class="work reveal">
-          <img src="img/master-crm-lab.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture du rapport Alpha Fashion Company Analysis">
+          <a class="zoom" href="img/master-crm-lab.webp?v=2" data-view><img src="img/master-crm-lab.webp?v=2" width="1600" height="900" loading="lazy" decoding="async" alt="Couverture et trois diapositives du rapport Alpha Fashion Company Analysis : origine des clients, achats à l'étranger, clients fidèles et nouveaux"></a>
           <p class="meta">CRM Lab · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
           <h3><span data-l="fr">Fidélité et rétention d'une marque de mode</span><span data-l="en">Loyalty and retention for a fashion brand</span></h3>
           <p data-l="fr">Analyse de la base clients d'une marque de mode féminine présente dans huit pays&nbsp;: fidélité, tranches de dépense, clients nationaux et étrangers, rétention. 75&nbsp;% des clients achètent à l'étranger, les clients fidèles génèrent 65,6&nbsp;% des ventes, et la rétention atteint 25&nbsp;%. Plan d'action&nbsp;: réactiver les fidèles perdus et récompenser la dépense.</p>
@@ -935,7 +986,7 @@
         </article>
 
         <article class="work reveal">
-          <img src="img/master-customer-journey.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture du projet Grocery Now Customer Journey">
+          <a class="zoom" href="img/master-customer-journey.webp?v=2" data-view><img src="img/master-customer-journey.webp?v=2" width="1600" height="900" loading="lazy" decoding="async" alt="Couverture et trois diapositives du projet Grocery Now Customer Journey : le parcours client, les données nécessaires, l'apport de l'IA"></a>
           <p class="meta">Salesforce · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
           <h3><span data-l="fr">Un parcours client, du premier clic à la fidélité</span><span data-l="en">A customer journey, from first click to loyalty</span></h3>
           <p data-l="fr">Parcours omnicanal pour une enseigne alimentaire&nbsp;: profil inconnu, reciblage, page personnalisée, programme de fidélité, notification en magasin, recommandations et suivi après achat. Pour chaque étape, les données nécessaires et l'action d'engagement.</p>
@@ -944,7 +995,7 @@
         </article>
 
         <article class="work reveal">
-          <img src="img/master-hubble.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture de l'analyse du cas Hubble Contact Lenses">
+          <a class="zoom" href="img/master-hubble.webp?v=2" data-view><img src="img/master-hubble.webp?v=2" width="1600" height="900" loading="lazy" decoding="async" alt="Couverture et trois diapositives de l'analyse du cas Hubble Contact Lenses : valeur vie client et coût d'acquisition, nouveaux clients ou reciblage, frictions du funnel"></a>
           <p class="meta">Tools for Omnichannel Marketing · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
           <h3><span data-l="fr">Ce que vaut vraiment un client</span><span data-l="en">What a client is really worth</span></h3>
           <p data-l="fr">Analyse d'une marque de lentilles vendues par abonnement, à partir d'un cas de la Harvard Business School&nbsp;: une valeur vie client de 550&nbsp;$ pour un coût d'acquisition de 100&nbsp;$, freinée par un taux de désabonnement de 4&nbsp;% par mois. Proposition&nbsp;: investir dans la rétention et la donnée client.</p>
@@ -953,7 +1004,7 @@
         </article>
 
         <article class="work reveal">
-          <img src="img/master-kasanova.webp" width="1000" height="563" loading="lazy" decoding="async" alt="Couverture de la proposition VITANOVA Starter Kit pour Kasanova">
+          <a class="zoom" href="img/master-kasanova.webp?v=2" data-view><img src="img/master-kasanova.webp?v=2" width="1600" height="900" loading="lazy" decoding="async" alt="Couverture et trois diapositives de la proposition VITANOVA Starter Kit pour Kasanova : synthèse, parcours client, le coffret"></a>
           <p class="meta">Tools for Omnichannel Marketing · <span data-l="fr">groupe de 5</span><span data-l="en">group of 5</span></p>
           <h3><span data-l="fr">Retrouver une clientèle plus jeune</span><span data-l="en">Winning back a younger clientele</span></h3>
           <p data-l="fr">Pour une enseigne italienne d'art de la table et de décoration dont le e-commerce ne pèse que 9&nbsp;% des revenus&nbsp;: un coffret d'installation pour étudiants et premiers emménagements, appuyé par l'écoute sociale, l'analyse du trafic web et Google Trends.</p>
@@ -1055,6 +1106,48 @@
   </section>
 
   <!-- ============================================================
+       ITALIAN WAY: the week-long social media challenge during the
+       master's, and the award our team won.
+       ============================================================ -->
+  <section class="chapter" id="italian-way">
+    <div class="wrap">
+      <div class="chapter-head reveal">
+        <h2>Italian Way</h2>
+        <p><span data-l="fr">Défi social media, POLIMI Graduate School of Management, mai 2024.</span><span data-l="en">Social media challenge, POLIMI Graduate School of Management, May 2024.</span></p>
+      </div>
+
+      <div class="iw reveal">
+        <figure class="iw-figure">
+          <a href="https://www.instagram.com/my_italian_way/" target="_blank" rel="noopener"><img src="img/italian-way-instagram.webp" width="923" height="1354" loading="lazy" decoding="async" alt="Le profil Instagram @my_italian_way : le journal de Sophie, personnage imaginé par l'équipe, 21 publications, une story par jour de la semaine"></a>
+          <figcaption><span data-l="fr">Le compte @my_italian_way sur Instagram</span><span data-l="en">The @my_italian_way account on Instagram</span></figcaption>
+        </figure>
+        <div class="iw-body">
+          <p class="plate-no"><span data-l="fr">Prix Social Media Excellence</span><span data-l="en">Social Media Excellence Award</span></p>
+          <h3><span data-l="fr">Une semaine de luxe italien, racontée sans nommer une marque</span><span data-l="en">A week of Italian luxury, told without naming a brand</span></h3>
+          <p data-l="fr">Pendant une semaine, les étudiants rencontrent des Maisons et marques italiennes, de Moncler à Acqua di Parma. En parallèle, chaque équipe joue le rôle du service communication de l'événement et le couvre sur les réseaux sociaux. Notre équipe de six a créé un compte pour l'occasion, @my_italian_way, et a remporté le prix.</p>
+          <p data-l="fr">Le compte raconte la semaine à travers le journal de Sophie, une étudiante imaginée par l'équipe&nbsp;: 21 publications et une story par jour, sur les cinq thèmes de la semaine.</p>
+          <p data-l="en">For a week, students meet Italian Maisons and brands, from Moncler to Acqua di Parma. Alongside, each team acts as the event's communication office and covers it on social media. Our team of six created an account for the occasion, @my_italian_way, and won the award.</p>
+          <p data-l="en">The account tells the week through the diary of Sophie, a student the team invented: 21 posts and a story for each day, on the week's five themes.</p>
+          <dl class="label">
+            <dt><span data-l="fr">Le brief</span><span data-l="en">The brief</span></dt>
+            <dd><span data-l="fr">Au moins une publication par jour, sans nommer les marques, citer les intervenants ni identifier les entreprises&nbsp;: retenir les mots-clés, raconter une histoire, rendre les idées visuelles.</span><span data-l="en">At least one post a day, without naming brands, quoting speakers or tagging companies: capture keywords, tell a story, make ideas visual.</span></dd>
+            <dt><span data-l="fr">Notre travail</span><span data-l="en">Our work</span></dt>
+            <dd><span data-l="fr">Stratégie social media, création de contenus, analyse des données et gestion du compte, puis un bilan de chaque publication et de ses résultats.</span><span data-l="en">Social media strategy, content creation, data analysis and account management, then a review of every post and its results.</span> <span class="todo">[TODO: rôle personnel dans l'équipe]</span></dd>
+            <dt><span data-l="fr">Le jury</span><span data-l="en">The jury</span></dt>
+            <dd><span data-l="fr">Stratégie digitale, créativité, contenus, résultats chiffrés, contenus respectueux et pertinents, gestion d'équipe.</span><span data-l="en">Digital strategy, creativity, content, measured results, respectful and relevant content, team management.</span></dd>
+            <dt><span data-l="fr">Le prix</span><span data-l="en">The award</span></dt>
+            <dd><span data-l="fr">Social Media Excellence, décerné à l'équipe gagnante le 28 juin 2024.</span><span data-l="en">Social Media Excellence, awarded to the winning team on 28 June 2024.</span></dd>
+          </dl>
+          <p class="iw-links">
+            <a class="plate-link" href="https://www.instagram.com/my_italian_way/" target="_blank" rel="noopener"><span data-l="fr">Voir le compte Instagram</span><span data-l="en">See the Instagram account</span> →</a>
+            <a class="plate-link" href="img/italian-way-award.webp" data-view data-alt="Certificat du prix Social Media Excellence, Italian Way, édition 2024, décerné à Vera Soldatenko le 28 juin 2024"><span data-l="fr">Voir le certificat</span><span data-l="en">See the certificate</span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        THE CHÂTEAU: image-only grid (photos or short videos), no
        captions. See the .image-grid comment in the CSS for tile markup.
        ============================================================ -->
@@ -1122,54 +1215,83 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Méthode&nbsp;: comprendre avant de convaincre</span><span data-l="en">Method: understand before you persuade</span></h2>
-        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples illustratifs, deux générations de clientes du luxe&nbsp;; aucun ne décrit une cliente réelle.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two illustrative examples, two generations of luxury clients; neither describes a real client.</span></p>
-        <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon. Celui d'Inès est un profil type de la génération Z, à valider de la même façon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample. Inès's is a typical Gen Z profile, to be validated the same way.</span></p>
+        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Un exemple illustratif, qui ne décrit pas une cliente réelle.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. An illustrative example, which does not describe a real client.</span></p>
+        <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample.</span></p>
       </div>
 
-      <div class="personas">
-        <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe et beauté</span><span data-l="en">Illustrative example · luxury and beauty</span></p>
+      <div class="persona-single reveal">
+        <article class="persona persona-full" id="persona-claire">
+          <p class="persona-kind"><span data-l="fr">Profil type issu d'un entretien qualitatif · luxe et beauté</span><span data-l="en">Typical profile from a qualitative interview · luxury and beauty</span></p>
           <h3>Claire Moreau</h3>
           <p class="role"><span data-l="fr">Consommatrice de luxe aspirationnelle</span><span data-l="en">Aspirational luxury consumer</span></p>
-          <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">35 à 45 ans, famille avec enfants, hors des grandes villes</span><span data-l="en">35 to 45, family with children, outside big cities</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Beauté et accessoires de luxe, environ 200&nbsp;€ par mois</span><span data-l="en">Luxury beauty and accessories, about €200 a month</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Cliente fidèle à une Maison depuis l'adolescence</span><span data-l="en">Loyal to one Maison since her teens</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">En ligne, loin des boutiques</span><span data-l="en">Online, far from the boutiques</span></dd></div>
-          </dl>
-          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, personnalisation</li></ul>
-          <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, personalisation</li></ul>
-          <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Les hausses de prix d'une marque en laquelle elle a confiance</li><li>Des boutiques en ligne lentes, qui la déconnectent et lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà</li></ul>
-          <ul data-l="en"><li>Price increases from a brand she trusts</li><li>Slow online stores that log her out and make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
-          <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: la composition sur le site de la marque d'abord, puis les avis</li></ul>
-          <ul data-l="en"><li>On relationship more than data, cautiously: ingredients on the brand's website first, then reviews</li></ul>
+          <p class="persona-bio" data-l="fr">Claire utilise la même Maison depuis son adolescence, quand une proche la lui a fait découvrir. Elle achète en ligne, surtout quand un produit vient à manquer ou qu'une offre arrive, et lit la composition et les avis avant de commander. Chaque achat est à la fois une récompense et une habitude, et elle se souvient des marques qui la remercient de sa fidélité. Elle n'a aucune patience pour un site qui la déconnecte en plein paiement.</p>
+          <p class="persona-bio" data-l="en">Claire has used the same Maison since her teens, when a relative introduced her to it. She buys online, mostly when a product runs low or an offer arrives, and reads the ingredients and reviews before ordering. Each purchase is both a reward and a habit, and she remembers the brands that thank her for her loyalty. She has no patience for a website that logs her out mid-checkout.</p>
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Qui elle est</span><span data-l="en">Who she is</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Sociodémographique</span><span data-l="en">Socio-demographic</span></dt><dd><span data-l="fr">Une femme de 35 à 45 ans, en famille avec des enfants. Un budget fixe et modéré, environ 200&nbsp;€ par mois en beauté, mode et accessoires.</span><span data-l="en">A woman aged 35 to 45, in a family with children. A fixed, moderate budget of about €200 a month on beauty, fashion and accessories.</span></dd></div>
+              <div><dt><span data-l="fr">Géographique</span><span data-l="en">Geographic</span></dt><dd><span data-l="fr">Hors des grandes villes, avec peu d'accès aux boutiques de luxe.</span><span data-l="en">Outside big cities, with little access to luxury boutiques.</span></dd></div>
+              <div><dt><span data-l="fr">Psychographique</span><span data-l="en">Psychographic</span></dt><dd><span data-l="fr">Tournée vers la famille. Le luxe est pour elle une récompense et un rituel&nbsp;: elle se sent soignée et élégante. Elle se dit «&nbsp;dé-influencée&nbsp;», se fie au bouche-à-oreille plutôt qu'aux tendances, et se lasse de la surconsommation.</span><span data-l="en">Family-oriented. Luxury is a reward and a ritual for her: she feels put together and glamorous. She calls herself “de-influenced”, trusts word of mouth over trends, and is tired of overconsumption.</span></dd></div>
+              <div><dt><span data-l="fr">Façon de décider</span><span data-l="en">Decision style</span></dt><dd class="scales">
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Données</span><span data-l="en">Data</span><span data-l="fr">Relation</span><span data-l="en">Relationship</span></p><div class="scale-track"><i style="left:70%"></i></div></div>
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Prudence</span><span data-l="en">Caution</span><span data-l="fr">Prise de risque</span><span data-l="en">Risk-taking</span></p><div class="scale-track"><i style="left:25%"></i></div></div>
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Détail</span><span data-l="en">Detail</span><span data-l="fr">Vue d'ensemble</span><span data-l="en">Big picture</span></p><div class="scale-track"><i style="left:30%"></i></div></div>
+              </dd></div>
+            </dl>
+          </section>
+
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Comment elle achète</span><span data-l="en">How she buys</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Usage du produit</span><span data-l="en">Product usage</span></dt><dd><span data-l="fr">Un premier achat de maquillage ou de parfum, autour de 100&nbsp;€, offert à elle-même à l'adolescence ou au début de l'âge adulte. Elle monte ensuite en gamme, puis passe d'une catégorie à l'autre dans la même Maison&nbsp;: maquillage, parfum, accessoires. Elle pense que les produits d'une même collection fonctionnent mieux ensemble. Après l'achat, elle expose les éditions limitées pour leur beauté, garde le quotidien à portée de main et montre les pièces marquantes à ses proches.</span><span data-l="en">A first purchase of makeup or fragrance, around €100, a gift to herself in her teens or early adulthood. She then moves up the range by price, and across categories within the same Maison: makeup, fragrance, accessories. She believes products from the same collection work better together. After buying, she displays limited editions for their artistry, keeps everyday items within reach and shows notable pieces to friends and family.</span></dd></div>
+              <div><dt><span data-l="fr">Rôles d'achat</span><span data-l="en">Buying roles</span></dt><dd><span data-l="fr">Elle initie, décide, achète et utilise. Une proche l'a influencée en lui faisant découvrir la Maison&nbsp;; aujourd'hui, ce sont les avis en ligne.</span><span data-l="en">She initiates, decides, buys and uses. A relative influenced her by introducing her to the Maison; today, online reviews do.</span></dd></div>
+              <div><dt><span data-l="fr">Processus d'achat</span><span data-l="en">Buying process</span></dt><dd>
+                <ol class="journey">
+                  <li><span class="journey-step"><span data-l="fr">Découverte</span><span data-l="en">Discovery</span></span><span data-l="fr">Par la famille et les proches, pas par les réseaux sociaux ni les influenceurs</span><span data-l="en">Through family and close friends, not social media or influencers</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Déclencheur</span><span data-l="en">Trigger</span></span><span data-l="fr">Un produit qui vient à manquer, ou une offre de la Maison</span><span data-l="en">A product running low, or an offer from the Maison</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Recherche</span><span data-l="en">Research</span></span><span data-l="fr">Le site de la Maison pour la composition, puis les avis qui montrent le rendu d'une teinte sur la peau</span><span data-l="en">The Maison's website for ingredients, then reviews that show how a shade looks on skin</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Achat</span><span data-l="en">Purchase</span></span><span data-l="fr">En ligne, sur le site de la Maison, faute de boutique à proximité</span><span data-l="en">Online, on the Maison's website, with no boutique nearby</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Fidélité</span><span data-l="en">Loyalty</span></span><span data-l="fr">Fidèle à une seule Maison depuis l'adolescence, sensible au programme de fidélité, aux échantillons et aux cadeaux de remerciement</span><span data-l="en">Loyal to one Maison since her teens, responsive to the loyalty programme, samples and thank-you gifts</span></li>
+                </ol>
+              </dd></div>
+            </dl>
+          </section>
+
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Ce qu'elle recherche</span><span data-l="en">What she looks for</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Bénéfices recherchés</span><span data-l="en">Benefits sought</span></dt><dd>
+                <ol class="drivers" data-l="fr"><li>L'héritage de la marque</li><li>L'exclusivité</li><li>Le packaging</li><li>L'expérience en boutique</li><li>Le regard des autres</li></ol>
+                <ol class="drivers" data-l="en"><li>Brand heritage</li><li>Exclusivity</li><li>Packaging</li><li>The in-store experience</li><li>How others see her</li></ol>
+                <p class="persona-note"><span data-l="fr">Par ordre d'importance.</span><span data-l="en">In order of importance.</span></p>
+              </dd></div>
+              <div><dt><span data-l="fr">Besoins</span><span data-l="en">Needs</span></dt><dd>
+                <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, gravure et paquet cadeau</li><li>Du choix, et des produits en stock</li></ul>
+                <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, engraving and gift wrapping</li><li>Choice, and items in stock</li></ul>
+              </dd></div>
+              <div><dt><span data-l="fr">Objectifs</span><span data-l="en">Goals</span></dt><dd>
+                <ul data-l="fr"><li>Se sentir soignée et élégante grâce à une routine bâtie sur une marque de confiance</li><li>Constituer une gamme complète et cohérente sans accumuler de produits qui périment</li><li>Obtenir, en retour de sa fidélité, un accès exclusif à des pièces qu'elle désire vraiment</li></ul>
+                <ul data-l="en"><li>Feel polished and put together through a routine built on a trusted brand</li><li>Build a complete, coordinated range without accumulating products that expire unused</li><li>Earn exclusive access to pieces she actually wants in return for her loyalty</li></ul>
+              </dd></div>
+            </dl>
+          </section>
+
+          <div class="persona-grid">
+            <section>
+              <h4><span data-l="fr">Ce qui la freine</span><span data-l="en">What holds her back</span></h4>
+              <ul data-l="fr"><li>Les hausses de prix, première raison qui la ferait partir</li><li>Des boutiques en ligne dépassées&nbsp;: une seule photo, des contenances difficiles à trouver alors qu'elle préfère les petits formats, des pages lentes, des déconnexions qui lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà</li><li>Trop de teintes, trop de rouges à lèvres, des produits qui périment avant d'être utilisés</li></ul>
+              <ul data-l="en"><li>Price increases, the main reason she would leave</li><li>Outdated online stores: a single photo, sizes that are hard to find when she prefers small formats, slow pages, logouts that make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys</li><li>Too many shades, too many lipsticks, products that expire before they are used</li></ul>
+            </section>
+            <section>
+              <h4><span data-l="fr">Ce qui la ferait dépenser plus</span><span data-l="en">What would make her spend more</span></h4>
+              <ul data-l="fr"><li>Plus de revenu disponible</li><li>Une exclusivité qui mène à un objet désiré&nbsp;: un sac, un bijou ou un accessoire, pour le même budget</li></ul>
+              <ul data-l="en"><li>More disposable income</li><li>Exclusivity that leads to something she wants: a bag, a piece of jewellery or an accessory, for the same budget</li></ul>
+            </section>
+          </div>
+
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
         </article>
 
-        <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe, génération Z</span><span data-l="en">Illustrative example · luxury, Gen Z</span></p>
-          <h3>Inès Laurent</h3>
-          <p class="role"><span data-l="fr">Jeune cliente du luxe</span><span data-l="en">Young luxury client</span></p>
-          <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">22 à 27 ans, étudiante ou jeune active, en ville</span><span data-l="en">22 to 27, student or young professional, city-based</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Parfum, petite maroquinerie, luxe de seconde main</span><span data-l="en">Fragrance, small leather goods, pre-owned luxury</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Achète rarement, mais choisit avec soin</span><span data-l="en">Buys rarely, but chooses carefully</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Réseaux sociaux, la boutique pour l'expérience, la revente en ligne</span><span data-l="en">Social media, the boutique for the experience, online resale</span></dd></div>
-          </dl>
-          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Des preuves concrètes&nbsp;: matières, savoir-faire, traçabilité</li><li>Des expériences à vivre et à partager&nbsp;: ateliers, événements, coulisses de la Maison</li></ul>
-          <ul data-l="en"><li>Concrete proof: materials, craftsmanship, traceability</li><li>Experiences to live and share: workshops, events, a look behind the scenes of the Maison</li></ul>
-          <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Des promesses durables sans preuve</li><li>Des campagnes trop lisses pour sonner vrai</li><li>Un accueil en boutique qui juge sur l'apparence</li></ul>
-          <ul data-l="en"><li>Sustainability promises without proof</li><li>Campaigns too polished to feel real</li><li>Boutique staff who judge by appearance</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
-          <ul data-l="fr"><li>Sur les valeurs et l'avis de ses pairs plus que sur le prestige&nbsp;: les créateurs qu'elle suit, les avis en ligne, puis la boutique</li></ul>
-          <ul data-l="en"><li>On values and her peers' opinions more than prestige: the creators she follows, online reviews, then the boutique</li></ul>
-          <blockquote><span data-l="fr">Elle n'achète pas un logo, elle achète une histoire vraie, et elle vérifie.</span><span data-l="en">She does not buy a logo; she buys a true story, and she checks.</span></blockquote>
-        </article>
       </div>
       <div class="implications reveal">
         <h3><span data-l="fr">Ce qu'une Maison pourrait en faire</span><span data-l="en">What a Maison could do with it</span></h3>
@@ -1259,7 +1381,7 @@
               <div class="sub-item">
                 <p class="sub-date"><span data-l="fr">Juin 2024</span><span data-l="en">June 2024</span></p>
                 <h4><span data-l="fr">Prix Social Media Excellence, Italian Way</span><span data-l="en">Social Media Excellence Award, Italian Way</span></h4>
-                <p><span data-l="fr">Une semaine de rencontres avec des Maisons et marques italiennes, de Moncler à Acqua di Parma. Prix décerné le 28 juin 2024.</span><span data-l="en">A week of sessions with Italian Maisons and brands, from Moncler to Acqua di Parma. Awarded on 28 June 2024.</span></p>
+                <p><span data-l="fr">Prix remporté par notre équipe le 28 juin 2024, pour la couverture de la semaine sur Instagram. <a href="#italian-way">Voir le projet</a></span><span data-l="en">Won by our team on 28 June 2024, for covering the week on Instagram. <a href="#italian-way">See the project</a></span></p>
               </div>
               <div class="sub-item">
                 <p class="sub-date"><span data-l="fr">Décembre 2023</span><span data-l="en">December 2023</span></p>
@@ -1385,6 +1507,11 @@
   </div>
 </footer>
 
+<dialog class="viewer" id="viewer" aria-label="Image">
+  <button type="button" class="viewer-close"><span data-l="fr">Fermer</span><span data-l="en">Close</span></button>
+  <img alt="">
+</dialog>
+
 <div class="consent" id="consent" role="dialog" aria-label="Cookies" hidden>
   <p><span data-l="fr">Ce site utilise Google Analytics pour mesurer son audience. Vous pouvez le refuser, et changer d'avis à tout moment depuis ce lien.</span><span data-l="en">This site uses Google Analytics to measure its audience. You can decline it, and change your mind at any time from this link.</span></p>
   <div class="consent-actions">
@@ -1496,6 +1623,24 @@
         if (d) { e.preventDefault(); select((current + d + tabs.length) % tabs.length, true); }
       });
     });
+  })();
+
+  // Master's work and Italian Way images open full size on the page; without
+  // JavaScript the link simply opens the image file.
+  (function () {
+    var viewer = document.getElementById('viewer');
+    if (!viewer || typeof viewer.showModal !== 'function') return;
+    var big = viewer.querySelector('img');
+    document.querySelectorAll('[data-view]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        big.src = a.getAttribute('href');
+        big.alt = a.getAttribute('data-alt') || a.querySelector('img').alt;
+        viewer.showModal();
+      });
+    });
+    viewer.addEventListener('click', function () { viewer.close(); });
+    viewer.addEventListener('close', function () { big.removeAttribute('src'); });
   })();
 
   // Gentle reveal on scroll. Skipped entirely for reduced motion or
