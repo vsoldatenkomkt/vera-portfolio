@@ -351,19 +351,24 @@
   .label dd { margin: 0; }
   .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
 
-  /* Thesis card: slides sideways to its method. The viewport reaches
-     into the gutter so the phone-width image can still run edge to edge. */
-  .plate-slider { overflow: hidden; overflow: clip; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
-  .slides { display: flex; align-items: flex-start; transition: transform 0.6s ease, height 0.6s ease; }
-  .slide { flex: 0 0 100%; min-width: 0; padding: 0 var(--gutter); }
-  .plate-slider.is-method .slides { transform: translateX(-100%); }
-  .slide-method .plate-body { margin-top: 0; }
-  .slide-method .plate-body > p:not(.plate-no) { font-size: 15px; }
-  .slide-method .implications { margin-top: 40px; }
-  .slide-btn { padding: 0; border: 0; background: none; color: inherit; font-family: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
-  .slide-method .plate-body > .slide-btn { display: block; margin: 0 auto 28px; }
-  .slide-back { text-align: center; margin: 40px 0 0; }
-  @media (prefers-reduced-motion: reduce) { .slides { transition: none; } }
+  /* Thesis card: the image stays, and the text under it is four cards
+     (the thesis, data collection, analysis, limits), switched by the
+     named buttons below them with a fade.
+     Without JavaScript all four simply show one after another. */
+  html.js .tab-panel:not(.is-active) { display: none; }
+  .tab-panel.is-leaving { opacity: 0; transition: opacity 0.22s ease; }
+  .tab-panel.is-entering { animation: panel-in 0.5s ease both; }
+  @keyframes panel-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .tab-panel { margin-top: 32px; }
+  .tab-panel .plate-body, .tab-panel .implications, .tab-panel .validate { margin-top: 0; }
+  .thesis-question { max-width: var(--measure); margin: 0 auto 36px; text-align: center; }
+  .thesis-question p { margin: 0; font-size: 15px; }
+  .thesis-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; max-width: var(--measure); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--rule); }
+  html:not(.js) .thesis-tabs { display: none; }
+  .thesis-tabs button { padding: 4px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: var(--ink-soft); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease; }
+  .thesis-tabs button:hover { color: var(--ink); }
+  .thesis-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .tab-panel.is-leaving, .tab-panel.is-entering { transition: none; animation: none; } }
 
   /* "Also": shorter work, text only, after the full entries */
   .also { max-width: 1000px; margin: clamp(96px, 12vw, 144px) auto 0; }
@@ -766,79 +771,82 @@
           </div>
         </article>
 
-        <article class="plate plate-slider reveal" id="memoire">
-          <div class="slides">
-            <div class="slide" id="thesis-summary">
-              <figure class="plate-figure">
-                <img src="img/plate-thesis.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Les deux visuels testés dans l'enquête : une influenceuse humaine et le personnage virtuel Candy, tenant le parfum Prada Candy">
-                <figcaption class="caption">
-                  <span data-l="fr">Les deux visuels testés&nbsp;: une influenceuse humaine et le personnage virtuel Candy. Images&nbsp;: Prada et leurs auteurs respectifs, reproduites à titre d'illustration de recherche.</span>
-                  <span data-l="en">The two visuals tested: a human influencer and the virtual character Candy. Images: Prada and their respective authors, shown as research illustration.</span>
-                </figcaption>
-              </figure>
-              <div class="plate-body">
-                <p class="plate-no">N° 02</p>
-                <h3><span data-l="fr">La nouveauté attire le regard, l'authenticité fait la vente</span><span data-l="en">Novelty catches the eye, authenticity makes the sale</span></h3>
-                <p data-l="fr">Les influenceurs virtuels attirent l'attention, mais font-ils acheter un parfum de luxe&nbsp;? Avec une camarade de promotion, nous avons présenté deux visuels de la relance de Prada Candy en 2021, l'un porté par une influenceuse humaine, l'autre par un personnage virtuel, à 105 répondants, puis analysé 430 commentaires publiés sur les réseaux sociaux. La curiosité est réelle, la confiance beaucoup moins.</p>
-                <p data-l="en">Virtual influencers attract attention, but do they make people buy a luxury fragrance? With a classmate, I showed 105 respondents two visuals from the 2021 Prada Candy relaunch, one featuring a human influencer and one a virtual character, then analysed 430 social media comments. The curiosity is real; the trust much less so.</p>
-                <div class="stat-chart" role="img" aria-label="57 % préfèrent un influenceur humain pour acheter, contre environ 24 % pour un influenceur virtuel">
-                  <div class="stat-row">
-                    <span data-l="fr">Préfèrent un influenceur humain pour acheter</span><span data-l="en">Prefer a human influencer when buying</span>
-                    <b>57&nbsp;%</b>
-                    <div class="stat-bar"><span style="width:57%"></span></div>
-                  </div>
-                  <div class="stat-row">
-                    <span data-l="fr">Plus enclins à acheter via un influenceur virtuel</span><span data-l="en">More likely to buy through a virtual influencer</span>
-                    <b>~24&nbsp;%</b>
-                    <div class="stat-bar muted"><span style="width:24%"></span></div>
-                  </div>
-                  <p class="stat-source"><span data-l="fr">64,8&nbsp;% estiment qu'un influenceur virtuel nuit à l'image d'une marque de luxe. Enquête, 105 répondants, juillet à octobre 2024.</span><span data-l="en">64.8% think a virtual influencer detracts from a luxury brand's image. Survey, 105 respondents, July to October 2024.</span></p>
+        <article class="plate thesis-card reveal">
+          <figure class="plate-figure">
+            <img src="img/plate-thesis.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Les deux visuels testés dans l'enquête : une influenceuse humaine et le personnage virtuel Candy, tenant le parfum Prada Candy">
+            <figcaption class="caption">
+              <span data-l="fr">Les deux visuels testés&nbsp;: une influenceuse humaine et le personnage virtuel Candy. Images&nbsp;: Prada et leurs auteurs respectifs, reproduites à titre d'illustration de recherche.</span>
+              <span data-l="en">The two visuals tested: a human influencer and the virtual character Candy. Images: Prada and their respective authors, shown as research illustration.</span>
+            </figcaption>
+          </figure>
+          <div class="tab-panel is-active" id="thesis-memoire" role="tabpanel" aria-labelledby="thesis-memoire-tab">
+            <div class="plate-body">
+              <p class="plate-no">N° 02</p>
+              <h3><span data-l="fr">La nouveauté attire le regard, l'authenticité fait la vente</span><span data-l="en">Novelty catches the eye, authenticity makes the sale</span></h3>
+              <p data-l="fr">Les influenceurs virtuels attirent l'attention, mais font-ils acheter un parfum de luxe&nbsp;? Avec une camarade de promotion, nous avons présenté deux visuels de la relance de Prada Candy en 2021, l'un porté par une influenceuse humaine, l'autre par un personnage virtuel, à 105 répondants, puis analysé 430 commentaires publiés sur les réseaux sociaux. La curiosité est réelle, la confiance beaucoup moins.</p>
+              <p data-l="en">Virtual influencers attract attention, but do they make people buy a luxury fragrance? With a classmate, I showed 105 respondents two visuals from the 2021 Prada Candy relaunch, one featuring a human influencer and one a virtual character, then analysed 430 social media comments. The curiosity is real; the trust much less so.</p>
+              <div class="stat-chart" role="img" aria-label="57 % préfèrent un influenceur humain pour acheter, contre environ 24 % pour un influenceur virtuel">
+                <div class="stat-row">
+                  <span data-l="fr">Préfèrent un influenceur humain pour acheter</span><span data-l="en">Prefer a human influencer when buying</span>
+                  <b>57&nbsp;%</b>
+                  <div class="stat-bar"><span style="width:57%"></span></div>
                 </div>
-                <dl class="label">
-                  <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
-                  <dd><span data-l="fr">Mémoire de master, 41 pages, coécrit avec une camarade de promotion</span><span data-l="en">Master's thesis, 41 pages, co-authored with a classmate</span></dd>
-                  <dt>Provenance</dt>
-                  <dd><span data-l="fr">POLIMI Graduate School of Management, Milan, 2024</span><span data-l="en">POLIMI Graduate School of Management, Milan, 2024</span></dd>
-                  <dt><span data-l="fr">Méthode</span><span data-l="en">Method</span></dt>
-                  <dd><span data-l="fr">Revue de littérature, deux études de cas (Dove «&nbsp;Real Beauty&nbsp;», Shudu × Fenty Beauty), enquête, analyse Gioia</span><span data-l="en">Literature review, two case studies (Dove “Real Beauty”, Shudu × Fenty Beauty), survey, Gioia analysis</span></dd>
-                </dl>
-                <button type="button" class="plate-link slide-btn" data-slide-to="1" aria-controls="thesis-method"><span data-l="fr">La méthode en détail →</span><span data-l="en">The method in detail →</span></button>
+                <div class="stat-row">
+                  <span data-l="fr">Plus enclins à acheter via un influenceur virtuel</span><span data-l="en">More likely to buy through a virtual influencer</span>
+                  <b>~24&nbsp;%</b>
+                  <div class="stat-bar muted"><span style="width:24%"></span></div>
+                </div>
+                <p class="stat-source"><span data-l="fr">64,8&nbsp;% estiment qu'un influenceur virtuel nuit à l'image d'une marque de luxe. Enquête, 105 répondants, juillet à octobre 2024.</span><span data-l="en">64.8% think a virtual influencer detracts from a luxury brand's image. Survey, 105 respondents, July to October 2024.</span></p>
               </div>
+              <dl class="label">
+                <dt><span data-l="fr">Médium</span><span data-l="en">Medium</span></dt>
+                <dd><span data-l="fr">Mémoire de master, 41 pages, coécrit avec une camarade de promotion</span><span data-l="en">Master's thesis, 41 pages, co-authored with a classmate</span></dd>
+                <dt>Provenance</dt>
+                <dd><span data-l="fr">POLIMI Graduate School of Management, Milan, 2024</span><span data-l="en">POLIMI Graduate School of Management, Milan, 2024</span></dd>
+                <dt><span data-l="fr">Méthode</span><span data-l="en">Method</span></dt>
+                <dd><span data-l="fr">Revue de littérature, deux études de cas (Dove «&nbsp;Real Beauty&nbsp;», Shudu × Fenty Beauty), enquête, analyse Gioia</span><span data-l="en">Literature review, two case studies (Dove “Real Beauty”, Shudu × Fenty Beauty), survey, Gioia analysis</span></dd>
+              </dl>
             </div>
-            <div class="slide slide-method" id="thesis-method" aria-hidden="true" inert>
-              <div class="plate-body">
-                <button type="button" class="plate-link slide-btn" data-slide-to="0" aria-controls="thesis-summary"><span data-l="fr">← Retour au mémoire</span><span data-l="en">← Back to the thesis</span></button>
-                <p class="plate-no">N° 02 · <span data-l="fr">La méthode</span><span data-l="en">The method</span></p>
-                <h3><span data-l="fr">Comment nous avons mené l'étude</span><span data-l="en">How we ran the study</span></h3>
+          </div>
+          <div class="tab-panel" id="thesis-collecte" role="tabpanel" aria-labelledby="thesis-collecte-tab">
+            <div class="implications">
+              <div class="thesis-question">
                 <p data-l="fr">La question&nbsp;: dans quelle mesure un influenceur virtuel influence-t-il la décision d'achat et l'image de marque dans les parfums et cosmétiques de luxe européens&nbsp;? Pour y répondre, nous avons croisé quatre sources, des réponses déclarées aux réactions spontanées.</p>
                 <p data-l="en">The question: to what extent does a virtual influencer shape purchase decisions and brand image in European luxury perfume and cosmetics? To answer it, we combined four sources, from stated answers to spontaneous reactions.</p>
               </div>
-          <div class="implications">
-            <h3><span data-l="fr">Comment nous avons collecté les données</span><span data-l="en">How we collected the data</span></h3>
-            <p class="implications-sub"><span data-l="fr">Quatre sources, de la théorie au terrain.</span><span data-l="en">Four sources, from theory to the field.</span></p>
-            <div class="implication-list">
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Revue de littérature</span><span data-l="en">Literature review</span></p><p><span data-l="fr">Revues académiques, rapports sectoriels et ouvrages, pour poser le cadre&nbsp;: preuve sociale, crédibilité de la source, flux de communication à deux étages et vallée de l'étrange.</span><span data-l="en">Academic journals, industry reports and books, to set the frame: social proof, source credibility, the two-step flow of communication and the uncanny valley.</span></p></div>
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Deux études de cas</span><span data-l="en">Two case studies</span></p><p><span data-l="fr">Dove «&nbsp;Real Beauty&nbsp;» et Shudu × Fenty Beauty, deux campagnes reconnues, étudiées pour leur stratégie et leurs résultats en engagement.</span><span data-l="en">Dove “Real Beauty” and Shudu × Fenty Beauty, two well-known campaigns, examined for their strategy and their results in engagement.</span></p></div>
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Une enquête</span><span data-l="en">A survey</span></p><p><span data-l="fr">Un questionnaire Google Forms de 15 questions, ouvert du 18 juillet au 3 octobre 2024. Deux visuels de la relance de Prada Candy en 2021, l'un avec une influenceuse humaine, l'autre avec un personnage virtuel, choisis pour être comparables&nbsp;: même produit, même geste, aucune des deux ne regarde l'objectif. Chacun est noté sur l'attrait, l'authenticité, les émotions et l'intention d'achat. 105 réponses anonymes, surtout d'Italie, de France et d'Espagne.</span><span data-l="en">A 15-question Google Forms survey, open from 18 July to 3 October 2024. Two visuals from the 2021 Prada Candy relaunch, one with a human influencer and one with a virtual character, chosen to be comparable: the same product, the same gesture, neither facing the camera. Each was rated on appeal, authenticity, emotions and purchase intent. 105 anonymous responses, mostly from Italy, France and Spain.</span></p></div>
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires en ligne</span><span data-l="en">Comments online</span></p><p><span data-l="fr">Plus de 430 commentaires publics sous des publications consacrées aux influenceurs virtuels, sur Reddit, YouTube, Instagram et TikTok, retenus pour leur lien avec l'authenticité, la confiance et la représentation.</span><span data-l="en">Over 430 public comments under posts about virtual influencers, on Reddit, YouTube, Instagram and TikTok, selected for their bearing on authenticity, trust and representation.</span></p></div>
+              <h3><span data-l="fr">Comment nous avons collecté les données</span><span data-l="en">How we collected the data</span></h3>
+              <p class="implications-sub"><span data-l="fr">Quatre sources, de la théorie au terrain.</span><span data-l="en">Four sources, from theory to the field.</span></p>
+              <div class="implication-list">
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Revue de littérature</span><span data-l="en">Literature review</span></p><p><span data-l="fr">Revues académiques, rapports sectoriels et ouvrages, pour poser le cadre&nbsp;: preuve sociale, crédibilité de la source, flux de communication à deux étages et vallée de l'étrange.</span><span data-l="en">Academic journals, industry reports and books, to set the frame: social proof, source credibility, the two-step flow of communication and the uncanny valley.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Deux études de cas</span><span data-l="en">Two case studies</span></p><p><span data-l="fr">Dove «&nbsp;Real Beauty&nbsp;» et Shudu × Fenty Beauty, deux campagnes reconnues, étudiées pour leur stratégie et leurs résultats en engagement.</span><span data-l="en">Dove “Real Beauty” and Shudu × Fenty Beauty, two well-known campaigns, examined for their strategy and their results in engagement.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Une enquête</span><span data-l="en">A survey</span></p><p><span data-l="fr">Un questionnaire Google Forms de 15 questions, ouvert du 18 juillet au 3 octobre 2024. Deux visuels de la relance de Prada Candy en 2021, l'un avec une influenceuse humaine, l'autre avec un personnage virtuel, choisis pour être comparables&nbsp;: même produit, même geste, aucune des deux ne regarde l'objectif. Chacun est noté sur l'attrait, l'authenticité, les émotions et l'intention d'achat. 105 réponses anonymes, surtout d'Italie, de France et d'Espagne.</span><span data-l="en">A 15-question Google Forms survey, open from 18 July to 3 October 2024. Two visuals from the 2021 Prada Candy relaunch, one with a human influencer and one with a virtual character, chosen to be comparable: the same product, the same gesture, neither facing the camera. Each was rated on appeal, authenticity, emotions and purchase intent. 105 anonymous responses, mostly from Italy, France and Spain.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires en ligne</span><span data-l="en">Comments online</span></p><p><span data-l="fr">Plus de 430 commentaires publics sous des publications consacrées aux influenceurs virtuels, sur Reddit, YouTube, Instagram et TikTok, retenus pour leur lien avec l'authenticité, la confiance et la représentation.</span><span data-l="en">Over 430 public comments under posts about virtual influencers, on Reddit, YouTube, Instagram and TikTok, selected for their bearing on authenticity, trust and representation.</span></p></div>
+              </div>
             </div>
           </div>
-          <div class="implications">
-            <h3><span data-l="fr">Comment nous les avons analysées</span><span data-l="en">How we analysed it</span></h3>
-            <p class="implications-sub"><span data-l="fr">Les chiffres d'un côté, les mots de l'autre.</span><span data-l="en">The numbers on one side, the words on the other.</span></p>
-            <div class="implication-list">
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Les réponses à l'enquête</span><span data-l="en">The survey answers</span></p><p><span data-l="fr">Synthétisées dans Google Forms et Excel, pour relier l'authenticité perçue à l'intention d'achat et comparer les émotions suscitées par les deux visuels.</span><span data-l="en">Summarised in Google Forms and Excel, to link perceived authenticity with purchase intent and compare the emotions each visual triggered.</span></p></div>
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires, par la méthode Gioia</span><span data-l="en">The comments, with the Gioia method</span></p><p><span data-l="fr">Chaque commentaire est d'abord codé selon ce qu'il exprime (doute sur la réalité, préférence pour de vrais modèles, crainte pour l'emploi), puis ces concepts sont regroupés en thèmes, et les thèmes en quatre grandes dimensions.</span><span data-l="en">Each comment is first coded by what it expresses (doubt about what is real, a preference for real models, fear for jobs), then these concepts are grouped into themes, and the themes into four broad dimensions.</span></p></div>
-              <div class="implication"><p class="implication-finding"><span data-l="fr">Les quatre dimensions</span><span data-l="en">The four dimensions</span></p><p><span data-l="fr">La confiance et l'authenticité, la responsabilité culturelle et sociale, l'anxiété face à la technologie et à l'emploi, et la distance émotionnelle face à des standards de beauté irréalistes.</span><span data-l="en">Trust and authenticity, cultural and social responsibility, anxiety about technology and jobs, and emotional distance from unrealistic beauty standards.</span></p></div>
+          <div class="tab-panel" id="thesis-analyse" role="tabpanel" aria-labelledby="thesis-analyse-tab">
+            <div class="implications">
+              <h3><span data-l="fr">Comment nous les avons analysées</span><span data-l="en">How we analysed it</span></h3>
+              <p class="implications-sub"><span data-l="fr">Les chiffres d'un côté, les mots de l'autre.</span><span data-l="en">The numbers on one side, the words on the other.</span></p>
+              <div class="implication-list">
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les réponses à l'enquête</span><span data-l="en">The survey answers</span></p><p><span data-l="fr">Synthétisées dans Google Forms et Excel, pour relier l'authenticité perçue à l'intention d'achat et comparer les émotions suscitées par les deux visuels.</span><span data-l="en">Summarised in Google Forms and Excel, to link perceived authenticity with purchase intent and compare the emotions each visual triggered.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les commentaires, par la méthode Gioia</span><span data-l="en">The comments, with the Gioia method</span></p><p><span data-l="fr">Chaque commentaire est d'abord codé selon ce qu'il exprime (doute sur la réalité, préférence pour de vrais modèles, crainte pour l'emploi), puis ces concepts sont regroupés en thèmes, et les thèmes en quatre grandes dimensions.</span><span data-l="en">Each comment is first coded by what it expresses (doubt about what is real, a preference for real models, fear for jobs), then these concepts are grouped into themes, and the themes into four broad dimensions.</span></p></div>
+                <div class="implication"><p class="implication-finding"><span data-l="fr">Les quatre dimensions</span><span data-l="en">The four dimensions</span></p><p><span data-l="fr">La confiance et l'authenticité, la responsabilité culturelle et sociale, l'anxiété face à la technologie et à l'emploi, et la distance émotionnelle face à des standards de beauté irréalistes.</span><span data-l="en">Trust and authenticity, cultural and social responsibility, anxiety about technology and jobs, and emotional distance from unrealistic beauty standards.</span></p></div>
+              </div>
             </div>
           </div>
-          <div class="validate">
-            <h3><span data-l="fr">Ses limites</span><span data-l="en">Its limits</span></h3>
-            <p data-l="fr">Un échantillon réduit, faute de temps et de moyens, et des réponses déclarées, exposées au biais de désirabilité sociale malgré l'anonymat. Les conclusions donnent une direction plutôt qu'une preuve, et gagneraient à être vérifiées sur un échantillon plus large.</p>
-            <p data-l="en">A small sample, limited by time and resources, and self-reported answers, open to social desirability bias despite anonymity. The findings point a direction rather than prove it, and would benefit from a larger sample.</p>
-          </div>
-              <p class="slide-back"><button type="button" class="plate-link slide-btn" data-slide-to="0" aria-controls="thesis-summary"><span data-l="fr">← Retour au mémoire</span><span data-l="en">← Back to the thesis</span></button></p>
+          <div class="tab-panel" id="thesis-limites" role="tabpanel" aria-labelledby="thesis-limites-tab">
+            <div class="validate">
+              <h3><span data-l="fr">Ses limites</span><span data-l="en">Its limits</span></h3>
+              <p data-l="fr">Un échantillon réduit, faute de temps et de moyens, et des réponses déclarées, exposées au biais de désirabilité sociale malgré l'anonymat. Les conclusions donnent une direction plutôt qu'une preuve, et gagneraient à être vérifiées sur un échantillon plus large.</p>
+              <p data-l="en">A small sample, limited by time and resources, and self-reported answers, open to social desirability bias despite anonymity. The findings point a direction rather than prove it, and would benefit from a larger sample.</p>
             </div>
+          </div>
+          <div class="thesis-tabs" role="tablist" aria-label="Mémoire">
+            <button type="button" role="tab" id="thesis-memoire-tab" aria-controls="thesis-memoire" aria-selected="true"><span data-l="fr">Le mémoire</span><span data-l="en">The thesis</span></button>
+            <button type="button" role="tab" id="thesis-collecte-tab" aria-controls="thesis-collecte" aria-selected="false" tabindex="-1"><span data-l="fr">La collecte</span><span data-l="en">Data collection</span></button>
+            <button type="button" role="tab" id="thesis-analyse-tab" aria-controls="thesis-analyse" aria-selected="false" tabindex="-1"><span data-l="fr">L'analyse</span><span data-l="en">Analysis</span></button>
+            <button type="button" role="tab" id="thesis-limites-tab" aria-controls="thesis-limites" aria-selected="false" tabindex="-1"><span data-l="fr">Les limites</span><span data-l="en">Limits</span></button>
           </div>
         </article>
 
@@ -1458,38 +1466,44 @@
     }, { rootMargin: '-60px 0px 0px 0px' }).observe(heroName);
   })();
 
-  // Thesis card: the button slides to the method panel and back. The
-  // track takes the height of the panel in view, and the hidden panel is
-  // inert so keyboard focus stays on what is visible.
+  // Thesis card: the named buttons switch the text under the image
+  // between its four cards. The current card fades out, the chosen one
+  // fades in, and the page comes back to its top if the reader was
+  // further down.
   (function () {
-    var card = document.getElementById('memoire');
-    if (!card) return;
-    var track = card.querySelector('.slides');
-    var panels = card.querySelectorAll('.slide');
-    var current = 0;
-    function fit() { track.style.height = panels[current].offsetHeight + 'px'; }
-    function show(i) {
-      current = i;
-      card.classList.toggle('is-method', i === 1);
-      panels.forEach(function (p, n) {
-        if (n === i) { p.removeAttribute('inert'); p.removeAttribute('aria-hidden'); }
-        else { p.setAttribute('inert', ''); p.setAttribute('aria-hidden', 'true'); }
+    var tabs = [].slice.call(document.querySelectorAll('.thesis-tabs [role="tab"]'));
+    if (!tabs.length) return;
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var current = 0, busy = false;
+    function select(i, focus) {
+      if (i === current || busy) return;
+      var from = panels[current], to = panels[i];
+      tabs.forEach(function (t, n) {
+        t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        t.tabIndex = n === i ? 0 : -1;
       });
-      fit();
-      var top = card.getBoundingClientRect().top + window.scrollY - 76;
-      if (window.scrollY > top) window.scrollTo({ top: top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      var focusTo = panels[i].querySelector('.slide-btn');
-      if (focusTo) focusTo.focus({ preventScroll: true });
+      if (focus) tabs[i].focus();
+      current = i; busy = true;
+      function swap() {
+        from.classList.remove('is-active', 'is-leaving');
+        to.classList.add('is-active', 'is-entering');
+        var top = to.getBoundingClientRect().top + window.scrollY - 96;
+        if (window.scrollY > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+        setTimeout(function () { to.classList.remove('is-entering'); }, 500);
+        busy = false;
+      }
+      if (reduce) { swap(); return; }
+      from.classList.add('is-leaving');
+      setTimeout(swap, 220);
     }
-    card.querySelectorAll('[data-slide-to]').forEach(function (b) {
-      b.addEventListener('click', function () { show(+b.getAttribute('data-slide-to')); });
+    tabs.forEach(function (t, n) {
+      t.addEventListener('click', function () { select(n); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); select((current + d + tabs.length) % tabs.length, true); }
+      });
     });
-    fit();
-    window.addEventListener('resize', fit);
-    window.addEventListener('load', fit);
-    if (document.fonts) document.fonts.ready.then(fit);
-    document.querySelectorAll('[data-lang-btn]').forEach(function (b) { b.addEventListener('click', fit); });
-    card.querySelectorAll('img').forEach(function (img) { img.addEventListener('load', fit); });
   })();
 
   // Gentle reveal on scroll. Skipped entirely for reduced motion or
