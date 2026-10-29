@@ -473,7 +473,6 @@
   }
 
   /* ---------- Method ---------- */
-  .personas { display: grid; gap: 24px; max-width: 980px; margin: 0 auto; }
   .persona { background: var(--white); padding: 32px 28px; }
   .persona-kind { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 16px; }
   .persona h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
@@ -489,7 +488,54 @@
   .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
   .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
-  @media (min-width: 880px) { .personas { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  /* Personas as a small deck of cards: Claire in front, Hugo behind it.
+     The named buttons above swap them. Without JavaScript both cards
+     simply show one after the other. */
+  .persona-deck { max-width: 980px; margin: 0 auto; }
+  .deck-stack { position: relative; isolation: isolate; display: grid; gap: 24px; }
+  .deck-card { box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.06); }
+  .deck-back { display: none; }
+  html.js .deck-card:not(.is-active) { display: none; }
+  html.js .deck-back { display: block; position: absolute; inset: 0; z-index: -1; background: var(--white); border: 1px solid var(--rule); transform: translate(12px, 12px); }
+  html.js .deck-back::after { content: ""; position: absolute; inset: -1px; background: var(--white); border: 1px solid var(--rule); transform: translate(12px, 12px); z-index: -1; }
+  .deck-card.is-leaving { animation: card-out 0.3s ease forwards; }
+  .deck-card.is-entering { animation: card-in 0.45s ease both; }
+  @keyframes card-out { to { opacity: 0; transform: translate(-28px, -6px) rotate(-1.5deg); } }
+  @keyframes card-in { from { opacity: 0; transform: translate(12px, 12px); } to { opacity: 1; transform: none; } }
+  .deck-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; max-width: var(--measure); margin: 0 auto 36px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+  html:not(.js) .deck-tabs { display: none; }
+  .deck-tabs button { padding: 4px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: var(--ink-soft); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease; }
+  .deck-tabs button:hover { color: var(--ink); }
+  .deck-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .deck-card.is-leaving, .deck-card.is-entering { animation: none; } }
+  @media (max-width: 599px) { html.js .deck-back, html.js .deck-back::after { transform: translate(6px, 6px); } }
+
+  /* Claire's detailed card, laid out by the course's customer categories:
+     who she is, how she buys, what she looks for. */
+  .persona-bio { margin: 0 0 8px; font-size: 15px; }
+  .icp-group { margin-top: 36px; }
+  .persona .icp-group-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink); margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+  .icp-rows { margin: 0; }
+  .icp-rows > div { display: grid; gap: 4px 32px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .icp-rows dt { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; }
+  .icp-rows dd { margin: 0; font-size: 14px; }
+  .icp-rows dd ul, .icp-rows dd ol { margin-bottom: 0 !important; }
+  @media (min-width: 700px) { .icp-rows > div { grid-template-columns: 170px 1fr; } }
+  .journey { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  .journey li { counter-increment: step; position: relative; padding: 0 0 12px 34px; }
+  .journey li:last-child { padding-bottom: 0; }
+  .journey li::before { content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .journey-step { display: block; font-weight: 500; }
+  .drivers { margin: 0; padding-left: 22px; font-family: var(--serif); font-size: 1.1rem; line-height: 1.5; }
+  .persona-note { margin: 6px 0 0; font-size: 13px; color: var(--ink-soft); }
+  .scale { margin-bottom: 12px; max-width: 360px; }
+  .scale:last-child { margin-bottom: 0; }
+  .scale-poles { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 12.5px; color: var(--ink-soft); }
+  .scale-track { position: relative; height: 1px; background: var(--rule); }
+  .scale-track i { position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); transform: translate(-50%, -50%); }
+  .persona-grid { display: grid; gap: 0 40px; margin-top: 16px; }
+  @media (min-width: 700px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 880px) { .persona-full { padding: 48px 56px; } }
   /* Findings from the luxury persona, and what a Maison could do with them */
   .implications { max-width: 980px; margin: 56px auto 0; }
   .implications h3 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; text-align: center; margin: 0; }
@@ -1137,30 +1183,85 @@
         <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon. Celui d'Hugo est un profil type de la génération Z, à valider de la même façon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample. Hugo's is a typical Gen Z profile, to be validated the same way.</span></p>
       </div>
 
-      <div class="personas">
-        <article class="persona reveal">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe et beauté</span><span data-l="en">Illustrative example · luxury and beauty</span></p>
+      <div class="persona-deck reveal">
+        <div class="deck-tabs" role="tablist" aria-label="Profils">
+          <button type="button" role="tab" id="persona-claire-tab" aria-controls="persona-claire" aria-selected="true">Claire Moreau</button>
+          <button type="button" role="tab" id="persona-hugo-tab" aria-controls="persona-hugo" aria-selected="false" tabindex="-1">Hugo Laurent</button>
+        </div>
+        <div class="deck-stack">
+        <article class="persona persona-full deck-card is-active" id="persona-claire" role="tabpanel" aria-labelledby="persona-claire-tab">
+          <p class="persona-kind"><span data-l="fr">Profil type issu d'un entretien qualitatif · luxe et beauté</span><span data-l="en">Typical profile from a qualitative interview · luxury and beauty</span></p>
           <h3>Claire Moreau</h3>
           <p class="role"><span data-l="fr">Consommatrice de luxe aspirationnelle</span><span data-l="en">Aspirational luxury consumer</span></p>
-          <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">35 à 45 ans, famille avec enfants, hors des grandes villes</span><span data-l="en">35 to 45, family with children, outside big cities</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Beauté et accessoires de luxe, environ 200&nbsp;€ par mois</span><span data-l="en">Luxury beauty and accessories, about €200 a month</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Cliente fidèle à une Maison depuis l'adolescence</span><span data-l="en">Loyal to one Maison since her teens</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">En ligne, loin des boutiques</span><span data-l="en">Online, far from the boutiques</span></dd></div>
-          </dl>
-          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, personnalisation</li></ul>
-          <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, personalisation</li></ul>
-          <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Les hausses de prix d'une marque en laquelle elle a confiance</li><li>Des boutiques en ligne lentes, qui la déconnectent et lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà</li></ul>
-          <ul data-l="en"><li>Price increases from a brand she trusts</li><li>Slow online stores that log her out and make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How she decides</span></h4>
-          <ul data-l="fr"><li>Sur la relation plus que sur les données, avec prudence&nbsp;: la composition sur le site de la marque d'abord, puis les avis</li></ul>
-          <ul data-l="en"><li>On relationship more than data, cautiously: ingredients on the brand's website first, then reviews</li></ul>
+          <p class="persona-bio" data-l="fr">Claire utilise la même Maison depuis son adolescence, quand une proche la lui a fait découvrir. Elle achète en ligne, surtout quand un produit vient à manquer ou qu'une offre arrive, et lit la composition et les avis avant de commander. Chaque achat est à la fois une récompense et une habitude, et elle se souvient des marques qui la remercient de sa fidélité. Elle n'a aucune patience pour un site qui la déconnecte en plein paiement.</p>
+          <p class="persona-bio" data-l="en">Claire has used the same Maison since her teens, when a relative introduced her to it. She buys online, mostly when a product runs low or an offer arrives, and reads the ingredients and reviews before ordering. Each purchase is both a reward and a habit, and she remembers the brands that thank her for her loyalty. She has no patience for a website that logs her out mid-checkout.</p>
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Qui elle est</span><span data-l="en">Who she is</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Sociodémographique</span><span data-l="en">Socio-demographic</span></dt><dd><span data-l="fr">Une femme de 35 à 45 ans, en famille avec des enfants. Un budget fixe et modéré, environ 200&nbsp;€ par mois en beauté, mode et accessoires.</span><span data-l="en">A woman aged 35 to 45, in a family with children. A fixed, moderate budget of about €200 a month on beauty, fashion and accessories.</span></dd></div>
+              <div><dt><span data-l="fr">Géographique</span><span data-l="en">Geographic</span></dt><dd><span data-l="fr">Hors des grandes villes, avec peu d'accès aux boutiques de luxe.</span><span data-l="en">Outside big cities, with little access to luxury boutiques.</span></dd></div>
+              <div><dt><span data-l="fr">Psychographique</span><span data-l="en">Psychographic</span></dt><dd><span data-l="fr">Tournée vers la famille. Le luxe est pour elle une récompense et un rituel&nbsp;: elle se sent soignée et élégante. Elle se dit «&nbsp;dé-influencée&nbsp;», se fie au bouche-à-oreille plutôt qu'aux tendances, et se lasse de la surconsommation.</span><span data-l="en">Family-oriented. Luxury is a reward and a ritual for her: she feels put together and glamorous. She calls herself “de-influenced”, trusts word of mouth over trends, and is tired of overconsumption.</span></dd></div>
+              <div><dt><span data-l="fr">Façon de décider</span><span data-l="en">Decision style</span></dt><dd class="scales">
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Données</span><span data-l="en">Data</span><span data-l="fr">Relation</span><span data-l="en">Relationship</span></p><div class="scale-track"><i style="left:70%"></i></div></div>
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Prudence</span><span data-l="en">Caution</span><span data-l="fr">Prise de risque</span><span data-l="en">Risk-taking</span></p><div class="scale-track"><i style="left:25%"></i></div></div>
+                <div class="scale"><p class="scale-poles"><span data-l="fr">Détail</span><span data-l="en">Detail</span><span data-l="fr">Vue d'ensemble</span><span data-l="en">Big picture</span></p><div class="scale-track"><i style="left:30%"></i></div></div>
+              </dd></div>
+            </dl>
+          </section>
+
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Comment elle achète</span><span data-l="en">How she buys</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Usage du produit</span><span data-l="en">Product usage</span></dt><dd><span data-l="fr">Un premier achat de maquillage ou de parfum, autour de 100&nbsp;€, offert à elle-même à l'adolescence ou au début de l'âge adulte. Elle monte ensuite en gamme, puis passe d'une catégorie à l'autre dans la même Maison&nbsp;: maquillage, parfum, accessoires. Elle pense que les produits d'une même collection fonctionnent mieux ensemble. Après l'achat, elle expose les éditions limitées pour leur beauté, garde le quotidien à portée de main et montre les pièces marquantes à ses proches.</span><span data-l="en">A first purchase of makeup or fragrance, around €100, a gift to herself in her teens or early adulthood. She then moves up the range by price, and across categories within the same Maison: makeup, fragrance, accessories. She believes products from the same collection work better together. After buying, she displays limited editions for their artistry, keeps everyday items within reach and shows notable pieces to friends and family.</span></dd></div>
+              <div><dt><span data-l="fr">Rôles d'achat</span><span data-l="en">Buying roles</span></dt><dd><span data-l="fr">Elle initie, décide, achète et utilise. Une proche l'a influencée en lui faisant découvrir la Maison&nbsp;; aujourd'hui, ce sont les avis en ligne.</span><span data-l="en">She initiates, decides, buys and uses. A relative influenced her by introducing her to the Maison; today, online reviews do.</span></dd></div>
+              <div><dt><span data-l="fr">Processus d'achat</span><span data-l="en">Buying process</span></dt><dd>
+                <ol class="journey">
+                  <li><span class="journey-step"><span data-l="fr">Découverte</span><span data-l="en">Discovery</span></span><span data-l="fr">Par la famille et les proches, pas par les réseaux sociaux ni les influenceurs</span><span data-l="en">Through family and close friends, not social media or influencers</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Déclencheur</span><span data-l="en">Trigger</span></span><span data-l="fr">Un produit qui vient à manquer, ou une offre de la Maison</span><span data-l="en">A product running low, or an offer from the Maison</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Recherche</span><span data-l="en">Research</span></span><span data-l="fr">Le site de la Maison pour la composition, puis les avis qui montrent le rendu d'une teinte sur la peau</span><span data-l="en">The Maison's website for ingredients, then reviews that show how a shade looks on skin</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Achat</span><span data-l="en">Purchase</span></span><span data-l="fr">En ligne, sur le site de la Maison, faute de boutique à proximité</span><span data-l="en">Online, on the Maison's website, with no boutique nearby</span></li>
+                  <li><span class="journey-step"><span data-l="fr">Fidélité</span><span data-l="en">Loyalty</span></span><span data-l="fr">Fidèle à une seule Maison depuis l'adolescence, sensible au programme de fidélité, aux échantillons et aux cadeaux de remerciement</span><span data-l="en">Loyal to one Maison since her teens, responsive to the loyalty programme, samples and thank-you gifts</span></li>
+                </ol>
+              </dd></div>
+            </dl>
+          </section>
+
+          <section class="icp-group">
+            <h4 class="icp-group-title"><span data-l="fr">Ce qu'elle recherche</span><span data-l="en">What she looks for</span></h4>
+            <dl class="icp-rows">
+              <div><dt><span data-l="fr">Bénéfices recherchés</span><span data-l="en">Benefits sought</span></dt><dd>
+                <ol class="drivers" data-l="fr"><li>L'héritage de la marque</li><li>L'exclusivité</li><li>Le packaging</li><li>L'expérience en boutique</li><li>Le regard des autres</li></ol>
+                <ol class="drivers" data-l="en"><li>Brand heritage</li><li>Exclusivity</li><li>Packaging</li><li>The in-store experience</li><li>How others see her</li></ol>
+                <p class="persona-note"><span data-l="fr">Par ordre d'importance.</span><span data-l="en">In order of importance.</span></p>
+              </dd></div>
+              <div><dt><span data-l="fr">Besoins</span><span data-l="en">Needs</span></dt><dd>
+                <ul data-l="fr"><li>Une expérience en ligne fluide&nbsp;: plusieurs photos, des contenances claires, une connexion stable</li><li>Une fidélité reconnue&nbsp;: échantillons, cadeaux de remerciement, gravure et paquet cadeau</li><li>Du choix, et des produits en stock</li></ul>
+                <ul data-l="en"><li>A smooth online experience: several photos, clear sizes, a stable login</li><li>Loyalty that is recognised: samples, thank-you gifts, engraving and gift wrapping</li><li>Choice, and items in stock</li></ul>
+              </dd></div>
+              <div><dt><span data-l="fr">Objectifs</span><span data-l="en">Goals</span></dt><dd>
+                <ul data-l="fr"><li>Se sentir soignée et élégante grâce à une routine bâtie sur une marque de confiance</li><li>Constituer une gamme complète et cohérente sans accumuler de produits qui périment</li><li>Obtenir, en retour de sa fidélité, un accès exclusif à des pièces qu'elle désire vraiment</li></ul>
+                <ul data-l="en"><li>Feel polished and put together through a routine built on a trusted brand</li><li>Build a complete, coordinated range without accumulating products that expire unused</li><li>Earn exclusive access to pieces she actually wants in return for her loyalty</li></ul>
+              </dd></div>
+            </dl>
+          </section>
+
+          <div class="persona-grid">
+            <section>
+              <h4><span data-l="fr">Ce qui la freine</span><span data-l="en">What holds her back</span></h4>
+              <ul data-l="fr"><li>Les hausses de prix, première raison qui la ferait partir</li><li>Des boutiques en ligne dépassées&nbsp;: une seule photo, des contenances difficiles à trouver alors qu'elle préfère les petits formats, des pages lentes, des déconnexions qui lui font abandonner son panier</li><li>Une offre «&nbsp;exclusive&nbsp;» pour une version plus chère de ce qu'elle achète déjà</li><li>Trop de teintes, trop de rouges à lèvres, des produits qui périment avant d'être utilisés</li></ul>
+              <ul data-l="en"><li>Price increases, the main reason she would leave</li><li>Outdated online stores: a single photo, sizes that are hard to find when she prefers small formats, slow pages, logouts that make her abandon her cart</li><li>An “exclusive” offer for a pricier version of what she already buys</li><li>Too many shades, too many lipsticks, products that expire before they are used</li></ul>
+            </section>
+            <section>
+              <h4><span data-l="fr">Ce qui la ferait dépenser plus</span><span data-l="en">What would make her spend more</span></h4>
+              <ul data-l="fr"><li>Plus de revenu disponible</li><li>Une exclusivité qui mène à un objet désiré&nbsp;: un sac, un bijou ou un accessoire, pour le même budget</li></ul>
+              <ul data-l="en"><li>More disposable income</li><li>Exclusivity that leads to something she wants: a bag, a piece of jewellery or an accessory, for the same budget</li></ul>
+            </section>
+          </div>
+
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
         </article>
 
-        <article class="persona reveal">
+        <article class="persona deck-card" id="persona-hugo" role="tabpanel" aria-labelledby="persona-hugo-tab">
           <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe, génération Z</span><span data-l="en">Illustrative example · luxury, Gen Z</span></p>
           <h3>Hugo Laurent</h3>
           <p class="role"><span data-l="fr">Jeune client du luxe</span><span data-l="en">Young luxury client</span></p>
@@ -1181,6 +1282,8 @@
           <ul data-l="en"><li>On values and his peers' opinions more than prestige: the creators she follows, online reviews, then the boutique</li></ul>
           <blockquote><span data-l="fr">Il n'achète pas un logo, il achète une histoire vraie, et il vérifie.</span><span data-l="en">He does not buy a logo; he buys a true story, and he checks.</span></blockquote>
         </article>
+        <div class="deck-back" aria-hidden="true"></div>
+        </div>
       </div>
       <div class="implications reveal">
         <h3><span data-l="fr">Ce qu'une Maison pourrait en faire</span><span data-l="en">What a Maison could do with it</span></h3>
@@ -1504,6 +1607,43 @@
       if (reduce) { swap(); return; }
       from.classList.add('is-leaving');
       setTimeout(swap, 220);
+    }
+    tabs.forEach(function (t, n) {
+      t.addEventListener('click', function () { select(n); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); select((current + d + tabs.length) % tabs.length, true); }
+      });
+    });
+  })();
+
+  // Personas deck: the named buttons bring a card to the front.
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.deck-tabs [role="tab"]'));
+    if (!tabs.length) return;
+    var cards = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var current = 0, busy = false;
+    function select(i, focus) {
+      if (i === current || busy) return;
+      var from = cards[current], to = cards[i];
+      tabs.forEach(function (t, n) {
+        t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        t.tabIndex = n === i ? 0 : -1;
+      });
+      if (focus) tabs[i].focus();
+      current = i; busy = true;
+      function swap() {
+        from.classList.remove('is-active', 'is-leaving');
+        to.classList.add('is-active', 'is-entering');
+        var top = to.getBoundingClientRect().top + window.scrollY - 96;
+        if (window.scrollY > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+        setTimeout(function () { to.classList.remove('is-entering'); }, 450);
+        busy = false;
+      }
+      if (reduce) { swap(); return; }
+      from.classList.add('is-leaving');
+      setTimeout(swap, 300);
     }
     tabs.forEach(function (t, n) {
       t.addEventListener('click', function () { select(n); });
