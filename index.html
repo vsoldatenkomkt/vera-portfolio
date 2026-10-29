@@ -353,6 +353,16 @@
   .label dd { margin: 0; }
   .plate-link { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
 
+  /* Italian Way: the certificate beside the story of the challenge */
+  .iw { display: grid; gap: 40px; max-width: 980px; margin: 0 auto; align-items: center; }
+  .iw-figure { margin: 0 auto; max-width: 360px; }
+  .iw-figure img { width: 100%; box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.08); }
+  .iw-figure .zoom { display: block; cursor: zoom-in; }
+  .iw-figure figcaption { margin-top: 12px; text-align: center; font-size: 12px; color: var(--ink-soft); }
+  .iw-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 4.6vw, 1.9rem); line-height: 1.2; margin: 0 0 14px; }
+  .iw-body > p { margin: 0 0 20px; }
+  @media (min-width: 880px) { .iw { grid-template-columns: 0.8fr 1fr; gap: 64px; } .iw-figure { max-width: none; } }
+
   /* Thesis card: the image stays, and the text under it is four cards
      (the thesis, data collection, analysis, limits), switched by the
      named buttons below them with a fade.
@@ -629,6 +639,7 @@
           <li><a href="#transposition"><span data-l="fr">Du B2B au luxe</span><span data-l="en">From B2B to luxury</span></a></li>
           <li><a href="#realisations"><span data-l="fr">Réalisations</span><span data-l="en">Selected work</span></a></li>
           <li><a href="#travaux"><span data-l="fr">Travaux de master</span><span data-l="en">Master's work</span></a></li>
+          <li><a href="#italian-way">Italian Way</a></li>
           <li><a href="#chateau">Château Landery</a></li>
           <li><a href="#methode"><span data-l="fr">Méthode</span><span data-l="en">Method</span></a></li>
           <li><a href="#savoir-faire"><span data-l="fr">Savoir-faire</span><span data-l="en">Expertise</span></a></li>
@@ -1112,6 +1123,43 @@
   </section>
 
   <!-- ============================================================
+       ITALIAN WAY: the week-long social media challenge during the
+       master's, and the award our team won.
+       ============================================================ -->
+  <section class="chapter" id="italian-way">
+    <div class="wrap">
+      <div class="chapter-head reveal">
+        <h2>Italian Way</h2>
+        <p><span data-l="fr">Défi social media, POLIMI Graduate School of Management, mai 2024.</span><span data-l="en">Social media challenge, POLIMI Graduate School of Management, May 2024.</span></p>
+      </div>
+
+      <div class="iw reveal">
+        <figure class="iw-figure">
+          <a class="zoom" href="img/italian-way-award.webp" data-view><img src="img/italian-way-award.webp" width="900" height="1024" loading="lazy" decoding="async" alt="Certificat du prix Social Media Excellence, Italian Way, édition 2024, décerné à Vera Soldatenko le 28 juin 2024"></a>
+          <figcaption><span data-l="fr">Le certificat du prix, 28 juin 2024</span><span data-l="en">The award certificate, 28 June 2024</span></figcaption>
+        </figure>
+        <div class="iw-body">
+          <p class="plate-no"><span data-l="fr">Prix Social Media Excellence</span><span data-l="en">Social Media Excellence Award</span></p>
+          <h3><span data-l="fr">Une semaine de luxe italien, racontée sans nommer une marque</span><span data-l="en">A week of Italian luxury, told without naming a brand</span></h3>
+          <p data-l="fr">Pendant une semaine, les étudiants rencontrent des Maisons et marques italiennes, de Moncler à Acqua di Parma. En parallèle, chaque équipe joue le rôle du service communication de l'événement et le couvre sur les réseaux sociaux. Notre équipe de six a créé un compte pour l'occasion, @my_italian_way, et a remporté le prix.</p>
+          <p data-l="en">For a week, students meet Italian Maisons and brands, from Moncler to Acqua di Parma. Alongside, each team acts as the event's communication office and covers it on social media. Our team of six created an account for the occasion, @my_italian_way, and won the award.</p>
+          <dl class="label">
+            <dt><span data-l="fr">Le brief</span><span data-l="en">The brief</span></dt>
+            <dd><span data-l="fr">Au moins une publication par jour, sans nommer les marques, citer les intervenants ni identifier les entreprises&nbsp;: retenir les mots-clés, raconter une histoire, rendre les idées visuelles.</span><span data-l="en">At least one post a day, without naming brands, quoting speakers or tagging companies: capture keywords, tell a story, make ideas visual.</span></dd>
+            <dt><span data-l="fr">Notre travail</span><span data-l="en">Our work</span></dt>
+            <dd><span data-l="fr">Stratégie social media, création de contenus, analyse des données et gestion du compte, puis un bilan de chaque publication et de ses résultats.</span><span data-l="en">Social media strategy, content creation, data analysis and account management, then a review of every post and its results.</span> <span class="todo">[TODO: rôle personnel dans l'équipe]</span></dd>
+            <dt><span data-l="fr">Le jury</span><span data-l="en">The jury</span></dt>
+            <dd><span data-l="fr">Stratégie digitale, créativité, contenus, résultats chiffrés, contenus respectueux et pertinents, gestion d'équipe.</span><span data-l="en">Digital strategy, creativity, content, measured results, respectful and relevant content, team management.</span></dd>
+            <dt><span data-l="fr">Le prix</span><span data-l="en">The award</span></dt>
+            <dd><span data-l="fr">Social Media Excellence, décerné à l'équipe gagnante le 28 juin 2024.</span><span data-l="en">Social Media Excellence, awarded to the winning team on 28 June 2024.</span></dd>
+          </dl>
+          <a class="plate-link" href="https://www.instagram.com/my_italian_way/" target="_blank" rel="noopener"><span data-l="fr">Voir le compte Instagram</span><span data-l="en">See the Instagram account</span> →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        THE CHÂTEAU: image-only grid (photos or short videos), no
        captions. See the .image-grid comment in the CSS for tile markup.
        ============================================================ -->
@@ -1373,7 +1421,7 @@
               <div class="sub-item">
                 <p class="sub-date"><span data-l="fr">Juin 2024</span><span data-l="en">June 2024</span></p>
                 <h4><span data-l="fr">Prix Social Media Excellence, Italian Way</span><span data-l="en">Social Media Excellence Award, Italian Way</span></h4>
-                <p><span data-l="fr">Une semaine de rencontres avec des Maisons et marques italiennes, de Moncler à Acqua di Parma. Prix décerné le 28 juin 2024.</span><span data-l="en">A week of sessions with Italian Maisons and brands, from Moncler to Acqua di Parma. Awarded on 28 June 2024.</span></p>
+                <p><span data-l="fr">Prix remporté par notre équipe le 28 juin 2024, pour la couverture de la semaine sur Instagram. <a href="#italian-way">Voir le projet</a></span><span data-l="en">Won by our team on 28 June 2024, for covering the week on Instagram. <a href="#italian-way">See the project</a></span></p>
               </div>
               <div class="sub-item">
                 <p class="sub-date"><span data-l="fr">Décembre 2023</span><span data-l="en">December 2023</span></p>
@@ -1654,7 +1702,7 @@
     });
   })();
 
-  // Master's work images open full size on the page; without
+  // Master's work and Italian Way images open full size on the page; without
   // JavaScript the link simply opens the image file.
   (function () {
     var viewer = document.getElementById('viewer');
