@@ -362,7 +362,9 @@
   .iw-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 4.6vw, 1.9rem); line-height: 1.2; margin: 0 0 14px; }
   .iw-body > p { margin: 0 0 20px; }
   @media (min-width: 880px) { .iw { grid-template-columns: 0.8fr 1fr; gap: 64px; } .iw-figure { max-width: none; } }
-  .iw-links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0; }
+  /* Links sit in the label block's value column, aligned with the text above them */
+  .iw-links { display: grid; grid-template-columns: 1fr 1.6fr; column-gap: 16px; margin: 0; }
+  .iw-links-row { grid-column: 2; display: flex; flex-wrap: wrap; gap: 10px 28px; }
 
   /* Thesis card: the image stays, and the text under it is four cards
      (the thesis, data collection, analysis, limits), switched by the
@@ -1134,10 +1136,10 @@
             <dt><span data-l="fr">Le prix</span><span data-l="en">The award</span></dt>
             <dd><span data-l="fr">Social Media Excellence, décerné à l'équipe gagnante le 28 juin 2024.</span><span data-l="en">Social Media Excellence, awarded to the winning team on 28 June 2024.</span></dd>
           </dl>
-          <p class="iw-links">
+          <p class="iw-links"><span class="iw-links-row">
             <a class="plate-link" href="https://www.instagram.com/my_italian_way/" target="_blank" rel="noopener"><span data-l="fr">Voir le compte Instagram</span><span data-l="en">See the Instagram account</span> →</a>
             <a class="plate-link" href="img/italian-way-award.webp" data-view data-alt="Certificat du prix Social Media Excellence, Italian Way, édition 2024, décerné à Vera Soldatenko le 28 juin 2024"><span data-l="fr">Voir le certificat</span><span data-l="en">See the certificate</span></a>
-          </p>
+          </span></p>
         </div>
       </div>
     </div>
