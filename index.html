@@ -518,7 +518,9 @@
   .deck-tabs button { padding: 4px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: var(--ink-soft); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease; }
   .deck-tabs button:hover { color: var(--ink); }
   .deck-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
-  @media (prefers-reduced-motion: reduce) { .deck-card.is-leaving, .deck-card.is-entering { animation: none; } }
+  .deck-extra.is-leaving { opacity: 0; transition: opacity 0.3s ease; }
+  .deck-extra.is-entering { animation: panel-in 0.45s ease both; }
+  @media (prefers-reduced-motion: reduce) { .deck-card.is-leaving, .deck-card.is-entering, .deck-extra.is-leaving, .deck-extra.is-entering { animation: none; transition: none; } }
   @media (max-width: 599px) { html.js .deck-back, html.js .deck-back::after { transform: translate(6px, 6px); } }
 
   /* Claire's detailed card, laid out by the course's customer categories:
@@ -1339,6 +1341,8 @@
         <div class="deck-back" aria-hidden="true"></div>
         </div>
       </div>
+      <!-- Claire's findings and next steps: shown with her card only -->
+      <div class="deck-extra" data-deck-for="persona-claire">
       <div class="implications reveal">
         <h3><span data-l="fr">Ce qu'une Maison pourrait en faire</span><span data-l="en">What a Maison could do with it</span></h3>
         <p class="implications-sub"><span data-l="fr">Sept constats tirés du profil de Claire, sept pistes de marketing et de CRM.</span><span data-l="en">Seven findings from Claire's profile, seven marketing and CRM moves.</span></p>
@@ -1357,6 +1361,7 @@
         <h3><span data-l="fr">Valider avant de déployer</span><span data-l="en">Validate before rolling out</span></h3>
         <p data-l="fr">Un entretien formule des hypothèses, il ne les prouve pas. Étape suivante&nbsp;: un questionnaire quantitatif auprès d'un échantillon plus large (échelles de mesure, NPS, questions de contrôle d'attention), puis un test A/B sur une seule piste, par exemple des échantillons offerts avec les commandes importantes. Le réachat se mesure face à un groupe témoin qui ne reçoit rien, et la taille des groupes se fixe par une analyse de puissance, pour qu'un effet réel ne passe pas inaperçu.</p>
         <p data-l="en">An interview generates hypotheses; it does not prove them. Next step: a quantitative survey with a larger sample (measurement scales, NPS, attention checks), then an A/B test on a single move, for example samples offered with larger orders. Repeat purchase is measured against a control group that receives nothing, and group size is set by a power analysis, so that a real effect does not go unnoticed.</p>
+      </div>
       </div>
     </div>
   </section>
@@ -1675,6 +1680,7 @@
   (function () {
     var tabs = [].slice.call(document.querySelectorAll('.deck-tabs [role="tab"]'));
     if (!tabs.length) return;
+    var extras = [].slice.call(document.querySelectorAll('[data-deck-for]'));
     var cards = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = 0, busy = false;
@@ -1690,6 +1696,10 @@
       function swap() {
         from.classList.remove('is-active', 'is-leaving');
         to.classList.add('is-active', 'is-entering');
+        extras.forEach(function (x) {
+          x.hidden = x.getAttribute('data-deck-for') !== to.id;
+          if (!x.hidden && !reduce) { x.classList.add('is-entering'); setTimeout(function () { x.classList.remove('is-entering'); }, 450); }
+        });
         var top = to.getBoundingClientRect().top + window.scrollY - 96;
         if (window.scrollY > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
         setTimeout(function () { to.classList.remove('is-entering'); }, 450);
@@ -1697,7 +1707,8 @@
       }
       if (reduce) { swap(); return; }
       from.classList.add('is-leaving');
-      setTimeout(swap, 300);
+      extras.forEach(function (x) { if (!x.hidden) x.classList.add('is-leaving'); });
+      setTimeout(function () { extras.forEach(function (x) { x.classList.remove('is-leaving'); }); swap(); }, 300);
     }
     tabs.forEach(function (t, n) {
       t.addEventListener('click', function () { select(n); });
