@@ -499,29 +499,9 @@
   .persona ul { margin: 0; padding-left: 18px; font-size: 14px; }
   .persona li { margin-bottom: 4px; }
   .persona blockquote { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.45; }
-  /* Personas as a small deck of cards: Claire in front, Hugo behind it.
-     The named buttons above swap them. Without JavaScript both cards
-     simply show one after the other. */
-  .persona-deck { max-width: 980px; margin: 0 auto; }
-  .deck-stack { position: relative; isolation: isolate; display: grid; gap: 24px; }
-  .deck-card { box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.06); }
-  .deck-back { display: none; }
-  html.js .deck-card:not(.is-active) { display: none; }
-  html.js .deck-back { display: block; position: absolute; inset: 0; z-index: -1; background: var(--white); border: 1px solid var(--rule); transform: translate(12px, 12px); }
-  html.js .deck-back::after { content: ""; position: absolute; inset: -1px; background: var(--white); border: 1px solid var(--rule); transform: translate(12px, 12px); z-index: -1; }
-  .deck-card.is-leaving { animation: card-out 0.3s ease forwards; }
-  .deck-card.is-entering { animation: card-in 0.45s ease both; }
-  @keyframes card-out { to { opacity: 0; transform: translate(-28px, -6px) rotate(-1.5deg); } }
-  @keyframes card-in { from { opacity: 0; transform: translate(12px, 12px); } to { opacity: 1; transform: none; } }
-  .deck-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; max-width: var(--measure); margin: 0 auto 36px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
-  html:not(.js) .deck-tabs { display: none; }
-  .deck-tabs button { padding: 4px 0; border: 0; border-bottom: 1px solid transparent; background: none; color: var(--ink-soft); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease; }
-  .deck-tabs button:hover { color: var(--ink); }
-  .deck-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
-  .deck-extra.is-leaving { opacity: 0; transition: opacity 0.3s ease; }
-  .deck-extra.is-entering { animation: panel-in 0.45s ease both; }
-  @media (prefers-reduced-motion: reduce) { .deck-card.is-leaving, .deck-card.is-entering, .deck-extra.is-leaving, .deck-extra.is-entering { animation: none; transition: none; } }
-  @media (max-width: 599px) { html.js .deck-back, html.js .deck-back::after { transform: translate(6px, 6px); } }
+  /* The persona: one detailed card */
+  .persona-single { max-width: 980px; margin: 0 auto; }
+  .persona-full { box-shadow: 0 1px 2px rgba(46, 50, 54, 0.05), 0 12px 32px rgba(46, 50, 54, 0.06); }
 
   /* Claire's detailed card, laid out by the course's customer categories:
      who she is, how she buys, what she looks for. */
@@ -1235,17 +1215,12 @@
     <div class="wrap">
       <div class="chapter-head reveal">
         <h2><span data-l="fr">Méthode&nbsp;: comprendre avant de convaincre</span><span data-l="en">Method: understand before you persuade</span></h2>
-        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Deux exemples illustratifs, deux générations de clients du luxe&nbsp;; aucun ne décrit un client réel.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. Two illustrative examples, two generations of luxury clients; neither describes a real client.</span></p>
-        <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon. Celui d'Hugo est un profil type de la génération Z, à valider de la même façon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample. Hugo's is a typical Gen Z profile, to be validated the same way.</span></p>
+        <p><span data-l="fr">Avant d'écrire une ligne, je dresse le portrait de la personne à qui l'on s'adresse&nbsp;: ce dont elle a besoin, ce qui l'agace, comment elle décide. Un exemple illustratif, qui ne décrit pas une cliente réelle.</span><span data-l="en">Before writing a line, I portray the person we are speaking to: what they need, what frustrates them, how they decide. An illustrative example, which does not describe a real client.</span></p>
+        <p><span data-l="fr">Le profil de Claire s'appuie sur un entretien qualitatif&nbsp;: un questionnaire de 30 questions ouvertes sur huit thèmes, de l'entrée dans le luxe aux freins à l'achat. Il décrit un type d'acheteuse, pas une personne, et ses conclusions restent des hypothèses à valider sur un plus large échantillon.</span><span data-l="en">Claire's profile draws on a qualitative interview: a questionnaire of 30 open questions across eight themes, from entry into luxury to barriers to purchase. It describes a type of buyer, not a person, and its findings remain hypotheses to validate with a larger sample.</span></p>
       </div>
 
-      <div class="persona-deck reveal">
-        <div class="deck-tabs" role="tablist" aria-label="Profils">
-          <button type="button" role="tab" id="persona-claire-tab" aria-controls="persona-claire" aria-selected="true">Claire Moreau</button>
-          <button type="button" role="tab" id="persona-hugo-tab" aria-controls="persona-hugo" aria-selected="false" tabindex="-1">Hugo Laurent</button>
-        </div>
-        <div class="deck-stack">
-        <article class="persona persona-full deck-card is-active" id="persona-claire" role="tabpanel" aria-labelledby="persona-claire-tab">
+      <div class="persona-single reveal">
+        <article class="persona persona-full" id="persona-claire">
           <p class="persona-kind"><span data-l="fr">Profil type issu d'un entretien qualitatif · luxe et beauté</span><span data-l="en">Typical profile from a qualitative interview · luxury and beauty</span></p>
           <h3>Claire Moreau</h3>
           <p class="role"><span data-l="fr">Consommatrice de luxe aspirationnelle</span><span data-l="en">Aspirational luxury consumer</span></p>
@@ -1317,32 +1292,7 @@
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
         </article>
 
-        <article class="persona deck-card" id="persona-hugo" role="tabpanel" aria-labelledby="persona-hugo-tab">
-          <p class="persona-kind"><span data-l="fr">Exemple illustratif · luxe, génération Z</span><span data-l="en">Illustrative example · luxury, Gen Z</span></p>
-          <h3>Hugo Laurent</h3>
-          <p class="role"><span data-l="fr">Jeune client du luxe</span><span data-l="en">Young luxury client</span></p>
-          <dl class="persona-meta">
-            <div><dt><span data-l="fr">Profil</span><span data-l="en">Profile</span></dt><dd><span data-l="fr">22 à 27 ans, étudiant ou jeune actif, en ville</span><span data-l="en">22 to 27, student or young professional, city-based</span></dd></div>
-            <div><dt><span data-l="fr">Catégorie</span><span data-l="en">Category</span></dt><dd><span data-l="fr">Parfum, petite maroquinerie, luxe de seconde main</span><span data-l="en">Fragrance, small leather goods, pre-owned luxury</span></dd></div>
-            <div><dt><span data-l="fr">Rôle d'achat</span><span data-l="en">Buying role</span></dt><dd><span data-l="fr">Achète rarement, mais choisit avec soin</span><span data-l="en">Buys rarely, but chooses carefully</span></dd></div>
-            <div><dt><span data-l="fr">Canal</span><span data-l="en">Channel</span></dt><dd><span data-l="fr">Réseaux sociaux, la boutique pour l'expérience, la revente en ligne</span><span data-l="en">Social media, the boutique for the experience, online resale</span></dd></div>
-          </dl>
-          <h4><span data-l="fr">Besoins</span><span data-l="en">Needs</span></h4>
-          <ul data-l="fr"><li>Des preuves concrètes&nbsp;: matières, savoir-faire, traçabilité</li><li>Des expériences à vivre et à partager&nbsp;: ateliers, événements, coulisses de la Maison</li></ul>
-          <ul data-l="en"><li>Concrete proof: materials, craftsmanship, traceability</li><li>Experiences to live and share: workshops, events, a look behind the scenes of the Maison</li></ul>
-          <h4>Frustrations</h4>
-          <ul data-l="fr"><li>Des promesses durables sans preuve</li><li>Des campagnes trop lisses pour sonner vrai</li><li>Un accueil en boutique qui juge sur l'apparence</li></ul>
-          <ul data-l="en"><li>Sustainability promises without proof</li><li>Campaigns too polished to feel real</li><li>Boutique staff who judge by appearance</li></ul>
-          <h4><span data-l="fr">Façon de décider</span><span data-l="en">How he decides</span></h4>
-          <ul data-l="fr"><li>Sur les valeurs et l'avis de ses pairs plus que sur le prestige&nbsp;: les créateurs qu'il suit, les avis en ligne, puis la boutique</li></ul>
-          <ul data-l="en"><li>On values and his peers' opinions more than prestige: the creators she follows, online reviews, then the boutique</li></ul>
-          <blockquote><span data-l="fr">Il n'achète pas un logo, il achète une histoire vraie, et il vérifie.</span><span data-l="en">He does not buy a logo; he buys a true story, and he checks.</span></blockquote>
-        </article>
-        <div class="deck-back" aria-hidden="true"></div>
-        </div>
       </div>
-      <!-- Claire's findings and next steps: shown with her card only -->
-      <div class="deck-extra" data-deck-for="persona-claire">
       <div class="implications reveal">
         <h3><span data-l="fr">Ce qu'une Maison pourrait en faire</span><span data-l="en">What a Maison could do with it</span></h3>
         <p class="implications-sub"><span data-l="fr">Sept constats tirés du profil de Claire, sept pistes de marketing et de CRM.</span><span data-l="en">Seven findings from Claire's profile, seven marketing and CRM moves.</span></p>
@@ -1361,7 +1311,6 @@
         <h3><span data-l="fr">Valider avant de déployer</span><span data-l="en">Validate before rolling out</span></h3>
         <p data-l="fr">Un entretien formule des hypothèses, il ne les prouve pas. Étape suivante&nbsp;: un questionnaire quantitatif auprès d'un échantillon plus large (échelles de mesure, NPS, questions de contrôle d'attention), puis un test A/B sur une seule piste, par exemple des échantillons offerts avec les commandes importantes. Le réachat se mesure face à un groupe témoin qui ne reçoit rien, et la taille des groupes se fixe par une analyse de puissance, pour qu'un effet réel ne passe pas inaperçu.</p>
         <p data-l="en">An interview generates hypotheses; it does not prove them. Next step: a quantitative survey with a larger sample (measurement scales, NPS, attention checks), then an A/B test on a single move, for example samples offered with larger orders. Repeat purchase is measured against a control group that receives nothing, and group size is set by a power analysis, so that a real effect does not go unnoticed.</p>
-      </div>
       </div>
     </div>
   </section>
@@ -1666,49 +1615,6 @@
       if (reduce) { swap(); return; }
       from.classList.add('is-leaving');
       setTimeout(swap, 220);
-    }
-    tabs.forEach(function (t, n) {
-      t.addEventListener('click', function () { select(n); });
-      t.addEventListener('keydown', function (e) {
-        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (d) { e.preventDefault(); select((current + d + tabs.length) % tabs.length, true); }
-      });
-    });
-  })();
-
-  // Personas deck: the named buttons bring a card to the front.
-  (function () {
-    var tabs = [].slice.call(document.querySelectorAll('.deck-tabs [role="tab"]'));
-    if (!tabs.length) return;
-    var extras = [].slice.call(document.querySelectorAll('[data-deck-for]'));
-    var cards = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var current = 0, busy = false;
-    function select(i, focus) {
-      if (i === current || busy) return;
-      var from = cards[current], to = cards[i];
-      tabs.forEach(function (t, n) {
-        t.setAttribute('aria-selected', n === i ? 'true' : 'false');
-        t.tabIndex = n === i ? 0 : -1;
-      });
-      if (focus) tabs[i].focus();
-      current = i; busy = true;
-      function swap() {
-        from.classList.remove('is-active', 'is-leaving');
-        to.classList.add('is-active', 'is-entering');
-        extras.forEach(function (x) {
-          x.hidden = x.getAttribute('data-deck-for') !== to.id;
-          if (!x.hidden && !reduce) { x.classList.add('is-entering'); setTimeout(function () { x.classList.remove('is-entering'); }, 450); }
-        });
-        var top = to.getBoundingClientRect().top + window.scrollY - 96;
-        if (window.scrollY > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
-        setTimeout(function () { to.classList.remove('is-entering'); }, 450);
-        busy = false;
-      }
-      if (reduce) { swap(); return; }
-      from.classList.add('is-leaving');
-      extras.forEach(function (x) { if (!x.hidden) x.classList.add('is-leaving'); });
-      setTimeout(function () { extras.forEach(function (x) { x.classList.remove('is-leaving'); }); swap(); }, 300);
     }
     tabs.forEach(function (t, n) {
       t.addEventListener('click', function () { select(n); });
