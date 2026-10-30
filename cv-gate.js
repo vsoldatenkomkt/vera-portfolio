@@ -19,12 +19,12 @@
   var TEXT = {
     en: {
       title: 'Download my CV',
-      intro: 'Just your name and email, then the download starts.',
+      intro: 'Your name, company and email, then the download starts.',
       introChoice: 'Choose the language, then the download starts.',
       cvLang: 'CV language',
       langFr: 'French',
       langEn: 'English',
-      name: 'Name',
+      name: 'Name / Company',
       email: 'Email',
       notice: 'Your details are only used to follow up on your interest in my profile. They stay private and are deleted on request.',
       submit: 'Download CV',
@@ -38,12 +38,12 @@
     },
     fr: {
       title: 'Télécharger mon CV',
-      intro: 'Votre nom et votre e-mail, puis le téléchargement démarre.',
+      intro: 'Votre nom, votre entreprise et votre e-mail, puis le téléchargement démarre.',
       introChoice: 'Choisissez la langue, puis le téléchargement démarre.',
       cvLang: 'Langue du CV',
       langFr: 'Français',
       langEn: 'Anglais',
-      name: 'Nom',
+      name: 'Nom / Entreprise',
       email: 'E-mail',
       notice: 'Vos coordonnées servent uniquement à donner suite à votre intérêt pour mon profil. Elles restent confidentielles et sont supprimées sur simple demande.',
       submit: 'Télécharger le CV',
@@ -57,12 +57,12 @@
     },
     ru: {
       title: 'Скачать моё резюме',
-      intro: 'Укажите имя и email, и загрузка начнётся.',
+      intro: 'Укажите имя, компанию и email, и загрузка начнётся.',
       introChoice: 'Выберите язык, и загрузка начнётся.',
       cvLang: 'Язык резюме',
       langFr: 'Французский',
       langEn: 'Английский',
-      name: 'Имя',
+      name: 'Имя / Компания',
       email: 'Email',
       notice: 'Ваши данные используются только для того, чтобы связаться с вами по поводу моей кандидатуры. Они не передаются третьим лицам и удаляются по запросу.',
       submit: 'Скачать резюме',
@@ -191,7 +191,7 @@
           '<label><input type="radio" name="cv-lang" value="fr"><span data-cv-lang-fr></span></label>' +
           '<label><input type="radio" name="cv-lang" value="en"><span data-cv-lang-en></span></label>' +
         '</fieldset>' +
-        '<label><span data-cv-name-label></span><input type="text" name="name" autocomplete="name" maxlength="100" required></label>' +
+        '<label><span data-cv-name-label></span><input type="text" name="name" autocomplete="off" maxlength="150" required></label>' +
         '<label><span data-cv-email-label></span><input type="email" name="email" autocomplete="email" maxlength="200" required></label>' +
         '<div class="cv-form-trap" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>' +
         '<p class="cv-form-error" role="alert" hidden></p>' +
