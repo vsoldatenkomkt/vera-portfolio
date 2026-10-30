@@ -522,6 +522,14 @@
   .journey li::before { content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
   .journey-step { display: block; font-weight: 500; }
   .drivers { margin: 0; padding-left: 22px; font-family: var(--serif); font-size: 1.1rem; line-height: 1.5; }
+  /* Persona: short card by default, full profile behind a "read more" toggle */
+  .icp-more > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+  .icp-more > summary::-webkit-details-marker { display: none; }
+  .icp-more .icp-arrow { display: inline-block; transition: transform 0.25s ease; }
+  .icp-more[open] .icp-arrow { transform: rotate(180deg); }
+  .icp-more .icp-close-label, .icp-more[open] .icp-open-label { display: none; }
+  .icp-more[open] .icp-close-label { display: inline; }
+  .icp-more > summary:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
   .persona-note { margin: 6px 0 0; font-size: 13px; color: var(--ink-soft); }
   .scale { margin-bottom: 12px; max-width: 360px; }
   .scale:last-child { margin-bottom: 0; }
@@ -1224,6 +1232,8 @@
           <p class="role"><span data-l="fr">Consommatrice de luxe aspirationnelle</span><span data-l="en">Aspirational luxury consumer</span></p>
           <p class="persona-bio" data-l="fr">Claire utilise la même Maison depuis son adolescence, quand une proche la lui a fait découvrir. Elle achète en ligne, surtout quand un produit vient à manquer ou qu'une offre arrive, et lit la composition et les avis avant de commander. Chaque achat est à la fois une récompense et une habitude, et elle se souvient des marques qui la remercient de sa fidélité. Elle n'a aucune patience pour un site qui la déconnecte en plein paiement.</p>
           <p class="persona-bio" data-l="en">Claire has used the same Maison since her teens, when a relative introduced her to it. She buys online, mostly when a product runs low or an offer arrives, and reads the ingredients and reviews before ordering. Each purchase is both a reward and a habit, and she remembers the brands that thank her for her loyalty. She has no patience for a website that logs her out mid-checkout.</p>
+          <details class="icp-more">
+            <summary class="icp-toggle"><span class="icp-open-label"><span data-l="fr">Lire le profil complet</span><span data-l="en">Read the full profile</span></span><span class="icp-close-label"><span data-l="fr">Réduire le profil</span><span data-l="en">Collapse the profile</span></span><span class="icp-arrow" aria-hidden="true">↓</span></summary>
           <section class="icp-group">
             <h4 class="icp-group-title"><span data-l="fr">Qui elle est</span><span data-l="en">Who she is</span></h4>
             <dl class="icp-rows">
@@ -1286,8 +1296,9 @@
               <ul data-l="en"><li>More disposable income</li><li>Exclusivity that leads to something she wants: a bag, a piece of jewellery or an accessory, for the same budget</li></ul>
             </section>
           </div>
-
           <blockquote><span data-l="fr">Chaque achat est à la fois une récompense et une habitude. Elle se souvient des marques qui la remercient de sa fidélité.</span><span data-l="en">Each purchase is both a reward and a habit. She remembers the brands that thank her for her loyalty.</span></blockquote>
+          </details>
+
         </article>
 
       </div>
