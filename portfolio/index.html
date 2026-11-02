@@ -240,20 +240,29 @@
 </dialog>
 
 <script>
+  // Arriving from the B2C page (?from=b2c): the way back leads there,
+  // and the language follows that page's choice, English by default.
+  var FROM_B2C = /[?&]from=b2c\b/.test(location.search);
+  if (FROM_B2C) {
+    document.querySelectorAll('a[href="../#realisations"]').forEach(function (a) { a.setAttribute('href', '../b2c#realisations'); });
+    document.querySelectorAll('a[href="../"]').forEach(function (a) { a.setAttribute('href', '../b2c'); });
+  }
+
   // Language: shares the choice made on the home page.
   (function () {
+    var KEY = FROM_B2C ? 'omni-lang' : 'site-lang';
     var TITLES = { fr: 'Vera Soldatenko · Portfolio de travaux', en: 'Vera Soldatenko · Work portfolio' };
     var buttons = document.querySelectorAll('[data-lang-btn]');
     function setLang(lang) {
       document.documentElement.setAttribute('lang', lang);
       document.title = TITLES[lang];
       buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang-btn') === lang ? 'true' : 'false'); });
-      try { localStorage.setItem('site-lang', lang); } catch (e) {}
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
     }
     buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-btn')); }); });
     var saved = null;
-    try { saved = localStorage.getItem('site-lang'); } catch (e) {}
-    setLang(saved === 'en' ? 'en' : 'fr');
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    setLang(saved === 'en' || saved === 'fr' ? saved : (FROM_B2C ? 'en' : 'fr'));
   })();
 
   // Images open full size on the page; without JavaScript the link
