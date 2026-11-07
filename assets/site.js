@@ -341,7 +341,7 @@ ariaLang(); document.querySelectorAll('[data-lang-btn]').forEach(b => b.addEvent
 
 // ---------- "See the proof" links: open the right Work chapter (and example), then glide to it ----------
 const smooth = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-document.querySelectorAll('.see-link[data-tab]').forEach(a => a.addEventListener('click', e => {
+document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
   const tab = document.getElementById('skTab' + a.dataset.tab); if (tab) tab.click();
   if (a.dataset.ex) { const panel = document.getElementById('skPanel' + a.dataset.tab), pick = panel && panel.querySelectorAll('.sk-pick')[+a.dataset.ex]; if (pick) pick.click(); }

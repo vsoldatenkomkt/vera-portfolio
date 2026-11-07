@@ -401,19 +401,24 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 /* ---------- My skills: filter by type, count follows, each skill links to its proof ---------- */
 .skills{padding:var(--s-10) 0}
 @media (min-width:768px){.skills{padding:var(--s-11) 0}}
-.sx-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3) var(--s-5);margin:var(--s-6) 0 var(--s-7)}
+.sx-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3) var(--s-5);margin:var(--s-6) 0 var(--s-5)}
 .sx-count{margin:0;font:600 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sx-count b{font:800 28px/1 var(--f-display);letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;margin-right:var(--s-1)}
-.sx-grid{margin:0;padding:0;list-style:none;display:grid;gap:var(--s-7) var(--s-6)}
-@media (min-width:640px){.sx-grid{grid-template-columns:1fr 1fr}}
-@media (min-width:1024px){.sx-grid{grid-template-columns:repeat(3,1fr)}}
-.sx-item{position:relative;display:flex;flex-direction:column;align-items:flex-start}
+.sx-grid{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s-3)}
+.sx-item{position:relative;display:flex}
 .sx-item[hidden]{display:none}
 .sx-item::before{content:none}
 .js-sk .sx-item:not([hidden]){animation:jmIn .35s var(--ease)}
-.sx-type{margin:0 0 var(--s-2);font:600 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.sx-name{margin:0;font:800 clamp(19px,1.6vw,22px)/1.2 var(--f-display);letter-spacing:-.02em}
-.sx-proof{margin:var(--s-2) 0 var(--s-1);max-width:46ch;font:400 16px/1.6 var(--f-body)}
+/* each skill is one compact tile; the whole tile opens its example on the page */
+.sx-link{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;gap:var(--s-2);width:100%;min-height:88px;padding:var(--s-4) var(--s-7) var(--s-4) var(--s-4);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(26,21,17,.08);transition:background .2s var(--ease),box-shadow .2s var(--ease),transform .2s var(--ease)}
+.sx-link:hover{background:#fff;box-shadow:0 0 0 1px rgba(26,21,17,.12),0 10px 20px -14px rgba(26,21,17,.45);transform:translateY(-2px)}
+.sx-link:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+.sx-link .tp-arr{position:absolute;right:var(--s-4);top:var(--s-4);color:var(--muted);transition:transform .2s var(--ease),color .2s var(--ease)}
+.sx-link:hover .tp-arr{transform:translateX(4px);color:var(--ink)}
+.sx-type{font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sx-name{font:700 17px/1.3 var(--f-display);letter-spacing:-.01em;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.sx-link,.sx-link .tp-arr{transition:none}.sx-link:hover{transform:none}}
+@media (max-width:639px){.sx-grid{grid-template-columns:1fr 1fr;gap:var(--s-2)}.sx-link{min-height:80px;padding:var(--s-3) var(--s-6) var(--s-3) var(--s-3)}.sx-link .tp-arr{right:var(--s-3);top:var(--s-3)}.sx-name{font-size:15px}}
 
 /* ---------- Marketing stack: a wall of tool logos, ink at rest, brand colour on hover ---------- */
 .stack{padding:var(--s-10) 0}
@@ -584,9 +589,10 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 
 /* ---------- Section colours: the pastels live in soft section backgrounds, alternating with the plain page, instead of dots ---------- */
 .path{background:color-mix(in srgb,#9FCBFF 24%,#fff)}
-.skills{background:color-mix(in srgb,#CDB9FF 24%,#fff)}
+.work{background:color-mix(in srgb,#CDB9FF 24%,#fff)}
 .refs{background:color-mix(in srgb,#FFB8D6 22%,#fff)}
 
 .lo-vol{display:grid;gap:var(--s-2);margin:var(--s-3) 0 0;padding:0;list-style:none;max-width:68ch}
 .lo-vol b{font-weight:600}
 .lo-sub{margin:var(--s-4) 0 0;font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.uc{display:inline-flex;align-items:center;vertical-align:middle;margin-left:var(--s-3);padding:6px var(--s-3);border-radius:999px;background:rgba(255,255,255,.7);box-shadow:0 0 0 1px rgba(26,21,17,.1);font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;position:relative;top:-.15em}
