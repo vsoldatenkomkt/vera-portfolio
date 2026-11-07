@@ -29,3 +29,6 @@ Master Work/
 # Original château photos: they contain GPS location. Only stripped,
 # resized copies in img/ are published.
 Chateau/
+
+# Private fact sources for the portfolio rebuild (never published)
+_private/
