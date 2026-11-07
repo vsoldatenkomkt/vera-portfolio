@@ -1,0 +1,66 @@
+/* hero magazine cover "Vaerra": her portrait, masthead tucked behind the hair, cover lines from her real achievements.
+   Colours are taken from the photo: concrete wall, black blazer, ivory light, lip rose. Sizes scale with the cover (cqw). */
+/* as big as the first screen allows: up to 480px wide, never taller than the space under the header */
+.cv-wrap{width:min(480px,100%,calc((100svh - var(--head-h) - 128px - 60px) * .75));min-width:min(360px,100%);margin:0}
+@media (min-width:768px){.cv-wrap{justify-self:end}}
+@media (max-width:767px){.cv-wrap{justify-self:center}}
+.cv-flip{--cv-ivory:#F6F0E8;--cv-rose:#E6A99B;--cv-pop:#D23F5F;--cv-pop-deep:#B3264A;--cv-ink:#1A1511;position:relative;perspective:1800px;cursor:pointer}
+.cv{
+  position:relative;aspect-ratio:800/1067;overflow:hidden;border-radius:4px;container-type:inline-size;background:#A38D75;color:var(--cv-ink);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 34px 70px -28px rgba(26,21,17,.45),0 10px 24px -12px rgba(26,21,17,.2)}
+.cv p{margin:0}
+.cv-photo,.cv-fg{position:absolute;left:0;top:0;width:100%;height:auto;display:block}
+.cv-photo{height:100%;object-fit:cover}
+.cv-fg{z-index:2;pointer-events:none}
+
+/* masthead: behind the head (photo < masthead < hair) */
+.cv-mast{position:absolute;z-index:1;left:3%;top:1.6%;width:94%;height:auto;overflow:visible}
+.cv-mast text{font:700 104px/1 var(--f-editorial);fill:var(--cv-ivory);opacity:.94}
+
+/* issue line: small, regular weight, softened ink, like the dateline on a real cover */
+.cv-issue{position:absolute;z-index:3;left:4.5%;top:21%;display:grid;gap:.5em;font:400 max(7.5px,1.8cqw)/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:rgba(26,21,17,.72)}
+
+/* 4+ years: centred in the open wall to the right of her face (between masthead and shoulder), level with her mouth */
+.cv-stat{position:absolute;z-index:3;right:4.5%;top:37%;width:19%;text-align:right}
+.cv-big{font:700 13cqw/.9 var(--f-editorial);font-variation-settings:"opsz" 6;letter-spacing:-.02em}
+.cv-caps{font:700 max(8px,2.2cqw)/1.35 var(--f-body);letter-spacing:.16em;text-transform:uppercase}
+.cv-stat .cv-caps{margin-top:.6em}
+/* the one pop of colour: raspberry rose from her lips. Deep tone on the wall (3:1), lighter tone on the black blazer; heavier optical size so the hairlines survive; caption in ink */
+.cv-stat{color:var(--cv-ink)}
+.cv-stat .cv-big{color:var(--cv-pop-deep)}
+
+
+/* the foot sits on the black blazer: ivory type, the small connecting word in lip rose */
+.cv-foot{position:absolute;z-index:3;left:5%;bottom:4.5%;width:70%;color:var(--cv-ivory)}
+.cv-name{font:400 5.2cqw/1 var(--f-editorial);letter-spacing:.01em}
+.cv-head{margin-top:.12em !important;font:400 13.4cqw/.86 var(--f-editorial);letter-spacing:-.035em}
+.cv-head i{font-style:italic;font-size:.62em;letter-spacing:0;color:var(--cv-pop)}
+.cv-deg{margin-top:.9em !important;max-width:94%;font:400 max(8px,2.3cqw)/1.4 var(--f-body);opacity:.86}
+.cv-tag{margin-top:.8em !important;font:700 max(8px,2.4cqw)/1 var(--f-body);letter-spacing:.24em;text-transform:uppercase}
+
+/* flip: tap the cover (or the button) to turn the page; the back is an editor's note with her real photo */
+.cv-flip>.cv{backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.cv-back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;flex-direction:column;padding:6%;background:var(--cv-ivory)}
+.cv-flip.flipped .cv-front{transform:rotateY(-180deg)}
+.cv-flip.flipped .cv-back{transform:rotateY(0)}
+.cvb-kick{padding-bottom:2.4cqw;border-bottom:1px solid rgba(26,21,17,.18);font:700 max(9px,2.3cqw)/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase}
+/* the photo takes whatever height the text leaves, so the page is filled with even margins */
+.cvb-photo{display:block;flex:1 1 0;min-height:0;width:100%;height:0;object-fit:cover;object-position:50% 35%;margin-top:4cqw;border-radius:2px}
+.cvb-hello{margin-top:5cqw !important;font:italic 400 7cqw/1.05 var(--f-editorial);letter-spacing:-.01em}
+.cvb-status{display:flex;gap:.6em;align-items:baseline;margin-top:2.4cqw !important;font:400 max(11px,2.7cqw)/1.45 var(--f-body);color:var(--muted)}
+.cvb-status::before{content:"";flex:none;width:.5em;height:.5em;border-radius:50%;background:var(--cv-pop-deep);transform:translateY(-.05em)}
+.cvb-text{margin-top:3.2cqw !important;font:400 max(12px,3.1cqw)/1.5 var(--f-body);color:#3E3F44}
+.cv-cap{display:flex;justify-content:center;margin-top:var(--s-4)}
+.cv-turn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-3);font:400 15px/1 var(--f-body);color:var(--muted);transition:color .2s var(--ease)}
+.cv-turn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.cv-turn:hover{color:var(--ink)}.cv-turn:hover svg{transform:rotate(-90deg)}
+.cv-turn:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){.cv-flip>.cv,.cv-turn svg{transition:none}}
+
+/* hover: the bottom-right corner of the cover lifts like a page about to turn (mouse only) */
+.cv-front::after{content:"";position:absolute;z-index:5;right:0;bottom:0;width:0;height:0;pointer-events:none;
+  background:linear-gradient(to top left,var(--surface) 50%,#E4DACD 50%,#F6F0E8 78%,#FFFFFF 100%);
+  box-shadow:-3px -3px 9px -2px rgba(26,21,17,.38);border-top-left-radius:2px;
+  transition:width .35s cubic-bezier(.2,.7,.2,1),height .35s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover) and (pointer:fine){.cv-flip:not(.flipped):hover .cv-front::after{width:11cqw;height:11cqw}}
+@media (prefers-reduced-motion:reduce){.cv-front::after{transition:none}}
