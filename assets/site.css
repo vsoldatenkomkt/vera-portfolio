@@ -799,3 +799,23 @@ html:not(.js-cam) .cam-wrap{display:none}
 .js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:jmIn .35s var(--ease)}
 @media (min-width:960px){.js-sk .sk-panel>:first-child{position:sticky;top:calc(var(--head-h) + var(--s-5))}}
 @media (prefers-reduced-motion:reduce){.js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}}
+/* hero: "See my journey" + "Download my CV" side by side (the CV link opens the download form, which asks the language) */
+.journey{flex-wrap:wrap;gap:var(--s-3)}
+.journey .tp-dl:hover .tp-arr{transform:translateY(3px)}
+/* My skills: languages and what I'm learning now, as plain labels under the frameworks */
+.sx-more{display:flex;flex-wrap:wrap;gap:0 var(--s-8);margin-top:var(--s-2)}
+.sx-tag{display:inline-flex;align-items:center;min-height:36px;padding:0 var(--s-3);border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.12);font:500 14px/1.2 var(--f-body);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.journey .tp-dl:hover .tp-arr{transform:none}}
+/* "What happened next?" stays put: on wide screens every story shares one cell (the box keeps the height of the
+   longest) and the button sits top-right; on phones the button sits above the story */
+.lo-next{order:-1}
+@media (min-width:900px){
+  .lo-next{order:0;align-self:start;justify-self:end;margin-top:var(--s-5)}
+  .lo-cards{display:grid}
+  .lo-cards>*{grid-area:1/1}
+  .lo-card[hidden]{display:block;visibility:hidden}
+}
+/* volunteering: the row label already says it, so the stars carry no label of their own (kept for screen readers);
+   in the phone list the name sits in the text column */
+@media (min-width:1000px){.tl-vols>.tl-txt{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}
+@media (max-width:999px){.tl-vols .tl-name{grid-column:2}}

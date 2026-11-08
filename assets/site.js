@@ -370,7 +370,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
 // ---------- career timeline (year grid): click a bar to fade in its story; "What happened next?" walks through them in order ----------
 (function () {
   const sec = document.getElementById('resume'), tl = document.getElementById('tl'); if (!tl) return;
-  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], order = items.map(b => +b.dataset.i), hint = document.getElementById('loHint'), next = document.getElementById('loNext');
+  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], order = [...new Set(items.filter(b => !b.hasAttribute('data-side')).map(b => +b.dataset.i))], hint = document.getElementById('loHint'), next = document.getElementById('loNext');
   const cards = [...sec.querySelectorAll('.lo-card')];
   // each name goes inside its bar if it fits, beside the bar if there is room before the next entry, otherwise beneath
   const fit = () => {
@@ -390,7 +390,10 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
   new ResizeObserver(fit).observe(tl); fit();
   document.addEventListener('click', e => { if (e.target.closest('[data-lang-btn]')) setTimeout(fit, 0); });
   let cur = -1;
-  const label = () => { const k = order.indexOf(cur); next.dataset.mode = k < 0 ? 'start' : (k === order.length - 1 ? 'again' : 'next'); };
+  // side stories (volunteering, IYKYK) open on click but are not steps of the walk; "next" from one goes to the first step that starts after it
+  const cs = i => +items.find(b => +b.dataset.i === i).style.getPropertyValue('--cs');
+  const after = i => { const k = order.findIndex(j => cs(j) > cs(i)); return k < 0 ? 0 : k; };
+  const label = () => { const k = order.indexOf(cur); next.dataset.mode = cur < 0 ? 'start' : (k === order.length - 1 ? 'again' : 'next'); };
   const open = i => {
     cur = i;
     items.forEach(b => b.setAttribute('aria-expanded', +b.dataset.i === i));
@@ -398,7 +401,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
     hint.hidden = i >= 0; label();
   };
   items.forEach(b => b.addEventListener('click', () => open(+b.dataset.i)));
-  next.addEventListener('click', () => { const k = order.indexOf(cur); open(order[k < 0 || k === order.length - 1 ? 0 : k + 1]); });
+  next.addEventListener('click', () => { const k = order.indexOf(cur); open(order[cur < 0 ? 0 : k < 0 ? after(cur) : k === order.length - 1 ? 0 : k + 1]); });
   label();
 })();
 // ---------- references: kept in English; the link swaps in the French translation and back ----------
