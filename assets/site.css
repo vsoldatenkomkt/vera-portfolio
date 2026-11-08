@@ -797,7 +797,7 @@ html:not(.js-cam) .cam-wrap{display:none}
    text column stays close to the height of the slides; on wide screens the visual stays in view while you read */
 .js-sk .sk-rail .sk-item:not(.on)>:not(.sk-kick):not(.sk-h){display:none}
 .js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:jmIn .35s var(--ease)}
-@media (min-width:960px){.js-sk .sk-panel>:first-child{position:sticky;top:calc(var(--head-h) + var(--s-5))}}
+
 @media (prefers-reduced-motion:reduce){.js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}}
 /* hero: "See my journey" + "Download my CV" side by side (the CV link opens the download form, which asks the language) */
 .journey{flex-wrap:wrap;gap:var(--s-3)}
@@ -954,3 +954,21 @@ html:not(.js-cam) .cam-wrap{display:none}
   .jmap.expanded{gap:var(--s-4)}
 }
 @media (max-width:599px){.jmap.expanded .jm-map{max-width:340px;justify-self:center;width:100%}}
+
+/* skills: plain cards, not links */
+.sx-link{cursor:default;padding-right:var(--s-4);min-height:0}
+.sx-link:hover{background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(26,21,17,.08);transform:none}
+.sx-link:active{transform:none}
+@media (max-width:639px){.sx-link{padding-right:var(--s-3)}}
+
+/* ---------- footer and cookies notice (live site) ---------- */
+.ft{padding:var(--s-6) 0 var(--s-8);border-top:1px solid var(--line);font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ft-in{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--s-2) var(--s-6)}
+.ft a,.ft-link{all:unset;cursor:pointer;display:inline-flex;align-items:center;min-height:44px;color:inherit}
+.ft a:hover,.ft-link:hover{color:var(--ink)}
+.ft a:focus-visible,.ft-link:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:4px}
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;max-width:560px;margin:0 auto;padding:var(--s-5);border-radius:16px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.08),0 16px 40px -16px rgba(26,21,17,.3);font-size:14px;line-height:1.55}
+.consent[hidden]{display:none}
+.consent p{margin:0 0 var(--s-4)}
+.consent-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:var(--s-3)}
+.consent .tp{cursor:pointer;border:0}
