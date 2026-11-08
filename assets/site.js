@@ -320,7 +320,9 @@ document.querySelectorAll('.sk-deck').forEach(d => {
 document.querySelectorAll('[aria-haspopup="dialog"][aria-controls]').forEach(b => {
   const dlg = document.getElementById(b.getAttribute('aria-controls'));
   if (!dlg || !dlg.showModal) return;
-  b.addEventListener('click', () => { dlg._opener = b; dlg.showModal(); });
+  // the dialog grows out of the button that opened it
+  b.addEventListener('click', () => { dlg._opener = b; dlg.showModal(); const r = dlg.getBoundingClientRect(), o = b.getBoundingClientRect();
+    dlg.style.transformOrigin = (o.left + o.width / 2 - r.left) + 'px ' + (o.top + o.height / 2 - r.top) + 'px'; });
   dlg.querySelector('.dlg-close').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => { if (dlg._opener === b) b.focus(); });
@@ -351,11 +353,17 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
 (function () {
   const sec = document.getElementById('skills'); if (!sec) return;
   const fs = [...sec.querySelectorAll('.sx-f')], items = [...sec.querySelectorAll('.sx-item')], n = sec.querySelector('.sx-count b');
+  // tiles come in one after another (30ms apart): first when the grid scrolls into view, then after each filter
+  const grid = sec.querySelector('.sx-grid');
+  const order = () => { let k = 0; items.forEach(it => { if (!it.hidden) it.style.setProperty('--k', k++); }); };
+  order();
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { grid.classList.add('sx-in'); io.disconnect(); } }, { threshold: 0 });
+  io.observe(grid);
   fs.forEach(f => f.addEventListener('click', () => {
     const k = f.dataset.t; let c = 0;
     fs.forEach(g => g.setAttribute('aria-pressed', g === f));
     items.forEach(it => { const on = k === 'all' || it.dataset.t === k; it.hidden = !on; c += on; });
-    n.textContent = c;
+    n.textContent = c; order();
   }));
 })();
 // ---------- career timeline (year grid): click a bar to fade in its story; "What happened next?" walks through them in order ----------
@@ -412,4 +420,60 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
     labs.forEach((l, m) => l.classList.toggle('on', m === i));
   };
   addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
+})();
+
+// ---------- marketing stack: "What's in my bag" ----------
+(function(){
+  const st=document.getElementById('bgStage'); if(!st) return;
+  const btn=document.getElementById('bgOpen'), its=[...st.querySelectorAll('.bg-thing,.bg-it')], bag=st.querySelector('.bg-bag');
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // every tool is aimed at the mouth of the bag (the tools' final places are already laid out, just not shown)
+  const aim=()=>{const b=bag.getBoundingClientRect(),mx=b.left+b.width/2,my=b.top+b.height*.5;
+    its.forEach((it,i)=>{const r=(it.querySelector('.bg-tile')||it).getBoundingClientRect();
+      it.style.setProperty('--dx',(mx-(r.left+r.width/2))+'px');it.style.setProperty('--dy',(my-(r.top+r.height/2))+'px');
+      it.style.setProperty('--k',i);it.style.setProperty('--j',its.length-1-i);});};
+  let timer=0;
+  btn.addEventListener('click',()=>{
+    clearTimeout(timer);
+    const open=btn.getAttribute('aria-expanded')!=='true';
+    btn.setAttribute('aria-expanded',open);
+    if(open){st.classList.remove('closing');aim();st.classList.add('open');return;}
+    if(still){st.classList.remove('open');return;}
+    aim();st.classList.add('closing');st.classList.remove('open');
+    // the drawer folds up once the last tool is back in the bag
+    st.querySelector('.bg-drawer').style.gridTemplateRows='1fr';
+    timer=setTimeout(()=>{st.querySelectorAll('.bg-thing').forEach(t=>{t.classList.remove('settle');t.style.translate='';t.style.zIndex=t.dataset.z||'';});st.classList.remove('closing');st.querySelector('.bg-drawer').style.gridTemplateRows='';},560+its.length*30);
+  });
+  // drag the things around once they are out of the bag
+  const sec=st.closest('section'), things=[...st.querySelectorAll('.bg-thing')]; let z=10;
+  things.forEach(t=>{
+    t.dataset.z=t.style.zIndex;
+    let sx=0,sy=0,ox=0,oy=0,id=null;
+    const pos=()=>{const m=(t.style.translate||'0px 0px').split(' ');return [parseFloat(m[0])||0,parseFloat(m[1])||0];};
+    t.addEventListener('pointerdown',e=>{
+      if(!st.classList.contains('open'))return;
+      id=e.pointerId;t.setPointerCapture(id);[ox,oy]=pos();sx=e.clientX;sy=e.clientY;
+      t.classList.remove('settle');t.classList.add('held');t.style.zIndex=++z;e.preventDefault();
+    });
+    t.addEventListener('pointermove',e=>{
+      if(e.pointerId!==id)return;
+      let nx=ox+e.clientX-sx, ny=oy+e.clientY-sy;
+      // past the edge of the section it resists, like a rubber band
+      const s=sec.getBoundingClientRect(), r=t.getBoundingClientRect(), cx=nx-pos()[0], cy=ny-pos()[1];
+      const over=(lo,hi,a,b)=>a<lo?(a-lo):b>hi?(b-hi):0;
+      const dx=over(s.left,s.right,r.left+cx,r.right+cx), dy=over(s.top,s.bottom,r.top+cy,r.bottom+cy);
+      nx-=dx*.65; ny-=dy*.65;
+      t.style.translate=nx+'px '+ny+'px';
+    });
+    const drop=e=>{
+      if(e.pointerId!==id)return; id=null; t.classList.remove('held');
+      const s=sec.getBoundingClientRect(), r=t.getBoundingClientRect(); let [nx,ny]=pos();
+      if(r.left<s.left)nx+=s.left-r.left; if(r.right>s.right)nx-=r.right-s.right;
+      if(r.top<s.top)ny+=s.top-r.top; if(r.bottom>s.bottom)ny-=r.bottom-s.bottom;
+      t.classList.add('settle'); t.style.translate=nx+'px '+ny+'px';
+    };
+    t.addEventListener('pointerup',drop); t.addEventListener('pointercancel',drop);
+  });
+  const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){st.classList.add('hello');io.disconnect();}},{threshold:.6});
+  io.observe(bag);
 })();
