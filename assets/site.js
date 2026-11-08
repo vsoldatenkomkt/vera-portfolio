@@ -131,7 +131,7 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
     { key: 'by', iso: '112', pin: '#E0559A', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
     { key: 'ca', iso: '124', pin: '#3C8DEB', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
     { key: 'it', iso: '380', pin: '#8B6CF0', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
-    { key: 'fr', iso: '250', pin: '#E0B400', places: [{ at: [0.2, 45.4], en: 'Nouvelle-Aquitaine', fr: 'Nouvelle-Aquitaine', side: 'l' }] }
+    { key: 'fr', iso: '250', pin: '#E0B400', places: [{ at: [0.2, 45.4], en: 'France', fr: 'France', side: 'l' }] }
   ];
   // places visited on trips: small open dots, name on hover, listed under the chapters
   // "Hidden hobby": cities she has travelled to, shown on their own when the button is pressed
@@ -154,7 +154,9 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
       const cnt = document.getElementById('jmCount');
       if (on && cnt && !reduce) { const end = 19, t0 = performance.now(); const tick = t => { const k = Math.min(1, (t - t0) / 900); cnt.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); }; cnt.textContent = '0'; requestAnimationFrame(tick); }
     };
-    if (document.startViewTransition && !reduce) document.startViewTransition(swap); else swap();
+    // phones: after the switch, bring the whole block (line, city list and map) into view
+    const frame = () => { if (matchMedia('(max-width:959px)').matches) jmap.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' }); };
+    if (document.startViewTransition && !reduce) document.startViewTransition(swap).updateCallbackDone.then(frame); else { swap(); frame(); }
   });
   let step = 0, routes = [], pins = [], userPicked = false, timer = 0, started = reduce;
   function show(i, fromUser) {
@@ -190,7 +192,7 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
       land.append(el('path', { d: path(f), class: 'jm-land ' + (s ? s.key : '') }));
     });
     svg.append(land);
-    // route: every place in order, Belarus -> Ottawa -> Toronto -> Milan -> Nouvelle-Aquitaine
+    // route: every place in order, Belarus -> Ottawa -> Toronto -> Milan -> France
     const seq = STOPS.flatMap((s, n) => s.places.map(p => ({ ...p, stop: n })));
     for (let n = 1; n < seq.length; n++) {
       const r = el('path', { d: path({ type: 'LineString', coordinates: [seq[n - 1].at, seq[n].at] }), class: 'jm-route' });
