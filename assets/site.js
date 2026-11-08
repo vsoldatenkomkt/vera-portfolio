@@ -425,7 +425,7 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
 // ---------- marketing stack: "What's in my bag" ----------
 (function(){
   const st=document.getElementById('bgStage'); if(!st) return;
-  const btn=document.getElementById('bgOpen'), its=[...st.querySelectorAll('.bg-thing,.bg-it')], bag=st.querySelector('.bg-bag');
+  const btn=document.getElementById('bgOpen'), its=[...st.querySelectorAll('.bg-thing,.bg-hob,.bg-it')], bag=st.querySelector('.bg-bag');
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   // every tool is aimed at the mouth of the bag (the tools' final places are already laid out, just not shown)
   const aim=()=>{const b=bag.getBoundingClientRect(),mx=b.left+b.width/2,my=b.top+b.height*.5;
@@ -476,4 +476,15 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
   });
   const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){st.classList.add('hello');io.disconnect();}},{threshold:.6});
   io.observe(bag);
+})();
+
+// ---------- "What's in my bag": the hidden-hobby pill drops a sticky note on the bag; the pill, a click on the note or Esc takes it off ----------
+(function () {
+  const b = document.getElementById('bgHobby'), n = document.getElementById('bgNote'); if (!b) return;
+  const set = on => { n.classList.toggle('on', on); b.setAttribute('aria-pressed', on); };
+  b.addEventListener('click', () => set(!n.classList.contains('on')));
+  n.addEventListener('click', () => set(false));
+  // closing the bag puts the note away too
+  document.getElementById('bgOpen').addEventListener('click', e => { if (e.currentTarget.getAttribute('aria-expanded') !== 'true') set(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && n.classList.contains('on')) set(false); });
 })();

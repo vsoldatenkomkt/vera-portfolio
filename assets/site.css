@@ -93,8 +93,10 @@ section[id]{scroll-margin-top:var(--head-h)}
 .jm-step:focus-visible,.sk-tab:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
 .jm-panel{margin-top:var(--s-5)}
 .jm-cities{margin:var(--s-3) 0 0;max-width:38ch;font:400 16px/1.6 var(--f-body);color:var(--muted)}
-.jm-hobby{margin-top:var(--s-6);font:inherit;font-size:15px;border:0;cursor:pointer}
-.jm-hobby-ico{font-size:16px;line-height:1}
+.tp.jm-hobby{position:relative;margin-top:var(--s-6);min-height:32px;padding:0 var(--s-3);gap:var(--s-2);font:inherit;font-size:13px;color:var(--muted);border:0;cursor:pointer}
+.jm-hobby::after{content:"";position:absolute;inset:-6px -2px}
+.jm-hobby:hover,.jm-hobby[aria-pressed="true"]{color:var(--ink)}
+.jm-hobby-ico{font-size:13px;line-height:1}
 .jm-hobby[aria-pressed="true"]{font-weight:700}
 .js-jm .jm-story[hidden],.js-jm .jm-travel[hidden]{display:none}
 /* expanded (hidden hobby): the map takes the full width under a header row (travel line on the left, back button on the right) */
@@ -633,8 +635,7 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 .bg-inner{min-height:0}
 .bg-stage.open .bg-drawer{grid-template-rows:1fr}
 .bg-grid{position:relative;z-index:2;margin:0;padding:var(--s-6) 0 0;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-4) var(--s-3)}
-.bg-grid{padding-top:var(--s-9)}
-@media (max-width:767px){.bg-grid{padding-top:var(--s-8)}}
+.bg-grid{padding-top:var(--s-5)}
 .bg-it{width:84px;opacity:0;visibility:hidden;pointer-events:none}
 .bg-stage.open .bg-it{opacity:1;visibility:visible;pointer-events:auto}
 .bg-x,.bg-y{display:block}
@@ -662,3 +663,18 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 @keyframes bgYin{70%{opacity:1}to{transform:translateY(var(--dy,0)) scale(.3);opacity:0}}
 @keyframes bgHop{40%{transform:translateY(-10px)}70%{transform:translateY(0)}85%{transform:translateY(-3px)}}
 @media (max-width:479px){.bg-it{width:76px}.bg-grid{gap:var(--s-3) var(--s-2)}}
+
+/* "What's in my bag": the hidden-hobby pill under the bag drops a sticky note on top of the bag */
+.bg-hob{position:relative;z-index:2;padding-top:var(--s-4);opacity:0;visibility:hidden;pointer-events:none}
+.bg-hob .bg-x,.bg-hob .bg-y{display:inline-block}
+.bg-stage.open .bg-hob{opacity:1;visibility:visible;pointer-events:auto}
+@media (prefers-reduced-motion:no-preference){.bg-stage.open .bg-hob{transition:opacity .2s var(--ease) calc(var(--k) * 30ms),visibility 0s}.bg-stage.closing .bg-hob{opacity:1;visibility:visible}}
+.bg-hob .tp.jm-hobby{margin-top:0}
+.bg-note{position:absolute;z-index:40;left:50%;top:6%;width:min(232px,64%);margin-left:calc(min(232px,64%) / -2);padding:var(--s-5) var(--s-4) var(--s-2);text-align:left;background:linear-gradient(180deg,#FFF6BF,#FFF0A3);border-radius:2px 2px 14px 2px;box-shadow:0 1px 1px rgba(26,21,17,.06),0 16px 24px -14px rgba(26,21,17,.45);cursor:pointer;
+  opacity:0;visibility:hidden;transform:translateY(16px) scale(.95);transform-origin:50% 100%;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s .2s}
+.bg-note::before{content:"";position:absolute;left:50%;top:-9px;width:64px;height:20px;margin-left:-32px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(26,21,17,.05);transform:rotate(-3deg)}
+.bg-note.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s var(--ease),transform .25s var(--ease),visibility 0s}
+.bg-note p{margin:0 0 var(--s-3);font:400 14px/1.5 var(--f-body);color:var(--ink)}
+.bg-note .bg-note-wink{font-weight:600}
+@media (max-width:599px){.bg-note{top:auto;bottom:var(--s-2);width:min(300px,88%);margin-left:calc(min(300px,88%) / -2);padding:var(--s-4) var(--s-4) var(--s-1)}}
+@media (prefers-reduced-motion:reduce){.bg-note,.bg-note.on{transform:none;transition:none}}
