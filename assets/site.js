@@ -413,6 +413,11 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
   f.querySelectorAll('.rf-en').forEach(e => { e.hidden = on; });
   f.querySelectorAll('.rf-fr').forEach(e => { e.hidden = !on; });
 }));
+// references: the full letter excerpt opens under the highlights
+document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', () => {
+  const on = b.getAttribute('aria-expanded') !== 'true';
+  b.setAttribute('aria-expanded', on); b.closest('.rf').classList.toggle('open', on);
+}));
 // ---------- journey tracker: shows where the reader is on the page's journey (display only, not a menu) ----------
 (function () {
   const jt = document.getElementById('jt'); if (!jt) return;
@@ -555,6 +560,7 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
   const shoot=()=>{
     land();
     if(n>=pols.length){ empty(); n=0; count(); say('New film loaded.','Nouvelle pellicule.'); return; }
+    board.classList.add('has'); // phones keep the board folded until the first photo, so it opens before the print is measured
     const p=pols[n++]; count();
     const t=p.querySelector('.pol-cap').textContent; say(`Photo ${n} of ${pols.length}: ${t}`,`Photo ${n} sur ${pols.length}\u00a0: ${t}`);
     if(still()){ p.classList.remove('pol-wait'); top(p); return; }
