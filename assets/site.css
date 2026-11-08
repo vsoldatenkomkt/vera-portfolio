@@ -485,7 +485,7 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 .tl-cv:hover{background:color-mix(in srgb,#2A2338 12%,transparent)}
 .tl-cv[aria-expanded="true"]{box-shadow:0 0 0 2px var(--ink)}
 .tl-cv:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
-.tl-cv-when{display:none}
+.tl-cv-when{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 .tl-cv-lab{font:600 12px/1 var(--f-mono);letter-spacing:.24em;color:var(--muted)}
 .tl-all{position:relative;margin:var(--s-2) 0 0;padding-top:var(--s-4);text-align:center;font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .tl-all::before{content:"";position:absolute;left:0;right:2px;top:0;height:4px;border-radius:4px;background:linear-gradient(90deg,#9FCBFF,#FFB8D6)}
@@ -819,3 +819,75 @@ html:not(.js-cam) .cam-wrap{display:none}
    in the phone list the name sits in the text column */
 @media (min-width:1000px){.tl-vols>.tl-txt{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}
 @media (max-width:999px){.tl-vols .tl-name{grid-column:2}}
+/* timeline: "Today" runs from the Work row down to the Life row */
+@media (min-width:1000px){.tl>.tl-today{grid-row:3 / 7;align-self:stretch;display:flex;flex-direction:column}.tl-today .tl-bar{flex:1;height:auto;min-height:44px}}
+/* the latest job's name sits to the LEFT of its bar (the row is empty there), so nothing runs into the Today block */
+@media (min-width:1000px){.tl-item.tl-left>.tl-txt{display:flex;position:absolute;top:50%;left:auto;right:calc(100% + 10px);transform:translateY(-50%);height:auto;padding:0;align-items:flex-end;text-align:right;width:max-content;max-width:190px !important}}
+/* event stars on the Master bar sit on its top edge, clear of the name and dates below or inside it */
+.tl-ev{top:44px}
+.tl-item:has(.tl-ev)>.tl-txt{padding-top:14px}
+
+/* ---------- timeline: phones keep only the main moments ---------- */
+@media (max-width:999px){.tl .tl-minor{display:none}}
+@media (max-width:999px){.tl .tl-cv .tl-cv-when{position:static;width:auto;height:auto;overflow:visible;clip:auto}}
+
+/* ---------- contact: "Get in touch" stamp half off the page, three ways to reach me ---------- */
+.ct{position:relative;overflow:hidden;overflow:clip;padding:var(--s-10) 0 var(--s-11);border-top:1px solid var(--line)}
+.ct-stamp{position:absolute;top:50%;left:0;width:min(760px,64vw);aspect-ratio:1;transform:translate(-44%,-50%);pointer-events:none}
+.ct-ring{display:block;width:100%;height:100%;overflow:visible}
+.ct-word{font:800 92px/1 var(--f-display);fill:var(--ink)}
+.ct-spark{fill:var(--accent-2)}
+.ct-in{position:relative;min-height:min(560px,52vw);display:flex;align-items:center;justify-content:flex-end}
+.ct-body{width:min(100%,640px)}
+.ct-lede{margin:0 0 var(--s-5);font-size:18px;line-height:1.5;color:var(--muted);max-width:44ch}
+.ct-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4)}
+.ct-btn{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-4);height:100%;min-height:44px;padding:var(--s-5);border-radius:16px;background:var(--surface);color:var(--ink);text-decoration:none;box-shadow:0 0 0 1px rgba(26,21,17,.09),0 1px 2px rgba(26,21,17,.05),0 6px 16px -10px rgba(26,21,17,.2);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.ct-btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(26,21,17,.14),0 2px 4px rgba(26,21,17,.06),0 12px 24px -12px rgba(26,21,17,.28)}
+.ct-btn:active{transform:scale(.97);transition-duration:.1s}
+.ct-btn:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
+.ct-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:color-mix(in srgb,var(--ct) 14%,var(--surface));color:var(--ct)}
+.ct-ic svg{width:22px;height:22px}
+.ct-mail{--ct:var(--accent-2)}.ct-cv{--ct:var(--w3)}.ct-li{--ct:#0A66C2}
+.ct-txt{display:grid;gap:var(--s-1)}
+.ct-lab{font:700 18px/1.2 var(--f-display);letter-spacing:-.01em}
+.ct-sub{font-size:14px;line-height:1.35;color:var(--muted)}
+.ct-arr{position:absolute;top:var(--s-5);right:var(--s-5);font-size:18px;color:var(--muted);transition:transform .25s var(--ease),color .2s var(--ease)}
+.ct-btn:hover .ct-arr{color:var(--ink);transform:translateX(3px)}
+.ct-cv:hover .ct-arr{transform:translateY(3px)}
+.ct-li:hover .ct-arr{transform:translate(2px,-2px)}
+@supports (animation-timeline:view()){
+  .ct-ring{animation:ct-turn linear both;animation-timeline:view()}
+  @keyframes ct-turn{from{transform:rotate(-28deg)}to{transform:rotate(14deg)}}
+}
+@media (prefers-reduced-motion:reduce){.ct-ring{animation:none}.ct-btn,.ct-arr{transition:none}}
+@media (max-width:1279px){.ct-body{width:min(100%,520px)}.ct-grid{grid-template-columns:1fr}.ct-btn{flex-direction:row;align-items:center;padding:var(--s-4) var(--s-5)}.ct-arr{position:static;margin-left:auto}}
+@media (max-width:767px){
+  .ct{padding:0 0 var(--s-10)}
+  .ct-stamp{position:relative;top:auto;width:440px;max-width:none;margin:0 0 var(--s-2);transform:translateX(-44%)}
+  .ct-in{min-height:0;display:block}
+  .ct-body{width:100%}
+}
+
+/* ---------- contact: FAQ button and pop-up ---------- */
+.ct-faq{margin-top:var(--s-5);cursor:pointer;border:0;font-weight:500}
+.ct-faq:hover{transform:translateY(-1px)}
+.ct-faq:active{transform:scale(.97);transition-duration:.1s}
+.ct-faq:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
+.ct-faq-q{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:color-mix(in srgb,var(--accent-2) 14%,var(--surface));color:var(--accent-2);font:800 14px/1 var(--f-display)}
+.dlg-faq{width:min(720px,calc(100vw - 32px))}
+.faq-in{padding:var(--s-6)}
+.faq-in .dlg-title{padding-right:var(--s-8)}
+.faq-list{display:grid;margin-top:var(--s-4);border-top:1px solid var(--line)}
+.faq-it{border-bottom:1px solid var(--line)}
+.faq-it summary{list-style:none;display:flex;align-items:center;gap:var(--s-4);min-height:44px;padding:var(--s-4) 0;cursor:pointer;font:700 17px/1.3 var(--f-display);letter-spacing:-.01em}
+.faq-it summary::-webkit-details-marker{display:none}
+.faq-it summary:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:6px}
+.faq-pm{position:relative;flex:none;width:28px;height:28px;margin-left:auto;border-radius:50%;background:color-mix(in srgb,var(--ink) 6%,transparent);transition:transform .25s var(--ease)}
+.faq-pm::before,.faq-pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;border-radius:2px;background:var(--ink)}
+.faq-pm::after{transform:rotate(90deg);transition:transform .25s var(--ease)}
+.faq-it[open] .faq-pm::after{transform:rotate(0)}
+.faq-it p{margin:0;padding:0 var(--s-8) var(--s-5) 0;color:var(--muted);line-height:1.6;max-width:60ch}
+.faq-it[open] p{animation:faqIn .25s var(--ease)}
+@keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (max-width:599px){.faq-in{padding:var(--s-5)}.faq-it p{padding-right:0}}
+@media (prefers-reduced-motion:reduce){.faq-it[open] p{animation:none}.faq-pm,.faq-pm::after{transition:none}}

@@ -370,7 +370,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
 // ---------- career timeline (year grid): click a bar to fade in its story; "What happened next?" walks through them in order ----------
 (function () {
   const sec = document.getElementById('resume'), tl = document.getElementById('tl'); if (!tl) return;
-  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], order = [...new Set(items.filter(b => !b.hasAttribute('data-side')).map(b => +b.dataset.i))], hint = document.getElementById('loHint'), next = document.getElementById('loNext');
+  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], walk = () => [...new Set(items.filter(b => !b.hasAttribute('data-side') && b.offsetParent).map(b => +b.dataset.i))], hint = document.getElementById('loHint'), next = document.getElementById('loNext');
   const cards = [...sec.querySelectorAll('.lo-card')];
   // each name goes inside its bar if it fits, beside the bar if there is room before the next entry, otherwise beneath
   const fit = () => {
@@ -380,7 +380,8 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
       const bar = b.querySelector('.tl-bar'), txt = b.querySelector(':scope > .tl-txt'); if (!bar) return;
       b.classList.remove('in', 'side'); txt.style.maxWidth = '';
       const n = bar.querySelector('.tl-in-name'), w = bar.querySelector('.tl-in-when'), pad = parseFloat(getComputedStyle(bar).paddingLeft) + 10;
-      if (Math.max(n.scrollWidth, w.scrollWidth) <= bar.clientWidth - pad) { b.classList.add('in'); return; }
+      // a bar with event stars keeps its name below it, so the stars never sit on the text
+      if (!b.querySelector('.tl-ev') && Math.max(n.scrollWidth, w.scrollWidth) <= bar.clientWidth - pad) { b.classList.add('in'); return; }
       const room = (+b.style.getPropertyValue('--room')) * mo - b.offsetWidth - 14;
       if (room >= 150) { b.classList.add('side'); txt.style.maxWidth = room + 'px'; }
       else txt.style.maxWidth = (+b.style.getPropertyValue('--room')) * mo - 10 + 'px';
@@ -392,8 +393,9 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
   let cur = -1;
   // side stories (volunteering, IYKYK) open on click but are not steps of the walk; "next" from one goes to the first step that starts after it
   const cs = i => +items.find(b => +b.dataset.i === i).style.getPropertyValue('--cs');
-  const after = i => { const k = order.findIndex(j => cs(j) > cs(i)); return k < 0 ? 0 : k; };
-  const label = () => { const k = order.indexOf(cur); next.dataset.mode = cur < 0 ? 'start' : (k === order.length - 1 ? 'again' : 'next'); };
+  // the walk only visits the moments on screen (phones show the main ones)
+  const after = i => { const order = walk(), k = order.findIndex(j => cs(j) > cs(i)); return k < 0 ? 0 : k; };
+  const label = () => { const order = walk(), k = order.indexOf(cur); next.dataset.mode = cur < 0 ? 'start' : (k === order.length - 1 ? 'again' : 'next'); };
   const open = i => {
     cur = i;
     items.forEach(b => b.setAttribute('aria-expanded', +b.dataset.i === i));
@@ -401,7 +403,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
     hint.hidden = i >= 0; label();
   };
   items.forEach(b => b.addEventListener('click', () => open(+b.dataset.i)));
-  next.addEventListener('click', () => { const k = order.indexOf(cur); open(order[cur < 0 ? 0 : k < 0 ? after(cur) : k === order.length - 1 ? 0 : k + 1]); });
+  next.addEventListener('click', () => { const order = walk(), k = order.indexOf(cur); open(order[cur < 0 ? 0 : k < 0 ? after(cur) : k === order.length - 1 ? 0 : k + 1]); });
   label();
 })();
 // ---------- references: kept in English; the link swaps in the French translation and back ----------
@@ -569,4 +571,10 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
   };
   cam.addEventListener('click',shoot);
   addEventListener('resize',land);
+})();
+
+// ---------- contact: the address is put together on click, so it never sits in the page ----------
+(function () {
+  const a = document.getElementById('ctMail'); if (!a) return;
+  a.addEventListener('click', e => { e.preventDefault(); location.href = 'mailto:' + ['portfolio.vs.contact', 'icloud.com'].join('@'); });
 })();
