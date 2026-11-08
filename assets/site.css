@@ -753,7 +753,7 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 
 /* ---------- Marketer off duty: an instant camera. Each click prints the next photo: it slides out of the slot,
    develops, then lands on top of the pile. ---------- */
-.off{isolation:isolate;padding:var(--s-10) 0;background:radial-gradient(circle,rgba(26,21,17,.10) 1px,transparent 1.5px) 0 0/24px 24px,color-mix(in srgb,#A6DEB1 18%,#fff)}
+.off{isolation:isolate;padding:var(--s-10) 0;background:color-mix(in srgb,#A6DEB1 7%,#fff)}
 @media (min-width:768px){.off{padding:var(--s-11) 0}}
 .off-play{display:grid;gap:var(--s-7);margin-top:var(--s-7);justify-items:center}
 @media (min-width:900px){.js-cam .off-play{grid-template-columns:1fr 1fr;align-items:center}}
@@ -801,7 +801,7 @@ html:not(.js-cam) .cam-wrap{display:none}
 @media (prefers-reduced-motion:reduce){.js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}}
 /* hero: "See my journey" + "Download my CV" side by side (the CV link opens the download form, which asks the language) */
 .journey{flex-wrap:wrap;gap:var(--s-3)}
-.journey .tp-dl:hover .tp-arr{transform:translateY(3px)}
+
 /* My skills: languages and what I'm learning now, as plain labels under the frameworks */
 .sx-more{display:flex;flex-wrap:wrap;gap:0 var(--s-8);margin-top:var(--s-2)}
 .sx-tag{display:inline-flex;align-items:center;min-height:36px;padding:0 var(--s-3);border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.12);font:500 14px/1.2 var(--f-body);color:var(--ink)}
@@ -894,3 +894,46 @@ html:not(.js-cam) .cam-wrap{display:none}
 
 /* bag closed: the collapsed tool grid still overflows the drawer, so it must not catch clicks meant for the section below */
 .bg-grid{pointer-events:none}
+
+/* ---------- references as cards: pull line, two or three highlights, full excerpt on demand ---------- */
+.rf{position:relative;padding:var(--s-7) var(--s-6) var(--s-5);border-left:0;border-radius:20px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.06),0 1px 2px rgba(26,21,17,.04),0 12px 32px -18px rgba(26,21,17,.22);overflow:hidden}
+.rf::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--c)}
+.rf-mark{position:absolute;top:var(--s-7);right:var(--s-6);width:44px;height:auto;fill:var(--c);pointer-events:none}
+.rf-q{position:relative;width:100%}
+.rf-pull{max-width:18ch;padding-right:var(--s-8)}
+.rf-hl{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;gap:var(--s-3)}
+.rf-hl li{position:relative;padding-left:var(--s-5);font:400 17px/1.5 var(--f-body);color:var(--ink)}
+.rf-hl li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.rf-full{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .35s var(--ease),visibility 0s .35s}
+.rf.open .rf-full{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .4s var(--ease),visibility 0s}
+.rf-full-in{min-height:0;overflow:hidden}
+.rf-full .rf-text{margin:var(--s-5) 0 0;padding-top:var(--s-5);border-top:1px dashed var(--line);font-size:16px;color:var(--muted)}
+.rf-foot{width:100%;margin-top:auto;padding-top:var(--s-6);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2) var(--s-4)}
+.rf-foot .rf-who{margin:0;display:flex;align-items:center;gap:var(--s-2)}
+.rf-foot .rf-who::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.rf-acts{display:flex;flex-wrap:wrap;gap:0 var(--s-4)}
+.rf-acts .see-link{margin:0;min-height:44px;font-size:14px;font-weight:500;color:var(--muted)}
+.rf-acts .see-link:hover{color:var(--ink)}
+.rf-more .rf-l-close,.rf-more[aria-expanded="true"] .rf-l-open{display:none}
+.rf-more[aria-expanded="true"] .rf-l-close{display:inline}
+.rf-chev{display:inline-block;width:7px;height:7px;margin-left:var(--s-2);border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s var(--ease)}
+.rf-more[aria-expanded="true"] .rf-chev{transform:translateY(1px) rotate(-135deg)}
+@media (min-width:900px){.rf-grid{align-items:start}}
+@media (max-width:599px){.rf{padding:var(--s-6) var(--s-5) var(--s-4)}.rf-mark{top:var(--s-6);right:var(--s-5);width:36px}}
+@media (prefers-reduced-motion:reduce){.rf-full,.rf.open .rf-full,.rf-chev{transition:none}}
+
+/* off duty: a soft colour blob behind the camera, like the one behind the bag */
+.cam-wrap::before{content:"";position:absolute;z-index:-1;left:50%;top:58%;width:min(640px,130vw);aspect-ratio:1.15;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(48% 42% at 44% 46%,rgba(126,207,146,.42),transparent 72%),radial-gradient(34% 30% at 60% 58%,rgba(240,214,90,.38),transparent 72%)}
+.off{overflow-x:clip}
+/* the hidden bag items sit past the right edge on phones; keep them from widening the page */
+.bg-sec{overflow-x:clip}
+
+/* hero buttons on phones: stacked at the same width, so they read as a pair */
+@media (max-width:599px){.journey{display:grid;grid-template-columns:1fr}.journey>.tp{justify-content:center}}
+
+/* phones: no empty space waiting for photos or for a story; both open when used */
+@media (max-width:899px){
+  .js-cam .off-board:not(.has){height:0;padding-top:0;padding-bottom:0;overflow:hidden}
+  .lo-cards{min-height:0}
+}
