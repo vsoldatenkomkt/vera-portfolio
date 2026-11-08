@@ -678,3 +678,124 @@ html[lang="en"] .nav-link::after{content:attr(data-en)}
 .bg-note .bg-note-wink{font-weight:600}
 @media (max-width:599px){.bg-note{top:auto;bottom:var(--s-2);width:min(300px,88%);margin-left:calc(min(300px,88%) / -2);padding:var(--s-4) var(--s-4) var(--s-1)}}
 @media (prefers-reduced-motion:reduce){.bg-note,.bg-note.on{transform:none;transition:none}}
+
+/* ---------- How I work: the method in one line, then four numbered steps, each with a worked example ---------- */
+.how{padding:var(--s-10) 0}
+.hw-line{margin:var(--s-4) 0 0;max-width:30ch;font:800 clamp(24px,2.6vw,34px)/1.2 var(--f-display);letter-spacing:-.025em}
+.hw{list-style:none;margin:var(--s-7) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-4)}
+.hw-step{position:relative;display:flex;flex-direction:column;padding:var(--s-5);border-radius:16px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.06),0 20px 40px -30px rgba(26,21,17,.35)}
+.hw-n{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--c);font:800 16px/1 var(--f-display);letter-spacing:-.02em}
+.hw-step:not(:last-child)::after{content:"";position:absolute;top:calc(var(--s-5) + 21px);left:calc(var(--s-5) + 52px);right:calc(var(--s-4) * -1);border-top:2px dashed rgba(26,21,17,.25)}
+.hw-h{margin-top:var(--s-4);font-size:22px;letter-spacing:-.02em}
+.hw-d{margin:var(--s-2) 0 0;font-size:15px;line-height:1.55}
+.hw-ex{margin:auto 0 0;padding-top:var(--s-4);font-size:14px;line-height:1.5;color:var(--muted)}
+.hw-ex::before{content:"";display:block;margin-bottom:var(--s-3);border-top:1px dashed var(--line)}
+.hw-ex-lab{display:block;margin-bottom:var(--s-1);font:600 11px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+@media (max-width:959px){.hw{grid-template-columns:repeat(2,minmax(0,1fr))}.hw-step:nth-child(2)::after{display:none}}
+@media (max-width:559px){.hw{grid-template-columns:1fr}.hw-step::after{display:none}}
+
+/* ---------- My master's thesis: a cover card, then the issue, what we found and the conclusion ---------- */
+.thesis{padding:var(--s-10) 0;background:color-mix(in srgb,#FFE14D 14%,#fff)}
+.th-kick,.th-lab{margin:0;font:600 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--w2)}
+.th-lab{color:var(--muted)}
+.th-title{margin-top:var(--s-4);max-width:14ch;font-size:clamp(30px,3vw,42px);line-height:1.02}
+.th-full{margin:var(--s-4) 0 0;font-size:15px;line-height:1.55;color:var(--muted)}
+.th-meth,.th-dims{list-style:none;margin:var(--s-5) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.th-meth li,.th-dims li{padding:var(--s-2) var(--s-3);border-radius:999px;background:var(--bg);box-shadow:0 0 0 1px rgba(26,21,17,.1);font-size:14px;line-height:1.2}
+.th-blk{padding-top:var(--s-4);border-top:2px solid var(--ink)}
+.th-p{margin:var(--s-3) 0 0;max-width:56ch;font-size:18px;line-height:1.6}
+.th-p b{font-weight:700;color:var(--w2)}
+.th-figs{list-style:none;margin:var(--s-4) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3)}
+.th-fig{display:grid;gap:var(--s-1);padding:var(--s-4) var(--s-5);border-radius:14px;background:color-mix(in srgb,var(--c) 60%,#fff);font-size:15px;line-height:1.4}
+.th-num{font:800 clamp(36px,3.4vw,48px)/1 var(--f-display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.th-sub{margin:var(--s-5) 0 0;font-size:15px;color:var(--muted)}
+.th-dims{margin-top:var(--s-3)}
+.th-dims li{background:var(--surface)}
+.th-note{margin:var(--s-3) 0 0;font-size:14px;color:var(--muted)}
+
+/* hidden hover bubbles near the edge must not widen the page */
+.path{overflow-x:clip}
+/* thesis: the two visuals tested, side by side at the same height */
+.th-pair{display:grid;grid-template-columns:457fr 1016fr;gap:var(--s-3);margin-top:var(--s-4)}
+.th-img{margin:0}
+.th-img img{display:block;width:100%;height:auto;aspect-ratio:var(--r);object-fit:cover;border-radius:12px;box-shadow:0 0 0 1px rgba(26,21,17,.06),0 16px 32px -24px rgba(26,21,17,.4)}
+.th-img figcaption{margin-top:var(--s-2);font:600 11px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* thesis layout: title beside the two visuals, then the issue beside the findings, then the conclusion. Nothing sticks while scrolling */
+.th{display:grid;gap:var(--s-8);margin-top:var(--s-7)}
+.th-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s-8);align-items:start}
+.th-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s-8);align-items:start}
+.th-tested{padding-top:0;border-top:0}
+.th-tested .th-p{margin-top:var(--s-2);font-size:15px;line-height:1.55;color:var(--muted)}
+.th-head .th-title{margin-top:var(--s-3)}
+.th-end .th-p{max-width:40ch;font:800 clamp(22px,2.2vw,28px)/1.3 var(--f-display);letter-spacing:-.02em}
+.th-end .th-p b{font-weight:800}
+@media (max-width:899px){.th-top,.th-row{grid-template-columns:1fr;gap:var(--s-6)}}
+
+.th-mq{margin-top:var(--s-4);max-width:280px}
+.js-sk .sk-panel[hidden] *{visibility:hidden !important}
+.hw-kw{list-style:none;margin:var(--s-3) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.hw-kw li{padding:6px 10px;border-radius:999px;background:var(--bg);box-shadow:0 0 0 1px rgba(26,21,17,.1);font-size:12.5px;line-height:1.2}
+/* frameworks and methods: chips with a plain-words tooltip */
+.sx-fw{margin-top:var(--s-7)}
+.sx-fw-head{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s-1) var(--s-3);font:800 20px/1.2 var(--f-display);letter-spacing:-.015em}
+.sx-fw-hint{font:400 14px/1.4 var(--f-body);letter-spacing:0;color:var(--muted)}
+.sx-fw-lab{margin:var(--s-5) 0 0;font:600 11px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sx-fw-list{list-style:none;margin:var(--s-3) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.fw-chip{position:relative;min-height:36px;padding:0 var(--s-3);border:0;border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.12);font:500 14px/1.2 var(--f-body);color:var(--ink);cursor:help;transition:box-shadow .2s var(--ease),background-color .2s var(--ease),transform .15s var(--ease)}
+.fw-chip::after{content:"";position:absolute;inset:-4px -2px}
+.fw-chip:hover,.fw-chip.on{background:#fff;box-shadow:0 0 0 1.5px var(--ink)}
+.fw-chip:active{transform:scale(.97)}
+.fw-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.fw-tip{position:fixed;z-index:40;left:0;top:0;width:max-content;max-width:min(320px,calc(100vw - 32px));padding:var(--s-3) var(--s-4);border-radius:12px;background:var(--ink);color:#FEFCF7;font:400 14px/1.5 var(--f-body);box-shadow:0 16px 32px -16px rgba(26,21,17,.5);pointer-events:none;opacity:0;transform:scale(.95);transition:opacity .12s ease-in,transform .12s ease-in}
+.fw-tip.on{opacity:1;transform:scale(1);transition:opacity .18s var(--ease),transform .18s var(--ease)}
+@media (prefers-reduced-motion:reduce){.fw-tip,.fw-tip.on{transition:opacity .12s linear;transform:none}}
+.skills .sx-grid{margin-top:var(--s-6)}
+
+/* ---------- Marketer off duty: an instant camera. Each click prints the next photo: it slides out of the slot,
+   develops, then lands on top of the pile. ---------- */
+.off{isolation:isolate;padding:var(--s-10) 0;background:radial-gradient(circle,rgba(26,21,17,.10) 1px,transparent 1.5px) 0 0/24px 24px,color-mix(in srgb,#A6DEB1 18%,#fff)}
+@media (min-width:768px){.off{padding:var(--s-11) 0}}
+.off-play{display:grid;gap:var(--s-7);margin-top:var(--s-7);justify-items:center}
+@media (min-width:900px){.js-cam .off-play{grid-template-columns:1fr 1fr;align-items:center}}
+.cam-wrap{position:relative;z-index:100;display:flex;flex-direction:column;align-items:center}
+.cam{all:unset;box-sizing:border-box;position:relative;display:block;width:clamp(200px,24vw,260px);cursor:pointer;border-radius:28px;filter:drop-shadow(0 18px 18px rgba(26,21,17,.22));transition:transform .2s var(--ease)}
+.cam-svg{display:block;width:100%;height:auto}
+@media (hover:hover){.cam:hover{transform:translateY(-2px)}}
+.cam:active{transform:scale(.97)}
+.cam:focus-visible{outline:3px solid var(--accent-2);outline-offset:4px}
+.cam::after{content:"";position:absolute;inset:-12px;border-radius:40px;background:radial-gradient(circle at 80% 18%,#fff,rgba(255,255,255,0) 60%);opacity:0;pointer-events:none}
+.cam.flash::after{animation:camFlash .32s ease-out}
+@keyframes camFlash{20%{opacity:.95}to{opacity:0}}
+.cam-hint{display:flex;align-items:center;gap:var(--s-3);margin:0 0 var(--s-3);font:500 12px/16px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+html:not(.js-cam) .cam-wrap{display:none}
+/* the board: a grid without script */
+.off-board{list-style:none;margin:0;padding:0;width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-6) var(--s-4)}
+@media (min-width:768px){.off-board{grid-template-columns:repeat(3,1fr);gap:var(--s-7) var(--s-5)}}
+@media (min-width:1100px){.off-board{grid-template-columns:repeat(4,1fr)}}
+/* the pile: every photo in the same spot, a few pixels apart (never turned, so the captions stay straight) */
+.js-cam .off-board{grid-template-columns:1fr;justify-items:center;padding:var(--s-3) var(--s-4)}
+.js-cam .pol{grid-area:1/1;width:min(300px,76vw);transform:translate(var(--ox,0),var(--oy,0))}
+.pol{position:relative}
+.pol-card{position:relative;height:100%;display:flex;flex-direction:column;padding:var(--s-3) var(--s-3) var(--s-5);background:#fff;border-radius:3px;box-shadow:0 0 0 1px rgba(26,21,17,.06),0 12px 24px -18px rgba(26,21,17,.45)}
+.off-pin{position:absolute;z-index:3;top:-8px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),transparent 45%),var(--pin);box-shadow:0 3px 4px -1px rgba(26,21,17,.35)}
+.js-cam .off-pin{display:none}
+.pol-pic{position:relative;display:block;aspect-ratio:1}
+.pol-img{display:block;width:100%;height:100%;object-fit:cover;border-radius:2px;background:#ECE7DF}
+.pol-stk{position:absolute;z-index:2;right:-7%;bottom:-14%;width:34%;height:auto;filter:drop-shadow(0 4px 5px rgba(26,21,17,.28))}
+/* developing: the picture starts dark and clears */
+.pol-pic::after{content:"";position:absolute;z-index:1;inset:0;border-radius:2px;background:#2B2622;opacity:0;pointer-events:none}
+.pol-dev .pol-pic::after{opacity:1}
+.pol-dev.pol-on .pol-pic::after{opacity:0;transition:opacity 1.5s ease-out .35s}
+.off-k{margin:var(--s-4) var(--s-1) 0;font:600 11px/16px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pin)}
+.pol-cap{margin:var(--s-1) var(--s-1) 0;font:400 16px/1.45 var(--f-body);color:var(--ink)}
+@media (max-width:479px){html:not(.js-cam) .pol-card{padding:var(--s-2) var(--s-2) var(--s-4)}html:not(.js-cam) .pol-cap{font-size:14px}}
+.js-cam .pol.pol-wait{visibility:hidden}
+.pol.pol-dev{z-index:50 !important}
+@media (prefers-reduced-motion:reduce){.cam{transition:none}.cam.flash::after{animation:none}.pol-dev .pol-pic::after{opacity:0}}
+.pol-pic:has(.pol-stk)+.off-k{padding-right:30%}
+/* Skills in action: only the chosen example shows its text (the others keep their label and title), so the
+   text column stays close to the height of the slides; on wide screens the visual stays in view while you read */
+.js-sk .sk-rail .sk-item:not(.on)>:not(.sk-kick):not(.sk-h){display:none}
+.js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:jmIn .35s var(--ease)}
+@media (min-width:960px){.js-sk .sk-panel>:first-child{position:sticky;top:calc(var(--head-h) + var(--s-5))}}
+@media (prefers-reduced-motion:reduce){.js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}}

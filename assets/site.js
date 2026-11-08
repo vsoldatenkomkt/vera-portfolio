@@ -128,7 +128,7 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
   // Belarus is where the route starts (always shown); the three tabs are Canada, Milan, France (tab n = stop n + 1)
   // each stop has one or more places where she lived, studied or worked, joined in order by the route
   const STOPS = [
-    { key: 'by', iso: '112', pin: '#E0559A', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Biélorussie', side: 'l' }] },
+    { key: 'by', iso: '112', pin: '#E0559A', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
     { key: 'ca', iso: '124', pin: '#3C8DEB', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
     { key: 'it', iso: '380', pin: '#8B6CF0', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
     { key: 'fr', iso: '250', pin: '#E0B400', places: [{ at: [0.2, 45.4], en: 'Nouvelle-Aquitaine', fr: 'Nouvelle-Aquitaine', side: 'l' }] }
@@ -364,6 +364,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
     fs.forEach(g => g.setAttribute('aria-pressed', g === f));
     items.forEach(it => { const on = k === 'all' || it.dataset.t === k; it.hidden = !on; c += on; });
     n.textContent = c; order();
+    const w = n.nextElementSibling; if (w) { w.dataset.en = c === 1 ? 'skill' : 'skills'; w.dataset.fr = c === 1 ? 'compétence' : 'compétences'; w.textContent = w.dataset[document.documentElement.lang === 'en' ? 'en' : 'fr']; }
   }));
 })();
 // ---------- career timeline (year grid): click a bar to fade in its story; "What happened next?" walks through them in order ----------
@@ -487,4 +488,82 @@ document.querySelectorAll('.rf-tr').forEach(b => b.addEventListener('click', () 
   // closing the bag puts the note away too
   document.getElementById('bgOpen').addEventListener('click', e => { if (e.currentTarget.getAttribute('aria-expanded') !== 'true') set(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && n.classList.contains('on')) set(false); });
+})();
+
+// ---------- frameworks and methods: hover, focus or tap a chip to read what it means in plain words ----------
+(() => {
+  const tip = document.getElementById('fwTip'); if (!tip) return;
+  const chips = [...document.querySelectorAll('.fw-chip')];
+  let cur = null, hideT = 0;
+  const place = c => {
+    const r = c.getBoundingClientRect(), t = tip.getBoundingClientRect(), pad = 16, top0 = (document.querySelector('.head')?.offsetHeight || 0) + 8;
+    let x = r.left + r.width / 2 - t.width / 2; x = Math.max(pad, Math.min(x, innerWidth - pad - t.width));
+    let y = r.top - t.height - 10, below = y < top0; if (below) y = r.bottom + 10;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    tip.style.transformOrigin = (r.left + r.width / 2 - x) + 'px ' + (below ? '0' : '100%');
+  };
+  const show = c => {
+    clearTimeout(hideT);
+    if (cur && cur !== c) cur.classList.remove('on');
+    cur = c; c.classList.add('on');
+    tip.textContent = c.dataset[document.documentElement.lang === 'en' ? 'tipEn' : 'tipFr'];
+    tip.hidden = false; place(c);
+    requestAnimationFrame(() => tip.classList.add('on'));
+  };
+  const hide = () => {
+    if (!cur) return; cur.classList.remove('on'); cur = null;
+    tip.classList.remove('on'); hideT = setTimeout(() => { if (!cur) tip.hidden = true; }, 130);
+  };
+  chips.forEach(c => {
+    c.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') show(c); });
+    c.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });
+    c.addEventListener('focus', () => show(c));
+    c.addEventListener('blur', hide);
+    c.addEventListener('click', () => { if (cur === c && document.activeElement !== c) hide(); else show(c); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  addEventListener('scroll', () => { if (cur) place(cur); }, { passive: true });
+  addEventListener('resize', hide);
+  document.addEventListener('pointerdown', e => { if (cur && !e.target.closest('.fw-chip')) hide(); });
+})();
+
+// ---------- Marketer off duty: an instant camera. Each click prints the next photo: it slides out of the slot,
+// develops (dark to clear), then lands on top of the pile. The window on the camera counts the photos left.
+(function(){
+  const cam=document.getElementById('cam'), board=document.getElementById('offBoard'), play=document.getElementById('offPlay'); if(!cam||!board||!play) return;
+  const pols=[...board.querySelectorAll('.pol')], live=document.getElementById('camLive');
+  const num=cam.querySelector('.cam-n'), slot=cam.querySelector('.cam-slot'), left=document.querySelector('.cam-left');
+  const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches, E='cubic-bezier(.2,.7,.2,1)';
+  let n=0, z=0, cur=null, t1=0, t2=0;
+  document.documentElement.classList.add('js-cam');
+  const say=(en,fr)=>{live.textContent=lang==='fr'?fr:en;};
+  const label=(el,en,fr)=>{el.dataset.en=en;el.dataset.fr=fr;el.textContent=el.dataset[lang];};
+  const count=()=>{const k=pols.length-n;num.textContent=k;
+    label(left,k===0?'All photos printed':k+(k===1?' photo left':' photos left'),k===0?'Toutes les photos sont sorties':k+(k===1?' photo restante':' photos restantes'));};
+  const top=p=>{p.style.zIndex=++z;board.classList.add('has');};
+  const empty=()=>{pols.forEach(p=>{p.classList.add('pol-wait');p.classList.remove('pol-dev','pol-on');p.style.zIndex='';});board.classList.remove('has');z=0;};
+  empty();
+  const land=()=>{ if(!cur) return; clearTimeout(t1); clearTimeout(t2);
+    const p=cur, c=p.querySelector('.pol-card'); cur=null; top(p);
+    c.style.transition=`transform .5s ${E}`; c.style.transform=''; c.style.clipPath='';
+    t2=setTimeout(()=>{c.style.transition='';c.style.transformOrigin='';p.classList.remove('pol-dev','pol-on');},520);};
+  const shoot=()=>{
+    land();
+    if(n>=pols.length){ empty(); n=0; count(); say('New film loaded.','Nouvelle pellicule.'); return; }
+    const p=pols[n++]; count();
+    const t=p.querySelector('.pol-cap').textContent; say(`Photo ${n} of ${pols.length}: ${t}`,`Photo ${n} sur ${pols.length}\u00a0: ${t}`);
+    if(still()){ p.classList.remove('pol-wait'); top(p); return; }
+    cam.classList.remove('flash'); void cam.offsetWidth; cam.classList.add('flash');
+    const c=p.querySelector('.pol-card'), r=c.getBoundingClientRect(), s0=slot.getBoundingClientRect();
+    const s=Math.min(1,(s0.width*.92)/r.width), tx=s0.left+s0.width/2-(r.left+r.width/2), ty=s0.top+s0.height/2-r.top;
+    c.style.transition='none'; c.style.transformOrigin='50% 0';
+    c.style.transform=`translate(${tx}px,${ty-r.height*s}px) scale(${s})`; c.style.clipPath='inset(100% 0 0 0)';
+    p.classList.remove('pol-wait'); p.classList.add('pol-dev'); void c.offsetWidth;
+    c.style.transition=`transform .7s ${E},clip-path .7s ${E}`;
+    c.style.transform=`translate(${tx}px,${ty}px) scale(${s})`; c.style.clipPath='inset(0 0 0 0)';
+    requestAnimationFrame(()=>p.classList.add('pol-on'));
+    cur=p; t1=setTimeout(land,2300);
+  };
+  cam.addEventListener('click',shoot);
+  addEventListener('resize',land);
 })();
