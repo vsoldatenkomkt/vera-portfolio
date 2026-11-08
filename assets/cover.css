@@ -53,6 +53,7 @@
 .cv-cap{display:flex;justify-content:center;margin-top:var(--s-4)}
 .cv-turn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-3);font:400 15px/1 var(--f-body);color:var(--muted);transition:color .2s var(--ease)}
 .cv-turn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.cv-turn:active{transform:scale(.97)}
 .cv-turn:hover{color:var(--ink)}.cv-turn:hover svg{transform:rotate(-90deg)}
 .cv-turn:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:8px}
 @media (prefers-reduced-motion:reduce){.cv-flip>.cv,.cv-turn svg{transition:none}}
