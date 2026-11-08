@@ -74,8 +74,11 @@ function showCounts(d) {
     if (el) el.textContent = d[k].toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-GB');
   });
 }
+// only the live site counts visits and follows; previews and local copies just read the totals
+const isLive = /(^|\.)vsoldatenko\.fr$/.test(location.hostname);
 function counter(action) {
   if (!COUNTER_URL) return;
+  if (!isLive) action = 'read';
   fetch(`${COUNTER_URL}?action=${action}`, { cache: 'no-store' }).then(r => r.json()).then(showCounts).catch(() => {});
 }
 function paintFollow() {
@@ -585,12 +588,22 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
     if (!cur) return; cur.classList.remove('on'); cur = null;
     tip.classList.remove('on'); hideT = setTimeout(() => { if (!cur) tip.hidden = true; }, 130);
   };
+  // phones: no floating tooltip; each chip opens its meaning in place, and the whole list folds into one row
+  const phone = matchMedia('(max-width:767px)');
+  const fw = document.querySelector('.sx-fw'), tog = fw && fw.querySelector('.sx-fw-tog');
+  if (tog) tog.addEventListener('click', () => { const o = !fw.classList.contains('open'); fw.classList.toggle('open', o); tog.setAttribute('aria-expanded', o); });
+  const syncDefs = () => chips.forEach(c => { const d = document.getElementById(c.getAttribute('aria-controls')); if (!d) return;
+    if (phone.matches) c.setAttribute('aria-expanded', d.hidden ? 'false' : 'true'); else { c.removeAttribute('aria-expanded'); d.hidden = true; } });
+  phone.addEventListener('change', () => { hide(); syncDefs(); }); syncDefs();
   chips.forEach(c => {
-    c.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') show(c); });
-    c.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });
-    c.addEventListener('focus', () => show(c));
+    c.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && !phone.matches) show(c); });
+    c.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !phone.matches) hide(); });
+    c.addEventListener('focus', () => { if (!phone.matches) show(c); });
     c.addEventListener('blur', hide);
-    c.addEventListener('click', () => { if (cur === c && document.activeElement !== c) hide(); else show(c); });
+    c.addEventListener('click', () => {
+      if (phone.matches) { const d = document.getElementById(c.getAttribute('aria-controls')); if (d) { d.hidden = !d.hidden; c.setAttribute('aria-expanded', !d.hidden); } return; }
+      if (cur === c && document.activeElement !== c) hide(); else show(c);
+    });
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
   addEventListener('scroll', () => { if (cur) place(cur); }, { passive: true });
