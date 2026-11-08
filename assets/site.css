@@ -891,3 +891,6 @@ html:not(.js-cam) .cam-wrap{display:none}
 @keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 @media (max-width:599px){.faq-in{padding:var(--s-5)}.faq-it p{padding-right:0}}
 @media (prefers-reduced-motion:reduce){.faq-it[open] p{animation:none}.faq-pm,.faq-pm::after{transition:none}}
+
+/* bag closed: the collapsed tool grid still overflows the drawer, so it must not catch clicks meant for the section below */
+.bg-grid{pointer-events:none}
