@@ -1255,3 +1255,64 @@ html.lb-open{overflow:hidden}
 .cs-team{font:600 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 @media (max-width:599px){.sk-case{padding:var(--s-5) var(--s-4)}.cs-step{font-size:11px;letter-spacing:.04em}.cs-chan{grid-template-columns:repeat(2,1fr)}.cs-stats li{grid-template-columns:1fr;gap:4px}}
 @media (prefers-reduced-motion:reduce){.cs-pane.on>*{animation:none}}
+
+/* ---------- phones: a simpler, quicker read (desktop unchanged) ---------- */
+.sx-lede-m,.sx-fw-tog,.sx-fw-mhint,.fw-def{display:none}
+@media (max-width:767px){
+  /* Skills in action: one summary card per example, no boards, slides or rail */
+  #work .sx-lede:not(.sx-lede-m){display:none}
+  #work .sx-lede-m{display:block}
+  .sk-tabs{display:flex;flex-wrap:nowrap;gap:var(--s-1);overflow-x:auto;margin:0 calc(var(--gutter) * -1);padding:var(--s-1) var(--gutter);scroll-padding:0 var(--gutter);scroll-snap-type:x proximity;scrollbar-width:none}
+  .sk-tabs::-webkit-scrollbar{display:none}
+  .sk-tab{flex:none;justify-content:center;padding:0 var(--s-4);font-size:15px;white-space:nowrap;scroll-snap-align:start}
+  .sk-panel .sk-figcol{display:none}
+  .sk-panel.sk-two:not([hidden]){display:block}
+  .js-sk .sk-rail,.sk-rail{display:grid;gap:var(--s-3);padding-left:0}
+  .js-sk .sk-rail-line,.js-sk .sk-star,.js-sk .sk-hint,.sk-rail>:not(.sk-item){display:none}
+  .js-sk .sk-rail .sk-item,.sk-rail .sk-item{opacity:1;cursor:default;margin:0;padding:var(--s-4);border-radius:14px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(26,21,17,.08)}
+  .sk-rail .sk-item>:not(.sk-kick):not(.sk-h):not(.sk-txt){display:none}
+  .js-sk .sk-rail .sk-item:not(.on)>.sk-txt:not(.sk-kick):not(.sk-h){display:block}
+  .js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}
+  .sk-rail .sk-h{margin:var(--s-1) 0 0}
+  .sk-rail .sk-txt{margin:var(--s-2) 0 0}
+  .sk-pick{pointer-events:none}
+
+  /* My skills: one grouped list instead of ten cards */
+  .skills .sx-grid{grid-template-columns:1fr;gap:0;padding:var(--s-2) var(--s-4);border-radius:14px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(26,21,17,.08)}
+  .sx-link,.sx-link:hover{min-height:0;padding:var(--s-1) 0;gap:var(--s-1);border-radius:0;background:none;box-shadow:none}
+  .sx-name{font:500 16px/1.4 var(--f-body);letter-spacing:0}
+  .sx-item[data-t="strategy"]+.sx-item[data-t="strategy"] .sx-type,
+  .sx-item[data-t="analysis"]+.sx-item[data-t="analysis"] .sx-type,
+  .sx-item[data-t="creative"]+.sx-item[data-t="creative"] .sx-type{display:none}
+  .sx-item:first-child .sx-link{padding-top:var(--s-3)}
+  .sx-item:last-child .sx-link{padding-bottom:var(--s-3)}
+  .sx-item[data-t="analysis"]:not(.sx-item[data-t="analysis"]+.sx-item),
+  .sx-item[data-t="creative"]:not(.sx-item[data-t="creative"]+.sx-item){margin-top:var(--s-3);padding-top:var(--s-3);border-top:1px solid var(--line)}
+
+  /* frameworks fold into one row; each opens its plain-words meaning in place */
+  .sx-fw{margin-top:var(--s-5)}
+  .js-sk .sx-fw-head{display:none}
+  .js-sk .sx-fw-tog{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:var(--s-3);width:100%;min-height:56px;padding:var(--s-3) var(--s-4);border-radius:14px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(26,21,17,.08);font:700 16px/1.3 var(--f-body);color:var(--ink)}
+  .js-sk .sx-fw-tog:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+  .js-sk .sx-fw-tog:active{transform:scale(.97)}
+  .sx-fw-tl{flex:1}
+  .sx-fw-n{font:600 12px/1 var(--f-mono);color:var(--muted)}
+  .sx-fw-tog .ic-plus{width:20px;height:20px;flex:none;transition:transform .2s var(--ease)}
+  .sx-fw-tog[aria-expanded="true"] .ic-plus{transform:rotate(45deg)}
+  .js-sk .sx-fw:not(.open) .sx-fw-body{display:none}
+  .js-sk .sx-fw-mhint{display:block;margin:var(--s-3) 0 0;font:400 14px/1.4 var(--f-body);color:var(--muted)}
+  .sx-fw-list{display:block}
+  .sx-fw .sx-fw-list li{border-top:1px solid var(--line)}
+  .sx-fw .sx-fw-list li:last-child{border-bottom:1px solid var(--line)}
+  .fw-chip,.fw-chip:hover,.fw-chip.on{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);width:100%;min-height:44px;padding:var(--s-2) 0;border-radius:0;background:none;box-shadow:none;font:500 15px/1.35 var(--f-body);text-align:left;cursor:pointer}
+  .fw-chip::after{content:"+";position:static;inset:auto;font:400 20px/1 var(--f-body);color:var(--muted);transition:transform .2s var(--ease)}
+  .fw-chip[aria-expanded="true"]::after{transform:rotate(45deg)}
+  .fw-def:not([hidden]){display:block;margin:0 0 var(--s-3);font:400 14px/1.5 var(--f-body);color:var(--muted)}
+  .fw-tip{display:none}
+
+  /* languages and certificates as plain lines */
+  .sx-more{display:grid;gap:0;margin-top:var(--s-2)}
+  .sx-more .sx-fw-list{margin-top:var(--s-2)}
+  .sx-tag{display:block;min-height:0;padding:var(--s-1) 0;border-radius:0;background:none;box-shadow:none;font:400 15px/1.4 var(--f-body)}
+}
+@media (max-width:767px) and (prefers-reduced-motion:reduce){.sx-fw-tog .ic-plus,.fw-chip::after{transition:none}}
