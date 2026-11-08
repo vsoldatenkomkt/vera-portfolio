@@ -128,10 +128,10 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
   // Belarus is where the route starts (always shown); the three tabs are Canada, Milan, France (tab n = stop n + 1)
   // each stop has one or more places where she lived, studied or worked, joined in order by the route
   const STOPS = [
-    { key: 'by', iso: '112', pin: '#E0559A', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
-    { key: 'ca', iso: '124', pin: '#3C8DEB', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
-    { key: 'it', iso: '380', pin: '#8B6CF0', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
-    { key: 'fr', iso: '250', pin: '#E0B400', places: [{ at: [0.2, 45.4], en: 'France', fr: 'France', side: 'l' }] }
+    { key: 'by', iso: '112', pin: '#B8406F', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
+    { key: 'ca', iso: '124', pin: '#B8406F', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
+    { key: 'it', iso: '380', pin: '#B8406F', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
+    { key: 'fr', iso: '250', pin: '#B8406F', places: [{ at: [0.2, 45.4], en: 'France', fr: 'France', side: 'l' }] }
   ];
   // places visited on trips: small open dots, name on hover, listed under the chapters
   // "Hidden hobby": cities she has travelled to, shown on their own when the button is pressed
@@ -147,7 +147,7 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
     const swap = () => {
       hobby.setAttribute('aria-pressed', on); svg.classList.toggle('trips', on); jmap.classList.toggle('expanded', on);
       story.hidden = on; travel.hidden = !on;
-      hobbyIco.textContent = on ? '←' : '👀';
+      hobbyIco.innerHTML = on ? '←' : '<svg class="ic-plus" viewBox="0 0 16 16" focusable="false"><path d="M8 3v10M3 8h10"/></svg>';
       hobbyTxt.dataset.en = on ? 'Back to my story' : 'Hidden hobby'; hobbyTxt.dataset.fr = on ? 'Retour à mon parcours' : 'Passion cachée'; hobbyTxt.textContent = hobbyTxt.dataset[lang];
       svg.querySelectorAll('.jm-trip.show').forEach(g => g.classList.remove('show'));
       // the city count runs up from 0 when the hobby opens
@@ -240,7 +240,7 @@ const head = document.getElementById('head');
 const onScroll = () => head.classList.toggle('scrolled', scrollY > 8);
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 const navLinks = [...document.querySelectorAll('.nav-link')];
-const spyTargets = [...navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean), ...document.querySelectorAll('section[data-nav]')];
+const spyTargets = [...navLinks.filter(a => a.getAttribute('href').startsWith('#')).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean), ...document.querySelectorAll('section[data-nav]')];
 if ('IntersectionObserver' in window && spyTargets.length) {
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -317,6 +317,65 @@ document.querySelectorAll('.sk-deck').forEach(d => {
   let i = 0;
   const go = k => { i = (k + slides.length) % slides.length; slides.forEach((s, n) => s.classList.toggle('on', n === i)); count.textContent = (i + 1) + ' / ' + slides.length; };
   d.querySelectorAll('.deck-btn').forEach(b => b.addEventListener('click', () => go(i + +b.dataset.dir)));
+});
+// ---------- YouTube: a still and a play button; the player (privacy-enhanced mode) only loads on click ----------
+document.querySelectorAll('.yt[data-yt]').forEach(b => b.addEventListener('click', () => {
+  const f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+  f.title = b.dataset.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+  f.className = 'yt-frame'; b.replaceWith(f);
+}));
+// ---------- slide viewer: click a slide (or the enlarge button) to read it full screen; arrows, keys and swipe step through ----------
+(() => {
+  const decks = [...document.querySelectorAll('.sk-deck')]; if (!decks.length || !window.HTMLDialogElement) return;
+  const T = { en: { open: 'Enlarge slide', prev: 'Previous slide', next: 'Next slide', close: 'Close', turn: 'Turn your phone sideways to read the slides' },
+              fr: { open: 'Agrandir la diapositive', prev: 'Diapositive précédente', next: 'Diapositive suivante', close: 'Fermer', turn: 'Tournez votre téléphone pour lire les diapositives' } };
+  const t = k => (T[lang] || T.fr)[k];
+  const lb = document.createElement('dialog'); lb.className = 'lb';
+  lb.innerHTML = '<button type="button" class="lb-x">✕</button><figure class="lb-fig"><img class="lb-img" alt=""></figure>'
+    + '<div class="lb-nav"><button type="button" class="lb-btn" data-dir="-1">←</button><span class="lb-count" aria-live="polite"></span><button type="button" class="lb-btn" data-dir="1">→</button></div><p class="lb-turn"></p>';
+  document.body.appendChild(lb);
+  const img = lb.querySelector('.lb-img'), count = lb.querySelector('.lb-count'), btns = lb.querySelectorAll('.lb-btn');
+  let slides = [], i = 0, deck = null;
+  const label = () => { lb.setAttribute('aria-label', t('open')); lb.querySelector('.lb-x').setAttribute('aria-label', t('close'));
+    btns[0].setAttribute('aria-label', t('prev')); btns[1].setAttribute('aria-label', t('next')); lb.querySelector('.lb-turn').textContent = t('turn');
+    decks.forEach(d => { const z = d.querySelector('.deck-zoom'); if (z) z.setAttribute('aria-label', t('open')); }); };
+  const show = k => { i = (k + slides.length) % slides.length; const s = slides[i];
+    img.src = s.currentSrc || s.src; img.alt = s.alt; count.textContent = (i + 1) + ' / ' + slides.length;
+    // keep the small deck in step, so closing lands on the same slide
+    const b = deck.querySelectorAll('.deck-btn'); let guard = 0; while (+deck.querySelector('.deck-count').textContent.split(' / ')[0] - 1 !== i && guard++ < slides.length) b[1].click(); };
+  const open = (d, k) => { deck = d; slides = [...d.querySelectorAll('.deck-track img')]; slides.forEach(s => { s.loading = 'eager'; }); label(); show(k); lb.showModal(); document.documentElement.classList.add('lb-open'); };
+  lb.addEventListener('close', () => { document.documentElement.classList.remove('lb-open'); const z = deck && (deck.hidden ? deck.closest('.sk-case').querySelector('.cs-slides') : deck.querySelector('.deck-zoom')); if (z) z.focus(); });
+  lb.querySelector('.lb-x').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-fig')) lb.close(); });
+  btns.forEach(b => b.addEventListener('click', () => show(i + +b.dataset.dir)));
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(i + 1); else if (e.key === 'ArrowLeft') show(i - 1); });
+  let x0 = null;
+  img.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  img.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); });
+  decks.forEach(d => {
+    const track = d.querySelector('.deck-track'), z = document.createElement('button');
+    z.type = 'button'; z.className = 'deck-zoom';
+    z.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    d.querySelector('.deck-nav').insertBefore(z, d.querySelector('.deck-count').nextSibling);
+    const cur = () => +d.querySelector('.deck-count').textContent.split(' / ')[0] - 1;
+    z.addEventListener('click', () => open(d, cur()));
+    track.addEventListener('click', () => open(d, cur()));
+  });
+  label();
+  document.querySelectorAll('[data-lang-btn]').forEach(b => b.addEventListener('click', () => setTimeout(label, 0)));
+})();
+// ---------- master's cases: problem, process, data, solution as four steps; the full slides open in the viewer ----------
+document.querySelectorAll('.cs').forEach(cs => {
+  const steps = [...cs.querySelectorAll('.cs-step')], panes = [...cs.querySelectorAll('.cs-pane')];
+  const go = n => {
+    steps.forEach((s, k) => { s.classList.toggle('on', k === n); s.classList.toggle('done', k < n); s.setAttribute('aria-pressed', k === n); });
+    panes.forEach((p, k) => p.classList.toggle('on', k === n));
+  };
+  steps.forEach((s, k) => s.addEventListener('click', () => go(k)));
+  cs.querySelectorAll('.cs-next').forEach(b => b.addEventListener('click', () => { const n = +b.dataset.go; go(n); steps[n].focus({ preventScroll: true }); }));
+  const z = () => cs.parentElement.querySelector('.cs-deck .deck-zoom');
+  cs.querySelector('.cs-slides').addEventListener('click', () => { const b = z(); if (b) b.click(); });
 });
 // ---------- dialogs ("Relevant award"): open from their button, close on the ✕, Escape or a click outside ----------
 document.querySelectorAll('[aria-haspopup="dialog"][aria-controls]').forEach(b => {
@@ -557,8 +616,8 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
   empty();
   const land=()=>{ if(!cur) return; clearTimeout(t1); clearTimeout(t2);
     const p=cur, c=p.querySelector('.pol-card'); cur=null; top(p);
-    c.style.transition=`transform .5s ${E}`; c.style.transform=''; c.style.clipPath='';
-    t2=setTimeout(()=>{c.style.transition='';c.style.transformOrigin='';p.classList.remove('pol-dev','pol-on');},520);};
+    c.style.transition=`transform .45s ${E}`; c.style.transform=''; c.style.clipPath='';
+    t2=setTimeout(()=>{c.style.transition='';c.style.transformOrigin='';p.classList.remove('pol-dev','pol-on');},470);};
   const shoot=()=>{
     land();
     if(n>=pols.length){ empty(); n=0; count(); say('New film loaded.','Nouvelle pellicule.'); return; }
@@ -572,17 +631,14 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
     c.style.transition='none'; c.style.transformOrigin='50% 0';
     c.style.transform=`translate(${tx}px,${ty-r.height*s}px) scale(${s})`; c.style.clipPath='inset(100% 0 0 0)';
     p.classList.remove('pol-wait'); p.classList.add('pol-dev'); void c.offsetWidth;
-    c.style.transition=`transform .7s ${E},clip-path .7s ${E}`;
+    c.style.transition=`transform .45s ${E},clip-path .45s ${E}`;
     c.style.transform=`translate(${tx}px,${ty}px) scale(${s})`; c.style.clipPath='inset(0 0 0 0)';
     requestAnimationFrame(()=>p.classList.add('pol-on'));
-    cur=p; t1=setTimeout(land,2300);
+    cur=p; t1=setTimeout(land,1100);
   };
   cam.addEventListener('click',shoot);
   addEventListener('resize',land);
 })();
 
 // ---------- contact: the address is put together on click, so it never sits in the page ----------
-(function () {
-  const a = document.getElementById('ctMail'); if (!a) return;
-  a.addEventListener('click', e => { e.preventDefault(); location.href = 'mailto:' + ['portfolio.vs.contact', 'icloud.com'].join('@'); });
-})();
+document.querySelectorAll('[data-mail]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); location.href = 'mailto:' + ['portfolio.vs.contact', 'icloud.com'].join('@'); }));
