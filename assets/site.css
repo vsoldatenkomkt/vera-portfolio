@@ -1452,3 +1452,13 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 .hw-promise{margin-top:var(--s-3);font-size:18px}
 /* off duty, desktop: the camera sits near the top of its column so the print sliding out has room above the contact section */
 @media (min-width:900px){.js-cam .off-play .cam-wrap{align-self:start;margin-top:var(--s-5)}}
+
+/* ---------- How I work: every card shares the same rows (number, title, text, tags, example), so the parts line up across cards;
+   four in a row on desktop (Vera likes the horizontal method, like Porter's five forces) ---------- */
+@supports (grid-template-rows:subgrid){
+  .hw-step{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;align-content:start}
+  .hw-step>*{min-width:0}
+  .hw-n{align-self:start}
+  .hw-ex{margin:0;align-self:start}
+}
+@media (min-width:560px){.hw-kw{align-content:flex-start}}
