@@ -617,7 +617,7 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
 })();
 
 // ---------- Marketer off duty: an instant camera. Each click prints the next photo: it slides out of the slot,
-// develops (dark to clear), then lands on top of the pile. The window on the camera counts the photos left.
+// rises out of the slot on top, develops (dark to clear), then lands on top of the pile. The window on the camera counts the photos left.
 (function(){
   const cam=document.getElementById('cam'), board=document.getElementById('offBoard'), play=document.getElementById('offPlay'); if(!cam||!board||!play) return;
   const pols=[...board.querySelectorAll('.pol')], live=document.getElementById('camLive');
@@ -647,12 +647,13 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
     const c=p.querySelector('.pol-card'), r=c.getBoundingClientRect(), s0=slot.getBoundingClientRect();
     const s=Math.min(1,(s0.width*.92)/r.width), tx=s0.left+s0.width/2-(r.left+r.width/2), ty=s0.top+s0.height/2-r.top;
     c.style.transition='none'; c.style.transformOrigin='50% 0';
-    c.style.transform=`translate(${tx}px,${ty-r.height*s}px) scale(${s})`; c.style.clipPath='inset(100% 0 0 0)';
+    // the film slot is on top, like a real Instax: the print rises out of it, its lower part still hidden inside the camera
+    c.style.transform=`translate(${tx}px,${ty}px) scale(${s})`; c.style.clipPath='inset(0 0 100% 0)';
     p.classList.remove('pol-wait'); p.classList.add('pol-dev'); void c.offsetWidth;
-    c.style.transition=`transform .45s ${E},clip-path .45s ${E}`;
-    c.style.transform=`translate(${tx}px,${ty}px) scale(${s})`; c.style.clipPath='inset(0 0 0 0)';
+    c.style.transition=`transform .6s ${E},clip-path .6s ${E}`;
+    c.style.transform=`translate(${tx}px,${ty-r.height*s}px) scale(${s})`; c.style.clipPath='inset(0 0 0 0)';
     requestAnimationFrame(()=>p.classList.add('pol-on'));
-    cur=p; t1=setTimeout(land,1100);
+    cur=p; t1=setTimeout(land,1300);
   };
   cam.addEventListener('click',shoot);
   addEventListener('resize',land);
