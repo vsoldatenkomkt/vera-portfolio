@@ -1466,3 +1466,25 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
   .ct-stamp{bottom:196px}
   .ct-live[hidden]{display:flex;visibility:hidden}
 }
+
+/* off duty: a hand-drawn instant camera in powder blue; the print comes out of the slot on top, so the photo count sits under the camera */
+.cam{border-radius:24px;filter:drop-shadow(0 16px 16px rgba(26,21,17,.16))}
+.cam::after{background:radial-gradient(circle at 53% 26%,#fff,rgba(255,255,255,0) 60%)}
+.cam-hint{order:2;margin:var(--s-3) 0 0}
+/* room above the camera for the print to rise into, so it never covers the title (the print is about .56 of the camera's width tall) */
+.js-cam .cam-wrap{padding-top:calc(clamp(200px,24vw,260px) * .58)}
+/* off duty on phones: the pile sits above the camera, so each print rises straight into it and the camera stays under the thumb.
+   The pile keeps its space from the start (a faint frame marks the spot), so the camera never moves while photos print. */
+@media (max-width:899px){
+  .js-cam .off-play{gap:var(--s-4)}
+  .js-cam .off-board{order:-1}
+  .js-cam .off-board:not(.has){height:auto;padding-top:var(--s-3);padding-bottom:var(--s-3);overflow:visible}
+  .js-cam .pol{width:min(240px,64vw)}
+  .js-cam .off-board::before{content:"";grid-area:1/1;width:min(240px,64vw);border:1.5px dashed rgba(26,21,17,.18);border-radius:3px;transform:rotate(-2deg);transition:opacity .3s var(--ease)}
+  .js-cam .off-board.has::before{opacity:0}
+  .js-cam .cam-wrap{padding-top:0}
+}
+@media (max-width:899px) and (prefers-reduced-motion:reduce){.js-cam .off-board::before{transition:none}}
+/* the camera is now taller than wide (Instax shape): size it by width a little smaller so its height matches before */
+.cam{width:clamp(180px,20vw,230px)}
+.cam::after{background:radial-gradient(circle at 46% 22%,#fff,rgba(255,255,255,0) 60%)}
