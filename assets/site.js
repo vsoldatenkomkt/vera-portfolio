@@ -65,7 +65,7 @@ function showCounts(d) {
   const live = document.getElementById('live');
   if (live && Number.isFinite(d.visits) && d.visits > 50) {   // stays hidden until the count passes 50
     const t = document.getElementById('liveTxt'), one = d.visits === 1;
-    t.dataset.en = one ? 'visit' : 'visits'; t.dataset.fr = one ? 'visite' : 'visites'; t.textContent = t.dataset[lang];
+    t.dataset.en = one ? 'visit so far' : 'visits so far'; t.dataset.fr = one ? 'visite à ce jour' : 'visites à ce jour'; t.textContent = t.dataset[lang];
     live.hidden = false;
   }
   ['visits', 'follows'].forEach(k => {
@@ -131,10 +131,10 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
   // Belarus is where the route starts (always shown); the three tabs are Canada, Milan, France (tab n = stop n + 1)
   // each stop has one or more places where she lived, studied or worked, joined in order by the route
   const STOPS = [
-    { key: 'by', iso: '112', pin: '#B8406F', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
-    { key: 'ca', iso: '124', pin: '#B8406F', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
-    { key: 'it', iso: '380', pin: '#B8406F', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
-    { key: 'fr', iso: '250', pin: '#B8406F', places: [{ at: [0.2, 45.4], en: 'France', fr: 'France', side: 'l' }] }
+    { key: 'by', iso: '112', pin: '#E0559A', places: [{ at: [27.9, 53.6], en: 'Belarus', fr: 'Bélarus', side: 'l' }] },
+    { key: 'ca', iso: '124', pin: '#3C8DEB', places: [{ at: [-75.70, 45.42], en: 'Ottawa', fr: 'Ottawa', side: 'r' }, { at: [-79.38, 43.65], en: 'Toronto', fr: 'Toronto', side: 'l' }] },
+    { key: 'it', iso: '380', pin: '#8B6CF0', places: [{ at: [9.19, 45.46], en: 'Milan', fr: 'Milan', side: 'r' }] },
+    { key: 'fr', iso: '250', pin: '#E0B400', places: [{ at: [0.2, 45.4], en: 'France', fr: 'France', side: 'l' }] }
   ];
   // places visited on trips: small open dots, name on hover, listed under the chapters
   // "Hidden hobby": cities she has travelled to, shown on their own when the button is pressed
@@ -162,11 +162,17 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
     if (document.startViewTransition && !reduce) document.startViewTransition(swap).updateCallbackDone.then(frame); else { swap(); frame(); }
   });
   let step = 0, routes = [], pins = [], userPicked = false, timer = 0, started = reduce;
+  const phone = matchMedia('(max-width:959px)');
   function show(i, fromUser) {
     step = i; const st = i + 1;
     if (fromUser) { userPicked = true; clearTimeout(timer); started = true; }
-    tabs.forEach((t, n) => { t.setAttribute('aria-selected', n === i); t.tabIndex = n === i ? 0 : -1; });
-    panels.forEach((p, n) => { p.hidden = n !== i; });
+    if (phone.matches) {
+      tabs.forEach((t, n) => { if (n === i) t.setAttribute('aria-current', 'step'); else t.removeAttribute('aria-current'); t.removeAttribute('aria-selected'); });
+      panels.forEach((p, n) => { p.hidden = false; p.classList.toggle('on', n === i); });
+    } else {
+      tabs.forEach((t, n) => { t.removeAttribute('aria-current'); t.setAttribute('aria-selected', n === i); t.tabIndex = n === i ? 0 : -1; });
+      panels.forEach((p, n) => { p.hidden = n !== i; p.classList.toggle('on', n === i); });
+    }
     document.querySelectorAll('.jm-link').forEach((l, n) => l.classList.toggle('done', n < i));
     pins.forEach(p => { const s = +p.dataset.stop; p.classList.toggle('on', s === st); p.classList.toggle('seen', s <= st); });
     // a leg draws once its destination's chapter is reached (and the map has come into view); legs of one chapter draw one after another
@@ -176,14 +182,42 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
       r.style.strokeDashoffset = draw ? 0 : r.dataset.len;
     });
   }
+  // phones: the chapters are read by scrolling. All three are on the page, the one in the reading line is lit and the map follows it;
+  // the stop buttons scroll to their chapter. Larger screens keep the tabs: one chapter at a time, picked by click. Nothing moves on its own.
+  const stepList = document.querySelector('.jm-steps'), mapEl = document.querySelector('.jm-map');
+  const setMode = () => {
+    const on = phone.matches;
+    if (stepList) on ? stepList.removeAttribute('role') : stepList.setAttribute('role', 'tablist');
+    tabs.forEach((t, n) => { if (on) { t.removeAttribute('role'); t.tabIndex = 0; } else { t.setAttribute('role', 'tab'); t.setAttribute('aria-controls', panels[n].id); } });
+    panels.forEach((p, n) => { if (on) { p.removeAttribute('role'); p.removeAttribute('aria-labelledby'); } else { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[n].id); } });
+    show(step);
+  };
+  const goTo = n => {
+    const headH = document.getElementById('head').offsetHeight;
+    scrollTo({ top: panels[n].getBoundingClientRect().top + scrollY - headH - mapEl.offsetHeight - 24, behavior: reduce ? 'auto' : 'smooth' });
+  };
+  const pick = n => phone.matches ? goTo(n) : show(n, true);
   tabs.forEach((t, n) => {
-    t.addEventListener('click', () => show(n, true));
+    t.addEventListener('click', () => pick(n));
     t.addEventListener('keydown', e => {
+      if (phone.matches) return;
       const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
       if (!d) return; e.preventDefault(); const m = (n + d + tabs.length) % tabs.length; show(m, true); tabs[m].focus();
     });
   });
-  show(0);
+  // the lit chapter is the last one whose top has passed the reading line (60% down the screen)
+  let readRaf = 0;
+  const readPick = () => {
+    readRaf = 0; if (story.hidden || !phone.matches) return;
+    const line = innerHeight * .6; let k = 0;
+    panels.forEach((p, n) => { if (p.getBoundingClientRect().top < line) k = n; });
+    if (k !== step) show(k);
+  };
+  addEventListener('scroll', () => { if (!readRaf) readRaf = requestAnimationFrame(readPick); }, { passive: true });
+  // phones: the map stays at the top while the chapters scroll under it; the hidden-hobby pill rides along on the map
+  const setMapH = () => jmap.style.setProperty('--jm-h', mapEl.offsetHeight + 'px');
+  if (mapEl) { setMapH(); addEventListener('resize', setMapH, { passive: true }); if ('ResizeObserver' in window) new ResizeObserver(setMapH).observe(mapEl); }
+  setMode(); phone.addEventListener('change', setMode);
   if (!window.d3 || !window.topojson || !d3.geoMercator) return;   // map libraries unavailable: tabs and text still work
   fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r => r.json()).then(world => {
     const NS = 'http://www.w3.org/2000/svg', el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
@@ -222,17 +256,14 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
       g.append(el('circle', { class: 'halo', r: 7 }), el('circle', { class: 'dot', r: 7 }));
       const r = p.side === 'r', t = el('text', { x: r ? 14 : -14, y: p.en === 'Milan' ? 20 : -10, 'text-anchor': r ? 'start' : 'end' });
       t.textContent = p[lang]; t.dataset.en = p.en; t.dataset.fr = p.fr;
-      g.append(t); g.addEventListener('click', () => show(Math.max(0, p.stop - 1), true));
+      g.append(t); g.addEventListener('click', () => pick(Math.max(0, p.stop - 1)));
       svg.append(g); pins.push(g);
     });
     show(step);
-    // passive tour: when the map first comes into view, the line runs from Belarus to Canada, then Milan, then France (unless someone already picked a tab)
+    // when the map first comes into view, the line draws up to the chapter being read; it only moves on as the reader scrolls
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return; io.disconnect();
       if (!started) { started = true; requestAnimationFrame(() => show(step)); }
-      if (reduce || userPicked) return;
-      const next = () => { if (userPicked || step >= tabs.length - 1) return; show(step + 1); timer = setTimeout(next, 4000); };
-      timer = setTimeout(next, 4200);
     }), { threshold: .5 });
     io.observe(svg);
   }).catch(() => {});
@@ -247,7 +278,8 @@ const spyTargets = [...navLinks.filter(a => a.getAttribute('href').startsWith('#
 if ('IntersectionObserver' in window && spyTargets.length) {
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
-    navLinks.forEach(a => a.toggleAttribute('aria-current', a.getAttribute('href') === (e.target.dataset.nav || '#' + e.target.id)));
+    // the CV link is a download, so it stands for the "about" sections (references, timeline, off duty) via data-spy
+    navLinks.forEach(a => a.toggleAttribute('aria-current', (a.dataset.spy || a.getAttribute('href')) === (e.target.dataset.nav || '#' + e.target.id)));
     navLinks.forEach(a => a.hasAttribute('aria-current') && a.setAttribute('aria-current', 'page'));
   }), { rootMargin: '-45% 0px -50% 0px' });
   spyTargets.forEach(t => io.observe(t));
