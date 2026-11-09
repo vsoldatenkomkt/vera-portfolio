@@ -57,6 +57,7 @@
     var a = document.createElement('a');
     a.href = href;
     a.setAttribute('download', href.split('/').pop());
+    a.setAttribute('data-cv-go', '');   // marks our own click so the listener below lets it through (otherwise it loops)
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -145,7 +146,7 @@
   }
 
   document.addEventListener('click', function (e) {
-    var link = e.target.closest && e.target.closest('a[download][href$=".pdf"]');
+    var link = e.target.closest && e.target.closest('a[download][href$=".pdf"]:not([data-cv-go])');
     if (!link) return;
     e.preventDefault();
     if (hasChoice(link)) open(link);
