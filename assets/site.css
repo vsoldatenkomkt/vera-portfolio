@@ -1361,20 +1361,6 @@ html.lb-open{overflow:hidden}
 .mk,.js-mk .mk{font-family:inherit;font-style:normal;font-size:inherit;font-weight:700;line-height:inherit;letter-spacing:0;white-space:normal;color:var(--accent-2)}
 /* desktop keeps the tabs (one chapter at a time); the current stop pill */
 .jm-step[aria-current]{color:var(--ink);font-weight:700;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(250,250,249,.78));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(26,21,17,.09),0 1px 2px rgba(26,21,17,.05),0 4px 12px -6px rgba(26,21,17,.14)}
-/* phones and tablets: the map stays under the header, the chapters scroll beneath it */
-@media (max-width:959px){
-  /* all three chapters sit one under the other; the one in the reading line is lit, the others wait in a lighter tone */
-  .js-jm .jm-panel{grid-area:auto;opacity:.32;transition:opacity .45s var(--ease)}
-  .js-jm .jm-panel.on{opacity:1}
-  .js-jm .jm-panel .jm-txt,.js-jm .jm-panel .jm-next-wrap{animation:none}
-  .js-jm .jm-panel+.jm-panel{margin-top:var(--s-9)}
-  .js-jm .jmap:not(.expanded) .jm-map{position:sticky;top:var(--head-h);z-index:1;background:color-mix(in srgb,#F8D8CB 24%,#fff);-webkit-mask-image:none;mask-image:none}
-  .js-jm .jmap:not(.expanded) .jm-map #jmSvg{-webkit-mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%)}
-  .js-jm .jmap:not(.expanded) .tp.jm-hobby{position:sticky;top:calc(var(--head-h) + var(--jm-h,220px) - 52px)}
-  .js-jm .jm-panel{min-height:36vh}
-  .js-jm .jm-panel:last-child{min-height:0}
-}
-@media (max-width:959px) and (prefers-reduced-motion:reduce){.js-jm .jm-panel{transition:none}}
 
 /* ---------- 2026-11-09: palette pulled from a perfume counter (petal and powder pinks, peony magenta and coral,
    gold cap, greige walls, chrome trim, black bow) ----------
@@ -1445,9 +1431,8 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 .jmap{--w1:#A64E3D;--w2:#725CA9;--w3:#287C42;--w4:#A04B6F;--w5:#0075A7;--w6:#00787D}
 .jm-land{fill:#FEFCF7;stroke:#D9D1C4}
 .jm-land.by{fill:#FFB8D6}.jm-land.ca{fill:#9FCBFF}.jm-land.it{fill:#CDB9FF}.jm-land.fr{fill:#FFE14D}
-/* journey section on a very light sky blue (lighter than the old one); the sticky phone map uses the same colour */
+/* journey section on a very light sky blue (lighter than the old one) */
 .path{--path-bg:#F0F6FD;background:var(--path-bg)}
-@media (max-width:959px){.js-jm .jmap:not(.expanded) .jm-map{background:var(--path-bg)}}
 .path .jm-pin text,.path .jm-trip text{stroke:var(--path-bg)}
 .hw-promise{margin-top:var(--s-3);font-size:18px}
 /* off duty, desktop: the camera sits near the top of its column so the print sliding out has room above the contact section */
@@ -1462,3 +1447,22 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
   .hw-ex{margin:0;align-self:start}
 }
 @media (min-width:560px){.hw-kw{align-content:flex-start}}
+
+/* journey: one chapter at a time on every screen; a "Next stop" pill closes each chapter, pinned to the bottom of the
+   shared cell so it sits in the same place whichever chapter is open */
+.js-jm .jm-panel{display:flex;flex-direction:column}
+.js-jm .jm-panel[hidden]{display:flex}
+.js-jm .jm-panel .jm-next-wrap{margin-top:auto;padding-top:var(--s-5)}
+.tp.jm-go{font:inherit;font-size:15px;border:0;cursor:pointer;color:var(--ink)}
+.tp.jm-go:hover .jm-go-ic{transform:translateX(3px)}
+.tp.jm-go:active{transform:scale(.97)}
+.jm-go-ic{transition:transform .2s var(--ease)}
+@media (prefers-reduced-motion:reduce){.jm-go-ic{transition:none}}
+/* phones and tablets: each chapter takes its own height, so the button follows the text (the page is scrolled back to the map anyway) */
+@media (max-width:959px){.js-jm .jm-panel[hidden]{display:none}.js-jm .jm-panel .jm-next-wrap{margin-top:0}}
+/* contact on phones: the ring sits level with the three tiles, clear of the FAQ button (the visit counter below now adds height);
+   the counter keeps its space while it loads, so the ring never shifts */
+@media (max-width:767px){
+  .ct-stamp{bottom:196px}
+  .ct-live[hidden]{display:flex;visibility:hidden}
+}
