@@ -162,17 +162,11 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
     if (document.startViewTransition && !reduce) document.startViewTransition(swap).updateCallbackDone.then(frame); else { swap(); frame(); }
   });
   let step = 0, routes = [], pins = [], userPicked = false, timer = 0, started = reduce;
-  const phone = matchMedia('(max-width:959px)');
   function show(i, fromUser) {
     step = i; const st = i + 1;
     if (fromUser) { userPicked = true; clearTimeout(timer); started = true; }
-    if (phone.matches) {
-      tabs.forEach((t, n) => { if (n === i) t.setAttribute('aria-current', 'step'); else t.removeAttribute('aria-current'); t.removeAttribute('aria-selected'); });
-      panels.forEach((p, n) => { p.hidden = false; p.classList.toggle('on', n === i); });
-    } else {
-      tabs.forEach((t, n) => { t.removeAttribute('aria-current'); t.setAttribute('aria-selected', n === i); t.tabIndex = n === i ? 0 : -1; });
-      panels.forEach((p, n) => { p.hidden = n !== i; p.classList.toggle('on', n === i); });
-    }
+    tabs.forEach((t, n) => { t.setAttribute('aria-selected', n === i); t.tabIndex = n === i ? 0 : -1; });
+    panels.forEach((p, n) => { p.hidden = n !== i; p.classList.toggle('on', n === i); });
     document.querySelectorAll('.jm-link').forEach((l, n) => l.classList.toggle('done', n < i));
     pins.forEach(p => { const s = +p.dataset.stop; p.classList.toggle('on', s === st); p.classList.toggle('seen', s <= st); });
     // a leg draws once its destination's chapter is reached (and the map has come into view); legs of one chapter draw one after another
@@ -182,42 +176,21 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
       r.style.strokeDashoffset = draw ? 0 : r.dataset.len;
     });
   }
-  // phones: the chapters are read by scrolling. All three are on the page, the one in the reading line is lit and the map follows it;
-  // the stop buttons scroll to their chapter. Larger screens keep the tabs: one chapter at a time, picked by click. Nothing moves on its own.
-  const stepList = document.querySelector('.jm-steps'), mapEl = document.querySelector('.jm-map');
-  const setMode = () => {
-    const on = phone.matches;
-    if (stepList) on ? stepList.removeAttribute('role') : stepList.setAttribute('role', 'tablist');
-    tabs.forEach((t, n) => { if (on) { t.removeAttribute('role'); t.tabIndex = 0; } else { t.setAttribute('role', 'tab'); t.setAttribute('aria-controls', panels[n].id); } });
-    panels.forEach((p, n) => { if (on) { p.removeAttribute('role'); p.removeAttribute('aria-labelledby'); } else { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[n].id); } });
-    show(step);
-  };
-  const goTo = n => {
-    const headH = document.getElementById('head').offsetHeight;
-    scrollTo({ top: panels[n].getBoundingClientRect().top + scrollY - headH - mapEl.offsetHeight - 24, behavior: reduce ? 'auto' : 'smooth' });
-  };
-  const pick = n => phone.matches ? goTo(n) : show(n, true);
+  // every screen size: one chapter at a time, picked with the stop tabs or the "Next stop" button at the end of a chapter
   tabs.forEach((t, n) => {
-    t.addEventListener('click', () => pick(n));
+    t.addEventListener('click', () => show(n, true));
     t.addEventListener('keydown', e => {
-      if (phone.matches) return;
       const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
       if (!d) return; e.preventDefault(); const m = (n + d + tabs.length) % tabs.length; show(m, true); tabs[m].focus();
     });
   });
-  // the lit chapter is the last one whose top has passed the reading line (60% down the screen)
-  let readRaf = 0;
-  const readPick = () => {
-    readRaf = 0; if (story.hidden || !phone.matches) return;
-    const line = innerHeight * .6; let k = 0;
-    panels.forEach((p, n) => { if (p.getBoundingClientRect().top < line) k = n; });
-    if (k !== step) show(k);
-  };
-  addEventListener('scroll', () => { if (!readRaf) readRaf = requestAnimationFrame(readPick); }, { passive: true });
-  // phones: the map stays at the top while the chapters scroll under it; the hidden-hobby pill rides along on the map
-  const setMapH = () => jmap.style.setProperty('--jm-h', mapEl.offsetHeight + 'px');
-  if (mapEl) { setMapH(); addEventListener('resize', setMapH, { passive: true }); if ('ResizeObserver' in window) new ResizeObserver(setMapH).observe(mapEl); }
-  setMode(); phone.addEventListener('change', setMode);
+  // "Next stop": opens the next chapter, then brings the reader back up to the map so the new leg draws in view and the text starts from its first line
+  document.querySelectorAll('.jm-go').forEach(b => b.addEventListener('click', () => {
+    const n = +b.dataset.go; show(n, true); tabs[n].focus({ preventScroll: true });
+    const headH = document.getElementById('head').offsetHeight, top = jmap.getBoundingClientRect().top;
+    if (top < headH) scrollTo({ top: top + scrollY - headH - 16, behavior: reduce ? 'auto' : 'smooth' });
+  }));
+  show(0);
   if (!window.d3 || !window.topojson || !d3.geoMercator) return;   // map libraries unavailable: tabs and text still work
   fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r => r.json()).then(world => {
     const NS = 'http://www.w3.org/2000/svg', el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
