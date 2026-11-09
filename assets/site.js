@@ -349,6 +349,115 @@ document.querySelectorAll('.sk-rail').forEach(rail => {
   });
   pick(Math.max(0, items.findIndex(it => it.classList.contains('on'))));
 });
+// ---------- Work on phones only: one constellation, a star per area; swipe or tap a star to move between slides of
+// project summaries; each project's full visual opens in a pop-up. Desktop keeps the tabs and panels. ----------
+(() => {
+  const sk = document.querySelector('.sk'); if (!sk) return;
+  const tabs = [...sk.querySelectorAll('.sk-tab')], panels = [...sk.querySelectorAll('.sk-panel')];
+  if (!tabs.length || tabs.length !== panels.length) return;
+  const STAR = '<svg viewBox="0 0 23 22" aria-hidden="true" focusable="false"><path d="M12 0c1.3 7 4.1 9.7 11 11-6.9 1.3-9.7 4.1-11 11-1.3-6.9-4.1-9.7-11-11 6.9-1.3 9.7-4 11-11z"/></svg>';
+  const PTS = [[15, 44], [45, 22], [82, 56], [40, 118], [80, 158]];   // star centres: x in %, y in px (a winding path, after Vera's sketch)
+  const T = { en: { open: 'See the project', close: 'Close', swipe: 'Tap a star or swipe' }, fr: { open: 'Voir le projet', close: 'Fermer', swipe: 'Touchez une étoile ou faites glisser' } };
+  const tx = (el, k) => { el.dataset.en = T.en[k]; el.dataset.fr = T.fr[k]; el.textContent = T[lang] ? T[lang][k] : T.fr[k]; };
+  const clean = el => { el.removeAttribute('id'); el.querySelectorAll('[id]').forEach(x => x.removeAttribute('id')); return el; };
+
+  const m = document.createElement('div'); m.className = 'skm';
+  const sky = document.createElement('div'); sky.className = 'skm-sky';
+  const mid = 'skmm' + Math.random().toString(36).slice(2, 6);
+  sky.innerHTML = '<svg class="skm-line" aria-hidden="true"><defs><mask id="' + mid + '" maskUnits="userSpaceOnUse"></mask></defs><path mask="url(#' + mid + ')"/></svg>';
+  const path = sky.querySelector('path'), mask = sky.querySelector('mask');
+  const hint = document.createElement('p'); hint.className = 'skm-hint'; tx(hint, 'swipe');
+  const track = document.createElement('div'); track.className = 'skm-track';
+  const dlg = document.createElement('dialog'); dlg.className = 'skm-dlg';
+  dlg.innerHTML = '<div class="skm-dlg-top"><p class="skm-dlg-t"></p><button type="button" class="skm-x"><span aria-hidden="true">✕</span><span class="sr-only"></span></button></div><div class="skm-dlg-body"></div>';
+  tx(dlg.querySelector('.skm-x .sr-only'), 'close');
+  const dlgBody = dlg.querySelector('.skm-dlg-body'), dlgT = dlg.querySelector('.skm-dlg-t');
+
+  const stars = [], slides = [];
+  tabs.forEach((tab, n) => {
+    const [x, y] = PTS[n] || [50, 40 + n * 30];
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'skm-st'; b.style.left = x + '%'; b.style.top = y + 'px';
+    b.innerHTML = '<span class="skm-st-i">' + STAR + '</span><span class="skm-st-l"></span>';
+    tab.querySelectorAll('[data-en]').forEach(sp => b.querySelector('.skm-st-l').appendChild(clean(sp.cloneNode(true))));
+    b.addEventListener('click', () => go(n, true));
+    sky.appendChild(b); stars.push(b);
+
+    const sl = document.createElement('section'); sl.className = 'skm-slide';
+    const head = document.createElement('div'); head.className = 'skm-head';
+    const cat = document.createElement('h3'); cat.className = 'skm-cat';
+    tab.querySelectorAll('[data-en]').forEach(sp => cat.appendChild(clean(sp.cloneNode(true))));
+    const num = document.createElement('span'); num.className = 'skm-num'; num.textContent = (n + 1) + ' / ' + tabs.length;
+    head.append(cat, num); sl.appendChild(head);
+    const figs = [...panels[n].querySelectorAll('.sk-stack > *')];
+    panels[n].querySelectorAll('.sk-item').forEach((it, k) => {
+      const card = document.createElement('article'); card.className = 'skm-card';
+      [...it.children].forEach(ch => {
+        const c = clean(ch.cloneNode(true));
+        if (c.classList.contains('sk-h')) { const h = document.createElement('h4'); h.className = 'skm-h'; c.querySelectorAll('[data-en]').forEach(sp => h.appendChild(sp)); card.appendChild(h); }
+        else card.appendChild(c);
+      });
+      const fig = figs[k];
+      if (fig) {
+        const ob = document.createElement('button'); ob.type = 'button'; ob.className = 'tp skm-open';
+        const ol = document.createElement('span'); tx(ol, 'open');
+        ob.append(ol); ob.insertAdjacentHTML('beforeend', '<span aria-hidden="true">→</span>');
+        ob.addEventListener('click', () => openFig(fig, card.querySelector('.skm-h')));
+        card.appendChild(ob);
+      }
+      sl.appendChild(card);
+    });
+    track.appendChild(sl); slides.push(sl);
+  });
+  m.append(sky, hint, track);
+  sk.appendChild(m); document.body.appendChild(dlg);
+
+  // the project's own visual moves into the pop-up while it is open, then goes back (its buttons keep working)
+  let home = null, shown = null;
+  function openFig(fig, h) {
+    home = document.createComment('fig'); fig.before(home); shown = fig;
+    fig.classList.add('on'); dlgBody.appendChild(fig);
+    dlgT.textContent = h ? h.textContent : '';
+    dlg.showModal(); dlgBody.scrollTop = 0;
+  }
+  dlg.querySelector('.skm-x').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { if (home && shown) { home.replaceWith(shown); home = shown = null; } });
+
+  let cur = 0;
+  function mark(n) {
+    cur = n;
+    stars.forEach((s, i) => { s.classList.toggle('on', i === n); s.setAttribute('aria-current', i === n ? 'true' : 'false'); });
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i === n ? 'false' : 'true'));
+    track.style.height = slides[n].offsetHeight + 'px';
+  }
+  function go(n, user) {
+    const wasCur = n === cur;
+    mark(n);
+    if (!wasCur) { stars[n].classList.remove('tw'); void stars[n].offsetWidth; stars[n].classList.add('tw'); }
+    track.scrollTo({ left: n * track.clientWidth, behavior: user && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto' });
+  }
+  let st = 0;
+  track.addEventListener('scroll', () => {
+    clearTimeout(st);
+    st = setTimeout(() => { const n = Math.round(track.scrollLeft / track.clientWidth); if (n !== cur && slides[n]) { mark(n); stars[n].classList.add('tw'); } }, 80);
+  }, { passive: true });
+  // links elsewhere on the page that open a Work tab also move the phone slides
+  tabs.forEach((t, n) => t.addEventListener('click', () => { if (n !== cur) go(n, false); }));
+
+  const draw = () => {
+    const box = sky.getBoundingClientRect(); if (!box.width) return;
+    const c = stars.map(s => { const r = s.querySelector('.skm-st-i').getBoundingClientRect(); return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top]; });
+    let d = 'M' + c[0][0] + ' ' + c[0][1];
+    for (let i = 1; i < c.length; i++) { const [x0, y0] = c[i - 1], [x1, y1] = c[i]; d += ' C' + (x0 + (x1 - x0) * .5) + ' ' + y0 + ' ' + (x0 + (x1 - x0) * .5) + ' ' + y1 + ' ' + x1 + ' ' + y1; }
+    path.setAttribute('d', d);
+    mask.innerHTML = '<rect x="-50" y="-50" width="' + (box.width + 100) + '" height="' + (box.height + 100) + '" fill="#fff"/>' + c.map(([x, y]) => '<circle cx="' + x + '" cy="' + y + '" r="17" fill="#000"/>').join('')
+      + stars.map(s => { const r = s.querySelector('.skm-st-l').getBoundingClientRect(); return '<rect x="' + (r.left - box.left - 4) + '" y="' + (r.top - box.top - 2) + '" width="' + (r.width + 8) + '" height="' + (r.height + 4) + '" fill="#000"/>'; }).join('');
+  };
+  new ResizeObserver(() => { draw(); if (slides[cur].offsetHeight) { track.style.height = slides[cur].offsetHeight + 'px'; track.scrollLeft = cur * track.clientWidth; } }).observe(m);
+  slides.forEach(s => new ResizeObserver(() => { if (s === slides[cur] && s.offsetHeight) track.style.height = s.offsetHeight + 'px'; }).observe(s));
+  mark(0);
+})();
 // ---------- slide decks inside the Work panels: arrows step through the slides ----------
 document.querySelectorAll('.sk-deck').forEach(d => {
   const slides = [...d.querySelectorAll('.deck-track img')], count = d.querySelector('.deck-count');
