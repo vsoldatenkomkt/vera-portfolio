@@ -1488,3 +1488,8 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 /* the camera is now taller than wide (Instax shape): size it by width a little smaller so its height matches before */
 .cam{width:clamp(180px,20vw,230px)}
 .cam::after{background:radial-gradient(circle at 46% 22%,#fff,rgba(255,255,255,0) 60%)}
+
+/* ---------- Email: short note after the address is copied ---------- */
+.mail-toast{position:fixed;left:50%;bottom:calc(var(--s-5) + env(safe-area-inset-bottom,0px));z-index:80;margin:0;padding:var(--s-3) var(--s-5);border-radius:999px;background:var(--ink);color:var(--on-accent);font:500 14px/1.2 var(--f-body);box-shadow:0 12px 32px -12px rgba(26,21,17,.45);pointer-events:none;opacity:0;transform:translate(-50%,8px);transition:opacity .15s var(--ease),transform .15s var(--ease)}
+.mail-toast.on{opacity:1;transform:translate(-50%,0);transition-duration:.22s}
+@media (prefers-reduced-motion:reduce){.mail-toast{transition:opacity .15s linear;transform:translate(-50%,0)}}

@@ -660,4 +660,36 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
 })();
 
 // ---------- contact: the address is put together on click, so it never sits in the page ----------
-document.querySelectorAll('[data-mail]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); location.href = 'mailto:' + ['portfolio.vs.contact', 'icloud.com'].join('@'); }));
+// A mailto alone does nothing on a computer with no mail app set up, so the click also copies the address
+// and shows a short note. Visitors who use a mail app still get it opened as before.
+(() => {
+  const links = document.querySelectorAll('[data-mail]');
+  if (!links.length) return;
+  let toast, hideT = 0;
+  function note() {
+    if (!toast) {
+      toast = document.createElement('p');
+      toast.className = 'mail-toast'; toast.setAttribute('role', 'status');
+      document.body.appendChild(toast);
+    }
+    toast.textContent = lang === 'fr' ? 'Adresse e-mail copiée' : 'Email address copied';
+    toast.classList.add('on');
+    clearTimeout(hideT); hideT = setTimeout(() => toast.classList.remove('on'), 2600);
+  }
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise((ok, no) => {
+      const t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(t); t.select();
+      let done = false; try { done = document.execCommand('copy'); } catch (e) {}
+      t.remove(); done ? ok() : no();
+    });
+  }
+  links.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const addr = ['portfolio.vs.contact', 'icloud.com'].join('@');
+    copy(addr).then(note, () => {});
+    location.href = 'mailto:' + addr;
+  }));
+})();
