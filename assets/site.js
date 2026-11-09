@@ -460,7 +460,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
   new ResizeObserver(fit).observe(tl); fit();
   document.addEventListener('click', e => { if (e.target.closest('[data-lang-btn]')) setTimeout(fit, 0); });
   let cur = -1;
-  // side stories (volunteering, IYKYK) open on click but are not steps of the walk; "next" from one goes to the first step that starts after it
+  // side stories (volunteering, the world on hold) open on click but are not steps of the walk; "next" from one goes to the first step that starts after it
   const cs = i => +items.find(b => +b.dataset.i === i).style.getPropertyValue('--cs');
   // the walk only visits the moments on screen (phones show the main ones)
   const after = i => { const order = walk(), k = order.findIndex(j => cs(j) > cs(i)); return k < 0 ? 0 : k; };
