@@ -292,32 +292,62 @@ document.querySelectorAll('.tip').forEach(t => {
   });
 })();
 
-// ---------- two examples in one skill: click an example, or drag the logo star between them, to show its visual ----------
+// ---------- examples in one skill: a tidy constellation, one star per example along a soft arc; click a star to show it ----------
 document.querySelectorAll('.sk-rail').forEach(rail => {
   const items = [...rail.querySelectorAll('.sk-item')], btns = items.map(i => i.querySelector('.sk-pick'));
-  const star = rail.querySelector('.sk-star'), line = rail.querySelector('.sk-rail-line');
   const stack = rail.closest('.sk-panel').querySelector('.sk-stack');
+  const STAR = '<svg viewBox="0 0 23 22" aria-hidden="true" focusable="false"><path d="M12 0c1.3 7 4.1 9.7 11 11-6.9 1.3-9.7 4.1-11 11-1.3-6.9-4.1-9.7-11-11 6.9-1.3 9.7-4 11-11z"/></svg>';
+  const phone = matchMedia('(max-width: 767px)').matches;
+  const LIFT = items.length === 2 ? (phone ? [14, 0] : [22, 0]) : (phone ? [16, 0, 16] : [26, 0, 26]);   // px down from the top: the middle star sits highest
+  const sky = document.createElement('div');
+  sky.className = 'sk-sky'; sky.setAttribute('role', 'group');
+  sky.style.gridTemplateColumns = 'repeat(' + items.length + ',minmax(0,1fr))';
+  const mid = 'skm' + Math.random().toString(36).slice(2, 7);
+  sky.innerHTML = '<svg class="sk-sky-line" aria-hidden="true"><defs><mask id="' + mid + '" maskUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="#fff"/></mask></defs><path mask="url(#' + mid + ')"/></svg>';
+  const path = sky.querySelector('path'), mask = sky.querySelector('mask');
+  const stars = items.map((it, n) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'sk-cs';
+    b.style.setProperty('--lift', (LIFT[n] || 0) + 'px');
+    b.innerHTML = '<span class="sk-cs-star">' + STAR + '</span><span class="sk-cs-lab"></span>';
+    const lab = b.querySelector('.sk-cs-lab');
+    btns[n].querySelectorAll('[data-en]').forEach(sp => lab.appendChild(sp.cloneNode(true)));
+    b.addEventListener('click', () => pick(n));
+    sky.appendChild(b);
+    return b;
+  });
+  rail.prepend(sky);
+  const hint = rail.querySelector('.sk-hint'); if (hint) rail.prepend(hint);
+  rail.classList.add('has-sky');
+  // one smooth curve through the star centres, redrawn when the width changes
+  const draw = () => {
+    const box = sky.getBoundingClientRect(); if (!box.width) return;
+    const c = stars.map(s => { const r = s.querySelector('.sk-cs-star').getBoundingClientRect(); return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top]; });
+    let d = 'M' + c[0][0] + ' ' + c[0][1];
+    for (let i = 1; i < c.length; i++) { const [x0, y0] = c[i - 1], [x1, y1] = c[i], mx = (x0 + x1) / 2; d += ' C' + mx + ' ' + y0 + ' ' + mx + ' ' + y1 + ' ' + x1 + ' ' + y1; }
+    path.setAttribute('d', d);
+    // a clear gap around each star, so the line never runs through one
+    mask.innerHTML = '<rect x="-50" y="-50" width="' + (box.width + 100) + '" height="' + (box.height + 100) + '" fill="#fff"/>' + c.map(([x, y]) => '<circle cx="' + x + '" cy="' + y + '" r="18" fill="#000"/>').join('');
+  };
+  new ResizeObserver(draw).observe(sky);
   let cur = 0;
-  const ys = () => btns.map(b => { const h = b.closest('.sk-h'); return h.offsetTop + Math.min(h.offsetHeight, 32) / 2; });
-  const place = y => star.style.setProperty('--y', y + 'px');
-  const layout = () => { const y = ys(); line.style.setProperty('--y0', y[0] + 'px'); line.style.setProperty('--y1', y[y.length - 1] + 'px'); place(y[cur]); };
-  const pick = n => {
-    cur = n; layout();
+  function pick(n) {
+    const changed = n !== cur; cur = n;
     items.forEach((it, m) => it.classList.toggle('on', m === n));
     btns.forEach((b, m) => b.setAttribute('aria-pressed', m === n));
+    stars.forEach((s, m) => { s.setAttribute('aria-pressed', m === n); s.classList.toggle('on', m === n); });
+    if (changed) { stars[n].classList.remove('tw'); void stars[n].offsetWidth; stars[n].classList.add('tw'); }
     [...stack.children].forEach((c, m) => { if (c.classList.contains('on') !== (m === n)) c.classList.toggle('on', m === n); });
     const r = stack.getBoundingClientRect();
-    if (r.bottom < 80 || r.top > innerHeight) stack.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
-  };
+    if (changed && !matchMedia('(max-width: 767px)').matches && (r.bottom < 80 || r.top > innerHeight))   // phones: the text changes right under the thumb, no jump
+      stack.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+  }
   items.forEach((it, n) => it.addEventListener('click', () => { if (n !== cur) pick(n); }));
-  let drag = false;
-  const at = e => { const y = ys(), top = rail.getBoundingClientRect().top; return Math.min(y[y.length - 1], Math.max(y[0], e.clientY - top)); };
-  star.addEventListener('pointerdown', e => { drag = true; star.setPointerCapture(e.pointerId); star.classList.add('drag'); e.preventDefault(); });
-  star.addEventListener('pointermove', e => { if (drag) place(at(e)); });
-  const end = e => { if (!drag) return; drag = false; star.classList.remove('drag'); const v = at(e), y = ys(); let best = 0; y.forEach((q, m) => { if (Math.abs(q - v) < Math.abs(y[best] - v)) best = m; }); best === cur ? layout() : pick(best); };
-  star.addEventListener('pointerup', end); star.addEventListener('pointercancel', end);
-  new ResizeObserver(layout).observe(rail);
-  layout();
+  sky.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+    if (!d) return; e.preventDefault(); const m = (cur + d + items.length) % items.length; pick(m); stars[m].focus();
+  });
+  pick(Math.max(0, items.findIndex(it => it.classList.contains('on'))));
 });
 // ---------- slide decks inside the Work panels: arrows step through the slides ----------
 document.querySelectorAll('.sk-deck').forEach(d => {

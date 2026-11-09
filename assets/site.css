@@ -1270,7 +1270,7 @@ html.lb-open{overflow:hidden}
   .js-sk .sk-rail,.sk-rail{display:grid;gap:var(--s-3);padding-left:0}
   .js-sk .sk-rail-line,.js-sk .sk-star,.js-sk .sk-hint,.sk-rail>:not(.sk-item){display:none}
   .js-sk .sk-rail .sk-item,.sk-rail .sk-item{opacity:1;cursor:default;margin:0;padding:var(--s-4);border-radius:14px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(26,21,17,.08)}
-  .sk-rail .sk-item>:not(.sk-kick):not(.sk-h):not(.sk-txt){display:none}
+  .sk-rail:not(.has-sky) .sk-item>:not(.sk-kick):not(.sk-h):not(.sk-txt){display:none}
   .js-sk .sk-rail .sk-item:not(.on)>.sk-txt:not(.sk-kick):not(.sk-h){display:block}
   .js-sk .sk-rail .sk-item.on>:not(.sk-kick):not(.sk-h){animation:none}
   .sk-rail .sk-h{margin:var(--s-1) 0 0}
@@ -1493,3 +1493,35 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 .mail-toast{position:fixed;left:50%;bottom:calc(var(--s-5) + env(safe-area-inset-bottom,0px));z-index:80;margin:0;padding:var(--s-3) var(--s-5);border-radius:999px;background:var(--ink);color:var(--on-accent);font:500 14px/1.2 var(--f-body);box-shadow:0 12px 32px -12px rgba(26,21,17,.45);pointer-events:none;opacity:0;transform:translate(-50%,8px);transition:opacity .15s var(--ease),transform .15s var(--ease)}
 .mail-toast.on{opacity:1;transform:translate(-50%,0);transition-duration:.22s}
 @media (prefers-reduced-motion:reduce){.mail-toast{transition:opacity .15s linear;transform:translate(-50%,0)}}
+
+/* ---------- Work examples: a tidy constellation, one star per example along a soft arc (replaces the dragged star). Phones too. ---------- */
+.sk-sky{display:none}
+.js-sk .sk-rail.has-sky{padding-left:0}
+.js-sk .sk-rail.has-sky .sk-rail-line,.js-sk .sk-rail.has-sky .sk-star{display:none}
+.js-sk .sk-rail.has-sky .sk-item:not(.on){display:none}
+.js-sk .sk-rail.has-sky .sk-item.on{opacity:1;cursor:default;animation:jmIn .35s var(--ease)}
+.js-sk .sk-rail.has-sky>.sk-sky{display:grid;position:relative;align-items:start;margin:var(--s-4) 0 var(--s-6);padding-bottom:var(--s-5);border-bottom:1px solid rgba(26,21,17,.08)}
+.sk-sky-line{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.sk-sky-line path{fill:none;stroke:var(--ink);stroke-opacity:.16;stroke-width:1}
+.sk-cs{all:unset;position:relative;display:flex;flex-direction:column;align-items:center;gap:var(--s-2);padding:var(--lift,0) var(--s-2) 0;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sk-cs-star{display:grid;place-items:center;width:44px;height:44px}
+.sk-cs-star svg{width:16px;height:16px;fill:none;stroke:rgba(26,21,17,.45);stroke-width:1.6;overflow:visible;transition:width .25s var(--ease),height .25s var(--ease),fill .25s var(--ease),stroke .25s var(--ease),transform .25s var(--ease)}
+.sk-cs.on .sk-cs-star svg{width:26px;height:26px;fill:var(--word,var(--w1));stroke:var(--word,var(--w1));transform:none}
+.sk-cs.tw .sk-cs-star svg{animation:skTw .45s var(--ease)}
+@keyframes skTw{from{transform:scale(.6) rotate(-45deg)}to{transform:none}}
+.sk-cs-lab{max-width:22ch;font:500 13px/1.35 var(--f-body);color:var(--muted);transition:color .2s var(--ease)}
+.sk-cs.on .sk-cs-lab{color:var(--ink);font-weight:700}
+.sk-cs:focus-visible .sk-cs-lab{outline:3px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+.sk-cs:active .sk-cs-star svg{transform:scale(.97)}
+@media (hover:hover){.sk-cs:hover .sk-cs-star svg{stroke:var(--ink);transform:scale(1.1)}.sk-cs.on:hover .sk-cs-star svg{stroke:var(--word,var(--w1));transform:none}.sk-cs:hover .sk-cs-lab{color:var(--ink)}}
+@media (prefers-reduced-motion:reduce){.sk-cs-star svg{transition:none}.sk-cs.tw .sk-cs-star svg,.js-sk .sk-rail.has-sky .sk-item.on{animation:none}}
+/* phones: stars, then the chosen example's text, then its visual (the visuals were hidden on phones before) */
+@media (max-width:767px){
+  .js-sk .sk-rail.has-sky>.sk-hint{display:block;margin:0}
+  .js-sk .sk-rail.has-sky>.sk-sky{margin:var(--s-2) 0 var(--s-2);padding-bottom:var(--s-4)}
+  .sk-cs{padding:var(--lift,0) var(--s-1) 0;gap:var(--s-1)}
+  .sk-cs-lab{max-width:15ch;font-size:13px}
+  .js-sk .sk-panel.sk-two:not([hidden]):has(.has-sky){display:flex;flex-direction:column;gap:var(--s-5)}
+  .js-sk .sk-panel.sk-two:has(.has-sky) .sk-figcol{display:block;order:2;min-width:0}
+  .js-sk .sk-panel.sk-two:has(.has-sky) .sk-stack>:not(.on){display:none}   /* only the chosen visual takes up space */
+}
