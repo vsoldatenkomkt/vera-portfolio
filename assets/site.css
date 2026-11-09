@@ -1,9 +1,9 @@
 /* Vera Soldatenko · site styles. Design system: ink and one rose accent (was Confetti), Bricolage Grotesque + DM Sans. */
 :root{
-  --bg:#F7F3EB; --surface:#FEFCF7; --ink:#1A1511; --muted:#54555A; --line:#E3DDD3;
-  --accent:#1A1511; --accent-2:#B8406F; --on-accent:#FEFCF7; --soft:#F9D3E1; --soft-2:#FBE2D5;
+  --bg:#F3EFEA; --surface:#FBF9F6; --ink:#1A1511; --muted:#54555A; --line:#E2DCD5;
+  --accent:#1A1511; --accent-2:#C4407A; --on-accent:#FBF9F6; --soft:#F6D2DE; --soft-2:#F8D8CB;
   /* word colours: text-safe (AA on the card) */
-  --w1:#B8406F; --w2:#D9608A; --w3:#C2457A; --w4:#B8406F; --w5:#D9608A; --w6:#C2457A;
+  --w1:#C4407A; --w2:#E07FA2; --w3:#C4407A; --w4:#C4407A; --w5:#E07FA2; --w6:#C4407A;
   --radius:6px;
   --f-display:"Bricolage Grotesque", system-ui, sans-serif; --display-wt:800; --display-track:-0.035em;
   --f-body:"DM Sans", system-ui, sans-serif;
@@ -53,7 +53,7 @@ section[id]{scroll-margin-top:var(--head-h)}
 .jm-map{position:relative;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%)}
 #jmSvg{display:block;width:100%;height:auto}
 .jm-land{fill:var(--surface);stroke:#D9D1C4;stroke-width:.7}
-.jm-land.by{fill:#F9D3E1}.jm-land.ca{fill:#FBE2D5}.jm-land.it{fill:#F9D3E1}.jm-land.fr{fill:#F9D3E1}
+.jm-land.by{fill:#F6D2DE}.jm-land.ca{fill:#F8D8CB}.jm-land.it{fill:#F6D2DE}.jm-land.fr{fill:#F6D2DE}
 /* "Hidden hobby" view: the story (route, pins) steps aside and the travel dots pop in one after another */
 .jm-trip{opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
 .jm-trip circle.hit{fill:transparent;stroke:none}
@@ -465,7 +465,7 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .tl-vols>.tl-txt{position:absolute;top:0;left:calc(var(--x0) + 16px);height:44px;justify-content:center;padding:0;width:max-content}
 .tl-vols:hover .tl-pin{transform:translate(-50%,-50%) scale(1.15)}
 .tl-ev{top:100%;z-index:2}
-.tl-ev svg{fill:#FEFCF7;stroke:rgba(26,21,17,.55)}
+.tl-ev svg{fill:#FBF9F6;stroke:rgba(26,21,17,.55)}
 /* 2020-2022: a faded band behind every row */
 .tl .tl-cv{grid-row:1/7;margin:0 2px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:var(--s-3);border-radius:12px;background:color-mix(in srgb,#1A1511 7%,transparent)}
 .tl-cv{text-align:left;appearance:none;border:0;font:inherit;color:inherit;cursor:pointer;transition:background .2s var(--ease)}
@@ -475,7 +475,7 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .tl-cv-when{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 .tl-cv-lab{font:600 12px/1 var(--f-mono);letter-spacing:.24em;color:var(--muted)}
 .tl-all{position:relative;margin:var(--s-2) 0 0;padding-top:var(--s-4);text-align:center;font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
-.tl-all::before{content:"";position:absolute;left:0;right:2px;top:0;height:4px;border-radius:4px;background:linear-gradient(90deg,#FBE2D5,#F9D3E1)}
+.tl-all::before{content:"";position:absolute;left:0;right:2px;top:0;height:4px;border-radius:4px;background:linear-gradient(90deg,#F8D8CB,#F6D2DE)}
 @media (prefers-reduced-motion:reduce){.tl-bar,.tl-pin{transition:none}.tl-item:hover .tl-bar{transform:none}}
 /* phones and small tablets: a simple text list of the same entries, oldest first */
 @media (max-width:999px){
@@ -537,7 +537,7 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .pn-st{flex:none;padding:6px var(--s-2);border:1.5px solid currentColor;border-radius:4px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
 .pn-load{color:var(--w2)}.pn-soon{color:var(--muted)}
 .pn-bar{height:8px;border-radius:8px;background:var(--line);overflow:hidden}
-.pn-indet i{display:block;height:100%;width:35%;border-radius:8px;background:linear-gradient(90deg,#F9D3E1,#FBE2D5);animation:pnSlide 1.8s var(--ease) infinite}
+.pn-indet i{display:block;height:100%;width:35%;border-radius:8px;background:linear-gradient(90deg,#F6D2DE,#F8D8CB);animation:pnSlide 1.8s var(--ease) infinite}
 @keyframes pnSlide{0%{transform:translateX(-100%)}100%{transform:translateX(290%)}}
 .pn-note{margin:var(--s-2) 0 0;font:400 15px/1.5 var(--f-body);color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.pn-indet i{animation:none;transform:translateX(60%)}.lo-card:not([hidden]),.dlg[open],.js-sk .sx-grid.sx-in .sx-item:not([hidden]){animation:none}.js-sk .sx-grid:not(.sx-in) .sx-item{opacity:1}.lo-dot{transition:none}}
@@ -584,9 +584,9 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .lo-card.lo-now::before{content:none;background:var(--bg);border:2px dashed rgba(26,21,17,.45);box-sizing:border-box}
 
 /* ---------- Section colours: the pastels live in soft section backgrounds, alternating with the plain page, instead of dots ---------- */
-.path{background:color-mix(in srgb,#FBE2D5 24%,#fff)}
-.work{background:color-mix(in srgb,#F9D3E1 24%,#fff)}
-.refs{background:color-mix(in srgb,#F9D3E1 22%,#fff)}
+.path{background:color-mix(in srgb,#F8D8CB 24%,#fff)}
+.work{background:color-mix(in srgb,#F6D2DE 24%,#fff)}
+.refs{background:color-mix(in srgb,#F6D2DE 22%,#fff)}
 
 .lo-vol{display:grid;gap:var(--s-2);margin:var(--s-3) 0 0;padding:0;list-style:none;max-width:68ch}
 .lo-vol b{font-weight:600}
@@ -597,7 +597,7 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .bg-wrap{text-align:center}
 .bg-wrap .path-title{display:inline}
 .bg-lede{margin-left:auto;margin-right:auto}
-.bg-sec{background:radial-gradient(50% 40% at 50% 40%,rgba(217,96,138,.14),transparent 70%),radial-gradient(34% 26% at 50% 46%,rgba(255,184,214,.22),transparent 70%)}
+.bg-sec{background:radial-gradient(50% 40% at 50% 40%,rgba(224,127,162,.14),transparent 70%),radial-gradient(34% 26% at 50% 46%,rgba(255,184,214,.22),transparent 70%)}
 .bg-stage{position:relative;max-width:400px;margin:var(--s-6) auto 0}
 .bg-top{position:relative;margin:0 -120px}
 @media (max-width:767px){.bg-top{margin:0 calc(var(--gutter) * -1 + 4px)}}
@@ -683,7 +683,7 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 @media (max-width:559px){.hw{grid-template-columns:1fr}.hw-step::after{display:none}}
 
 /* ---------- My master's thesis: a cover card, then the issue, what we found and the conclusion ---------- */
-.thesis{padding:var(--s-10) 0;background:color-mix(in srgb,#F9D3E1 14%,#fff)}
+.thesis{padding:var(--s-10) 0;background:color-mix(in srgb,#F6D2DE 14%,#fff)}
 .th-kick,.th-lab{margin:0;font:600 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--w2)}
 .th-lab{color:var(--muted)}
 .th-title{margin-top:var(--s-4);max-width:14ch;font-size:clamp(30px,3vw,42px);line-height:1.02}
@@ -734,14 +734,14 @@ html[lang="fr"] .sk-res::before{content:"Résultat  "}
 .fw-chip:hover,.fw-chip.on{background:#fff;box-shadow:0 0 0 1.5px var(--ink)}
 .fw-chip:active{transform:scale(.97)}
 .fw-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.fw-tip{position:fixed;z-index:40;left:0;top:0;width:max-content;max-width:min(320px,calc(100vw - 32px));padding:var(--s-3) var(--s-4);border-radius:12px;background:var(--ink);color:#FEFCF7;font:400 14px/1.5 var(--f-body);box-shadow:0 16px 32px -16px rgba(26,21,17,.5);pointer-events:none;opacity:0;transform:scale(.95);transition:opacity .12s ease-in,transform .12s ease-in}
+.fw-tip{position:fixed;z-index:40;left:0;top:0;width:max-content;max-width:min(320px,calc(100vw - 32px));padding:var(--s-3) var(--s-4);border-radius:12px;background:var(--ink);color:#FBF9F6;font:400 14px/1.5 var(--f-body);box-shadow:0 16px 32px -16px rgba(26,21,17,.5);pointer-events:none;opacity:0;transform:scale(.95);transition:opacity .12s ease-in,transform .12s ease-in}
 .fw-tip.on{opacity:1;transform:scale(1);transition:opacity .18s var(--ease),transform .18s var(--ease)}
 @media (prefers-reduced-motion:reduce){.fw-tip,.fw-tip.on{transition:opacity .12s linear;transform:none}}
 .skills .sx-grid{margin-top:var(--s-6)}
 
 /* ---------- Marketer off duty: an instant camera. Each click prints the next photo: it slides out of the slot,
    develops, then lands on top of the pile. ---------- */
-.off{isolation:isolate;padding:var(--s-10) 0;background:color-mix(in srgb,#FBE2D5 7%,#fff)}
+.off{isolation:isolate;padding:var(--s-10) 0;background:color-mix(in srgb,#F8D8CB 7%,#fff)}
 @media (min-width:768px){.off{padding:var(--s-11) 0}}
 .off-play{display:grid;gap:var(--s-7);margin-top:var(--s-7);justify-items:center}
 @media (min-width:900px){.js-cam .off-play{grid-template-columns:1fr 1fr;align-items:center}}
@@ -834,7 +834,7 @@ html:not(.js-cam) .cam-wrap{display:none}
 .ct-btn:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 .ct-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:color-mix(in srgb,var(--ct) 14%,var(--surface));color:var(--ct)}
 .ct-ic svg{width:22px;height:22px}
-.ct-mail{--ct:var(--accent-2)}.ct-cv{--ct:var(--w3)}.ct-li{--ct:#D9608A}
+.ct-mail{--ct:var(--accent-2)}.ct-cv{--ct:var(--w3)}.ct-li{--ct:#E07FA2}
 .ct-txt{display:grid;gap:var(--s-1)}
 .ct-lab{font:700 18px/1.2 var(--f-display);letter-spacing:-.01em}
 .ct-sub{font-size:14px;line-height:1.35;color:var(--muted)}
@@ -908,7 +908,7 @@ html:not(.js-cam) .cam-wrap{display:none}
 
 /* off duty: a soft colour blob behind the camera, like the one behind the bag */
 .cam-wrap::before{content:"";position:absolute;z-index:-1;left:50%;top:58%;width:min(640px,130vw);aspect-ratio:1.15;transform:translate(-50%,-50%);pointer-events:none;
-  background:radial-gradient(48% 42% at 44% 46%,rgba(217,96,138,.2),transparent 72%),radial-gradient(34% 30% at 60% 58%,rgba(251,226,213,.7),transparent 72%)}
+  background:radial-gradient(48% 42% at 44% 46%,rgba(224,127,162,.2),transparent 72%),radial-gradient(34% 30% at 60% 58%,rgba(248,216,203,.7),transparent 72%)}
 .off{overflow-x:clip}
 /* the hidden bag items sit past the right edge on phones; keep them from widening the page */
 .bg-sec{overflow-x:clip}
@@ -983,7 +983,7 @@ html:not(.js-cam) .cam-wrap{display:none}
 }
 
 /* data in service of the client: clienteling, online to offline, one client view */
-.dc{padding:var(--s-10) 0;background:color-mix(in srgb,#F9D3E1 8%,#fff)}
+.dc{padding:var(--s-10) 0;background:color-mix(in srgb,#F6D2DE 8%,#fff)}
 .dc-grid{list-style:none;margin:var(--s-7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4)}
 .dc-card{display:flex;flex-direction:column;padding:var(--s-5);border-radius:16px;background:var(--surface);border-top:4px solid var(--c);box-shadow:0 0 0 1px rgba(26,21,17,.06),0 20px 40px -30px rgba(26,21,17,.35)}
 .dc-h{margin:0;font:700 20px/1.25 var(--f-display);letter-spacing:-.01em}
@@ -1120,7 +1120,7 @@ html.lb-open{overflow:hidden}
 .yt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s var(--ease)}
 .yt-play{position:absolute;left:50%;top:50%;width:64px;height:44px;margin:-22px 0 0 -32px;border-radius:12px;background:rgba(26,21,17,.82);transition:background .2s var(--ease),transform .2s var(--ease)}
 .yt-play::after{content:"";position:absolute;left:26px;top:13px;border-left:16px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
-@media (hover:hover){.yt:hover .yt-play{background:#B8406F}.yt:hover img{transform:scale(1.02)}}
+@media (hover:hover){.yt:hover .yt-play{background:#C4407A}.yt:hover img{transform:scale(1.02)}}
 .yt:active .yt-play{transform:scale(.97)}
 .yt:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 .yt-kick{margin:var(--s-1) 0 0;font:600 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -1316,3 +1316,139 @@ html.lb-open{overflow:hidden}
   .sx-tag{display:block;min-height:0;padding:var(--s-1) 0;border-radius:0;background:none;box-shadow:none;font:400 15px/1.4 var(--f-body)}
 }
 @media (max-width:767px) and (prefers-reduced-motion:reduce){.sx-fw-tog .ic-plus,.fw-chip::after{transition:none}}
+
+/* ---------- 2026-11-09: wider palette (10 colours) for more depth ----------
+   ink #1A1511 · wine #7A2148 · rose #C4407A · pink #E07FA2 · blush #F6D2DE
+   peach #F8D8CB · champagne #CFAE6A · mocha #8B6A50 · sand #E7E1DA · ivory #FBF9F6 */
+:root{--wine:#7A2148; --champagne:#CFAE6A; --champagne-soft:#EFE2C4; --mocha:#8B6A50; --sand:#E7E1DA; --muted:#5C4F48}
+/* How I work sits on warm sand, so it no longer blends into the pink sections around it */
+.how{background:color-mix(in srgb,var(--sand) 70%,var(--surface))}
+
+.hw-n{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mocha) 22%,transparent)}
+.hw-ex{border-top-color:color-mix(in srgb,var(--champagne) 60%,transparent)}
+.dc-luxe{border-left-color:var(--wine)}
+/* References: a deep wine band, the cards stay ivory */
+.refs{background:var(--wine)}
+.refs .path-title{color:var(--surface)}
+.refs .sx-lede{color:color-mix(in srgb,var(--blush,#F6D2DE) 80%,var(--surface))}
+.refs .rf{box-shadow:0 0 0 1px rgba(0,0,0,.08),0 24px 48px -24px rgba(0,0,0,.45)}
+.rf-mark{fill:var(--champagne)}
+/* small mono labels pick up the warm mocha */
+.sk-kick,.rf-who,.hw-ex-lab,.dc-tools-lab{color:var(--mocha)}
+.rf-foot .rf-who::before{background:var(--wine)}
+
+/* ---------- 2026-11-09: phones ---------- */
+@media (max-width:767px){
+  /* work tabs: five equal pills on a 2-column grid, the fifth centred at the same size */
+  .sk-tabs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-2);overflow:visible;margin:0;padding:0}
+  .sk-tab{box-sizing:border-box;width:100%;min-height:48px;padding:0 var(--s-2);justify-content:center;text-align:center;font-size:14px;white-space:normal;line-height:1.2;box-shadow:0 0 0 1px rgba(26,21,17,.12)}
+  .sk-tab:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - var(--s-1))}
+  /* contact: the FAQ button spans the full content width, lined up with both edges */
+  .ct-faq{display:flex;width:100%;justify-content:center;margin-top:var(--s-6)}
+}
+
+/* ---------- 2026-11-09: chosen background effects ---------- */
+/* first screen: soft rose, peach and champagne light with a fine film grain */
+.hero{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .07 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/180px,radial-gradient(55% 65% at 88% 28%,rgba(224,127,162,.42),transparent 70%),radial-gradient(55% 60% at 8% 90%,#F8D8CB,transparent 70%),radial-gradient(40% 45% at 45% 0%,rgba(233,128,94,.2),transparent 70%),radial-gradient(35% 40% at 60% 95%,rgba(246,210,222,.9),transparent 70%),var(--surface)}
+/* How I work: slow, pearly shapes behind the four steps */
+.how{position:relative;isolation:isolate;overflow:hidden;overflow:clip}
+.how::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(22% 30% at 12% 20%,rgba(246,210,222,.9),transparent 70%),radial-gradient(20% 28% at 88% 30%,rgba(203,226,240,.8),transparent 70%),radial-gradient(24% 30% at 70% 90%,rgba(241,227,204,.95),transparent 70%),radial-gradient(18% 26% at 30% 85%,rgba(225,214,240,.8),transparent 70%);filter:blur(10px) saturate(1.1)}
+@media (prefers-reduced-motion:no-preference){.how::before{animation:howIrid 14s ease-in-out infinite alternate}}
+@keyframes howIrid{to{transform:translate3d(2%,-3%,0) scale(1.06);filter:blur(10px) hue-rotate(25deg) saturate(1.2)}}
+
+/* ---------- 2026-11-09: journey read by scrolling ---------- */
+/* emphasis in the story: the body font, bold, in rose (no italic serif) */
+.mk,.js-mk .mk{font-family:inherit;font-style:normal;font-size:inherit;font-weight:700;line-height:inherit;letter-spacing:0;white-space:normal;color:var(--accent-2)}
+/* desktop keeps the tabs (one chapter at a time); the current stop pill */
+.jm-step[aria-current]{color:var(--ink);font-weight:700;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(250,250,249,.78));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 1px rgba(26,21,17,.09),0 1px 2px rgba(26,21,17,.05),0 4px 12px -6px rgba(26,21,17,.14)}
+/* phones and tablets: the map stays under the header, the chapters scroll beneath it */
+@media (max-width:959px){
+  /* all three chapters sit one under the other; the one in the reading line is lit, the others wait in a lighter tone */
+  .js-jm .jm-panel{grid-area:auto;opacity:.32;transition:opacity .45s var(--ease)}
+  .js-jm .jm-panel.on{opacity:1}
+  .js-jm .jm-panel .jm-txt,.js-jm .jm-panel .jm-next-wrap{animation:none}
+  .js-jm .jm-panel+.jm-panel{margin-top:var(--s-9)}
+  .js-jm .jmap:not(.expanded) .jm-map{position:sticky;top:var(--head-h);z-index:1;background:color-mix(in srgb,#F8D8CB 24%,#fff);-webkit-mask-image:none;mask-image:none}
+  .js-jm .jmap:not(.expanded) .jm-map #jmSvg{-webkit-mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 66% 62% at 50% 50%,#000 55%,transparent 100%)}
+  .js-jm .jmap:not(.expanded) .tp.jm-hobby{position:sticky;top:calc(var(--head-h) + var(--jm-h,220px) - 52px)}
+  .js-jm .jm-panel{min-height:36vh}
+  .js-jm .jm-panel:last-child{min-height:0}
+}
+@media (max-width:959px) and (prefers-reduced-motion:reduce){.js-jm .jm-panel{transition:none}}
+
+/* ---------- 2026-11-09: palette pulled from a perfume counter (petal and powder pinks, peony magenta and coral,
+   gold cap, greige walls, chrome trim, black bow) ----------
+   ink #1A1511 · deep peony #7A2148 · peony #C4407A · powder rose #E07FA2 · petal #F6D2DE · coral petal #F8D8CB
+   gold #CFAE6A · gingerbread #8B6A50 · greige #E7E1DA · chrome #C9C6C2 · lacquer #FBF9F6 */
+:root{--chrome:#C9C6C2; --coral:#E9805E}
+.hw-step,.rf,.dc-card{box-shadow:0 0 0 1px color-mix(in srgb,var(--chrome) 55%,transparent),0 20px 40px -30px rgba(26,21,17,.3)}
+
+/* ---------- contact ring turns slowly on its own; gold joins the pink ---------- */
+.ct-ring{animation:ct-spin 80s linear infinite}
+@keyframes ct-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ct-ring{animation:none}}
+.ct{--gold-deep:#A8822E}
+.ct-spark{fill:var(--champagne)}
+.ct-word+.ct-word{fill:var(--gold-deep)}
+.ct-cv{--ct:var(--gold-deep)}
+.ct::before{content:"";position:absolute;inset:auto -10% -30% auto;width:min(620px,60vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--champagne) 28%,transparent),transparent);pointer-events:none;z-index:0}
+.ct-in{z-index:1}
+
+/* ---------- thesis: image credits behind a small toggle ---------- */
+.th-cred{margin:var(--s-1) 0 0;font-size:14px;color:var(--muted)}
+.th-cred summary{list-style:none;display:inline-flex;align-items:center;gap:var(--s-1);min-height:44px;cursor:pointer;font-weight:500;color:var(--muted)}
+.th-cred summary::-webkit-details-marker{display:none}
+.th-cred summary:hover{color:var(--ink)}
+.th-cred summary:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:6px}
+.th-cred-i{width:8px;height:8px;margin-left:2px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--ease)}
+.th-cred[open] .th-cred-i{transform:translateY(2px) rotate(-135deg)}
+.th-cred p{margin:0 0 var(--s-2);max-width:72ch}
+@media (prefers-reduced-motion:reduce){.th-cred-i{transition:none}}
+
+/* ---------- visits: a quiet line at the end of the contact section, not a bubble above the headline ---------- */
+.ct-live{display:flex;width:max-content;min-height:24px;margin:var(--s-4) 0 0;padding:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;color:var(--muted)}
+.ct-live b{color:var(--ink)}
+.ct-live[hidden]{display:none}
+@media (max-width:767px){.ct-live{margin-inline:auto}}
+
+/* ---------- certificates: the list header opens a grid of the certificates ---------- */
+.cert-open{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;margin:calc(var(--s-3) * -1) 0;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink)}
+.cert-open-ic{display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:color-mix(in srgb,var(--champagne) 30%,var(--surface));color:var(--wine)}
+.cert-open-ic svg{width:12px;height:12px;fill:currentColor}
+.cert-open-tx{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.cert-open:hover .cert-open-tx{text-decoration-thickness:2px}
+.cert-open:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px;border-radius:6px}
+.cert-open:active{transform:scale(.97)}
+.dlg-certs{width:min(960px,calc(100vw - 32px))}
+.cert-in{padding:var(--s-6)}
+.cert-in .dlg-title{padding-right:var(--s-8)}
+.cert-lede{margin:0 0 var(--s-5);color:var(--muted);font-size:15px}
+.cert-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s-4)}
+.cert-card{position:relative;display:flex;flex-direction:column;height:100%;border-radius:14px;background:var(--surface);color:var(--ink);text-decoration:none;overflow:hidden;box-shadow:0 0 0 1px rgba(26,21,17,.09),0 1px 2px rgba(26,21,17,.05),0 6px 16px -10px rgba(26,21,17,.2);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+a.cert-card:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(26,21,17,.14),0 2px 4px rgba(26,21,17,.06),0 12px 24px -12px rgba(26,21,17,.28)}
+a.cert-card:active{transform:scale(.97);transition-duration:.1s}
+a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
+.cert-thumb{display:grid;place-items:center;aspect-ratio:4/3;padding:var(--s-3);background:var(--sand)}
+.cert-thumb img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border-radius:3px;box-shadow:0 1px 3px rgba(26,21,17,.18)}
+.cert-txt{display:grid;gap:var(--s-1);padding:var(--s-3) var(--s-4) var(--s-4)}
+.cert-name{font:700 16px/1.25 var(--f-display);letter-spacing:-.01em}
+.cert-meta{font-size:13px;line-height:1.35;color:var(--muted)}
+.cert-go{position:absolute;top:var(--s-2);right:var(--s-2);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--surface);color:var(--wine);font-size:15px;box-shadow:0 0 0 1px rgba(26,21,17,.1)}
+.cert-soon{box-shadow:none;outline:1.5px dashed color-mix(in srgb,var(--mocha) 45%,transparent);outline-offset:-1.5px;background:transparent}
+.cert-thumb-soon{display:flex;gap:var(--s-2);background:color-mix(in srgb,var(--champagne-soft) 60%,transparent);font:600 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mocha)}
+.cert-dot{width:8px;height:8px;border-radius:50%;background:var(--champagne);animation:certPulse 1.6s var(--ease) infinite alternate}
+@keyframes certPulse{to{opacity:.35}}
+@media (max-width:599px){.cert-in{padding:var(--s-5)}.cert-grid{grid-template-columns:1fr 1fr;gap:var(--s-3)}.cert-txt{padding:var(--s-2) var(--s-3) var(--s-3)}.cert-name{font-size:14px}.cert-meta{font-size:12px}}
+@media (prefers-reduced-motion:reduce){.cert-dot{animation:none}.cert-card,.cert-open{transition:none}a.cert-card:hover{transform:none}}
+
+/* ---------- journey map keeps its confetti colours (each country its own colour) ---------- */
+.jmap{--w1:#A64E3D;--w2:#725CA9;--w3:#287C42;--w4:#A04B6F;--w5:#0075A7;--w6:#00787D}
+.jm-land{fill:#FEFCF7;stroke:#D9D1C4}
+.jm-land.by{fill:#FFB8D6}.jm-land.ca{fill:#9FCBFF}.jm-land.it{fill:#CDB9FF}.jm-land.fr{fill:#FFE14D}
+/* journey section on a very light sky blue (lighter than the old one); the sticky phone map uses the same colour */
+.path{--path-bg:#F0F6FD;background:var(--path-bg)}
+@media (max-width:959px){.js-jm .jmap:not(.expanded) .jm-map{background:var(--path-bg)}}
+.path .jm-pin text,.path .jm-trip text{stroke:var(--path-bg)}
+.hw-promise{margin-top:var(--s-3);font-size:18px}
+/* off duty, desktop: the camera sits near the top of its column so the print sliding out has room above the contact section */
+@media (min-width:900px){.js-cam .off-play .cam-wrap{align-self:start;margin-top:var(--s-5)}}
