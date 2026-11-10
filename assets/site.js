@@ -192,7 +192,7 @@ if (marks.length && 'IntersectionObserver' in window && !matchMedia('(prefers-re
   }));
   show(0);
   if (!window.d3 || !window.topojson || !d3.geoMercator) return;   // map libraries unavailable: tabs and text still work
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r => r.json()).then(world => {
+  fetch('assets/vendor/countries-110m.json').then(r => r.json()).then(world => {
     const NS = 'http://www.w3.org/2000/svg', el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
     const proj = d3.geoMercator().fitExtent([[24, 24], [776, 496]], { type: 'MultiPoint', coordinates: [[-98, 36], [40, 59]] });
     const path = d3.geoPath(proj);
