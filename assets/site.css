@@ -1655,3 +1655,8 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
 button.tp{border:0;cursor:pointer}
 /* phones: the "Portfolio work · In progress" line keeps its spacing and round dot, like on desktop */
 .skm-card .sk-kick{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2)}
+/* Alpha Fashion: link to its client dashboard page */
+.sk-dash{margin:var(--s-4) 0 0}
+.sk-dash-a{gap:var(--s-2);padding:0 var(--s-4);font-size:15px;font-weight:500}
+.sk-dash-a svg{width:18px;height:18px;color:var(--accent-2)}
+.sk-dash-a:active{transform:scale(.97)}
