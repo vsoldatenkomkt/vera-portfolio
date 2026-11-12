@@ -316,6 +316,17 @@ document.querySelectorAll('.sk-rail').forEach(rail => {
     sky.appendChild(b);
     return b;
   });
+  // an outlier star, off the line: extra proof (the award) that opens its pop-up instead of an example
+  const award = rail.querySelector('.sk-award-btn');
+  if (award) {
+    const o = document.createElement('button');
+    o.type = 'button'; o.className = 'sk-cs sk-cs-out';
+    o.setAttribute('aria-haspopup', 'dialog'); o.setAttribute('aria-controls', award.getAttribute('aria-controls'));
+    o.innerHTML = '<span class="sk-cs-star">' + STAR + '</span><span class="sk-cs-lab"></span>';
+    award.querySelectorAll('[data-en]').forEach(sp => o.querySelector('.sk-cs-lab').appendChild(sp.cloneNode(true)));
+    sky.appendChild(o); sky.classList.add('has-out');
+    award.closest('.sk-more').classList.add('sk-more-sky');
+  }
   rail.prepend(sky);
   const hint = rail.querySelector('.sk-hint'); if (hint) rail.prepend(hint);
   rail.classList.add('has-sky');
@@ -389,6 +400,14 @@ document.querySelectorAll('.sk-rail').forEach(rail => {
     tab.querySelectorAll('[data-en]').forEach(sp => cat.appendChild(clean(sp.cloneNode(true))));
     const num = document.createElement('span'); num.className = 'skm-num'; num.textContent = (n + 1) + ' / ' + tabs.length;
     head.append(cat, num); sl.appendChild(head);
+    const aw = panels[n].querySelector('.sk-award-btn');   // the award: an outlier star under the area's title
+    if (aw) {
+      const o = document.createElement('button'); o.type = 'button'; o.className = 'skm-out';
+      o.setAttribute('aria-haspopup', 'dialog'); o.setAttribute('aria-controls', aw.getAttribute('aria-controls'));
+      o.innerHTML = '<span class="skm-out-i">' + STAR + '</span>';
+      aw.querySelectorAll('[data-en]').forEach(sp => o.appendChild(clean(sp.cloneNode(true))));
+      sl.appendChild(o);
+    }
     const figs = [...panels[n].querySelectorAll('.sk-stack > *')];
     panels[n].querySelectorAll('.sk-item').forEach((it, k) => {
       const card = document.createElement('article'); card.className = 'skm-card';
