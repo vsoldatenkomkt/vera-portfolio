@@ -1562,3 +1562,96 @@ a.cert-card:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
   .skm-dlg-body>*{animation:none !important}
 }
 @media (max-width:767px) and (prefers-reduced-motion:reduce){.skm-track{transition:none}.skm-st-i svg{transition:none}.skm-st.tw .skm-st-i svg,.skm-dlg[open]{animation:none}}
+
+/* ---------- Charts in the case studies and the thesis: meters and split bars ----------
+   One emphasis hue (the pink accent) for the share the story is about, warm grey for the rest.
+   Grey #857C75 sits ~3.3:1 on the light surfaces; every bar also carries its figure in text. */
+.dv{grid-column:1/-1;display:grid;gap:var(--s-2);width:100%;margin-top:var(--s-1)}
+.dv-meter{display:block;width:100%;height:8px;border-radius:999px;background:color-mix(in srgb,#fff 70%,transparent);overflow:hidden}
+.dv-meter i{display:block;width:var(--v);height:100%;border-radius:999px;background:var(--accent-2);transform-origin:left}
+.dv-split{display:flex;gap:2px;width:100%;height:28px}
+.dv-seg{flex:var(--v) 1 0;min-width:0;display:flex;align-items:center;padding:0 var(--s-2);border-radius:4px;background:#857C75;color:#1A1511;font:600 12px/1 var(--f-mono);white-space:nowrap;transform-origin:left}
+.dv-seg.dv-hi{background:var(--accent-2);color:#fff}
+.dv-cmp{display:grid;gap:var(--s-2)}
+.dv-row{display:grid;grid-template-columns:56px 1fr;align-items:center;gap:var(--s-3)}
+.dv-rl{font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dv-leg{display:flex;flex-wrap:wrap;gap:var(--s-1) var(--s-4);margin:0;font:400 13px/1.3 var(--f-body);color:var(--muted)}
+.dv-li{display:inline-flex;align-items:center;gap:var(--s-2)}
+.dv-key{width:10px;height:10px;border-radius:3px;background:#857C75}
+.dv-key.dv-hi{background:var(--accent-2)}
+.th-fig .dv-meter{margin-top:var(--s-2);background:color-mix(in srgb,#fff 75%,transparent)}
+@media (prefers-reduced-motion:no-preference){
+  .cs-pane.on .dv-seg,.cs-pane.on .dv-meter i{animation:dvGrow .5s var(--ease) .15s both}
+}
+@keyframes dvGrow{from{transform:scaleX(0)}}
+.dv-cap{margin:0;font:400 14px/1.4 var(--f-body);color:var(--muted)}
+.cs-sol+.cs-k,.cs-pane .dv+.cs-k{margin-top:var(--s-3)}
+
+/* Video example: a LinkedIn note in place of the first thumbnail */
+.yt-share{display:grid;align-content:center;justify-items:start;gap:var(--s-1);margin:0;padding:var(--s-3);border-radius:8px;background:var(--soft);box-shadow:0 0 0 1px rgba(26,21,17,.08)}
+.yt-share svg{width:20px;height:20px;margin-bottom:var(--s-1);color:var(--ink)}
+.yt-share-k{font:600 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.yt-share-t{font:800 16px/1.15 var(--f-display);letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+
+/* Brand & social: the award is an outlier star, apart from the line, at the top right of the constellation */
+.js-sk .sk-rail.has-sky .sk-more-sky{display:none}
+.sk-sky.has-out{padding-top:var(--s-6)}
+.sk-cs.sk-cs-out{position:absolute;top:calc(-1 * var(--s-2));right:0;flex-direction:row;gap:0;padding:0}
+.sk-cs-out .sk-cs-star svg{width:12px;height:12px;fill:var(--soft);stroke:var(--w1);stroke-dasharray:2 2}
+.sk-cs-out .sk-cs-lab{font-style:italic;color:var(--w1)}
+@media (hover:hover){.sk-cs-out:hover .sk-cs-star svg{stroke:var(--w1);fill:var(--w1)}.sk-cs-out:hover .sk-cs-lab{color:var(--ink)}}
+
+.skm-out{display:none}
+@media (max-width:767px){
+  .skm-out{all:unset;display:flex;align-items:center;justify-self:end;min-height:44px;margin-top:0;padding-left:var(--s-2);font:italic 500 13px/1.3 var(--f-body);color:var(--w1);cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .skm-out-i{display:grid;place-items:center;width:28px;height:44px}
+  .skm-out-i svg{width:12px;height:12px;fill:var(--soft);stroke:var(--w1);stroke-width:1.6;stroke-dasharray:2 2;overflow:visible}
+  .skm-out:active .skm-out-i svg{transform:scale(.97)}
+  .skm-out:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+}
+
+/* the award star reads as a button: a soft pink pill, filled star, darker label, 44px hit area */
+.sk-cs.sk-cs-out,.skm-out{box-sizing:border-box;height:36px;min-height:0;padding:0 var(--s-3) 0 var(--s-1);border-radius:999px;background:var(--soft);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--w1) 45%,transparent);transition:background .2s var(--ease),box-shadow .2s var(--ease),transform .15s var(--ease)}
+.sk-cs.sk-cs-out::after,.skm-out::after{content:"";position:absolute;inset:-4px}
+.skm-out{position:relative}
+.sk-cs-out .sk-cs-star,.skm-out .skm-out-i{width:24px;height:36px}
+.sk-cs-out .sk-cs-star svg,.skm-out .skm-out-i svg{width:13px;height:13px;fill:var(--w1);stroke:var(--w1);stroke-dasharray:none}
+.sk-cs-out .sk-cs-lab,.skm-out{font:italic 600 13px/1 var(--f-body);color:var(--ink)}
+.sk-cs-out:active,.skm-out:active{transform:scale(.97)}
+@media (hover:hover){.sk-cs-out:hover{box-shadow:inset 0 0 0 1px var(--w1);background:color-mix(in srgb,var(--soft) 70%,var(--w1) 12%)}.sk-cs-out:hover .sk-cs-star svg{transform:rotate(45deg)}.sk-cs-out:hover .sk-cs-lab{color:var(--ink)}}
+@media (max-width:767px){
+  .yt-share{gap:2px;padding:var(--s-2) var(--s-3)}
+  .yt-share svg{width:16px;height:16px}
+  .yt-share-t{font-size:14px}
+}
+/* phones: the award pop-up starts under its close button, so the ✕ never sits on the phone mockup */
+@media (max-width:759px){.dlg-grid{padding-top:calc(var(--s-2) + 44px + var(--s-3))}}
+
+/* Paid LinkedIn: personas -> targeted audience -> the promoted post */
+.pd-flow{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--s-2);width:min(100%,340px);margin:0 0 var(--s-3);padding:0}
+.pd-fs{display:inline-flex;align-items:center;gap:var(--s-2);min-height:32px;padding:0 var(--s-3) 0 var(--s-2);border-radius:999px;background:#fff;box-shadow:0 0 0 1px rgba(26,21,17,.1);font:500 13px/1.2 var(--f-body);color:var(--ink)}
+.pd-fs svg{width:18px;height:18px;color:var(--c)}
+.pd-fs+.pd-fs::before{content:"→";margin:0 var(--s-2) 0 calc(-1 * var(--s-2) - 18px);color:var(--muted);font-weight:400}
+.pd-fs+.pd-fs{margin-left:18px}
+.pd-flow::after{content:"";flex-basis:100%;height:var(--s-3);margin-bottom:calc(-1 * var(--s-3));background:linear-gradient(var(--line),var(--line)) center/1px 100% no-repeat}
+.pd-pin{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.7);color:var(--c)}
+.pd-pin svg{width:22px;height:22px}
+.pd-cap{max-width:34ch;margin:var(--s-3) auto 0;text-align:center;font-size:12px;color:var(--muted)}
+/* metrics grouped by the question they answer, in reading order */
+.pd-fn{list-style:none;display:grid;gap:var(--s-3);margin:0;padding:0 0 0 var(--s-4);border-left:2px solid var(--soft)}
+.pd-fn li{position:relative;display:grid;gap:var(--s-2)}
+.pd-fn li::before{content:"";position:absolute;left:calc(-1 * var(--s-4) - 6px);top:3px;width:10px;height:10px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 3px var(--bg,#FBF9F6)}
+.pd-fn-k{font:600 13px/1.3 var(--f-body);color:var(--ink)}
+.pd-fn-chk{display:grid;gap:var(--s-2);margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px dashed var(--line)}
+.pd-fn-chk .pd-fn-k{font-weight:500;color:var(--muted)}
+/* the flow reads top to bottom: personas, then the audience, then the post, joined by short lines */
+.pd-flow{flex-direction:column;flex-wrap:nowrap;gap:0;margin:0}
+.pd-fs+.pd-fs{margin-left:0}
+.pd-fs+.pd-fs::before{content:none}
+.pd-flow li+li,.pd-flow+.pd-post{position:relative;margin-top:var(--s-4)}
+.pd-flow li+li::after,.pd-flow+.pd-post::after{content:"";position:absolute;left:50%;top:calc(-1 * var(--s-4));width:1px;height:var(--s-4);background:rgba(26,21,17,.22)}
+.pd-flow::after{content:none}
+/* buttons styled as pills never show the browser's default bevelled border */
+button.tp{border:0;cursor:pointer}
+/* phones: the "Portfolio work · In progress" line keeps its spacing and round dot, like on desktop */
+.skm-card .sk-kick{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2)}
