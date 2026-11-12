@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://vsoldatenko.fr/alpha-fashion-dashboard.html">
 <title>Alpha Fashion · Tableau de bord clients · Vera Soldatenko</title>
-<meta name="description" content="Tableau de bord de la base clients d'Alpha Fashion : 48 526 clients dans 8 pays, fidélité, achats à l'étranger et retour en 2024.">
+<meta name="description" content="Tableau de bord de la base clients d'Alpha Fashion : 48 526 clients dans 8 pays, ventes, fidélité, achats à l'étranger et retour en 2024.">
 <link rel="icon" href="img/favicon-vera.ico?v=2" sizes="any">
 <link rel="icon" href="img/favicon-vera-32.png?v=2" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="img/apple-touch-icon-vera.png?v=2">
@@ -26,7 +26,6 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body)}
 a{color:inherit}
 .wrap{width:min(1180px,100%);margin:0 auto;padding:0 var(--gutter)}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:4px}
 
 /* top bar */
@@ -47,6 +46,8 @@ a{color:inherit}
 .kick{margin:0 0 var(--s-2);font:600 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h1{margin:0;font:800 clamp(32px,5vw,56px)/1.02 var(--f-display);letter-spacing:-.035em;text-wrap:balance}
 .lede{max-width:60ch;margin:var(--s-4) 0 0;font-size:18px;color:var(--muted)}
+.stamp{display:flex;flex-wrap:wrap;gap:var(--s-1) var(--s-3);margin:var(--s-4) 0 0;padding:0;list-style:none;font:500 12px/1.5 var(--f-mono);color:var(--muted)}
+.stamp li+li::before{content:"·";margin-right:var(--s-3)}
 
 /* filters: one row above the charts */
 .filters{position:sticky;top:64px;z-index:4;display:flex;flex-wrap:wrap;align-items:end;gap:var(--s-3);padding:var(--s-3) 0;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -62,11 +63,13 @@ h1{margin:0;font:800 clamp(32px,5vw,56px)/1.02 var(--f-display);letter-spacing:-
 
 /* KPI tiles */
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);margin:var(--s-5) 0}
+@media (min-width:1080px){.kpis{grid-template-columns:repeat(7,minmax(0,1fr))}}
 .kpi{display:grid;align-content:start;gap:var(--s-1);padding:var(--s-4);border-radius:16px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.06)}
 .kpi-v{font:800 clamp(24px,2.6vw,32px)/1.05 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .kpi-l{font-size:14px;line-height:1.35;color:var(--muted)}
+.kpi-d{margin-top:var(--s-1);font:500 12px/1.35 var(--f-mono);color:var(--muted)}
+.kpi-d:empty{display:none}
 .kpi.hi .kpi-v{color:var(--pink)}
-@media (min-width:1080px){.kpis{grid-template-columns:repeat(7,minmax(0,1fr))}}
 
 /* chart cards */
 .grid{display:grid;gap:var(--s-4)}
@@ -74,8 +77,6 @@ h1{margin:0;font:800 clamp(32px,5vw,56px)/1.02 var(--f-display);letter-spacing:-
 .card{min-width:0;padding:var(--s-5);border-radius:20px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.06)}
 .card h2{margin:0;font:700 19px/1.25 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
 .card .note{margin:var(--s-1) 0 var(--s-4);font-size:14px;color:var(--muted)}
-.read{margin:var(--s-4) 0 0;padding-top:var(--s-3);border-top:1px dashed var(--line);font-size:15px}
-.read b{font-weight:600}
 
 /* horizontal bars */
 .hb{display:grid;gap:var(--s-2)}
@@ -89,13 +90,15 @@ button.hb-row:hover .hb-l{color:var(--ink)}
 .hb-row.hi .hb-l{color:var(--ink);font-weight:600}
 .hb-v{font:500 13px/1 var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
 .dim .hb-bar{background:color-mix(in srgb,var(--grey) 45%,#fff)}
+.hb.wl .hb-row{grid-template-columns:minmax(0,170px) 1fr 76px}
+.hb-sep{height:1px;margin:var(--s-1) 0;background:var(--line)}
 
 /* 100% split bars */
 .sp{display:grid;gap:var(--s-3)}
 .sp-row{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:var(--s-3)}
-.sp-n{font:500 13px/1 var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
 .sp-row.n3{grid-template-columns:96px 1fr 64px}
 .sp-l{font:600 11px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sp-n{font:500 13px/1 var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
 .sp-bar{display:flex;gap:2px;height:28px}
 .seg{flex:var(--v) 1 0;min-width:0;display:flex;align-items:center;padding:0 var(--s-2);border-radius:4px;background:var(--grey);color:#1A1511;font:600 12px/1 var(--f-mono);white-space:nowrap;overflow:hidden;transition:flex-grow .45s var(--ease)}
 .seg.pk{background:var(--pink);color:#fff}
@@ -106,21 +109,37 @@ button.hb-row:hover .hb-l{color:var(--ink)}
 .key{width:10px;height:10px;border-radius:3px;background:var(--grey)}
 .key.pk{background:var(--pink)}.key.r1{background:var(--r1)}.key.r2{background:var(--r2)}.key.r3{background:var(--r3)}.key.r4{background:var(--r4)}.key.r5{background:var(--r5)}
 
-
 /* tooltip */
 .tip{position:fixed;z-index:10;max-width:240px;padding:var(--s-2) var(--s-3);border-radius:8px;background:var(--ink);color:#fff;font:400 13px/1.4 var(--f-body);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s var(--ease),transform .12s var(--ease)}
 .tip.on{opacity:1;transform:none}
 .tip b{font-weight:600}
 
-/* table */
-details.tbl{margin:var(--s-4) 0 0}
-details.tbl summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600}
+/* what this means */
+.imp{margin:var(--s-6) 0 0}
+.imp h2{margin:0 0 var(--s-4);font:800 clamp(24px,3vw,32px)/1.1 var(--f-display);letter-spacing:-.03em}
+.imp-sub{margin:calc(-1 * var(--s-3)) 0 var(--s-4);font-size:15px;color:var(--muted)}
+.imp ol{display:grid;gap:var(--s-3);margin:0;padding:0;list-style:none;counter-reset:i}
+@media (min-width:900px){.imp ol{grid-template-columns:1fr 1fr}}
+.imp li{counter-increment:i;display:grid;grid-template-columns:40px 1fr;gap:var(--s-3);padding:var(--s-4) var(--s-5);border-radius:16px;background:var(--surface);box-shadow:0 0 0 1px rgba(26,21,17,.06)}
+.imp li::before{content:counter(i,decimal-leading-zero);font:800 22px/1.2 var(--f-display);color:var(--pink)}
+.imp h3{margin:0;font:700 17px/1.3 var(--f-body)}
+.imp p{margin:var(--s-1) 0 0;font-size:15px;color:var(--muted)}
+.imp p b{color:var(--ink);font-weight:600}
+
+/* table and definitions */
+details.card{margin-top:var(--s-4)}
+details summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600}
 .tbl-wrap{overflow-x:auto;margin-top:var(--s-2)}
 table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
 th,td{padding:var(--s-2) var(--s-3);text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
 th:first-child,td:first-child{text-align:left}
 th{font:600 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 tfoot td{font-weight:600}
+.defs{display:grid;gap:var(--s-3);margin:var(--s-2) 0 0}
+@media (min-width:900px){.defs{grid-template-columns:220px 1fr;gap:var(--s-3) var(--s-5)}}
+.defs dt{font-weight:600}
+.defs dd{margin:0;color:var(--muted)}
+@media (max-width:899px){.defs dd{margin-bottom:var(--s-2)}}
 
 .foot{margin:var(--s-7) 0 var(--s-8);font-size:14px;color:var(--muted)}
 .foot p{max-width:70ch;margin:0 0 var(--s-2)}
@@ -130,13 +149,18 @@ tfoot td{font-weight:600}
   .lede{font-size:16px}
   .filters{position:static}
   .f{flex:1 1 140px}.f select{width:100%}
+  .f:nth-of-type(3){flex-basis:100%}
+  .stamp{display:grid;gap:var(--s-1)}
+  .stamp li+li::before{content:none}
   .kpis{grid-template-columns:1fr 1fr}
   .kpi:last-child{grid-column:1/-1}
   .card{padding:var(--s-4)}
-  .hb-row{grid-template-columns:84px 1fr 64px;gap:var(--s-2)}
+  .hb-row{grid-template-columns:96px 1fr 64px;gap:var(--s-2)}
+  .hb.wl .hb-row{grid-template-columns:minmax(0,120px) 1fr 64px}
   .sp-row{grid-template-columns:1fr;gap:var(--s-1)}
   .sp-row.n3{grid-template-columns:84px 1fr 52px;gap:var(--s-2)}
   .sp-row.n3 .sp-l{font-size:10px}
+  .imp li{grid-template-columns:32px 1fr;padding:var(--s-4)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -154,7 +178,12 @@ tfoot td{font-weight:600}
   <section class="intro">
     <p class="kick" data-en="Case study · CRM Lab · POLIMI 2024 · Team of five" data-fr="Étude de cas · CRM Lab · POLIMI 2024 · Équipe de cinq">Étude de cas · CRM Lab · POLIMI 2024 · Équipe de cinq</p>
     <h1 data-en="Alpha Fashion · Client dashboard" data-fr="Alpha Fashion · Tableau de bord clients">Alpha Fashion · Tableau de bord clients</h1>
-    <p class="lede" data-en="A women's fashion brand with stores in 8 countries: who buys, where, and who comes back. All of 2023, then January to April 2024." data-fr="Une marque de mode femme présente dans 8 pays : qui achète, où, et qui revient. Toute l'année 2023, puis janvier à avril 2024.">Une marque de mode femme présente dans 8 pays : qui achète, où, et qui revient. Toute l'année 2023, puis janvier à avril 2024.</p>
+    <p class="lede" data-en="A women's fashion brand with stores in 8 countries: who buys, where, and who comes back." data-fr="Une marque de mode femme présente dans 8 pays&#160;: qui achète, où, et qui revient.">Une marque de mode femme présente dans 8 pays&#160;: qui achète, où, et qui revient.</p>
+    <ul class="stamp">
+      <li data-en="Data: January 2023 to April 2024" data-fr="Données&#160;: janvier 2023 à avril 2024">Données&#160;: janvier 2023 à avril 2024</li>
+      <li data-en="48,526 clients · 8 countries" data-fr="48&#160;526 clients · 8 pays">48&#160;526 clients · 8 pays</li>
+      <li data-en="Source: the brand's client database, CRM Lab" data-fr="Source&#160;: base clients de la marque, CRM Lab">Source&#160;: base clients de la marque, CRM Lab</li>
+    </ul>
   </section>
 
   <form class="filters" id="filters" onsubmit="return false">
@@ -169,63 +198,67 @@ tfoot td{font-weight:600}
 
   <div class="grid">
     <article class="card">
-      <h2 data-en="Clients by country" data-fr="Clients par pays">Clients par pays</h2>
-      <p class="note" data-en="Choose a country to filter the whole page." data-fr="Choisissez un pays pour filtrer toute la page.">Choisissez un pays pour filtrer toute la page.</p>
+      <h2 id="tSales"></h2>
+      <p class="note" data-en="Share of 2023 sales by country of residence. Choose a country to filter the whole page." data-fr="Part des ventes 2023 par pays de résidence. Choisissez un pays pour filtrer toute la page.">Part des ventes 2023 par pays de résidence. Choisissez un pays pour filtrer toute la page.</p>
+      <div class="hb" id="cSales"></div>
+    </article>
+    <article class="card">
+      <h2 id="tClients"></h2>
+      <p class="note" data-en="Number of 2023 clients by country of residence." data-fr="Nombre de clients 2023 par pays de résidence.">Nombre de clients 2023 par pays de résidence.</p>
       <div class="hb" id="cClients"></div>
     </article>
     <article class="card">
-      <h2 data-en="Average yearly spend per client" data-fr="Dépense annuelle moyenne par client">Dépense annuelle moyenne par client</h2>
-      <p class="note" data-en="Sales 2023 ÷ clients, by country of residence." data-fr="Ventes 2023 ÷ clients, par pays de résidence.">Ventes 2023 ÷ clients, par pays de résidence.</p>
+      <h2 id="tSpend"></h2>
+      <p class="note" data-en="Average yearly spend per client: 2023 sales ÷ 2023 clients." data-fr="Dépense annuelle moyenne par client&#160;: ventes 2023 ÷ clients 2023.">Dépense annuelle moyenne par client&#160;: ventes 2023 ÷ clients 2023.</p>
       <div class="hb" id="cSpend"></div>
     </article>
     <article class="card">
-      <h2 data-en="Loyal and new clients: share of clients, share of sales" data-fr="Fidèles et nouveaux : part des clients, part des ventes">Fidèles et nouveaux : part des clients, part des ventes</h2>
-      <p class="note" data-en="Status in 2023." data-fr="Statut en 2023.">Statut en 2023.</p>
+      <h2 id="tLoyal"></h2>
+      <p class="note" data-en="Share of clients and share of sales, by 2023 status." data-fr="Part des clients et part des ventes, selon le statut 2023.">Part des clients et part des ventes, selon le statut 2023.</p>
       <div class="sp" id="cLoyal"></div>
       <ul class="leg"><li><span class="key pk"></span><span data-en="Loyal" data-fr="Fidèles">Fidèles</span></li><li><span class="key"></span><span data-en="New" data-fr="Nouveaux">Nouveaux</span></li></ul>
-      <p class="read" id="rLoyal"></p>
     </article>
     <article class="card">
-      <h2 data-en="Spending ranges: share of clients, share of sales" data-fr="Tranches de dépenses : part des clients, part des ventes">Tranches de dépenses : part des clients, part des ventes</h2>
-      <p class="note" data-en="Yearly spend in 2023." data-fr="Dépense annuelle en 2023.">Dépense annuelle en 2023.</p>
+      <h2 id="tRange"></h2>
+      <p class="note" data-en="Share of clients and share of sales, by 2023 spending range." data-fr="Part des clients et part des ventes, selon la tranche de dépenses 2023.">Part des clients et part des ventes, selon la tranche de dépenses 2023.</p>
       <div class="sp" id="cRange"></div>
       <ul class="leg" id="lRange"></ul>
-      <p class="read" id="rRange"></p>
     </article>
     <article class="card">
-      <h2 data-en="Clients who bought abroad, by country" data-fr="Clients ayant acheté à l'étranger, par pays">Clients ayant acheté à l'étranger, par pays</h2>
-      <p class="note" data-en="Bought outside their country of residence." data-fr="Achat hors de leur pays de résidence.">Achat hors de leur pays de résidence.</p>
-      <div class="hb" id="cAbroad"></div>
-      <p class="read" id="rAbroad"></p>
-    </article>
-    <article class="card">
-      <h2 data-en="Who came back in 2024" data-fr="Qui est revenu en 2024">Qui est revenu en 2024</h2>
+      <h2 id="tBack"></h2>
       <p class="note" data-en="Share of 2023 clients who bought again between January and April 2024." data-fr="Part des clients 2023 qui ont racheté entre janvier et avril 2024.">Part des clients 2023 qui ont racheté entre janvier et avril 2024.</p>
       <div class="hb" id="cBack"></div>
-      <p class="read" id="rBack"></p>
     </article>
     <article class="card wide">
-      <h2 data-en="Clients lost in 2024, by country" data-fr="Clients perdus en 2024, par pays">Clients perdus en 2024, par pays</h2>
-      <p class="note" data-en="2023 clients who did not buy again between January and April 2024, split by their 2023 status." data-fr="Clients 2023 qui n'ont pas racheté entre janvier et avril 2024, selon leur statut 2023.">Clients 2023 qui n'ont pas racheté entre janvier et avril 2024, selon leur statut 2023.</p>
-      <div class="sp" id="cLost"></div>
+      <h2 id="tIdle"></h2>
+      <p class="note" data-en="2023 clients with no purchase between January and April 2024, by country and 2023 status." data-fr="Clients 2023 sans achat entre janvier et avril 2024, par pays et statut 2023.">Clients 2023 sans achat entre janvier et avril 2024, par pays et statut 2023.</p>
+      <div class="sp" id="cIdle"></div>
       <ul class="leg"><li><span class="key pk"></span><span data-en="Loyal in 2023" data-fr="Fidèles en 2023">Fidèles en 2023</span></li><li><span class="key"></span><span data-en="New in 2023" data-fr="Nouveaux en 2023">Nouveaux en 2023</span></li></ul>
-      <p class="read" id="rLost"></p>
     </article>
     <article class="card wide">
-      <h2 data-en="Clients who came back: what they spent" data-fr="Clients revenus : ce qu'ils ont dépensé">Clients revenus : ce qu'ils ont dépensé</h2>
-      <p class="note" data-en="Periods differ: full-year 2023 vs. January–April 2024 year to date." data-fr="Périodes différentes : année 2023 complète, contre janvier à avril 2024 en cumul à date.">Périodes différentes : année 2023 complète, contre janvier à avril 2024 en cumul à date.</p>
-      <div class="hb" id="cSpend24"></div>
-      <p class="read" id="rSpend24"></p>
+      <h2 id="tSpend24"></h2>
+      <p class="note" data-en="Periods differ: full-year 2023 vs. January–April 2024 year to date." data-fr="Périodes différentes&#160;: année 2023 complète, contre janvier à avril 2024 en cumul à date.">Périodes différentes&#160;: année 2023 complète, contre janvier à avril 2024 en cumul à date.</p>
+      <div class="hb wl" id="cSpend24"></div>
     </article>
   </div>
 
-  <details class="tbl card" style="margin-top:var(--s-4)">
+  <section class="imp" aria-labelledby="impTitle">
+    <h2 id="impTitle" data-en="What this means" data-fr="Ce que cela implique">Ce que cela implique</h2>
+    <p class="imp-sub" data-en="Four priorities the data points to, with the figures behind them (all clients, no filter)." data-fr="Quatre priorités que les données font ressortir, avec les chiffres qui les justifient (tous les clients, sans filtre).">Quatre priorités que les données font ressortir, avec les chiffres qui les justifient (tous les clients, sans filtre).</p>
+    <ol id="imp"></ol>
+  </section>
+
+  <details class="card">
     <summary data-en="See the data by country" data-fr="Voir les données par pays">Voir les données par pays</summary>
     <div class="tbl-wrap"><table id="tbl"></table></div>
   </details>
+  <details class="card">
+    <summary data-en="Definitions" data-fr="Définitions">Définitions</summary>
+    <dl class="defs" id="defs"></dl>
+  </details>
 
   <footer class="foot">
-    <p data-en="Source: the Alpha Fashion client database from the CRM Lab case (POLIMI, 2024), 48,526 clients. Only totals are shown here: no individual client data is published. Country is the client's country of residence; 2024 data covers January to April." data-fr="Source : la base clients d'Alpha Fashion du cas CRM Lab (POLIMI, 2024), 48 526 clients. Seuls des totaux sont affichés ici : aucune donnée client individuelle n'est publiée. Le pays est celui de résidence du client ; les données 2024 couvrent janvier à avril.">Source : la base clients d'Alpha Fashion du cas CRM Lab (POLIMI, 2024), 48 526 clients. Seuls des totaux sont affichés ici : aucune donnée client individuelle n'est publiée. Le pays est celui de résidence du client ; les données 2024 couvrent janvier à avril.</p>
+    <p data-en="Source: the Alpha Fashion client database from the CRM Lab case (POLIMI, 2024), 48,526 clients. Only totals are shown here: no individual client data is published." data-fr="Source&#160;: la base clients d'Alpha Fashion du cas CRM Lab (POLIMI, 2024), 48&#160;526 clients. Seuls des totaux sont affichés ici&#160;: aucune donnée client individuelle n'est publiée.">Source&#160;: la base clients d'Alpha Fashion du cas CRM Lab (POLIMI, 2024), 48&#160;526 clients. Seuls des totaux sont affichés ici&#160;: aucune donnée client individuelle n'est publiée.</p>
     <p><a href="./#work" data-en="← Back to the site" data-fr="← Retour au site">← Retour au site</a></p>
   </footer>
 </main>
@@ -237,48 +270,73 @@ const T = {
   fr: { all:'Tous les pays', allS:'Tous les statuts', allR:'Toutes les tranches', loyal:'Fidèles', new:'Nouveaux',
         countries:['Chine','États-Unis','Russie','Royaume-Uni','Italie','France','Allemagne','Japon'],
         ranges:['Très faible','Faible','Moyenne','Élevée','Très élevée'], bands:['moins de 500 €','500 à 1 200 €','1 200 à 2 500 €','2 500 à 5 000 €','plus de 5 000 €'],
-        k:['Clients en 2023','Ventes 2023','Dépense moyenne par client','Part des ventes faite par les fidèles','Ont acheté à l\'étranger','Sont revenus en 2024 (janv.–avr.)','Fidèles perdus en 2024'],
-        clients:'Clients', sales:'Ventes', share:'part', scope:'Vous regardez', allClients:'tous les clients', rows:['Clients','Ventes'],
-        back:'revenus', came:'sont revenus', y23:'2023, année entière', y24:'janv.–avr. 2024',
-        th:['Pays','Clients','Ventes 2023','Dépense moy.','Ventes des fidèles','À l\'étranger','Revenus en 2024'], total:'Total' },
+        k:['Clients en 2023','Ventes 2023','Dépense moyenne par client','Part des ventes faite par les fidèles','Ont acheté à l\'étranger','Ont racheté en 2024 (janv.–avr.)','Fidèles sans achat en 2024 (à fin avril)'],
+        clients:'clients', scope:'Vous regardez', allClients:'tous les clients', rows:['Clients','Ventes'],
+        came:'ont racheté', y23:'Année 2023', y24:'janv.–avr. 2024',
+        ofTotal:'du total', vsAll:'vs ensemble', pt:'pt', across:'selon les pays',
+        th:['Pays','Clients','Ventes 2023','Part des ventes','Dépense moy.','Ventes des fidèles','À l\'étranger','Ont racheté'], total:'Total' },
   en: { all:'All countries', allS:'All statuses', allR:'All ranges', loyal:'Loyal', new:'New',
         countries:['China','US','Russia','UK','Italy','France','Germany','Japan'],
         ranges:['Super-low','Low','Medium','High','Super-high'], bands:['under €500','€500 to €1,200','€1,200 to €2,500','€2,500 to €5,000','over €5,000'],
-        k:['Clients in 2023','Sales 2023','Average spend per client','Share of sales from loyal clients','Bought abroad','Came back in 2024 (Jan–Apr)','Loyal clients lost in 2024'],
-        clients:'Clients', sales:'Sales', share:'share', scope:'You are looking at', allClients:'all clients', rows:['Clients','Sales'],
-        back:'came back', came:'came back', y23:'2023, full year', y24:'Jan–Apr 2024',
-        th:['Country','Clients','Sales 2023','Avg spend','Loyal sales','Abroad','Came back 2024'], total:'Total' }
+        k:['Clients in 2023','Sales 2023','Average spend per client','Share of sales from loyal clients','Bought abroad','Bought again in 2024 (Jan–Apr)','Loyal clients with no purchase yet in 2024'],
+        clients:'clients', scope:'You are looking at', allClients:'all clients', rows:['Clients','Sales'],
+        came:'bought again', y23:'Full year 2023', y24:'Jan–Apr 2024',
+        ofTotal:'of total', vsAll:'vs. all', pt:'pts', across:'across countries',
+        th:['Country','Clients','Sales 2023','Share of sales','Avg spend','Loyal sales','Abroad','Bought again'], total:'Total' }
+};
+const DEFS = {
+  fr: [['Clients 2023','Clients ayant acheté au moins une fois en 2023, dans la base de la marque.'],
+       ['Fidèles et nouveaux','Statut de chaque client en 2023, tel qu\'il figure dans la base de la marque.'],
+       ['Ont racheté en 2024','Au moins un achat entre le 1er janvier et le 30 avril 2024.'],
+       ['Sans achat en 2024','Aucun achat entre le 1er janvier et le 30 avril 2024. Ces clients peuvent encore revenir plus tard dans l\'année.'],
+       ['Achat à l\'étranger','Achat hors du pays de résidence du client.'],
+       ['Dépense moyenne','Ventes 2023 ÷ nombre de clients 2023.'],
+       ['Tranches de dépenses','Dépense annuelle 2023 par client. Très faible&#160;: moins de 500 €. Faible&#160;: 500 à 1 200 €. Moyenne&#160;: 1 200 à 2 500 €. Élevée&#160;: 2 500 à 5 000 €. Très élevée&#160;: plus de 5 000 €.']],
+  en: [['2023 clients','Clients who bought at least once in 2023, in the brand\'s database.'],
+       ['Loyal and new','Each client\'s 2023 status, as recorded in the brand\'s database.'],
+       ['Bought again in 2024','At least one purchase between 1 January and 30 April 2024.'],
+       ['No purchase yet in 2024','No purchase between 1 January and 30 April 2024. These clients may still come back later in the year.'],
+       ['Bought abroad','Bought outside the client\'s country of residence.'],
+       ['Average spend','2023 sales ÷ number of 2023 clients.'],
+       ['Spending ranges','Yearly 2023 spend per client. Super-low: under €500. Low: €500 to €1,200. Medium: €1,200 to €2,500. High: €2,500 to €5,000. Super-high: over €5,000.']]
 };
 let lang = (() => { try { const s = localStorage.getItem('site-lang'); if (s === 'fr' || s === 'en') return s; } catch (e) {} return 'fr'; })();
 const F = { c: -1, s: -1, r: -1 };
 const [iC, iS, iR, iA, iM, iN, iS23, iB, iS23b, iS24b] = [0,1,2,3,4,5,6,7,8,9];
 const NB = ' ';
 const loc = () => lang === 'fr' ? 'fr-FR' : 'en-GB';
-const int = n => new Intl.NumberFormat(loc()).format(Math.round(n));
-const pct = (x, d = 1) => isFinite(x) ? new Intl.NumberFormat(loc(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(x * 100) + (lang === 'fr' ? NB + '%' : '%') : '–';
+const num = (v, d) => new Intl.NumberFormat(loc(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
+const int = n => num(Math.round(n), 0);
+const pct = (x, d = 1) => isFinite(x) ? num(x * 100, d) + (lang === 'fr' ? NB + '%' : '%') : '–';
 const eur = n => {
-  const f = (v, d) => new Intl.NumberFormat(loc(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
-  if (n >= 1e6) return lang === 'fr' ? f(n / 1e6, 1) + NB + 'M€' : '€' + f(n / 1e6, 1) + 'M';
-  if (n >= 1e4) return lang === 'fr' ? f(n / 1e3, 0) + NB + 'k€' : '€' + f(n / 1e3, 0) + 'k';
-  return lang === 'fr' ? f(n, 0) + NB + '€' : '€' + f(n, 0);
+  if (n >= 1e6) return lang === 'fr' ? num(n / 1e6, 1) + NB + 'M€' : '€' + num(n / 1e6, 1) + 'M';
+  if (n >= 1e4) return lang === 'fr' ? num(n / 1e3, 0) + NB + 'k€' : '€' + num(n / 1e3, 0) + 'k';
+  return lang === 'fr' ? num(n, 0) + NB + '€' : '€' + num(n, 0);
 };
+const pts = d => (d > 0 ? '+' : d < 0 ? '−' : '±') + num(Math.abs(d * 100), 1) + NB + T[lang].pt + ' ' + T[lang].vsAll;
+const rel = d => (d > 0 ? '+' : d < 0 ? '−' : '±') + num(Math.abs(d * 100), 0) + (lang === 'fr' ? NB + '%' : '%') + ' ' + T[lang].vsAll;
 const COL = () => lang === 'fr' ? NB + ': ' : ': ';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const list = a => lang === 'fr' ? a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1] : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
 
-// sum the summary rows that pass the filters, ignoring the dimensions a chart breaks down by
+// sum the summary rows that pass the filters, ignoring the dimensions a chart breaks down by ('*' = no filter at all)
 function sum(rows, ignore = []) {
-  const t = { n: 0, s: 0, b: 0, sb: 0, s24: 0, nl: 0, sl: 0, na: 0, lostL: 0 };
+  const t = { n: 0, s: 0, b: 0, sb: 0, s24: 0, nl: 0, sl: 0, na: 0, idleL: 0, bl: 0 };
+  const all = ignore === '*';
   for (const r of rows) {
-    if (F.c >= 0 && !ignore.includes('c') && r[iC] !== F.c) continue;
-    if (F.s >= 0 && !ignore.includes('s') && r[iS] !== F.s) continue;
-    if (F.r >= 0 && !ignore.includes('r') && r[iR] !== F.r) continue;
+    if (!all) {
+      if (F.c >= 0 && !ignore.includes('c') && r[iC] !== F.c) continue;
+      if (F.s >= 0 && !ignore.includes('s') && r[iS] !== F.s) continue;
+      if (F.r >= 0 && !ignore.includes('r') && r[iR] !== F.r) continue;
+    }
     t.n += r[iN]; t.s += r[iS23]; t.b += r[iB]; t.sb += r[iS23b]; t.s24 += r[iS24b];
-    if (r[iS] === 0) { t.nl += r[iN]; t.sl += r[iS23]; t.lostL += r[iN] - r[iB]; }
+    if (r[iS] === 0) { t.nl += r[iN]; t.sl += r[iS23]; t.bl += r[iB]; t.idleL += r[iN] - r[iB]; }
     if (r[iA] === 1) t.na += r[iN];
   }
   return t;
 }
 const by = (dim, n, ignore) => Array.from({ length: n }, (_, k) => sum(D.rows.filter(r => r[dim] === k), ignore));
+const filtered = () => F.c >= 0 || F.s >= 0 || F.r >= 0;
 
 // tooltip
 const tip = document.getElementById('tip');
@@ -295,109 +353,133 @@ addEventListener('scroll', () => tip.classList.remove('on'), { passive: true });
 
 function hbars(el, items, max, clickable) {
   el.innerHTML = items.map((it, k) => {
-    const tag = clickable ? 'button type="button"' : 'div';
-    const end = clickable ? 'button' : 'div';
+    if (it.sep) return '<div class="hb-sep" aria-hidden="true"></div>';
+    const tag = clickable ? 'button type="button"' : 'div', end = clickable ? 'button' : 'div';
     const w = max > 0 ? Math.max(0, it.v / max * 100) : 0;
-    return `<${tag} class="hb-row${it.hi ? ' hi' : ''}" data-k="${k}" data-tip="${esc(it.tip)}"${clickable ? ` aria-pressed="${!!it.hi}"` : ''}><span class="hb-l">${esc(it.l)}</span><span class="hb-track"><span class="hb-bar" style="--v:${w}%"></span></span><span class="hb-v">${esc(it.d)}</span></${end}>`;
+    return `<${tag} class="hb-row${it.hi ? ' hi' : ''}" data-tip="${esc(it.tip)}"${clickable ? ` aria-pressed="${!!it.hi}"` : ''}><span class="hb-l">${esc(it.l)}</span><span class="hb-track"><span class="hb-bar" style="--v:${w}%"></span></span><span class="hb-v">${esc(it.d)}</span></${end}>`;
   }).join('');
-  el.classList.toggle('dim', items.some(i => i.hi));
+  el.classList.toggle('dim', items.some(i => i.hi) && clickable);
 }
 function splits(el, rows) {
-  el.innerHTML = rows.map(r => `<div class="sp-row"><span class="sp-l">${esc(r.l)}</span><div class="sp-bar">${r.segs.map(s => `<span class="seg ${s.c}${s.v < .07 ? ' tiny' : ''}" style="--v:${Math.max(s.v, 0.0001)}" data-tip="${esc(s.tip)}">${esc(pct(s.v, 0))}</span>`).join('')}</div></div>`).join('');
+  el.innerHTML = rows.map(r => `<div class="sp-row${r.n != null ? ' n3' : ''}"><span class="sp-l">${esc(r.l)}</span><div class="sp-bar">${r.segs.map(s => `<span class="seg ${s.c}${s.v < .07 ? ' tiny' : ''}" style="--v:${Math.max(s.v, 0.0001)}" data-tip="${esc(s.tip)}">${esc(pct(s.v, 0))}</span>`).join('')}</div>${r.n != null ? `<span class="sp-n">${esc(r.n)}</span>` : ''}</div>`).join('');
 }
+const countryClick = (el, ord) => el.querySelectorAll('button').forEach((b, j) => b.onclick = () => { F.c = F.c === ord[j] ? -1 : ord[j]; render(); });
 
 function render() {
-  const t = T[lang], all = sum(D.rows);
+  const t = T[lang], fr = lang === 'fr', all = sum(D.rows), base = sum(D.rows, '*');
   // filters
   const opt = (sel, first, list, cur) => { sel.innerHTML = `<option value="-1">${esc(first)}</option>` + list.map((x, k) => `<option value="${k}"${k === cur ? ' selected' : ''}>${esc(x)}</option>`).join(''); sel.classList.toggle('set', cur >= 0); };
   opt(fC, t.all, t.countries, F.c); opt(fS, t.allS, [t.loyal, t.new], F.s); opt(fR, t.allR, t.ranges.map((r, k) => r + ' (' + t.bands[k] + ')'), F.r);
-  reset.hidden = F.c < 0 && F.s < 0 && F.r < 0;
+  reset.hidden = !filtered();
   const parts = [F.c >= 0 ? t.countries[F.c] : null, F.s >= 0 ? (F.s ? t.new : t.loyal) : null, F.r >= 0 ? t.ranges[F.r] : null].filter(Boolean);
-  scope.innerHTML = `${esc(t.scope)} : <b>${esc(parts.length ? parts.join(' · ') : t.allClients)}</b>, ${esc(int(all.n))} ${esc(t.clients.toLowerCase())}.`.replace(' : ', lang === 'fr' ? NB + ': ' : ': ');
+  scope.innerHTML = `${esc(t.scope)}${COL()}<b>${esc(parts.length ? parts.join(' · ') : t.allClients)}</b>, ${esc(int(all.n))} ${esc(t.clients)}.`;
 
-  // KPIs
-  const k = [[int(all.n)], [eur(all.s)], [eur(all.n ? all.s / all.n : 0)], [pct(all.sl / all.s), 1], [pct(all.na / all.n)], [pct(all.b / all.n)], [int(all.lostL)]];
-  kpis.innerHTML = k.map((v, i) => `<div class="kpi${i === 3 || i === 5 ? ' hi' : ''}"><span class="kpi-v">${esc(v[0])}</span><span class="kpi-l">${esc(t.k[i])}</span></div>`).join('');
+  // by country, ignoring the country filter (the chosen one is highlighted)
+  const bc = by(iC, 8, ['c']), cTot = bc.reduce((a, x) => a + x.n, 0), sTot = bc.reduce((a, x) => a + x.s, 0);
+  const ab = bc.map(x => x.n ? x.na / x.n : 0), abMin = Math.min(...ab), abMax = Math.max(...ab);
 
-  // by country (ignore the country filter, highlight the chosen one)
-  const bc = by(iC, 8, ['c']);
-  const order = bc.map((x, i) => i).sort((a, b) => bc[b].n - bc[a].n);
-  const cItems = order.map(i => ({ i, l: t.countries[i], v: bc[i].n, d: int(bc[i].n), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(int(bc[i].n))} ${esc(t.clients.toLowerCase())} · ${esc(pct(bc[i].n / sum(D.rows, ['c']).n))}` }));
-  hbars(cClients, cItems, Math.max(...bc.map(x => x.n)), true);
-  const avg = bc.map(x => x.n ? x.s / x.n : 0);
-  const order2 = avg.map((x, i) => i).sort((a, b) => avg[b] - avg[a]);
-  hbars(cSpend, order2.map(i => ({ i, l: t.countries[i], v: avg[i], d: eur(avg[i]), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(eur(avg[i]))} · ${esc(int(bc[i].n))} ${esc(t.clients.toLowerCase())}` })), Math.max(...avg), true);
-  const ab = bc.map(x => x.n ? x.na / x.n : 0);
-  const order3 = ab.map((x, i) => i).sort((a, b) => ab[b] - ab[a]);
-  hbars(cAbroad, order3.map(i => ({ i, l: t.countries[i], v: ab[i], d: pct(ab[i], 0), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(int(bc[i].na))} / ${esc(int(bc[i].n))}` })), 1, true);
-  const abAll = sum(D.rows, ['c']);
-  rAbroad.innerHTML = lang === 'fr'
-    ? `Dans chaque pays, environ trois clients sur quatre ont acheté à l'étranger (<b>${esc(pct(abAll.n ? abAll.na / abAll.n : 0))}</b> en tout).`
-    : `In every country, about three clients in four bought abroad (<b>${esc(pct(abAll.n ? abAll.na / abAll.n : 0))}</b> overall).`;
-  [[cClients, order], [cSpend, order2], [cAbroad, order3]].forEach(([el, ord]) => el.querySelectorAll('button').forEach((b, j) => b.onclick = () => { F.c = F.c === ord[j] ? -1 : ord[j]; render(); }));
+  // KPIs: with a filter on, each tile is compared with all clients
+  const f = filtered(), r = (a, b) => b ? a / b : 0;
+  const K = [
+    [int(all.n), f ? pct(r(all.n, base.n)) + ' ' + t.ofTotal : ''],
+    [eur(all.s), f ? pct(r(all.s, base.s)) + ' ' + t.ofTotal : ''],
+    [eur(r(all.s, all.n)), f ? rel(r(all.s, all.n) / r(base.s, base.n) - 1) : ''],
+    [pct(r(all.sl, all.s)), f ? pts(r(all.sl, all.s) - r(base.sl, base.s)) : ''],
+    [pct(r(all.na, all.n)), f ? pts(r(all.na, all.n) - r(base.na, base.n)) : (fr ? `${num(abMin * 100, 0)} à ${num(abMax * 100, 0)}${NB}% ${t.across}` : `${num(abMin * 100, 0)}–${num(abMax * 100, 0)}% ${t.across}`)],
+    [pct(r(all.b, all.n)), f ? pts(r(all.b, all.n) - r(base.b, base.n)) : ''],
+    [int(all.idleL), f ? pct(r(all.idleL, base.idleL)) + ' ' + t.ofTotal : '']
+  ];
+  kpis.innerHTML = K.map((v, i) => `<div class="kpi${i === 3 || i === 5 ? ' hi' : ''}"><span class="kpi-v">${esc(v[0])}</span><span class="kpi-l">${esc(t.k[i])}</span><span class="kpi-d">${esc(v[1])}</span></div>`).join('');
 
-  // loyal vs new (ignore the status filter)
-  const ls = sum(D.rows, ['s']), lc = ls.nl / ls.n, lsale = ls.sl / ls.s;
+  // sales by country
+  const oS = bc.map((x, i) => i).sort((a, b) => bc[b].s - bc[a].s), top3 = oS.slice(0, 3);
+  tSales.textContent = fr ? `${list(top3.map(i => t.countries[i]))}${NB}: ${pct(top3.reduce((a, i) => a + bc[i].s, 0) / sTot, 0)} des ventes`
+                          : `${list(top3.map(i => t.countries[i]))}: ${pct(top3.reduce((a, i) => a + bc[i].s, 0) / sTot, 0)} of all sales`;
+  hbars(cSales, oS.map(i => ({ l: t.countries[i], v: bc[i].s, d: pct(bc[i].s / sTot), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(eur(bc[i].s))} · ${esc(pct(bc[i].s / sTot))}` })), Math.max(...bc.map(x => x.s)), true);
+  countryClick(cSales, oS);
+
+  // clients by country
+  const oC = bc.map((x, i) => i).sort((a, b) => bc[b].n - bc[a].n);
+  tClients.textContent = fr ? `${t.countries[oC[0]]} et ${t.countries[oC[1]]}${NB}: ${pct((bc[oC[0]].n + bc[oC[1]].n) / cTot, 0)} des clients`
+                            : `${t.countries[oC[0]]} and ${t.countries[oC[1]]}: ${pct((bc[oC[0]].n + bc[oC[1]].n) / cTot, 0)} of all clients`;
+  hbars(cClients, oC.map(i => ({ l: t.countries[i], v: bc[i].n, d: int(bc[i].n), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(int(bc[i].n))} ${esc(t.clients)} · ${esc(pct(bc[i].n / cTot))}` })), Math.max(...bc.map(x => x.n)), true);
+  countryClick(cClients, oC);
+
+  // average spend by country
+  const avg = bc.map(x => r(x.s, x.n)), oA = avg.map((x, i) => i).sort((a, b) => avg[b] - avg[a]), lo = oA[oA.length - 1];
+  tSpend.textContent = fr ? `Dépense moyenne la plus haute${NB}: ${t.countries[oA[0]]} (${eur(avg[oA[0]])}), la plus basse${NB}: ${t.countries[lo]} (${eur(avg[lo])})`
+                          : `Highest average spend: ${t.countries[oA[0]]} (${eur(avg[oA[0]])}); lowest: ${t.countries[lo]} (${eur(avg[lo])})`;
+  hbars(cSpend, oA.map(i => ({ l: t.countries[i], v: avg[i], d: eur(avg[i]), hi: F.c === i, tip: `<b>${esc(t.countries[i])}</b><br>${esc(eur(avg[i]))} · ${esc(int(bc[i].n))} ${esc(t.clients)}` })), Math.max(...avg), true);
+  countryClick(cSpend, oA);
+
+  // loyal vs new (ignoring the status filter)
+  const ls = sum(D.rows, ['s']), lc = r(ls.nl, ls.n), lsale = r(ls.sl, ls.s);
+  tLoyal.textContent = fr ? `Fidèles : ${pct(lc, 0)} des clients, ${pct(lsale, 0)} des ventes`.replace(' :', NB + ':')
+                          : `Loyal clients: ${pct(lc, 0)} of clients, ${pct(lsale, 0)} of sales`;
   splits(cLoyal, [
     { l: t.rows[0], segs: [{ v: lc, c: 'pk', tip: `<b>${esc(t.loyal)}</b>${COL()}${esc(int(ls.nl))}` }, { v: 1 - lc, c: '', tip: `<b>${esc(t.new)}</b>${COL()}${esc(int(ls.n - ls.nl))}` }] },
     { l: t.rows[1], segs: [{ v: lsale, c: 'pk', tip: `<b>${esc(t.loyal)}</b>${COL()}${esc(eur(ls.sl))}` }, { v: 1 - lsale, c: '', tip: `<b>${esc(t.new)}</b>${COL()}${esc(eur(ls.s - ls.sl))}` }] }]);
-  rLoyal.innerHTML = lang === 'fr'
-    ? `<b>${esc(pct(lc))}</b> des clients sont fidèles, mais ils font <b>${esc(pct(lsale))}</b> des ventes.`
-    : `<b>${esc(pct(lc))}</b> of clients are loyal, yet they make <b>${esc(pct(lsale))}</b> of sales.`;
 
-  // spending ranges (ignore the range filter)
+  // spending ranges (ignoring the range filter)
   const br = by(iR, 5, ['r']), rn = br.reduce((a, x) => a + x.n, 0), rs = br.reduce((a, x) => a + x.s, 0);
+  const topS = r(br[3].s + br[4].s, rs), topN = r(br[3].n + br[4].n, rn);
+  tRange.textContent = fr ? `Les deux tranches les plus hautes : ${pct(topN, 0)} des clients, ${pct(topS, 0)} des ventes`.replace(' :', NB + ':')
+                          : `The top two spending ranges: ${pct(topN, 0)} of clients, ${pct(topS, 0)} of sales`;
   splits(cRange, [
-    { l: t.rows[0], segs: br.map((x, i) => ({ v: rn ? x.n / rn : 0, c: 'r' + (i + 1), tip: `<b>${esc(t.ranges[i])}</b> (${esc(t.bands[i])})<br>${esc(int(x.n))} ${esc(t.clients.toLowerCase())} · ${esc(pct(x.n / rn))}` })) },
-    { l: t.rows[1], segs: br.map((x, i) => ({ v: rs ? x.s / rs : 0, c: 'r' + (i + 1), tip: `<b>${esc(t.ranges[i])}</b> (${esc(t.bands[i])})<br>${esc(eur(x.s))} · ${esc(pct(x.s / rs))}` })) }]);
-  lRange.innerHTML = t.ranges.map((r, i) => `<li><span class="key r${i + 1}"></span>${esc(r)}</li>`).join('');
-  const top = br[3].s + br[4].s, topn = br[3].n + br[4].n;
-  rRange.innerHTML = lang === 'fr'
-    ? `Les deux tranches les plus hautes, <b>${esc(pct(topn / rn))}</b> des clients, font <b>${esc(pct(top / rs))}</b> des ventes.`
-    : `The two highest ranges, <b>${esc(pct(topn / rn))}</b> of clients, make <b>${esc(pct(top / rs))}</b> of sales.`;
+    { l: t.rows[0], segs: br.map((x, i) => ({ v: r(x.n, rn), c: 'r' + (i + 1), tip: `<b>${esc(t.ranges[i])}</b> (${esc(t.bands[i])})<br>${esc(int(x.n))} ${esc(t.clients)} · ${esc(pct(r(x.n, rn)))}` })) },
+    { l: t.rows[1], segs: br.map((x, i) => ({ v: r(x.s, rs), c: 'r' + (i + 1), tip: `<b>${esc(t.ranges[i])}</b> (${esc(t.bands[i])})<br>${esc(eur(x.s))} · ${esc(pct(r(x.s, rs)))}` })) }]);
+  lRange.innerHTML = t.ranges.map((x, i) => `<li><span class="key r${i + 1}"></span>${esc(x)}</li>`).join('');
 
-  // came back, by 2023 status and by spending range
-  const bs = by(iS, 2, ['s']), brr = by(iR, 5, ['r']);
-  const backItems = [
-    ...[0, 1].map(i => ({ l: i ? t.new : t.loyal, v: bs[i].n ? bs[i].b / bs[i].n : 0, n: bs[i], hi: F.s === i })),
-    ...[0, 1, 2, 3, 4].map(i => ({ l: t.ranges[i], v: brr[i].n ? brr[i].b / brr[i].n : 0, n: brr[i], hi: F.r === i }))
-  ].map(x => ({ ...x, d: pct(x.v, 0), tip: `<b>${esc(x.l)}</b><br>${esc(int(x.n.b))} / ${esc(int(x.n.n))} ${esc(t.came)}` }));
-  hbars(cBack, backItems, 1, false);
-  const rl = bs[0].n ? bs[0].b / bs[0].n : 0, rnw = bs[1].n ? bs[1].b / bs[1].n : 0;
-  rBack.innerHTML = lang === 'fr'
-    ? `Seuls <b>${esc(pct(rl, 0))}</b> des clients fidèles en 2023 sont revenus, contre <b>${esc(pct(rnw, 0))}</b> des nouveaux.`
-    : `Only <b>${esc(pct(rl, 0))}</b> of 2023's loyal clients came back, against <b>${esc(pct(rnw, 0))}</b> of new clients.`;
+  // bought again, by 2023 status and by spending range
+  const bs = by(iS, 2, ['s']), brr = by(iR, 5, ['r']), rl = r(bs[0].b, bs[0].n), rnw = r(bs[1].b, bs[1].n);
+  tBack.textContent = fr ? `Seuls ${pct(rl, 0)} des fidèles ont racheté, contre ${pct(rnw, 0)} des nouveaux`
+                         : `Only ${pct(rl, 0)} of loyal clients bought again, against ${pct(rnw, 0)} of new ones`;
+  const mk = (l, x, hi) => ({ l, v: r(x.b, x.n), d: pct(r(x.b, x.n), 0), hi, tip: `<b>${esc(l)}</b><br>${esc(int(x.b))} / ${esc(int(x.n))} ${esc(t.came)}` });
+  hbars(cBack, [mk(t.loyal, bs[0], F.s === 0), mk(t.new, bs[1], F.s === 1), { sep: 1 }, ...[0, 1, 2, 3, 4].map(i => mk(t.ranges[i], brr[i], F.r === i))], 1, false);
 
-  // lost clients by country, split by 2023 status (ignore the country filter)
-  const lostC = bc.map(x => ({ L: x.lostL, N: (x.n - x.b) - x.lostL }));
-  const ordL = lostC.map((x, i) => i).sort((a, b) => (lostC[b].L + lostC[b].N) - (lostC[a].L + lostC[a].N));
-  cLost.innerHTML = ordL.map(i => { const x = lostC[i], tot = x.L + x.N, l = tot ? x.L / tot : 0;
-    return `<div class="sp-row n3"><span class="sp-l">${esc(t.countries[i])}</span><div class="sp-bar"><span class="seg pk${l < .07 ? ' tiny' : ''}" style="--v:${Math.max(l, .0001)}" data-tip="<b>${esc(t.countries[i])}</b><br>${esc(t.loyal)}${COL()}${esc(int(x.L))}">${esc(pct(l, 0))}</span><span class="seg${1 - l < .07 ? ' tiny' : ''}" style="--v:${Math.max(1 - l, .0001)}" data-tip="<b>${esc(t.countries[i])}</b><br>${esc(t.new)}${COL()}${esc(int(x.N))}">${esc(pct(1 - l, 0))}</span></div><span class="sp-n">${esc(int(tot))}</span></div>`; }).join('');
-  const lostAll = sum(D.rows, ['c']), lostN = lostAll.n - lostAll.b;
-  rLost.innerHTML = lang === 'fr'
-    ? `Sur les <b>${esc(int(lostN))}</b> clients perdus, <b>${esc(pct(lostN ? lostAll.lostL / lostN : 0))}</b> étaient fidèles en 2023.`
-    : `Of the <b>${esc(int(lostN))}</b> lost clients, <b>${esc(pct(lostN ? lostAll.lostL / lostN : 0))}</b> were loyal in 2023.`;
+  // no purchase yet in 2024, by country and 2023 status (ignoring the country filter)
+  const idle = by(iC, 8, ['c', 's']).map(x => ({ L: x.idleL, N: (x.n - x.b) - x.idleL }));
+  const oI = idle.map((x, i) => i).sort((a, b) => (idle[b].L + idle[b].N) - (idle[a].L + idle[a].N));
+  const idleAll = sum(D.rows, ['c', 's']), idleN = idleAll.n - idleAll.b;
+  tIdle.textContent = fr ? `${pct(r(idleAll.idleL, idleN), 0)} des clients sans achat en 2024 étaient fidèles en 2023`
+                         : `${pct(r(idleAll.idleL, idleN), 0)} of clients with no purchase yet in 2024 were loyal in 2023`;
+  splits(cIdle, oI.map(i => { const x = idle[i], tot = x.L + x.N, l = r(x.L, tot);
+    return { l: t.countries[i], n: int(tot), segs: [{ v: l, c: 'pk', tip: `<b>${esc(t.countries[i])}</b><br>${esc(t.loyal)}${COL()}${esc(int(x.L))}` }, { v: 1 - l, c: '', tip: `<b>${esc(t.countries[i])}</b><br>${esc(t.new)}${COL()}${esc(int(x.N))}` }] }; }));
 
   // what returning clients spent
-  hbars(cSpend24, [{ l: t.y23, v: all.sb, d: eur(all.sb), tip: `<b>${esc(t.y23)}</b><br>${esc(eur(all.sb))}` }, { l: t.y24, v: all.s24, d: eur(all.s24), hi: true, tip: `<b>${esc(t.y24)}</b><br>${esc(eur(all.s24))}` }], Math.max(all.sb, all.s24), false);
-  cSpend24.classList.remove('dim');
-  cSpend24.querySelectorAll('.hb-row').forEach(r => r.style.gridTemplateColumns = 'minmax(0,170px) 1fr 76px');
-  const ratio = all.sb ? all.s24 / all.sb : 0;
-  rSpend24.innerHTML = lang === 'fr'
-    ? `En 4 mois, les ${esc(int(all.b))} clients revenus ont déjà dépensé <b>${esc(pct(ratio, 0))}</b> de ce qu'ils avaient dépensé sur toute l'année 2023.`
-    : `In 4 months, the ${esc(int(all.b))} returning clients already spent <b>${esc(pct(ratio, 0))}</b> of what they spent in all of 2023.`;
+  const ratio = r(all.s24, all.sb);
+  tSpend24.textContent = fr ? `En quatre mois, les clients revenus ont déjà dépensé ${pct(ratio, 0)} de leur total 2023`
+                            : `In four months, returning clients already spent ${pct(ratio, 0)} of their 2023 total`;
+  hbars(cSpend24, [{ l: t.y23, v: all.sb, d: eur(all.sb), tip: `<b>${esc(t.y23)}</b><br>${esc(eur(all.sb))} · ${esc(int(all.b))} ${esc(t.clients)}` }, { l: t.y24, v: all.s24, d: eur(all.s24), hi: true, tip: `<b>${esc(t.y24)}</b><br>${esc(eur(all.s24))} · ${esc(int(all.b))} ${esc(t.clients)}` }], Math.max(all.sb, all.s24), false);
 
-  // table
-  const tr = (name, x) => `<tr><td>${esc(name)}</td><td>${esc(int(x.n))}</td><td>${esc(eur(x.s))}</td><td>${esc(eur(x.n ? x.s / x.n : 0))}</td><td>${esc(pct(x.s ? x.sl / x.s : 0))}</td><td>${esc(pct(x.n ? x.na / x.n : 0))}</td><td>${esc(pct(x.n ? x.b / x.n : 0))}</td></tr>`;
-  const tc = by(iC, 8, []);
-  tbl.innerHTML = `<thead><tr>${t.th.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${order.map(i => tr(t.countries[i], tc[i])).join('')}</tbody><tfoot>${tr(t.total, all)}</tfoot>`;
+  // what this means: always on all clients
+  const B = base, bAll = by(iR, 5, '*'), bSt = by(iS, 2, '*'), bCo = by(iC, 8, '*');
+  const bAvg = bCo.map(x => r(x.s, x.n)), oT = bAvg.map((x, i) => i).sort((a, b) => bAvg[b] - bAvg[a]).slice(0, 3);
+  const idleB = B.n - B.b;
+  const IMP = fr ? [
+    ['Reconquérir d\'abord les fidèles', `Ils font <b>${pct(r(B.sl, B.s))}</b> des ventes, mais seuls <b>${pct(r(bSt[0].b, bSt[0].n), 0)}</b> ont racheté d'ici avril, et ils représentent <b>${pct(r(B.idleL, idleB))}</b> des clients sans achat en 2024.`],
+    ['Faire monter la dépense moyenne', `La tranche très faible regroupe <b>${pct(r(bAll[0].n, B.n))}</b> des clients pour <b>${pct(r(bAll[0].s, B.s))}</b> des ventes. Faire passer une partie d'entre eux à la tranche suivante fait monter la dépense moyenne.`],
+    ['Investir dans les marchés à forte valeur', `${esc(list(oT.map(i => T.fr.countries[i])))} ont la dépense moyenne par client la plus élevée&#160;: <b>${esc(eur(bAvg[oT[0]]))}</b>, <b>${esc(eur(bAvg[oT[1]]))}</b> et <b>${esc(eur(bAvg[oT[2]]))}</b>.`],
+    ['Faciliter l\'achat à l\'étranger', `<b>${pct(r(B.na, B.n))}</b> des clients ont acheté hors de leur pays de résidence, dans tous les marchés&#160;: la même reconnaissance et le même service doivent les suivre d'une boutique à l'autre.`]
+  ] : [
+    ['Win back loyal clients first', `They make <b>${pct(r(B.sl, B.s))}</b> of sales, yet only <b>${pct(r(bSt[0].b, bSt[0].n), 0)}</b> bought again by April, and they are <b>${pct(r(B.idleL, idleB))}</b> of clients with no purchase yet in 2024.`],
+    ['Raise the average spend', `The Super-low range holds <b>${pct(r(bAll[0].n, B.n))}</b> of clients for <b>${pct(r(bAll[0].s, B.s))}</b> of sales. Moving some of them up one range lifts the average spend.`],
+    ['Invest in high-value markets', `${esc(list(oT.map(i => T.en.countries[i])))} have the highest average spend per client: <b>${esc(eur(bAvg[oT[0]]))}</b>, <b>${esc(eur(bAvg[oT[1]]))}</b> and <b>${esc(eur(bAvg[oT[2]]))}</b>.`],
+    ['Make buying abroad easy', `<b>${pct(r(B.na, B.n))}</b> of clients bought outside their country of residence, in every market: the same recognition and service should follow them from store to store.`]
+  ];
+  imp.innerHTML = IMP.map(([h, p]) => `<li><div><h3>${esc(h)}</h3><p>${p}</p></div></li>`).join('');
+
+  // table and definitions
+  const tr = (name, x) => `<tr><td>${esc(name)}</td><td>${esc(int(x.n))}</td><td>${esc(eur(x.s))}</td><td>${esc(pct(r(x.s, sTot)))}</td><td>${esc(eur(r(x.s, x.n)))}</td><td>${esc(pct(r(x.sl, x.s)))}</td><td>${esc(pct(r(x.na, x.n)))}</td><td>${esc(pct(r(x.b, x.n)))}</td></tr>`;
+  tbl.innerHTML = `<thead><tr>${t.th.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${oS.map(i => tr(t.countries[i], bc[i])).join('')}</tbody><tfoot>${tr(t.total, sum(D.rows, ['c']))}</tfoot>`;
+  defs.innerHTML = DEFS[lang].map(([a, b]) => `<dt>${esc(a)}</dt><dd>${b}</dd>`).join('');
 
   // static texts
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-en][data-fr]').forEach(el => el.textContent = el.dataset[lang]);
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === lang));
-  document.title = lang === 'fr' ? 'Alpha Fashion · Tableau de bord clients · Vera Soldatenko' : 'Alpha Fashion · Client dashboard · Vera Soldatenko';
-  kpis.setAttribute('aria-label', lang === 'fr' ? 'Indicateurs clés' : 'Key figures');
+  document.title = fr ? 'Alpha Fashion · Tableau de bord clients · Vera Soldatenko' : 'Alpha Fashion · Client dashboard · Vera Soldatenko';
+  kpis.setAttribute('aria-label', fr ? 'Indicateurs clés' : 'Key figures');
 }
 const fC = document.getElementById('fC'), fS = document.getElementById('fS'), fR = document.getElementById('fR'), reset = document.getElementById('reset');
 fC.onchange = () => { F.c = +fC.value; render(); };
