@@ -1771,3 +1771,10 @@ button.tp{border:0;cursor:pointer}
 @supports (grid-template-rows:subgrid){
   @media (min-width:960px){.hm-step{grid-row:span 7}.hm-dl{display:contents}.hm-dl dt{margin-top:var(--s-4)}.hm-dl dt:first-of-type{margin-top:var(--s-3)}.hm-dl dd{margin-top:var(--s-1)}}
 }
+
+/* ---------- Skills in action summaries as Problem / Method or Trade-off / Solution (2026-11-14) ----------
+   Same small mono labels as the How I work steps. */
+.sk-pm{display:block}
+.sk-pm+.sk-pm{margin-top:var(--s-3)}
+.sk-pm-k{display:block;margin-bottom:var(--s-1);font:600 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sk-pm-s{font-weight:500}
