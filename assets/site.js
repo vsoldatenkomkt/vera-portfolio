@@ -597,7 +597,7 @@ document.querySelectorAll('.see-link[data-tab],.sx-link[data-tab]').forEach(a =>
 // ---------- career timeline (year grid): click a bar to fade in its story; "What happened next?" walks through them in order ----------
 (function () {
   const sec = document.getElementById('resume'), tl = document.getElementById('tl'); if (!tl) return;
-  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], walk = () => [...new Set(items.filter(b => !b.hasAttribute('data-side') && b.offsetParent).map(b => +b.dataset.i))], hint = document.getElementById('loHint'), next = document.getElementById('loNext');
+  const items = [...tl.querySelectorAll('.tl-item,.tl-cv')], walk = () => [...new Set(items.filter(b => !b.hasAttribute('data-side') && (b.offsetParent || !tl.offsetParent)).map(b => +b.dataset.i))], hint = document.getElementById('loHint'), next = document.getElementById('loNext');
   const cards = [...sec.querySelectorAll('.lo-card')];
   // each name goes inside its bar if it fits, beside the bar if there is room before the next entry, otherwise beneath
   const fit = () => {
@@ -651,7 +651,8 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
   const stops = [...jt.querySelectorAll('.jt-stop')], labs = [...jt.querySelectorAll('.jt-lab')], secs = stops.map(s => document.getElementById(s.dataset.for));
   let last = -1;
   const update = () => {
-    let i = 0; secs.forEach((s, m) => { if (s && s.getBoundingClientRect().top <= innerHeight * .45) i = m; });
+    // the section whose top is the lowest one still above 45% of the screen (by position, so the order of the stops can never drift from the page)
+    let i = 0, best = -Infinity; secs.forEach((s, m) => { if (!s || !s.offsetParent) return; const t = s.getBoundingClientRect().top; if (t <= innerHeight * .45 && t > best) { best = t; i = m; } });
     if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) i = secs.length - 1;
     if (i === last) return; last = i;
     stops.forEach((s, m) => { s.classList.toggle('on', m === i); s.classList.toggle('past', m < i); });
@@ -850,4 +851,34 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
     copy(addr).then(note, () => {});
     location.href = 'mailto:' + addr;
   }));
+})();
+
+// ---------- How I work: each drawing plays once as its step comes into view ----------
+// A step plays when its top reaches 80% of the screen height; steps above that line (a jump from the menu) show at the same time,
+// so nothing is ever left hidden. Steps that start together are staggered.
+(function () {
+  const hm = document.getElementById('hm'); if (!hm || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let left = [...hm.querySelectorAll('.hm-step')];
+  hm.classList.add('hm-wait');
+  const check = () => {
+    const now = left.filter(s => s.getBoundingClientRect().top < innerHeight * .8);
+    if (!now.length) return;
+    now.forEach((s, j) => { s.style.setProperty('--k', j); s.classList.add('go'); });
+    left = left.filter(s => !now.includes(s));
+    if (!left.length) removeEventListener('scroll', check);
+  };
+  addEventListener('scroll', check, { passive: true });
+  requestAnimationFrame(check);
+})();
+
+// ---------- My skills: "+6 more" frameworks ----------
+(function () {
+  const b = document.querySelector('.sx-fw-more'); if (!b) return;
+  const ul = b.closest('ul'), lab = b.querySelector('span'), n = ul.querySelectorAll('.sx-fw-x').length;
+  const set = open => {
+    ul.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
+    lab.dataset.en = open ? 'Show fewer' : '+' + n + ' more'; lab.dataset.fr = open ? 'Moins' : '+' + n + ' autres';
+    lab.textContent = lab.dataset[document.documentElement.lang === 'en' ? 'en' : 'fr'];
+  };
+  b.addEventListener('click', () => set(!ul.classList.contains('open')));
 })();
