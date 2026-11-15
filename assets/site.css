@@ -1778,3 +1778,6 @@ button.tp{border:0;cursor:pointer}
 .sk-pm+.sk-pm{margin-top:var(--s-3)}
 .sk-pm-k{display:block;margin-bottom:var(--s-1);font:600 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sk-pm-s{font-weight:500}
+/* the outcome, when there is one: same block, label in the accent so it reads as the payoff */
+.sk-pm-r{font-weight:500}
+.sk-pm-r .sk-pm-k{color:var(--w3)}
