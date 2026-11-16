@@ -2,6 +2,25 @@
 const WORD_COLOURS = ['--w1', '--w2', '--w3', '--w4', '--w5', '--w6'];
 let lang = (() => { try { const s = localStorage.getItem('site-lang'); if (s === 'fr' || s === 'en') return s; } catch (e) {} return 'fr'; })();
 
+// ---------- cover: a different issue on every visit, one per speciality (same photo) ----------
+(function () {
+  const issues = [
+    { no: 27, of: ['of', 'de la'], word: ['coherence', 'cohérence'], tag: ['The omnichannel issue', 'Le numéro omnicanal'] },
+    { no: 14, of: ['of', 'de la'], word: ['precision', 'précision'], tag: ['The analytics issue', 'Le numéro data'] },
+    { no: 31, of: ['of', "de l'"], word: ['listening', 'écoute'], tag: ['The consumer issue', 'Le numéro consommateurs'] },
+    { no: 22, of: ['of', "de l'"], word: ['identity', 'identité'], tag: ['The brand issue', 'Le numéro marque'] },
+    { no: 18, of: ['of', 'du'], word: ['detail', 'détail'], tag: ['The content issue', 'Le numéro contenu'] },
+    { no: 9, of: ['of', 'du'], word: ['timing', 'timing'], tag: ['The campaign issue', 'Le numéro campagnes'] }
+  ];
+  const no = document.getElementById('cvNo'); if (!no) return;
+  let prev = -1; try { prev = +sessionStorage.getItem('cv-issue'); } catch (e) {}
+  let k = Math.floor(Math.random() * issues.length);
+  if (k === prev) k = (k + 1 + Math.floor(Math.random() * (issues.length - 1))) % issues.length;   // never the same issue twice in a row
+  try { sessionStorage.setItem('cv-issue', k); } catch (e) {}
+  const x = issues[k], set = (id, [en, fr]) => { const el = document.getElementById(id); if (el) { el.dataset.en = en; el.dataset.fr = fr; } };
+  no.textContent = 'Nº ' + x.no; set('cvOf', x.of); set('cvWord', x.word); set('cvTag', x.tag);
+})();
+
 // ---------- language ----------
 function relabel() {
   document.documentElement.lang = lang;
@@ -62,12 +81,9 @@ var lastCounts = null;
 function showCounts(d) {
   if (!d) return;
   lastCounts = d;
-  const live = document.getElementById('live');
-  if (live && Number.isFinite(d.visits) && d.visits > 50) {   // stays hidden until the count passes 50
-    const t = document.getElementById('liveTxt'), one = d.visits === 1;
-    t.dataset.en = one ? 'visit so far' : 'visits so far'; t.dataset.fr = one ? 'visite à ce jour' : 'visites à ce jour'; t.textContent = t.dataset[lang];
-    live.hidden = false;
-  }
+  // the visit count is shown as the cover's print run ("114 copies printed"); hidden until it passes 50
+  const run = document.getElementById('cvRun');
+  if (run && Number.isFinite(d.visits) && d.visits > 50) run.hidden = false;
   ['visits', 'follows'].forEach(k => {
     if (!Number.isFinite(d[k])) return;
     const el = document.querySelector(`[data-count="${k}"]`);
@@ -645,7 +661,7 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
   const on = b.getAttribute('aria-expanded') !== 'true';
   b.setAttribute('aria-expanded', on); b.closest('.rf').classList.toggle('open', on);
 }));
-// ---------- journey tracker: shows where the reader is on the page's journey (display only, not a menu) ----------
+// ---------- journey tracker: shows where the reader is on the page's journey, and each dot jumps to its section ----------
 (function () {
   const jt = document.getElementById('jt'); if (!jt) return;
   const stops = [...jt.querySelectorAll('.jt-stop')], labs = [...jt.querySelectorAll('.jt-lab')], secs = stops.map(s => document.getElementById(s.dataset.for));
@@ -658,6 +674,19 @@ document.querySelectorAll('.rf-more').forEach(b => b.addEventListener('click', (
     stops.forEach((s, m) => { s.classList.toggle('on', m === i); s.classList.toggle('past', m < i); });
     labs.forEach((l, m) => l.classList.toggle('on', m === i));
   };
+  // each stop is a link: click a dot to glide to that section; hovering a dot previews its name
+  stops.forEach((s, m) => {
+    const a = s.querySelector('.jt-go'); if (!a) return;
+    a.addEventListener('click', ev => {
+      const t = secs[m]; if (!t) return; ev.preventDefault();
+      const top = m === 0 ? 0 : t.getBoundingClientRect().top + scrollY - document.getElementById('head').offsetHeight;
+      scrollTo({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      a.blur();
+    });
+    const peek = on => { jt.classList.toggle('peek', on); labs.forEach((l, n) => l.classList.toggle('hov', on && n === m)); };
+    a.addEventListener('mouseenter', () => peek(true)); a.addEventListener('mouseleave', () => peek(false));
+    a.addEventListener('focus', () => peek(true)); a.addEventListener('blur', () => peek(false));
+  });
   addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
 })();
 

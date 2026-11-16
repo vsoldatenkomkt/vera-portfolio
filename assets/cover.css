@@ -4,7 +4,8 @@
 .cv-wrap{width:min(480px,100%,calc((100svh - var(--head-h) - 128px - 60px) * .75));min-width:min(360px,100%);margin:0}
 @media (min-width:768px){.cv-wrap{justify-self:end}}
 @media (max-width:767px){.cv-wrap{justify-self:center}}
-.cv-flip{--cv-ivory:#F6F0E8;--cv-rose:#E6A99B;--cv-pop:#D23F5F;--cv-pop-deep:#B3264A;--cv-ink:#1A1511;position:relative;perspective:1800px;cursor:pointer}
+/* cover accents are fixed to the photo (warm stone wall, black top), independent of the site palette: bronze 4+, champagne "of" */
+.cv-flip{--cv-ivory:#F6F0E8;--cv-rose:#E2C7B8;--cv-pop:#E3B77C;--cv-pop-deep:#8A5A2B;--cv-ink:#1A1511;position:relative;perspective:1800px;cursor:pointer}
 .cv{
   position:relative;aspect-ratio:800/1067;overflow:hidden;border-radius:4px;container-type:inline-size;background:#A38D75;color:var(--cv-ink);
   box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 34px 70px -28px rgba(26,21,17,.45),0 10px 24px -12px rgba(26,21,17,.2)}
@@ -18,6 +19,7 @@
 .cv-mast text{font:700 104px/1 var(--f-editorial);fill:var(--cv-ivory);opacity:.94}
 
 /* issue line: small, regular weight, softened ink, like the dateline on a real cover */
+.cv-issue b{font-weight:inherit;font-variant-numeric:tabular-nums}
 .cv-issue{position:absolute;z-index:3;left:4.5%;top:21%;display:grid;gap:.5em;font:400 max(7.5px,1.8cqw)/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:rgba(26,21,17,.72)}
 
 /* 4+ years: centred in the open wall to the right of her face (between masthead and shoulder), level with her mouth */
