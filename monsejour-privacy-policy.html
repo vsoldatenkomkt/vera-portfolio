@@ -69,6 +69,9 @@ strong{color:var(--ink);font-weight:600}
 .rows dd{margin:0}
 .rows dd::first-letter{text-transform:uppercase}
 footer{border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer p{margin:0}
+.fl{display:flex;flex-wrap:wrap;gap:0 24px}
+.fl a{display:inline-flex;align-items:center;min-height:44px;margin:-10px 0}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;padding-top:32px;padding-bottom:40px}
 
 @media (max-width:860px){
@@ -124,7 +127,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 <li><a href="#what-stays-on-your-iphone"><span>1</span>What stays on your iPhone</a></li>
 <li><a href="#optional-icloud-features"><span>2</span>Optional iCloud features</a></li>
 <li><a href="#emails-you-send-us"><span>3</span>Emails you send us</a></li>
-<li><a href="#purchases"><span>4</span>Purchases</a></li>
+<li><a href="#cost-and-downloads"><span>4</span>Cost and downloads</a></li>
 <li><a href="#permissions"><span>5</span>Permissions</a></li>
 <li><a href="#translation-and-links"><span>6</span>Translation and links</a></li>
 <li><a href="#who-helps-process-data"><span>7</span>Who helps process data</a></li>
@@ -139,7 +142,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 <li><a href="#what-stays-on-your-iphone"><span>1</span>What stays on your iPhone</a></li>
 <li><a href="#optional-icloud-features"><span>2</span>Optional iCloud features</a></li>
 <li><a href="#emails-you-send-us"><span>3</span>Emails you send us</a></li>
-<li><a href="#purchases"><span>4</span>Purchases</a></li>
+<li><a href="#cost-and-downloads"><span>4</span>Cost and downloads</a></li>
 <li><a href="#permissions"><span>5</span>Permissions</a></li>
 <li><a href="#translation-and-links"><span>6</span>Translation and links</a></li>
 <li><a href="#who-helps-process-data"><span>7</span>Who helps process data</a></li>
@@ -180,7 +183,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 <dl class="rows">
 <div><dt>Back up to iCloud</dt><dd>your renewals, family and answers are saved in your own private iCloud. Vault documents are not included. Turning it off deletes this backup.</dd></div>
 <div><dt>Trusted helper</dt><dd>the person you invite sees your first name, open renewals (yours and your family’s), their papers, where each application is and, unless you turn it off, the pages you added to your home. They can mark papers as ready if you allow it. They don’t see your Vault or your answers in Your situation.</dd></div>
-<div><dt>Shared family</dt><dd>the people you invite see and can change the family information you share. If sharing stops, each person keeps a copy of that information on their iPhone.</dd></div>
+<div><dt>Shared family</dt><dd>the people you invite see your first name, and see and can change the family information you share. Your own renewals stay private unless you turn on Show my renewals. Then the other adults see your open renewals, their dates, their papers and where each application is, and can’t change them. They don’t see your Vault or your answers in Your situation. If sharing stops, each person keeps a copy of the family information on their iPhone.</dd></div>
 </dl>
 <p>You choose who to invite and can stop sharing at any time. Apple shows the people in a share the name or contact details needed for the invitation.</p>
 </section>
@@ -188,9 +191,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 <h2><span>3</span>Emails you send us</h2>
 <p>If you email us at <a href="mailto:app.monsejour@icloud.com">app.monsejour@icloud.com</a>, we use your message only to answer you. We receive your email address and what you write, and use them based on our legitimate interest in responding. We delete emails within 24 months, unless the law requires us to keep them longer.</p>
 </section>
-<section id="purchases">
-<h2><span>4</span>Purchases</h2>
-<p>Apple handles payments. We never receive your card details. The app asks Apple whether you have MonSéjour Pro. Apple gives us sales reports that don’t identify you by name.</p>
+<section id="cost-and-downloads">
+<h2><span>4</span>Cost and downloads</h2>
+<p>MonSéjour is free. There is nothing to buy in the app, so it never asks for payment details. Apple gives us download reports that don’t identify you by name.</p>
 </section>
 <section id="permissions">
 <h2><span>5</span>Permissions</h2>
@@ -245,7 +248,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 </main>
 </div>
 <!-- /TEXT -->
-<footer><div class="wrap"><p>MonSéjour privacy policy, 24 November 2026</p><p><a href="mailto:app.monsejour@icloud.com">app.monsejour@icloud.com</a></p></div></footer>
+<footer><div class="wrap"><p>MonSéjour privacy policy, 24 November 2026</p><p class="fl"><a href="monsejour-support">Support</a><a href="mailto:app.monsejour@icloud.com">app.monsejour@icloud.com</a></p></div></footer>
 <script>
 (function(){
   var links=[].slice.call(document.querySelectorAll('.toc a')),secs=links.map(function(a){return document.getElementById(a.hash.slice(1))}),tick=false;
